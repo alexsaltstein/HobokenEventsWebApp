@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
-import { EventItem } from "./components/happy_hours/EventItem";
+import './index.css'
+// import { Link } from "react-router-dom";
+import { EventList } from "./components/events/EventList";
 
 export default function App() {
   return (
@@ -12,8 +13,8 @@ export default function App() {
         }}
       >
         {/* example link for use when we add events */}
-        <Link to="/happyhour">Happy Hour</Link>
-        <EventItem/>
+        {/* <Link to="/happyhour">Happy Hour</Link> */}
+        <EventList title="Happy Hours" url="https://reqres.in/api/users"/>
       </nav>
     </div>
   );
