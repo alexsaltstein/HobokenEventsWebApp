@@ -1,7 +1,6 @@
 import "./index.css";
 // import { Link } from "react-router-dom";
 import { EventList } from "./components/events/EventList";
-import { EventItem } from "./components/events/EventItem";
 
 export default function App() {
   return (
