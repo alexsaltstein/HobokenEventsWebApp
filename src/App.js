@@ -1,11 +1,12 @@
 import "./index.css";
 // import { Link } from "react-router-dom";
 import { EventList } from "./components/events/EventList";
+import Header from "./components/header/Header";
 
 export default function App() {
   return (
     <div>
-      <h1>Hoboken Happy hours</h1>
+      <Header />
       <nav
         style={{
           borderBottom: "solid 1px",
