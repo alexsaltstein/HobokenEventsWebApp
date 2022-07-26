@@ -9,6 +9,7 @@ export default function App() {
       <Header />
       <nav
         style={{
+          paddingTop: "1rem",
           borderBottom: "solid 1px",
           paddingBottom: "1rem",
         }}

@@ -1,0 +1,35 @@
+#container {
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .bar1, .bar2, .bar3 {
+    width: 0.75rem;
+    height: 0.1rem;
+    margin-bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+  }
+  
+  /* Rotate first bar */
+  .change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-0.1rem, 0.1rem) ;
+    transform: rotate(-45deg) translate(-0.1rem, 0.1rem) ;
+  }
+  
+  /* Fade out the second bar */
+  .change .bar2 {
+    opacity: 0;
+  }
+  
+  /* Rotate last bar */
+  .change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-0.2rem, -0.2rem) ;
+    transform: rotate(45deg) translate(-0.2rem, -0.2rem) ;
+  }
+
+  @media (min-width: 280px) and (max-width: 320px) { 
+    #header { 
+      width: 100%;
+    }
+  }
