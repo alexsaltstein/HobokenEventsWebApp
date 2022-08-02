@@ -2,13 +2,13 @@ import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../utils/admin";
-import { useAuthState } from "../../utils/authState";
+import { useUserState } from "../../utils/userState";
 
 export const Login = () => {
   const API_URL = process.env.REACT_APP_API_URL;
 
   const navigate = useNavigate();
-  const [auth, setAuth] = useAuthState();
+  const [, setUser] = useUserState();
 
   const [email, setEmail] = React.useState("");
   const [pass, setPass] = React.useState("");
@@ -23,21 +23,21 @@ export const Login = () => {
   };
 
   const login = async (email, pass) => {
-    logout(setAuth);
+    logout(setUser);
     try {
       setLoading(true);
       if (!email || email.length === 0 || !pass || pass.length === 0) {
-        throw "email or pass not valid";
+        throw new Error("email or pass not valid");
       }
       const res = await axios.post(`${API_URL}/auth/login`, {
         email,
         password: pass,
       });
-      setAuth(res.data.token);
+      setUser({ token: res.data.token, firstName: res.data.firstName });
       setLoading(false);
-      navigate("/add", { replace: true });
+      navigate("/admin/create/events", { replace: true });
     } catch (e) {
-      handleError("error logging in");
+      handleError(e);
       console.log(e);
       setLoading(false);
     }
@@ -64,7 +64,7 @@ export const Login = () => {
           login
         </button>
       </div>
-      <button onClick={() => logout(setAuth)}>logout</button>
+      <button onClick={() => logout(setUser)}>logout</button>
       {error ? <div>{error}</div> : null}
     </div>
   );
