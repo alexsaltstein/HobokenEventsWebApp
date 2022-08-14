@@ -3,7 +3,7 @@ import './Header.css';
 
 
 export default function Header() {
-    function myFunction() {
+    function animateMenuIcon() {
         const container = document.getElementById('container')
         container.classList.toggle("change");
     }
@@ -11,7 +11,7 @@ export default function Header() {
     return (
         <>
             <div className='fixed flex top-0 left-0 w-screen h-8 bg-hoboken-blue' id='header'>
-                <div className="w-6" id="container" onClick={myFunction}>
+                <div className="w-6" id="container" onClick={animateMenuIcon}>
                     <div className="fixed top-3 left-2 w-6 h-2">
                         <div className="bar1"></div>
                         <div className="bar2"></div>

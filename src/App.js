@@ -22,7 +22,7 @@ export default function App() {
         {/* example link for use when we add events */}
         {/* <Link to="/happyhour">Happy Hour</Link> */}
         <DatePicker
-          className="border ml-4"
+          className="border ml-4 relative top-5"
           selected={selectedDate}
           onChange={(date) => setSelectedDate(date)}
           todayButton={<div>Today</div>}
