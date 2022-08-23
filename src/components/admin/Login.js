@@ -1,22 +1,11 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../utils/admin";
 import { useUserState } from "../../utils/userState";
 
 export const Login = () => {
   const API_URL = process.env.REACT_APP_API_URL;
-
-  const [width, setWidth] = useState(window.innerWidth);
-  const breakpoint = 960;
-
-  useEffect(() => {
-    const handleResizeWindow = () => setWidth(window.innerWidth);
-     window.addEventListener("resize", handleResizeWindow);
-     return () => {
-       window.removeEventListener("resize", handleResizeWindow);
-     };
-   }, []);
 
   const navigate = useNavigate();
   const [, setUser] = useUserState();
@@ -53,108 +42,68 @@ export const Login = () => {
       setLoading(false);
     }
   };
-  if (width > breakpoint) {
-    return (
-      <div className="h-screen w-screen flex" id='splitContainer'>
-        <div className="relative w-1/2 h-screen m-0" id='form'>
-          <div className="relative w-64 h-1/3 m-auto" />
-          <div className="relative w-64 h-1/3 m-auto">
-            <div className="relative mb-4">
-                <div className="text-l font-bold text-[#697E90]">
-                  Hoboken Events
-                </div>
-                <div className="text-4xl font-bold">
-                  Log in
-                </div>
-            </div>
+
+  return (
+    <div className="h-screen w-screen flex" id='splitContainer'>
+      <div className="w-full h-screen m-0 lg:w-1/2" id='form'>
+        <div className="w-80 lg:w-96 h-1/4 m-auto" />
+        <div className="w-80 lg:w-96 h-2/4 m-auto">
+          <div className="mb-4">
+              <div className="text-l font-bold text-hoboken-blue">
+                Hoboken Events
+              </div>
+              <div className="text-4xl font-bold">
+                Log in
+              </div>
+          </div>
+          <div className="relative">
+            <label htmlFor='emailInput' className="absolute left-2 top-1 z-10 m-1 text-input-label-gray text-sm">
+              Email Address
+            </label>
             <input
+              id='emailInput'
               type="email"
               name="email"
               onChange={(event) => setEmail(event.target.value)}
-              className="border m-1 rounded w-full"
-              placeholder="Email address"
+              className="absolute left-0 top-0 border m-1 rounded w-full h-12"
             />
+          </div>
+          <div className="relative top-14">
+            <label htmlFor='passwordInput' className="absolute left-2 top-1 z-10 m-1 text-input-label-gray text-sm">
+              Password
+            </label>
             <input
+              id='passwordInput'
               type="password"
               name="password"
               onChange={(event) => setPass(event.target.value)}
-              className="border m-1 rounded w-full"
-              placeholder="Password"
+              className="absolute left-0 top-0 border m-1 rounded w-full h-12"
             />
-            <div className="w-full flex">
-              <button
-                className="w-full h-6 bg-[#3898EC] border-[#3898EC] text-white mt-2 mb-2 text-xs rounded"
-                onClick={async () => await login(email, pass)}
-                disabled={loading}
-              >
-                Log in
-              </button>
-            </div>
-            <div>
-              <button
-                  className="w-full h-6 bg-[#3898EC] border-[#3898EC] text-white mt-0 mb-2 text-xs rounded"
-                  onClick={() => logout(setUser)}>
-                    Log out
-                </button>
-            </div>
           </div>
-          <div className="relative w-64 h-1/3 m-auto" id='errors'>
-            {error ? <div>{error}</div> : null}
+          <div className="relative top-28 m-1 w-full">
+            <button
+              className="w-full h-10 bg-button-blue border-button-blue text-white mt-2 mb-2 text-sm font-semibold rounded"
+              onClick={async () => await login(email, pass)}
+              disabled={loading}
+            >
+              Log in
+            </button>
+          </div>
+          <div className="relative top-28 m-1 w-full">
+            <button
+                className="w-full h-10 bg-button-blue border-button-blue text-white mt-0 mb-2 text-sm font-semibold rounded"
+                onClick={() => logout(setUser)}>
+                  Log out
+              </button>
           </div>
         </div>
-        <div className="relative w-1/2 m-0 overflow-hidden" id='image'>
-          <img className="absolute object-cover h-full" src='https://static01.nyt.com/images/2015/01/04/realestate/20150104-LIVING-slide-5SXM/20150104-LIVING-slide-5SXM-superJumbo.jpg' alt='login'/>
+        <div className="w-96 h-1/4 m-auto" id='errors'>
+          {error ? <div>{error}</div> : null}
         </div>
       </div>
-    );
-  } else {
-    return (
-        <div className="relative w-full h-screen m-0" id='form'>
-          <div className="relative w-64 h-1/3 m-auto" />
-          <div className="relative w-64 h-1/3 m-auto">
-            <div className="relative mb-4" id='headerText'>
-                <div className="text-l font-bold text-[#697E90]">
-                  Hoboken Events
-                </div>
-                <div className="text-4xl font-bold">
-                  Log in
-                </div>
-            </div>
-            <input
-              type="email"
-              name="email"
-              onChange={(event) => setEmail(event.target.value)}
-              className="border m-1 rounded w-full"
-              placeholder="Email address"
-            />
-            <input
-              type="password"
-              name="password"
-              onChange={(event) => setPass(event.target.value)}
-              className="border m-1 rounded w-full"
-              placeholder="Password"
-            />
-            <div className="w-full flex">
-              <button
-                className="w-full h-6 bg-[#3898EC] border-[#3898EC] text-white mt-2 mb-2 text-xs rounded"
-                onClick={async () => await login(email, pass)}
-                disabled={loading}
-              >
-                Log in
-              </button>
-            </div>
-            <div>
-              <button
-                  className="w-full h-6 bg-[#3898EC] border-[#3898EC] text-white mt-0 mb-2 text-xs rounded"
-                  onClick={() => logout(setUser)}>
-                    Log out
-                </button>
-            </div>
-          </div>
-          <div className="relative w-64 h-1/3 m-auto" id='errors'>
-            {error ? <div>{error}</div> : null}
-          </div>
-        </div>
-    );
-  }
+      <div className="relative w-0 m-0 overflow-hidden lg:w-1/2" id='image'>
+        <img className="absolute object-cover h-full" src='/login.jpg' alt='login'/>
+      </div>
+    </div>
+  );
 };
