@@ -65,7 +65,7 @@ export const Login = () => {
               type="email"
               name="email"
               onChange={(event) => setEmail(event.target.value)}
-              className="absolute left-0 top-0 border m-1 rounded w-full h-12"
+              className="absolute left-0 top-0 border m-1 rounded w-full h-12 pl-2 pt-5"
             />
           </div>
           <div className="relative top-14">
@@ -77,7 +77,7 @@ export const Login = () => {
               type="password"
               name="password"
               onChange={(event) => setPass(event.target.value)}
-              className="absolute left-0 top-0 border m-1 rounded w-full h-12"
+              className="absolute left-0 top-0 border m-1 rounded w-full h-12 pl-2 pt-5"
             />
           </div>
           <div className="relative top-28 m-1 w-full">
