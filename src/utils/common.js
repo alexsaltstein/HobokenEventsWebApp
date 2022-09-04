@@ -11,3 +11,10 @@ export const formatDate = (currDate) => {
         currDate.getMonth() + 1
       }/${currDate.getDate()}/${currDate.getFullYear()}`;
 };
+
+export const handleError = (setError, errorMessage) => {
+  setError(errorMessage);
+  setTimeout(() => {
+    setError(null);
+  }, 3000);
+};
