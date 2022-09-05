@@ -34,7 +34,10 @@ export const EventList = ({ title, url }) => {
     <div className="p-4">
       <h1 className="underline text-2xl">{title}</h1>
       {eventData.map((event, index) => (
-        <EventItem key={`${title}-list-item-${index}`} eventData={event} />
+        <>
+          <EventItem key={`${title}-list-item-${index}`} eventData={event} />
+          <hr />
+        </>
       ))}
     </div>
   );
