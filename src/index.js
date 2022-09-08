@@ -4,19 +4,37 @@ import App from "./App";
 import { Login } from "./components/admin/Login";
 import { RecoilRoot } from "recoil";
 import { AuthedRoute } from "./routes/AuthedRoute";
-import { AddEvent } from "./components/admin/AddEvent";
+import { ListEventsPage } from "./components/admin/moderate/events/ListEventsPage";
+import { Logout } from "./components/admin/Logout";
+import { AddEventPage } from "./components/admin/create/events/AddEventPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <RecoilRoot>
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/admin/login" element={<Login />} />
         <Route
-          path="/add"
+          path="/admin/moderate/events"
           element={
             <AuthedRoute>
-              <AddEvent />
+              <ListEventsPage />
+            </AuthedRoute>
+          }
+        />
+        <Route
+          path="/admin/create/events"
+          element={
+            <AuthedRoute>
+              <AddEventPage />
+            </AuthedRoute>
+          }
+        />
+        <Route
+          path="/admin/logout"
+          element={
+            <AuthedRoute>
+              <Logout />
             </AuthedRoute>
           }
         />

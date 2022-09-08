@@ -1,4 +1,4 @@
-export const logout = (setAuth) => {
-  setAuth(null);
+export const logout = (setUser) => {
+  setUser(null);
   window.localStorage.clear();
 };

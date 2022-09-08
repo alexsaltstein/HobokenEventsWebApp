@@ -1,13 +1,13 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { useAuthState } from "../utils/authState";
+import { useUserState } from "../utils/userState";
 
 export const AuthedRoute = ({ children }) => {
-  const [auth] = useAuthState();
+  const [user] = useUserState();
   const location = useLocation();
 
-  if (!auth) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (!user) {
+    return <Navigate to="/admin/login" state={{ from: location }} replace />;
   }
 
   return children;

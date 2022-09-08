@@ -4,12 +4,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'hoboken-blue': '#697E90',
-        'button-green': '#36C37F'
-      },
-      scale: {
-        '25': '0.25'
-      },
+        'hoboken-blue': '#63798c',
+        'button-blue': '#007bc7',
+        'input-label-gray': '#6f7287'
+      }
     },
   },
   plugins: [],
