@@ -1,37 +1,38 @@
 import axios from "axios";
 import React from "react";
-import { logout } from "../../utils/admin";
-import { useAuthState } from "../../utils/authState";
+import { logout } from "../../../../utils/admin";
+import { useUserState } from "../../../../utils/userState";
 
-export const AddEvent = () => {
+export const ListEventsPage = () => {
   const API_URL = process.env.REACT_APP_API_URL;
-  const [auth, setAuth] = useAuthState();
+  const [user, setUser] = useUserState();
 
   const [data, setData] = React.useState();
 
-  const fetchData = async () => {
+  const fetchData = React.useCallback(async () => {
     try {
       const res = await axios.get(`${API_URL}/api/user/test`, {
         headers: {
-          "x-access-token": auth,
+          "x-access-token": user.token,
         },
       });
       setData(res.data);
     } catch (e) {
-      logout(setAuth);
+      logout(setUser);
       console.log(e);
     }
-  };
+  }, [setData, API_URL, setUser, user]);
 
   React.useEffect(() => {
     (async () => {
       await fetchData();
     })();
-  }, []);
+  }, [fetchData]);
 
   return (
     <div>
-      <p>add form</p>
+      <p>Hi, {user.firstName}</p>
+      <p>list of events that need to be approved or denied</p>
       <p>{data}</p>
     </div>
   );
