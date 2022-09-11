@@ -33,35 +33,41 @@ export const Login = () => {
         email,
         password: pass,
       });
+      console.log("here");
+      console.log("login", res);
+      if (!res.data) {
+        return;
+      }
       setUser({ token: res.data.token, firstName: res.data.firstName });
       setLoading(false);
       navigate("/admin/create/events", { replace: true });
     } catch (e) {
-      handleError(e);
-      console.log(e);
+      handleError(e.message);
+      console.log("error in login", e);
       setLoading(false);
     }
   };
 
   return (
-    <div className="h-screen w-screen flex" id='splitContainer'>
-      <div className="w-full h-screen m-0 lg:w-1/2" id='form'>
+    <div className="h-screen w-screen flex" id="splitContainer">
+      <div className="w-full h-screen m-0 lg:w-1/2" id="form">
         <div className="w-80 lg:w-96 h-1/4 m-auto" />
         <div className="w-80 lg:w-96 h-2/4 m-auto">
           <div className="mb-4">
-              <div className="text-l font-bold text-hoboken-blue">
-                Hoboken Events
-              </div>
-              <div className="text-4xl font-bold">
-                Log in
-              </div>
+            <div className="text-l font-bold text-hoboken-blue">
+              Hoboken Events
+            </div>
+            <div className="text-4xl font-bold">Log in</div>
           </div>
           <div className="relative">
-            <label htmlFor='emailInput' className="absolute left-2 top-1 z-10 m-1 text-input-label-gray text-sm">
+            <label
+              htmlFor="emailInput"
+              className="absolute left-2 top-1 z-10 m-1 text-input-label-gray text-sm"
+            >
               Email Address
             </label>
             <input
-              id='emailInput'
+              id="emailInput"
               type="email"
               name="email"
               onChange={(event) => setEmail(event.target.value)}
@@ -69,11 +75,14 @@ export const Login = () => {
             />
           </div>
           <div className="relative top-14">
-            <label htmlFor='passwordInput' className="absolute left-2 top-1 z-10 m-1 text-input-label-gray text-sm">
+            <label
+              htmlFor="passwordInput"
+              className="absolute left-2 top-1 z-10 m-1 text-input-label-gray text-sm"
+            >
               Password
             </label>
             <input
-              id='passwordInput'
+              id="passwordInput"
               type="password"
               name="password"
               onChange={(event) => setPass(event.target.value)}
@@ -91,18 +100,23 @@ export const Login = () => {
           </div>
           <div className="relative top-28 m-1 w-full">
             <button
-                className="w-full h-10 bg-button-blue border-button-blue text-white mt-0 mb-2 text-sm font-semibold rounded"
-                onClick={() => logout(setUser)}>
-                  Log out
-              </button>
+              className="w-full h-10 bg-button-blue border-button-blue text-white mt-0 mb-2 text-sm font-semibold rounded"
+              onClick={() => logout(setUser)}
+            >
+              Log out
+            </button>
           </div>
         </div>
-        <div className="w-96 h-1/4 m-auto" id='errors'>
-          {error ? <div>{error}</div> : null}
+        <div className="w-96 h-1/4 m-auto" id="errors">
+          {error ? error : null}
         </div>
       </div>
-      <div className="relative w-0 m-0 overflow-hidden lg:w-1/2" id='image'>
-        <img className="absolute object-cover h-full" src='/login.jpg' alt='login'/>
+      <div className="relative w-0 m-0 overflow-hidden lg:w-1/2" id="image">
+        <img
+          className="absolute object-cover h-full"
+          src="/login.jpg"
+          alt="login"
+        />
       </div>
     </div>
   );

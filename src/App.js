@@ -5,10 +5,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { EventList } from "./components/events/EventList";
 import Header from "./components/header/Header";
 import DatePicker from "react-datepicker";
-import { formatDate } from "./utils/common";
+import { formatDate, getDayOfWeek } from "./utils/common";
 
 export default function App() {
   const [selectedDate, setSelectedDate] = React.useState(new Date());
+  console.log(selectedDate.getDay());
+
   return (
     <div>
       <Header />
@@ -29,7 +31,11 @@ export default function App() {
         />
         <EventList
           title={`Happy Hours of ${formatDate(selectedDate)}`}
-          url="https://reqres.in/api/users"
+          url={`${
+            process.env.REACT_APP_API_URL
+          }/api/deal?approved=true&dayOfWeek=${getDayOfWeek(
+            selectedDate.getDay()
+          )}`}
         />
       </nav>
     </div>

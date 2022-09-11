@@ -7,6 +7,7 @@ import { AuthedRoute } from "./routes/AuthedRoute";
 import { ListEventsPage } from "./components/admin/moderate/events/ListEventsPage";
 import { Logout } from "./components/admin/Logout";
 import { AddEventPage } from "./components/admin/create/events/AddEventPage";
+import { Place } from "./routes/Place";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -38,6 +39,7 @@ root.render(
             </AuthedRoute>
           }
         />
+        <Route path="/place/:id" element={<Place />} />
         <Route path="/" element={<App />} />
         <Route
           path="*"
