@@ -8,8 +8,9 @@ export const EventList = ({ title, url }) => {
 
   const fetchData = React.useCallback(async () => {
     try {
+      console.log(url);
       const res = await axios.get(url);
-      setEventData(res.data.data);
+      setEventData(res.data);
       setLoading(false);
     } catch (e) {
       setLoading(false);
