@@ -13,13 +13,13 @@ export const formatDate = (currDate) => {
 };
 
 export const DAYS_ENUM = {
-  Sunday: "Sunday",
-  Monday: "Monday",
-  Tuesday: "Tuesday",
-  Wednesday: "Wednesday",
-  Thursday: "Thursday",
-  Friday: "Friday",
-  Saturday: "Saturday",
+  Sunday: "sunday",
+  Monday: "monday",
+  Tuesday: "tuesday",
+  Wednesday: "wednesday",
+  Thursday: "thursday",
+  Friday: "friday",
+  Saturday: "saturday",
 };
 
 export const getDayOfWeek = (dateNum) => {

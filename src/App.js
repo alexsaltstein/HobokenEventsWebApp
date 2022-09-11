@@ -31,7 +31,7 @@ export default function App() {
           title={`Happy Hours of ${formatDate(selectedDate)}`}
           url={`${
             process.env.REACT_APP_API_URL
-          }/api/deal?approved=false&dayOfWeek=${getDayOfWeek(
+          }/api/deal?approved=true&dayOfWeek=${getDayOfWeek(
             selectedDate.getDay()
           )}`}
         />
