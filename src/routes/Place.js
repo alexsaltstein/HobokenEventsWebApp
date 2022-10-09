@@ -34,12 +34,13 @@ export const Place = () => {
     return <div>Error getting place</div>;
   }
 
-  const { address, deals, name } = placeData;
+  const { address, name } = placeData[0].place;
+  console.log(address);
   return (
     <div className="p-4">
       <h1 className="underline text-2xl">{name}</h1>
       <h2 className="text-xl">{address}</h2>
-      {deals.map((bigDeal) => (
+      {placeData.map((bigDeal) => (
         <div>
           <p>{bigDeal.description}</p>
           <p>{bigDeal.dayOfWeek}</p>
