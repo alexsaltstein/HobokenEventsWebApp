@@ -12,7 +12,6 @@ export const Place = () => {
       const res = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/deal?placeId=${id}`
       );
-      console.log("res", res);
       setPlaceData(res.data);
       setLoading(false);
     } catch (e) {
@@ -35,7 +34,6 @@ export const Place = () => {
   }
 
   const { address, name } = placeData[0].place;
-  console.log(address);
   return (
     <div className="p-4">
       <h1 className="underline text-2xl">{name}</h1>
