@@ -1,0 +1,25 @@
+.circle {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+  
+.text {
+    margin: auto;
+}
+
+#button {
+    color: #007bc7;
+}
+
+
+input[type=checkbox]{
+    display: none;
+}
+
+input[type=checkbox]:checked + #button{
+    background-color: #007bc7;
+    color: white;
+}
+    

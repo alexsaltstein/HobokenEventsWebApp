@@ -8,17 +8,23 @@ export const GenericInput = ({
   type,
   error,
   required,
+  extraProps,
 }) => {
   return (
-    <div>
-      <p>
+    <div className={`relative ${extraProps}`}>
+      <label
+        htmlFor={label}
+        className="absolute left-2 top-1 z-10 m-1 text-input-label-gray text-sm"
+      >
         {label}
         {required ? <span className="text-red-400">*</span> : null}
-      </p>
+      </label>
       <input
-        className={`border ${error?.[name] ? "border-red-400" : null}`}
-        onChange={onChange}
+        id={name}
         type={type}
+        name={name}
+        onChange={onChange}
+        className="border mt-1 mb-1 rounded w-full h-12 pl-2 pt-5"
       />
       <ErrorText>{error?.[name]}</ErrorText>
     </div>

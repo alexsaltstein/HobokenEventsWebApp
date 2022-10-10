@@ -70,45 +70,79 @@ export const AddEventPage = () => {
     <div>
       <p>placeInfo:{JSON.stringify(placeInfo)}</p>
       <p>deals:{JSON.stringify(deals)}</p>
-      <p>Hi, {user.firstName}</p>
+      <p className="relative text-2xl font-bold text-hoboken-blue left-4">Hi {user.firstName}, lets create a happening</p>
       <ErrorText>
         {Object.keys(error).length > 0 ? "Error submitting form" : null}
       </ErrorText>
-      <GenericInput
-        required
-        label="Google place id"
-        name="googlePlaceId"
-        type="text"
-        onChange={(event) => handleChangeEvent(event, "googlePlaceId")}
-        error={error}
-      />
-      <GenericInput
-        required
-        label="Name of Place"
-        name="name"
-        type="text"
-        onChange={(event) => handleChangeEvent(event, "name")}
-        error={error}
-      />
-      <GenericInput
-        required
-        label="Address of Place"
-        name="address"
-        type="text"
-        onChange={(event) => handleChangeEvent(event, "address")}
-        error={error}
-      />
-      {deals.map((deal, index) => {
-        return (
-          <AddDealElement
-            key={`deal-${index}`}
-            deal={deal}
-            removeDeal={() => removeDeal(index)}
-          />
-        );
-      })}
-      <button onClick={() => addNewDeal()}>Add Deal</button>
-      <button onClick={() => handleFormSubmit()}>Submit</button>
+      <div className="relative left-4 mb-4 w-[95%]">
+        <div className="text-4xl font-bold">
+          Location Info
+        </div>
+        <p className="text-gray-500 mt-1">Help people in the area discover your happening and let attendees know where to show up.</p>
+      </div>
+      <div className="relative">
+        <GenericInput
+          required
+          label="Google Place ID"
+          name="googlePlaceId"
+          type="text"
+          onChange={(event) => handleChangeEvent(event, "googlePlaceId")}
+          error={error}
+          extraProps="w-[95%] m-auto mb-2"
+        />
+        <GenericInput
+          required
+          label="Name of Location"
+          name="name"
+          type="text"
+          onChange={(event) => handleChangeEvent(event, "name")}
+          error={error}
+          extraProps="w-[95%] m-auto mb-2"
+        />
+        <GenericInput
+          required
+          label="Address of Location"
+          name="address"
+          type="text"
+          onChange={(event) => handleChangeEvent(event, "address")}
+          error={error}
+          extraProps="w-[95%] m-auto mb-2"
+        />
+        <div className="relative left-4 mb-4 w-[95%]">
+          <div className="text-4xl font-bold">
+            Event Info
+          </div>
+          <p className="text-gray-500 mt-1">Specify the date and time for the happening and what kind of happening it is.</p>
+        </div>
+        {deals.map((deal, index) => {
+          return (
+            <AddDealElement
+              key={`deal-${index}`}
+              deal={deal}
+              removeDeal={() => removeDeal(index)}
+            />
+          );
+        })}
+      </div>
+      <div className="relative">
+        <button type="button"
+          class="text-white bg-button-blue focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 m-2"
+          onClick={() => addNewDeal()}
+        >
+          Add Deal
+        </button>
+      </div>
+      <div className="relative bottom-0">
+        <hr className="w-screen bg-white" />
+        <div className="absolute right-0">
+          <button type="button"
+            class="text-white bg-button-blue focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 m-2"
+            onClick={() => handleFormSubmit()}
+          >
+            Submit
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

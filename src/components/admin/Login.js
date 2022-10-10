@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../utils/admin";
 import { useUserState } from "../../utils/userState";
+import { GenericInput } from "../form/GenericInput";
 
 export const Login = () => {
   const API_URL = process.env.REACT_APP_API_URL;
@@ -54,42 +55,32 @@ export const Login = () => {
         <div className="w-80 lg:w-96 h-1/4 m-auto" />
         <div className="w-80 lg:w-96 h-2/4 m-auto">
           <div className="mb-4">
-            <div className="text-l font-bold text-hoboken-blue">
+            <div className="text-lg font-bold text-hoboken-blue">
               Hoboken Events
             </div>
             <div className="text-4xl font-bold">Log in</div>
           </div>
           <div className="relative">
-            <label
-              htmlFor="emailInput"
-              className="absolute left-2 top-1 z-10 m-1 text-input-label-gray text-sm"
-            >
-              Email Address
-            </label>
-            <input
-              id="emailInput"
-              type="email"
-              name="email"
+            <GenericInput
+              required
+              label="Email Address"
+              name="emailAddress"
+              type="text"
               onChange={(event) => setEmail(event.target.value)}
-              className="absolute left-0 top-0 border m-1 rounded w-full h-12 pl-2 pt-5"
+              error={error}
             />
           </div>
-          <div className="relative top-14">
-            <label
-              htmlFor="passwordInput"
-              className="absolute left-2 top-1 z-10 m-1 text-input-label-gray text-sm"
-            >
-              Password
-            </label>
-            <input
-              id="passwordInput"
-              type="password"
+          <div className="relative top-4">
+            <GenericInput
+              required
+              label="Password"
               name="password"
+              type="password"
               onChange={(event) => setPass(event.target.value)}
-              className="absolute left-0 top-0 border m-1 rounded w-full h-12 pl-2 pt-5"
+              error={error}
             />
           </div>
-          <div className="relative top-28 m-1 w-full">
+          <div className="relative top-6 m-1 w-full">
             <button
               className="w-full h-10 bg-button-blue border-button-blue text-white mt-2 mb-2 text-sm font-semibold rounded"
               onClick={async () => await login(email, pass)}
@@ -98,7 +89,7 @@ export const Login = () => {
               Log in
             </button>
           </div>
-          <div className="relative top-28 m-1 w-full">
+          <div className="relative top-6 m-1 w-full">
             <button
               className="w-full h-10 bg-button-blue border-button-blue text-white mt-0 mb-2 text-sm font-semibold rounded"
               onClick={() => logout(setUser)}
