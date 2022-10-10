@@ -4,6 +4,7 @@ import { useUserState } from "../../../../utils/userState";
 import { AddDealElement } from "../../../form/AddDealElement";
 import { ErrorText } from "../../../form/ErrorText";
 import { GenericInput } from "../../../form/GenericInput";
+import { SearchIcon, LocationIcon, MapIcon } from '../../../icons';
 
 export const AddEventPage = () => {
   const API_URL = process.env.REACT_APP_API_URL;
@@ -92,6 +93,7 @@ export const AddEventPage = () => {
               onChange={(event) => handleChangeEvent(event, "googlePlaceId")}
               error={error}
               extraProps="w-[95%] m-auto mb-2"
+              icon={<SearchIcon />}
             />
             <GenericInput
               required
@@ -101,6 +103,7 @@ export const AddEventPage = () => {
               onChange={(event) => handleChangeEvent(event, "name")}
               error={error}
               extraProps="w-[95%] m-auto mb-2"
+              icon={<LocationIcon />}
             />
             <GenericInput
               required
@@ -110,6 +113,8 @@ export const AddEventPage = () => {
               onChange={(event) => handleChangeEvent(event, "address")}
               error={error}
               extraProps="w-[95%] m-auto mb-2"
+              icon={<MapIcon />}
+
             />
             <div className="relative left-4 mb-4 w-[95%]">
               <div className="text-4xl font-bold">

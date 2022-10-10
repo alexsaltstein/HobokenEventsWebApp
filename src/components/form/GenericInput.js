@@ -11,6 +11,7 @@ export const GenericInput = ({
   placeholder,
   required,
   extraProps,
+  icon,
 }) => {
   return (
     <div className={`relative ${extraProps}`}>
@@ -22,6 +23,11 @@ export const GenericInput = ({
         <label className="text-input-label-gray text-xs italic">&nbsp;{subtext}</label>
         {required ? <span className="text-red-400">*</span> : null}
       </label>
+      <div className="absolute right-2 top-4">
+        <svg className="w-6 h-6 relative float-right" fill="none" stroke="#A6A6A6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          {icon}
+        </svg>
+      </div>
       <input
         id={name}
         type={type}

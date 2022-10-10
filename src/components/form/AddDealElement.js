@@ -1,6 +1,7 @@
 import React from 'react';
 import { GenericInput } from "./GenericInput";
 import Checkbox from './Checkbox';
+import { IDIcon } from '../icons';
 import "./formStyle.css"
 
 export const AddDealElement = ({ deal, removeDeal }) => {
@@ -43,6 +44,7 @@ export const AddDealElement = ({ deal, removeDeal }) => {
             label="Title"
             extraProps="w-full"
             placeholder="Taco Tuesday"
+            icon={<IDIcon />}
             onChange={(event) =>
               setDealOption("title", event.target.value)
             }
