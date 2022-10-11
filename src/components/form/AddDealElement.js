@@ -16,10 +16,11 @@ export const AddDealElement = ({ deal, removeDeal }) => {
   };
 
   const setDealOption = (option, val) => {
+    let filter;
     if (option === "dayOfWeek") {
       dayOfWeek[val] = !dayOfWeek[val]
-      console.log(dayOfWeek);
-      deal[option] = dayOfWeek;
+      filter = Object.keys(dayOfWeek).filter((k) => dayOfWeek[k])
+      deal[option] = filter;
     } else {
       deal[option] = val;
     }
