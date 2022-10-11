@@ -1,10 +1,7 @@
 import axios from "axios";
 import React from "react";
-import { GenericInput } from "./GenericInput";
-import { SearchIcon, LocationIcon, MapIcon } from '../icons';
-import { useDebouncedSearch } from "../hooks/useDebouncedSearch";
+import { SearchIcon } from '../icons';
 import {DebounceInput} from 'react-debounce-input';
-import { useEffect } from "react";
 
 
 

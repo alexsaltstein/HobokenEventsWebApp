@@ -5,7 +5,6 @@ import { AddDealElement } from "../../../form/AddDealElement";
 import { ErrorText } from "../../../form/ErrorText";
 import { GenericInput } from "../../../form/GenericInput";
 import { SearchIcon, LocationIcon, MapIcon } from '../../../icons';
-import { useDebouncedSearch } from "../../../hooks/useDebouncedSearch";
 import { Autocomplete } from "../../../form/Autocomplete";
 
 export const AddEventPage = () => {
@@ -16,7 +15,6 @@ export const AddEventPage = () => {
   const [deals, setDeals] = React.useState([]);
   const [error, setError] = React.useState({});
   const [googleData, setGoogleData] = React.useState([]);
-  const [submitForm, setSubmitForm] = React.useState({})
 
 
   const handleChangeEvent = async (event, option) => {
@@ -86,7 +84,7 @@ export const AddEventPage = () => {
       }
       setPlaceOption('name', newPlaceInfo.name)
       setPlaceOption('address', newPlaceInfo.address)
-      setSubmitForm({...newPlaceInfo})
+      setPlaceOption('googlePlaceId', newPlaceInfo.googlePlaceId)
 
       console.log(placeInfo)
     }
