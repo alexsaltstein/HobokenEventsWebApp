@@ -10,7 +10,6 @@ export const Autocomplete = ({ input, setInput, setError, setGoogleData, placeIn
         try {
           const res = await axios.get(
             `${process.env.REACT_APP_API_URL}/api/google/autocomplete/?input=${queryParam}`)
-            console.log(res.data.predictions)
           setGoogleData(res.data.predictions)
         } catch(e) {
             console.log(e)
