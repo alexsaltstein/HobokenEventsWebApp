@@ -77,16 +77,9 @@ export const AddEventPage = () => {
     console.log(resp)
     if(resp) {
       const placeData = resp.data
-      const newPlaceInfo = {
-        googlePlaceId: googleData[index].place_id,
-        name: placeData.name,
-        address: placeData.address,
-      }
-      setPlaceOption('name', newPlaceInfo.name)
-      setPlaceOption('address', newPlaceInfo.address)
-      setPlaceOption('googlePlaceId', newPlaceInfo.googlePlaceId)
-
-      console.log(placeInfo)
+      setPlaceOption('name', placeData.name)
+      setPlaceOption('address', placeData.address)
+      setPlaceOption('googlePlaceId', googleData[index].place_id)
     }
   }
   return (
