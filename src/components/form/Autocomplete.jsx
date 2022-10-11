@@ -5,8 +5,16 @@ import { DebounceInput } from 'react-debounce-input';
 
 
 
-export const Autocomplete = ({ input, setInput, setError, setGoogleData, placeInfo  }) => {
-    const getAutoCompleteData = async (queryParam) => {
+export const Autocomplete = ({ input, setInput, setError, setGoogleData, placeInfo, childToParent }) => {
+  const [hidden, setHidden] = React.useState(null);
+  
+  const handleInput = (event) => {
+    setHidden(false);
+    childToParent(hidden);
+    setInput(event.target.value);
+  }
+
+  const getAutoCompleteData = async (queryParam) => {
         try {
           const res = await axios.get(
             `${process.env.REACT_APP_API_URL}/api/google/autocomplete/?input=${queryParam}`)
@@ -24,7 +32,7 @@ export const Autocomplete = ({ input, setInput, setError, setGoogleData, placeIn
 
     return (
       <>
-        <div className='relative w-[95%] m-auto mb-2'>
+        <div className='relative w-[95%] m-auto z-10 focus:drop-shadow-sm'>
           <label
             htmlFor={"Name of Location"}
             className="absolute left-1 top-1 z-10 m-1 text-input-label-gray text-sm"
@@ -41,7 +49,7 @@ export const Autocomplete = ({ input, setInput, setError, setGoogleData, placeIn
             className="border mt-1 mb-1 rounded w-full h-12 pl-2 pt-5"
             value={placeInfo.name}
             debounceTimeout={600}
-            onChange={event => setInput(event.target.value)}
+            onChange={event => handleInput(event)}
           />
         </div>
       </>

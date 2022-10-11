@@ -4,7 +4,7 @@ import { useUserState } from "../../../../utils/userState";
 import { AddDealElement } from "../../../form/AddDealElement";
 import { ErrorText } from "../../../form/ErrorText";
 import { GenericInput } from "../../../form/GenericInput";
-import { SearchIcon, LocationIcon, MapIcon } from '../../../icons';
+import { MapIcon } from '../../../icons';
 import { Autocomplete } from "../../../form/Autocomplete";
 
 export const AddEventPage = () => {
@@ -15,6 +15,11 @@ export const AddEventPage = () => {
   const [deals, setDeals] = React.useState([]);
   const [error, setError] = React.useState({});
   const [googleData, setGoogleData] = React.useState([]);
+  const [hidden, setHidden] = React.useState(true);
+
+  const childToParent = (childData) => {
+    setHidden(childData);
+  }
 
 
   const handleChangeEvent = async (event, option) => {
@@ -72,9 +77,11 @@ export const AddEventPage = () => {
   };  
 
   const getGoogleDataByPlaceId = async (index) => {
+    setHidden(true);
     const resp = await axios.get(
     `${process.env.REACT_APP_API_URL}/api/google/${googleData[index].place_id}`)
     console.log(resp)
+    console.log(hidden);
     if(resp) {
       const placeData = resp.data
       setPlaceOption('name', placeData.name)
@@ -84,29 +91,32 @@ export const AddEventPage = () => {
   }
   return (
     <>
-      <div className="flex">
+      <div className="flex" onClick={() => setHidden(true)}>
         <div className="hidden md:flex md:w-1/6 lg:w-1/3" />
         <div className="md:w-4/6 lg:w-1/3">
           <p>placeInfo:{JSON.stringify(placeInfo)}</p>
           <p>deals:{JSON.stringify(deals)}</p>
           <p className="relative text-xl font-bold text-hoboken-blue left-4">Hi {user.firstName}, lets create a happening</p>
-          <ErrorText>
+          <ErrorText extraProps={'ml-4'}>
             {Object.keys(error).length > 0 ? "Error submitting form" : null}
           </ErrorText>
           <div className="relative left-4 mb-4 w-[95%]">
-            <div className="text-4xl font-bold">
+            <div className="text-4xl font-bold ">
               Location Info
             </div>
             <p className="text-gray-500 mt-1">Help people in the area discover your happening and let attendees know where to show up.</p>
           </div>
           <div className="relative">
-            <Autocomplete placeInfo={placeInfo} setInput={setInput} input={input} setGoogleData={setGoogleData} setError={setError}/>
-            <ul> 
-            {googleData && googleData.map((guess, i) => {
-              return <li onClick={() => getGoogleDataByPlaceId(i)} key={i}>{guess.description}</li>
-            })}
-            </ul>
-            <p>{placeInfo.googlePlaceId}</p>
+            <div className="relative z-20">
+              <Autocomplete placeInfo={placeInfo} setInput={setInput} input={input} setGoogleData={setGoogleData} setError={setError} childToParent={childToParent}/>
+              <div  className={`absolute m-auto left-3 top-12 w-[95%] border overflow-y-scroll drop-shadow-sm bg-white ${hidden ? 'hidden' : ''}`}>
+                <ul className=""> 
+                {googleData && googleData.map((guess, i) => {
+                  return <li className="w-[95%] h-auto m-auto pt-2 pb-2 border-t hover:text-button-blue" onClick={() => getGoogleDataByPlaceId(i)} key={i}>{guess.description}</li>
+                })}
+                </ul>
+              </div>
+            </div>
             <GenericInput
               required
               label="Address of Location"
