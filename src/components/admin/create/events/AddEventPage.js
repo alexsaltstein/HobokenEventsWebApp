@@ -5,15 +5,21 @@ import { AddDealElement } from "../../../form/AddDealElement";
 import { ErrorText } from "../../../form/ErrorText";
 import { GenericInput } from "../../../form/GenericInput";
 import { SearchIcon, LocationIcon, MapIcon } from '../../../icons';
+import { useDebouncedSearch } from "../../../hooks/useDebouncedSearch";
+import { Autocomplete } from "../../../form/Autocomplete";
 
 export const AddEventPage = () => {
   const API_URL = process.env.REACT_APP_API_URL;
   const [user] = useUserState();
   const [placeInfo, setPlaceInfo] = React.useState({});
+  const [input, setInput] = React.useState('');
   const [deals, setDeals] = React.useState([]);
   const [error, setError] = React.useState({});
+  const [googleData, setGoogleData] = React.useState([]);
+  const [submitForm, setSubmitForm] = React.useState({})
 
-  const handleChangeEvent = (event, option) => {
+
+  const handleChangeEvent = async (event, option) => {
     setPlaceOption(option, event.target.value);
   };
 
@@ -65,8 +71,26 @@ export const AddEventPage = () => {
       }
     );
     console.log(res);
-  };
+  };  
 
+  const getGoogleDataByPlaceId = async (index) => {
+    const resp = await axios.get(
+    `${process.env.REACT_APP_API_URL}/api/google/${googleData[index].place_id}`)
+    console.log(resp)
+    if(resp) {
+      const placeData = resp.data
+      const newPlaceInfo = {
+        googlePlaceId: googleData[index].place_id,
+        name: placeData.name,
+        address: placeData.address,
+      }
+      setPlaceOption('name', newPlaceInfo.name)
+      setPlaceOption('address', newPlaceInfo.address)
+      setSubmitForm({...newPlaceInfo})
+
+      console.log(placeInfo)
+    }
+  }
   return (
     <>
       <div className="flex">
@@ -85,31 +109,18 @@ export const AddEventPage = () => {
             <p className="text-gray-500 mt-1">Help people in the area discover your happening and let attendees know where to show up.</p>
           </div>
           <div className="relative">
-            <GenericInput
-              required
-              label="Google Place ID"
-              name="googlePlaceId"
-              type="text"
-              onChange={(event) => handleChangeEvent(event, "googlePlaceId")}
-              error={error}
-              extraProps="w-[95%] m-auto mb-2"
-              icon={<SearchIcon />}
-            />
-            <GenericInput
-              required
-              label="Name of Location"
-              name="name"
-              type="text"
-              onChange={(event) => handleChangeEvent(event, "name")}
-              error={error}
-              extraProps="w-[95%] m-auto mb-2"
-              icon={<LocationIcon />}
-            />
+            <Autocomplete placeInfo={placeInfo} setInput={setInput} input={input} setGoogleData={setGoogleData} setError={setError}/>
+            <ul> 
+            {googleData && googleData.map((guess, i) => {
+              return <li onClick={() => getGoogleDataByPlaceId(i)} key={i}>{guess.description}</li>
+            })}
+            </ul>
+            <p>{placeInfo.googlePlaceId}</p>
             <GenericInput
               required
               label="Address of Location"
-              name="address"
               type="text"
+              value={placeInfo.address}
               onChange={(event) => handleChangeEvent(event, "address")}
               error={error}
               extraProps="w-[95%] m-auto mb-2"
