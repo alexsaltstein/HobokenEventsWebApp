@@ -34,8 +34,6 @@ export const Login = () => {
         email,
         password: pass,
       });
-      console.log("here");
-      console.log("login", res);
       if (!res.data) {
         return;
       }

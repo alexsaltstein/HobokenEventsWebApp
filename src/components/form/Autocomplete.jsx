@@ -50,7 +50,7 @@ export const Autocomplete = ({ input, setInput, setError, setGoogleData, placeIn
           <DebounceInput
             className="border mt-1 mb-1 rounded w-full h-12 pl-2 pt-5"
             value={placeInfo.name}
-            debounceTimeout={600}
+            debounceTimeout={400}
             onChange={event => handleInput(event)}
           />
         </div>

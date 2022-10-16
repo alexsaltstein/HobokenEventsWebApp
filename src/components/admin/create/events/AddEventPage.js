@@ -56,7 +56,6 @@ export const AddEventPage = () => {
   const handleFormSubmit = async () => {
     const newError = {};
     setDeals(dealArr)
-    console.log(deals)
     if (!placeInfo.name || placeInfo.name.length === 0) {
       newError["name"] = "Error: name must not be blank";
     }
