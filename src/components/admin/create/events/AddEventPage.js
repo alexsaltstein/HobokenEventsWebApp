@@ -16,6 +16,7 @@ export const AddEventPage = () => {
   const [error, setError] = React.useState({});
   const [googleData, setGoogleData] = React.useState([]);
   const [hidden, setHidden] = React.useState(true);
+  const dealArr = [];
 
   const childToParent = (childData) => {
     setHidden(childData);
@@ -38,6 +39,10 @@ export const AddEventPage = () => {
     setDeals([...newDeals]);
   };
 
+  const addDealToState = (deal) => {
+    setDeals([...deals, deal] )
+  }
+
   const removeDeal = (index) => {
     const newDeals = deals;
     for (let i = 0; i < newDeals.length; i++) {
@@ -50,6 +55,8 @@ export const AddEventPage = () => {
 
   const handleFormSubmit = async () => {
     const newError = {};
+    setDeals(dealArr)
+    console.log(deals)
     if (!placeInfo.name || placeInfo.name.length === 0) {
       newError["name"] = "Error: name must not be blank";
     }
@@ -60,6 +67,8 @@ export const AddEventPage = () => {
     if (Object.keys(error).length !== 0) {
       return;
     }
+
+    console.log({...placeInfo, deals})
 
     const res = await axios.post(
       `${API_URL}/api/place/create`,
@@ -138,7 +147,12 @@ export const AddEventPage = () => {
               return (
                 <AddDealElement
                   key={`deal-${index}`}
+                  index={index}
+                  deals={deals}
                   deal={deal}
+                  setDeals={setDeals}
+                  addDealToState={() => addDealToState()}
+                  dealArr={dealArr}
                   removeDeal={() => removeDeal(index)}
                 />
               );
