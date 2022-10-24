@@ -4,7 +4,7 @@ import FilterButton from "./FilterButton";
 export default function FilterBar() {
     return (
         <>
-            <div className="relative top-[4.5rem] flex overflow-scroll w-11/12 h-16 ml-auto mr-auto pt-3 border-t border-b">
+            <div className="relative top-[4.5rem] flex w-11/12 h-16 ml-auto mr-auto pt-3 border-t border-b overflow-y-hidden">
                 <FilterButton children={'All'} />
                 <FilterButton children={'Food'} />
                 <FilterButton children={'Drinks'} />

@@ -20,7 +20,7 @@ root.render(
         <div className="flex" id='header'>
           <Header />
         </div>
-        <div className="flex overflow-scroll overflow-x-hidden" id='pageContent'>
+        <div className="flex overflow-x-hidden" id='pageContent'>
           <Routes>
             <Route path="/admin/login" element={<Login />} />
             <Route
