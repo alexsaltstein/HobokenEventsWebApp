@@ -4,25 +4,50 @@ import Checkbox from './Checkbox';
 import { IDIcon } from '../icons';
 import "./formStyle.css"
 
-export const AddDealElement = ({ deal, removeDeal }) => {
-  let dayOfWeek = {
+export const AddDealElement = ({ deal, removeDeal, setDeals, deals, index }) => {
+  const [dayOfWeek, setDayOfWeek] = React.useState({
     sunday: false,
     monday: false,
     tuesday: false,
     wednesday: false,
     thursday: false,
     friday: false,
-    saturday: false
-  };
+    saturday: false})
+
 
   const setDealOption = (option, val) => {
+    const tempDayOfWeek = dayOfWeek;
     if (option === "dayOfWeek") {
-      dayOfWeek[val] = !dayOfWeek[val]
-      console.log(dayOfWeek);
-      deal[option] = dayOfWeek;
-    } else {
-      deal[option] = val;
+      tempDayOfWeek[val] = !tempDayOfWeek[val]
+      const formattedDayOfWeek = [];
+      for(const key in tempDayOfWeek) {
+        if(tempDayOfWeek[key] === true) {
+          formattedDayOfWeek.push(key)
+        }
+      }
+      deal.dayOfWeek = formattedDayOfWeek
+      setDayOfWeek({...tempDayOfWeek})
+    } 
+    if(option === 'title') {
+      deal.title = val
     }
+    if(option === 'startTime') {
+      deal.startTime = val
+
+    }
+    if(option === 'endTime') {
+      deal.endTime = val
+
+    }
+    if(option === 'deals') {
+        deal.deals = val
+    }
+    const rebuiltDeals = []
+    deals.map((deal, i) => {
+      rebuiltDeals.push(deal)
+    })
+    rebuiltDeals[index] = deal;
+    setDeals(rebuiltDeals)
   };
 
   return (
@@ -100,7 +125,7 @@ export const AddDealElement = ({ deal, removeDeal }) => {
           className="block p-2.5 w-full text-sm text-input-label-gray rounded border focus:ring-blue-500 focus:border-blue-500"
           placeholder="Enter each deal separated by a comma...&#10;e.g. 3 tacos for $4, $5 tequila shots, $6 margaritas"
           onChange={(event) =>
-            setDealOption("deals", event.target.value.split(","))
+            setDealOption("deals", event.target.value.split(','))
           }
         />
       </div>
