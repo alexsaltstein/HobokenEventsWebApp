@@ -12,6 +12,7 @@ export const GenericInput = ({
   required,
   extraProps,
   icon,
+  value,
 }) => {
   return (
     <div className={`relative ${extraProps}`}>
@@ -32,6 +33,7 @@ export const GenericInput = ({
         id={name}
         type={type}
         name={name}
+        value={value}
         onChange={onChange}
         placeholder={placeholder}
         className="border mt-1 mb-1 rounded w-full h-12 pl-2 pt-5"
