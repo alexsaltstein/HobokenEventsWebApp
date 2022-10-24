@@ -14,7 +14,7 @@ export default function Header() {
 
     return (
         <>
-            <nav className="absolute flex top-0 left-0 h-14 w-screen bg-hoboken-blue border-gray-200 py-2.5 z-20">
+            <nav className="absolute flex top-0 left-0 h-14 w-screen bg-hoboken-blue border-gray-200 py-2.5 z-20 shadow md:fixed">
                 <div className="absolute top-0 left-0 container flex flex-wrap justify-between items-center mx-auto md:absolute md:top-auto">
                     <a href="/" className="flex items-center">
                         {/* INSERT LOGO HERE */}
