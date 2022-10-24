@@ -12,7 +12,6 @@ export const Place = () => {
       const res = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/deal?placeId=${id}`
       );
-      console.log("res", res);
       setPlaceData(res.data);
       setLoading(false);
     } catch (e) {
@@ -34,12 +33,12 @@ export const Place = () => {
     return <div>Error getting place</div>;
   }
 
-  const { address, deals, name } = placeData;
+  const { address, name } = placeData[0].place;
   return (
     <div className="p-4">
       <h1 className="underline text-2xl">{name}</h1>
       <h2 className="text-xl">{address}</h2>
-      {deals.map((bigDeal) => (
+      {placeData.map((bigDeal) => (
         <div>
           <p>{bigDeal.description}</p>
           <p>{bigDeal.dayOfWeek}</p>
