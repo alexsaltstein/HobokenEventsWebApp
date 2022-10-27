@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <RecoilRoot>
     <BrowserRouter>
-      <div className="flex min-h-screen flex-col justify-start">
+      <div className="flex flex-col justify-start">
         <div className="flex" id="header">
           <Header />
         </div>
