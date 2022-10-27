@@ -6,8 +6,6 @@ import { useUserState } from "../../utils/userState";
 import { GenericInput } from "../form/GenericInput";
 
 export const Login = () => {
-  const API_URL = process.env.REACT_APP_API_URL;
-
   const navigate = useNavigate();
   const [, setUser] = useUserState();
 
@@ -30,10 +28,13 @@ export const Login = () => {
       if (!email || email.length === 0 || !pass || pass.length === 0) {
         throw new Error("email or pass not valid");
       }
-      const res = await axios.post(`${API_URL}/auth/login`, {
-        email,
-        password: pass,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/auth/login`,
+        {
+          email,
+          password: pass,
+        }
+      );
       if (!res.data) {
         return;
       }

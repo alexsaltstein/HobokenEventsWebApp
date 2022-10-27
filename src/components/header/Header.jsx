@@ -22,7 +22,7 @@ export default function Header() {
 
     return (
         <>
-            <nav className="absolute flex top-0 left-0 h-14 w-screen bg-hoboken-blue border-gray-200 py-2.5 z-20 shadow md:fixed">
+            <nav className="absolute flex top-0 left-0 h-14 w-screen bg-hoboken-blue border-gray-200 py-2.5 z-30 shadow md:fixed">
                 <div className="absolute top-0 left-0 container flex flex-wrap justify-between items-center mx-auto md:absolute md:top-auto">
                     <a href="/" className="flex items-center">
                         {/* INSERT LOGO HERE */}
@@ -54,16 +54,12 @@ export default function Header() {
                                 !authed ? null :
                                 <Link
                                     to="/admin/create/events"
-                                    passHref
-                                >
-                                    <a 
                                     className="flex py-2 pr-4 pl-3 bg-button-blue border-gray-200 text-white mt-2 mr-3 text-sm font-semibold rounded-lg"
-                                    >
+                                >
                                     <SubmitButton params={'mr-2'}/>
                                     <p className='m-auto'>
                                         What's Happening?
                                     </p>
-                                    </a>
                                 </Link>
                             }
                         </ul>

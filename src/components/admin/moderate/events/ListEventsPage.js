@@ -6,7 +6,6 @@ import { ApproveEvent } from "./ApproveEvent";
 import { DenyEvent } from "./DenyEvent";
 
 export const ListEventsPage = () => {
-  const API_URL = process.env.REACT_APP_API_URL;
   const [user, setUser] = useUserState();
 
   const [data, setData] = React.useState();
@@ -14,11 +13,14 @@ export const ListEventsPage = () => {
 
   const fetchData = React.useCallback(async () => {
     try {
-      const res = await axios.get(`${API_URL}/api/deal?approved=false`, {
-        headers: {
-          "x-access-token": user.token,
-        },
-      });
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/deal?approved=false`,
+        {
+          headers: {
+            "x-access-token": user.token,
+          },
+        }
+      );
       setData(res.data);
       setLoading(false);
     } catch (e) {
@@ -26,7 +28,7 @@ export const ListEventsPage = () => {
       logout(setUser);
       console.log(e);
     }
-  }, [setData, API_URL, setUser, user]);
+  }, [setData, setUser, user]);
 
   React.useEffect(() => {
     (async () => {

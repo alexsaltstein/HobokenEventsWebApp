@@ -15,14 +15,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <RecoilRoot>
     <BrowserRouter>
-      <div className="flex flex-col justify-start">
-        <div className="flex" id="header">
-          <Header />
-        </div>
-        <div
-          className="flex overflow-x-hidden min-h-[100vh] relative top-14"
-          id="pageContent"
-        >
+      <div>
+        <Header />
+        <div className="flex min-h-[100vh] relative my-14" id="pageContent">
           <Routes>
             <Route path="/admin/login" element={<Login />} />
             <Route
