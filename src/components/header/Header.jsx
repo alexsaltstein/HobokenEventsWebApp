@@ -3,6 +3,7 @@ import DropdownMenu from './DropdownMenu';
 import { SubmitButton } from '../icons/Icons';
 import './Header.css';
 import { useUserState } from '../../utils/userState';
+import { Link } from 'react-router-dom';
 
 
 export default function Header() {
@@ -51,14 +52,19 @@ export default function Header() {
                             </li>
                             {
                                 !authed ? null :
-                                <button
-                                    className="flex py-2 pr-4 pl-3 bg-button-blue border-gray-200 text-white mt-2 mr-3 text-sm font-semibold rounded-lg"
+                                <Link
+                                    to="/admin/create/events"
+                                    passHref
                                 >
+                                    <a 
+                                    className="flex py-2 pr-4 pl-3 bg-button-blue border-gray-200 text-white mt-2 mr-3 text-sm font-semibold rounded-lg"
+                                    >
                                     <SubmitButton params={'mr-2'}/>
                                     <p className='m-auto'>
                                         What's Happening?
                                     </p>
-                                </button>
+                                    </a>
+                                </Link>
                             }
                         </ul>
                     </div>
