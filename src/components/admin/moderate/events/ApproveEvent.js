@@ -6,8 +6,9 @@ export const ApproveEvent = ({ eventId }) => {
   const [user] = useUserState();
   const onClick = async () => {
     try {
-      const res = await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/deal/judge/${eventId}/true`,
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/deal/judge/${eventId}`,
+        { isApprove: true },
         {
           headers: {
             Authorization: `${user.token}`,

@@ -6,9 +6,9 @@ export const DenyEvent = ({ eventId }) => {
   const [user] = useUserState();
   const onClick = async () => {
     try {
-      const res = await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/deal/flip/${eventId}`,
-        { approved: false },
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/deal/judge/${eventId}`,
+        { isApprove: false },
         {
           headers: {
             Authorization: `${user.token}`,
