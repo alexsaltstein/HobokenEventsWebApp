@@ -7,7 +7,7 @@ import { useUserState } from '../../utils/userState';
 
 export default function Header() {
     const [open, setOpen] = useState(false);
-  const [user] = useUserState();
+    const [user] = useUserState();
 
     const [authed, setAuthed] = React.useState(!!user); //placeholder for real authorization check
 
