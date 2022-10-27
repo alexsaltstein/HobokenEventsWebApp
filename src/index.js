@@ -11,16 +11,15 @@ import { Place } from "./routes/Place";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <RecoilRoot>
     <BrowserRouter>
       <div className="flex min-h-screen flex-col justify-start">
-        <div className="flex" id='header'>
+        <div className="flex" id="header">
           <Header />
         </div>
-        <div className="flex overflow-x-hidden" id='pageContent'>
+        <div className="flex overflow-x-hidden min-h-[100vh]" id="pageContent">
           <Routes>
             <Route path="/admin/login" element={<Login />} />
             <Route
@@ -59,7 +58,7 @@ root.render(
             />
           </Routes>
         </div>
-        <div className="flex" id='footer'>
+        <div className="flex" id="footer">
           <Footer />
         </div>
       </div>
