@@ -11,7 +11,7 @@ export const DenyEvent = ({ eventId }) => {
         { approved: false },
         {
           headers: {
-            "x-access-token": user.token,
+            Authorization: `${user.token}`,
           },
         }
       );

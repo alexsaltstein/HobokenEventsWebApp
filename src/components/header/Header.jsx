@@ -38,10 +38,10 @@ export default function Header() {
                     <div className="hidden w-full md:block md:w-auto md:fixed md:right-10" id="navbar-default">
                         <ul className="flex flex-col ml-auto mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-hoboken-blue">
                             <li key="about">
-                                <a href="#" className={`block py-2 pr-4 pl-3 mt-${authed ? 4 : 2} text-white hover:text-gray-200 md:border-0 md:p-0`}>About</a>
+                                <a href="/about" className={`block py-2 pr-4 pl-3 mt-${authed ? 4 : 2} text-white hover:text-gray-200 md:border-0 md:p-0`}>About</a>
                             </li>
                             <li key="contact">
-                                <a href="#" className={`block py-2 pr-4 pl-3 mt-${authed ? 4 : 2} text-white hover:text-gray-200 md:border-0 md:p-0`}>Contact Us</a>
+                                <a href="/contact" className={`block py-2 pr-4 pl-3 mt-${authed ? 4 : 2} text-white hover:text-gray-200 md:border-0 md:p-0`}>Contact Us</a>
                             </li>
                             <li >
                                 <a href={!authed ?"/admin/login":'/admin/logout'} className={`block py-2 pr-4 pl-3 mt-${authed ? 4 : 2} text-white hover:text-gray-200 md:border-0 md:p-0`}>

@@ -7,11 +7,10 @@ export const ApproveEvent = ({ eventId }) => {
   const onClick = async () => {
     try {
       const res = await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/deal/flip/${eventId}`,
-        { approved: true },
+        `${process.env.REACT_APP_API_URL}/api/deal/judge/${eventId}/true`,
         {
           headers: {
-            "x-access-token": user.token,
+            Authorization: `${user.token}`,
           },
         }
       );

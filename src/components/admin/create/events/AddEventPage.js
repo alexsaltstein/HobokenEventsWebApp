@@ -73,10 +73,15 @@ export const AddEventPage = () => {
       },
       {
         headers: {
-          "x-access-token": user.token,
+          Authorization: `${user.token}`,
         },
       }
     );
+    console.log("res", res);
+    console.log("stuff", {
+      ...placeInfo,
+      deals,
+    });
   };
 
   const getGoogleDataByPlaceId = async (index) => {

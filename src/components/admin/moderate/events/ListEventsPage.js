@@ -17,7 +17,7 @@ export const ListEventsPage = () => {
         `${process.env.REACT_APP_API_URL}/api/deal?approved=false`,
         {
           headers: {
-            "x-access-token": user.token,
+            Authorization: `${user.token}`,
           },
         }
       );
@@ -25,8 +25,8 @@ export const ListEventsPage = () => {
       setLoading(false);
     } catch (e) {
       setLoading(false);
-      logout(setUser);
-      console.log(e);
+      // logout(setUser);
+      console.log(e, e.message);
     }
   }, [setData, setUser, user]);
 
