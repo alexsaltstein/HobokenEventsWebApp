@@ -93,7 +93,7 @@ export const AddEventPage = () => {
   };
   return (
     <>
-      <div className="flex relative" onClick={() => setHidden(true)}>
+      <div className="flex relative w-full min-h-full" onClick={() => setHidden(true)}>
         <div className="hidden md:flex md:w-1/6 lg:w-1/3" />
         <div className="md:w-4/6 lg:w-1/3">
           <p className="relative text-xl font-bold text-hoboken-blue left-4">
@@ -120,7 +120,7 @@ export const AddEventPage = () => {
                 childToParent={childToParent}
               />
               <div
-                className={`absolute m-auto left-3 top-12 w-[95%] border overflow-y-scroll drop-shadow-sm bg-white ${
+                className={`relative -top-2 w-[95%] mx-auto border overflow-y-scroll drop-shadow-sm bg-white ${
                   hidden ? "hidden" : ""
                 }`}
               >
