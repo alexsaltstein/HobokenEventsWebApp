@@ -2,11 +2,18 @@ import React, {useState} from 'react';
 import DropdownMenu from './DropdownMenu';
 import { SubmitButton } from '../icons/Icons';
 import './Header.css';
+import { useUserState } from '../../utils/userState';
 
 
 export default function Header() {
     const [open, setOpen] = useState(false);
-    const authed = true; //placeholder for real authorization check
+  const [user] = useUserState();
+
+    const [authed, setAuthed] = React.useState(!!user); //placeholder for real authorization check
+
+    React.useEffect(()=>{
+        setAuthed(!!user)
+    },[user])
 
     function openMenu() {
         setOpen(!open);
@@ -36,7 +43,7 @@ export default function Header() {
                                 <a href="#" className={`block py-2 pr-4 pl-3 mt-${authed ? 4 : 2} text-white hover:text-gray-200 md:border-0 md:p-0`}>Contact Us</a>
                             </li>
                             <li >
-                                <a href="/admin/login" className={`block py-2 pr-4 pl-3 mt-${authed ? 4 : 2} text-white hover:text-gray-200 md:border-0 md:p-0`}>
+                                <a href={!authed ?"/admin/login":'/admin/logout'} className={`block py-2 pr-4 pl-3 mt-${authed ? 4 : 2} text-white hover:text-gray-200 md:border-0 md:p-0`}>
                                     <p>
                                         {!authed ? 'Sign In' : 'Sign Out'}
                                     </p>

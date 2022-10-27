@@ -56,7 +56,7 @@ export const Login = () => {
             <div className="text-lg font-bold text-hoboken-blue">
               Hoboken Events
             </div>
-            <div className="text-4xl font-bold">Log in</div>
+            <div className="text-4xl font-bold">Welcome back!</div>
           </div>
           <div className="relative">
             <GenericInput
@@ -85,14 +85,6 @@ export const Login = () => {
               disabled={loading}
             >
               Log in
-            </button>
-          </div>
-          <div className="relative top-6 m-1 w-full">
-            <button
-              className="w-full h-10 bg-button-blue border-button-blue text-white mt-0 mb-2 text-sm font-semibold rounded"
-              onClick={() => logout(setUser)}
-            >
-              Log out
             </button>
           </div>
         </div>
