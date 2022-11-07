@@ -31,14 +31,14 @@ export const EventItem = ({ eventData }) => {
                   {startTime}
                   {endTime ? ` - ${endTime}` : null}
                 </p>
-                <p
+                <div
                   className="max-h-6 md:max-h-24 truncate md:text-ellipsis md:whitespace-normal"
                   id="description"
                 >
-                  {deals.map((deal) => (
-                    <p>{deal}</p>
+                  {deals.map((deal, index) => (
+                    <p key={`${deal._id}-${deal}-${index}`}>{deal}</p>
                   ))}
-                </p>
+                </div>
               </div>
             </div>
           </div>

@@ -1,12 +1,11 @@
 import axios from "axios";
 import React from "react";
-import { logout } from "../../../../utils/admin";
 import { useUserState } from "../../../../utils/userState";
 import { ApproveEvent } from "./ApproveEvent";
 import { DenyEvent } from "./DenyEvent";
 
 export const ListEventsPage = () => {
-  const [user, setUser] = useUserState();
+  const [user] = useUserState();
 
   const [data, setData] = React.useState();
   const [loading, setLoading] = React.useState(false);
@@ -25,10 +24,9 @@ export const ListEventsPage = () => {
       setLoading(false);
     } catch (e) {
       setLoading(false);
-      // logout(setUser);
       console.log(e, e.message);
     }
-  }, [setData, setUser, user]);
+  }, [setData, user]);
 
   React.useEffect(() => {
     (async () => {
