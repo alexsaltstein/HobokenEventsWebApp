@@ -4,7 +4,11 @@ import React from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { EventList } from "./components/events/EventList";
 import DatePicker from "react-datepicker";
-import { getDayOfWeek } from "./utils/common";
+import {
+  capitalizeFirstLetter,
+  getDayColors,
+  getDayOfWeek,
+} from "./utils/common";
 import Banner from "./components/banner/Banner";
 import FilterBar from "./components/filters/FilterBar";
 
@@ -12,19 +16,23 @@ export default function App() {
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden overflow-y-scroll">
+    <div className="relative">
       <Banner />
-      <div className="relative flex top-16 ml-4 w-screen flex-wrap m-auto">
-        <h1 className="text-black font-bold text-xl">
-          What's happening on...{" "}
-        </h1>
+      <div className="relative flex top-16 ml-4 gap-x-2 flex-wrap m-auto">
+        <h1 className="text-black font-bold text-xl">What's happening on...</h1>
         <DatePicker
           id="datePicker"
-          className="ml-2 mt-1 z-0 w-14 font-semibold text-md text-hoboken-blue underline"
+          className="z-0 w-14 font-semibold text-md text-hoboken-blue underline"
           selected={selectedDate}
           onChange={(date) => setSelectedDate(date)}
           todayButton={<div>Today</div>}
         />
+        <span>
+          Current day:{" "}
+          <span className={`${getDayColors(selectedDate.getDay())} font-bold`}>
+            {capitalizeFirstLetter(getDayOfWeek(selectedDate.getDay()))}
+          </span>
+        </span>
       </div>
       <FilterBar />
       <EventList

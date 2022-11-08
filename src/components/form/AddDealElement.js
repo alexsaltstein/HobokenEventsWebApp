@@ -3,6 +3,7 @@ import { GenericInput } from "./GenericInput";
 import Checkbox from "./Checkbox";
 import { IDIcon } from "../icons";
 import "./formStyle.css";
+import { DAYS_ENUM } from "../../utils/common";
 
 export const AddDealElement = ({
   deal,
@@ -47,7 +48,7 @@ export const AddDealElement = ({
       deal.deals = val;
     }
     const rebuiltDeals = [];
-    deals.foreach((deal, i) => {
+    deals.forEach((deal, i) => {
       rebuiltDeals.push(deal);
     });
     rebuiltDeals[index] = deal;
@@ -108,41 +109,18 @@ export const AddDealElement = ({
         </label>
         <div className="w-full mt-2 mb-2">
           <div className="m-auto flex justify-center">
-            <Checkbox
-              id="sunday"
-              text="S"
-              onClick={() => setDealOption("dayOfWeek", "sunday")}
-            />
-            <Checkbox
-              id="monday"
-              text="M"
-              onClick={() => setDealOption("dayOfWeek", "monday")}
-            />
-            <Checkbox
-              id="tuesday"
-              text="T"
-              onClick={() => setDealOption("dayOfWeek", "tuesday")}
-            />
-            <Checkbox
-              id="wednesday"
-              text="W"
-              onClick={() => setDealOption("dayOfWeek", "wednesday")}
-            />
-            <Checkbox
-              id="thursday"
-              text="TH"
-              onClick={() => setDealOption("dayOfWeek", "thursday")}
-            />
-            <Checkbox
-              id="friday"
-              text="F"
-              onClick={() => setDealOption("dayOfWeek", "friday")}
-            />
-            <Checkbox
-              id="saturday"
-              text="S"
-              onClick={() => setDealOption("dayOfWeek", "saturday")}
-            />
+            {Object.keys(DAYS_ENUM).map((day) => (
+              <Checkbox
+                key={`${day}-${index}`}
+                id={`${day}-${index}`}
+                text={
+                  day.toLowerCase() === DAYS_ENUM.Thursday
+                    ? day.substring(0, 2)
+                    : day.charAt(0)
+                }
+                onClick={() => setDealOption("dayOfWeek", DAYS_ENUM[day])}
+              />
+            ))}
           </div>
         </div>
         <div className="flex w-full">
@@ -179,7 +157,10 @@ export const AddDealElement = ({
           className="block p-2.5 w-full text-sm text-input-label-gray rounded border focus:ring-blue-500 focus:border-blue-500"
           placeholder="Enter each deal separated by a comma...&#10;e.g. 3 tacos for $4, $5 tequila shots, $6 margaritas"
           onChange={(event) =>
-            setDealOption("deals", event.target.value.split(","))
+            setDealOption(
+              "deals",
+              event.target.value.split(",").map((val) => val.trim())
+            )
           }
         />
       </div>

@@ -98,7 +98,10 @@ export const AddEventPage = () => {
   };
   return (
     <>
-      <div className="flex relative w-full min-h-full" onClick={() => setHidden(true)}>
+      <div
+        className="flex relative w-full min-h-full"
+        onClick={() => setHidden(true)}
+      >
         <div className="hidden md:flex md:w-1/6 lg:w-1/3" />
         <div className="md:w-4/6 lg:w-1/3">
           <p className="relative text-xl font-bold text-hoboken-blue left-4">

@@ -30,6 +30,34 @@ export const getDayOfWeek = (dateNum) => {
   return Object.values(DAYS_ENUM)[dateNum];
 };
 
+export const getDayColors = (dateVal) => {
+  const dayOfWeek =
+    typeof dateVal === "number" ? getDayOfWeek(dateVal) : dateVal;
+  switch (dayOfWeek) {
+    case DAYS_ENUM.Sunday:
+      return "text-red-700";
+    case DAYS_ENUM.Monday:
+      return "text-green-700";
+    case DAYS_ENUM.Tuesday:
+      return "text-blue-700";
+    case DAYS_ENUM.Wednesday:
+      return "text-orange-700";
+    case DAYS_ENUM.Thursday:
+      return "text-purple-700";
+    case DAYS_ENUM.Friday:
+      return "text-pink-700";
+    case DAYS_ENUM.Saturday:
+      return "text-yellow-700";
+    default:
+      console.error("Error getting color for dateVal", dateVal);
+      return null;
+  }
+};
+
+export const capitalizeFirstLetter = (str) => {
+  return `${str.charAt(0).toUpperCase()}${str.substring(1)}`;
+};
+
 export const handleError = (setError, errorMessage) => {
   setError(errorMessage);
   setTimeout(() => {

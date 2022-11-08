@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { capitalizeFirstLetter, getDayColors } from "../../utils/common";
 import "./eventItem.css";
 
 export const EventItem = ({ eventData }) => {
-  const { placeId, dayOfWeek, startTime, endTime, description, deals } =
+  const { placeId, dayOfWeek, startTime, endTime, title, deals, place } =
     eventData;
+
+  console.log(eventData);
   return (
     <div className="p-1 h-60 mt-5 mb-5">
       <Link to={`/place/${placeId}`}>
@@ -21,22 +24,26 @@ export const EventItem = ({ eventData }) => {
           <div className="absolute w-full bg-white z-10 h-1/2 left-0 top-32 md:w-2/3 md:h-full md:top-0 md:left-1/3">
             <div className="flex w-full md:relative md:top-4">
               <div className="w-1/4 mt-auto mb-auto text-center md:relative md:h-full md:w-full md:text-left">
-                <p className="text-red-700 font-bold md:mr-2 md:absolute md:top-0">
-                  {dayOfWeek}
-                </p>
+                {dayOfWeek.map((day) => (
+                  <p
+                    className={`font-bold md:mr-2 md:absolute md:top-0 ${getDayColors(
+                      day
+                    )}`}
+                  >
+                    {capitalizeFirstLetter(day)}
+                  </p>
+                ))}
               </div>
               <div className="w-3/4 mt-2 mb-auto pr-4 overflow-hidden text-sm md:absolute md:w-full md:top-6">
-                <p className="font-bold text-base truncate">{description}</p>
+                <p className="font-bold text-base truncate">{title}</p>
+                <p className="italic opacity-75">{place.name}</p>
                 <p className="truncate">
                   {startTime}
                   {endTime ? ` - ${endTime}` : null}
                 </p>
-                <div
-                  className="max-h-6 md:max-h-24 truncate md:text-ellipsis md:whitespace-normal"
-                  id="description"
-                >
+                <div className="md:whitespace-normal" id="description">
                   {deals.map((deal, index) => (
-                    <p key={`${deal._id}-${deal}-${index}`}>{deal}</p>
+                    <p key={`${deal._id}-${deal}-${index}`}>∙{deal}</p>
                   ))}
                 </div>
               </div>
