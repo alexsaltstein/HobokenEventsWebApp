@@ -16,9 +16,9 @@ export default function App() {
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   return (
-    <div className="relative">
+    <div className="">
       <Banner />
-      <div className="relative flex top-16 ml-4 gap-x-2 flex-wrap m-auto">
+      <div className="flex top-16 ml-4 gap-x-2 flex-wrap m-auto">
         <h1 className="text-black font-bold text-xl">What's happening on...</h1>
         <DatePicker
           id="datePicker"

@@ -7,6 +7,7 @@ import {
   PhoneIcon,
   WebsiteIcon,
 } from "../components/icons/Icons";
+import { ResponsiveGrid } from "../components/templates/ResponsiveGrid";
 
 export const Place = () => {
   const { id } = useParams();
@@ -46,7 +47,7 @@ export const Place = () => {
   if (dayOfWeek === -1) {
     dayOfWeek = 6;
   }
-  console.log(googleInfo);
+
   const topPhoto = googleInfo.photos?.length > 0 ? googleInfo.photos[0] : null;
   return (
     <div className="p-4 flex w-full items-center flex-col">
@@ -107,10 +108,12 @@ export const Place = () => {
           <DirectionsIcon />
         </a>
       </div>
-      <div className="w-full">
-        {deals.map((deal) => (
-          <EventItem eventData={deal} key={deal._id} />
-        ))}
+      <div className="w-full mt-4">
+        <ResponsiveGrid>
+          {deals.map((deal) => (
+            <EventItem eventData={deal} key={deal._id} />
+          ))}
+        </ResponsiveGrid>
       </div>
     </div>
   );

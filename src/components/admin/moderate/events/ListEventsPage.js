@@ -45,25 +45,19 @@ export const ListEventsPage = () => {
     <div>
       <p>Hi, {user.firstName}</p>
       <p>list of events that need to be approved or denied</p>
-
       <p>
-        {data.map((event) => (
-          <div className="m-2">
-            <p>{event.description}</p>
-            <p>eventid: {event._id}</p>
-            <p>placeId: {event.placeId}</p>
-            <p>approved: {`${event.approved}`}</p>
-            <p>dayOfWeek: {event.dayOfWeek}</p>
-            <p>deals:</p>
-            {event.deals.map((deal) => (
-              <p>-{deal}</p>
-            ))}
-            <div className="flex flex-row space-x-4 ">
-              <ApproveEvent eventId={event._id} />
-              <DenyEvent eventId={event._id} />
+        {data.map((event) => {
+          const { googleInfo, ...rest } = event;
+          return (
+            <div className="m-2">
+              <p>{JSON.stringify(rest)}</p>
+              <div className="flex flex-row space-x-4 ">
+                <ApproveEvent eventId={event._id} />
+                <DenyEvent eventId={event._id} />
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </p>
     </div>
   );

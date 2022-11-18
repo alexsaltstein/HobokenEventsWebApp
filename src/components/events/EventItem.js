@@ -4,48 +4,47 @@ import { capitalizeFirstLetter, getDayColors } from "../../utils/common";
 import "./eventItem.css";
 
 export const EventItem = ({ eventData }) => {
-  const { placeId, dayOfWeek, startTime, endTime, title, deals, place } =
-    eventData;
+  const {
+    placeId,
+    dayOfWeek,
+    startTime,
+    endTime,
+    title,
+    deals,
+    place,
+    googleInfo,
+  } = eventData;
 
-  console.log(eventData);
   return (
-    <div className="p-1 h-60 mt-5 mb-5">
+    <div>
       <Link to={`/place/${placeId}`}>
-        <div className="relative md:flex drop-shadow-md transition duration-200 hover:shadow-xl border h-full z-0">
-          <div className="absolute w-full h-full left-0 top-0 md:flex md:w-1/3 bg-white">
-            <img
-              src={
-                "https://media.istockphoto.com/photos/blurred-bokeh-light-of-city-downtown-picture-id858204360?k=20&m=858204360&s=612x612&w=0&h=50ZaF59P3jAvvlQJ5HURHKLIZdOvHRJsQ1mnXwLdaHw="
-              }
-              alt="Event thumbnail"
-              className="w-full h-full md:w-10/12 md:h-5/6 m-auto"
-            />
-          </div>
-          <div className="absolute w-full bg-white z-10 h-1/2 left-0 top-32 md:w-2/3 md:h-full md:top-0 md:left-1/3">
-            <div className="flex w-full md:relative md:top-4">
-              <div className="w-1/4 mt-auto mb-auto text-center md:relative md:h-full md:w-full md:text-left">
-                {dayOfWeek.map((day) => (
-                  <p
-                    className={`font-bold md:mr-2 md:absolute md:top-0 ${getDayColors(
-                      day
-                    )}`}
-                  >
-                    {capitalizeFirstLetter(day)}
-                  </p>
-                ))}
-              </div>
-              <div className="w-3/4 mt-2 mb-auto pr-4 overflow-hidden text-sm md:absolute md:w-full md:top-6">
-                <p className="font-bold text-base truncate">{title}</p>
-                <p className="italic opacity-75">{place.name}</p>
-                <p className="truncate">
-                  {startTime}
-                  {endTime ? ` - ${endTime}` : null}
+        <div className="flex items-center gap-x-2 bg-white border p-4 h-full drop-shadow-md transition duration-200 hover:shadow-lg border z-30">
+          <img
+            width={32}
+            height={32}
+            alt="Google place icon"
+            src={googleInfo.icon}
+          />
+          <div>
+            <div className="flex">
+              {dayOfWeek.map((day, index) => (
+                <p className={`font-bold ${getDayColors(day)}`}>
+                  {capitalizeFirstLetter(day)}
+                  {index !== dayOfWeek.length - 1 ? ", " : null}
                 </p>
-                <div className="md:whitespace-normal" id="description">
-                  {deals.map((deal, index) => (
-                    <p key={`${deal._id}-${deal}-${index}`}>∙{deal}</p>
-                  ))}
-                </div>
+              ))}
+            </div>
+            <div>
+              <p className="font-bold text-base truncate">{title}</p>
+              <p className="italic opacity-75">{place.name}</p>
+              <p className="truncate">
+                {startTime}
+                {endTime ? ` - ${endTime}` : null}
+              </p>
+              <div className="md:whitespace-normal" id="description">
+                {deals.map((deal, index) => (
+                  <p key={`${deal._id}-${deal}-${index}`}>∙{deal}</p>
+                ))}
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { EventItem } from "./EventItem";
+import { ResponsiveGrid } from "../templates/ResponsiveGrid";
 
 export const EventList = ({ title, url }) => {
   const [loading, setLoading] = React.useState(true);
@@ -66,15 +67,15 @@ export const EventList = ({ title, url }) => {
     );
   }
 
+  console.log(eventData);
   return (
-    <div className="relative p-4 top-10 z-0">
+    <div>
       <h1 className="underline text-2xl">{title}</h1>
-      {eventData.map((event, index) => (
-        <>
+      <ResponsiveGrid>
+        {eventData.map((event, index) => (
           <EventItem key={`${title}-list-item-${index}`} eventData={event} />
-          <hr />
-        </>
-      ))}
+        ))}
+      </ResponsiveGrid>
     </div>
   );
 };
