@@ -83,6 +83,8 @@ export const AddEventPage = () => {
       ...placeInfo,
       deals,
     });
+    window.location.reload()
+    return;
   } catch(e) {
     console.error(e)
   }
