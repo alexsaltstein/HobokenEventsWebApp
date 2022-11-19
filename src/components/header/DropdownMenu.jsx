@@ -26,7 +26,7 @@ export default function DropdownMenu({ open, authed }) {
           <div className="py-1" role="none">
             {!authed ? null : (
               <a
-                href="#"
+                href="/admin/create/events"
                 className="text-gray-700 px-4 py-2 text-sm flex hover:bg-gray-100"
                 role="menuitem"
                 tabIndex="-1"

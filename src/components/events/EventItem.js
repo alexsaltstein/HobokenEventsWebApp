@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { capitalizeFirstLetter, getDayColors } from "../../utils/common";
+import { abreviateDay, capitalizeFirstLetter, getDayColors } from "../../utils/common";
 import "./eventItem.css";
 
 export const EventItem = ({ eventData }) => {
@@ -27,12 +27,14 @@ export const EventItem = ({ eventData }) => {
           />
           <div>
             <div className="flex">
-              {dayOfWeek.map((day, index) => (
-                <p className={`font-bold ${getDayColors(day)}`}>
-                  {capitalizeFirstLetter(day)}
-                  {index !== dayOfWeek.length - 1 ? ", " : null}
+              {dayOfWeek.map((day, index) => { 
+                const abreviation = abreviateDay(capitalizeFirstLetter(day));
+              return (
+                <p className={`font-bold ${getDayColors(day)} border-2 p-1 m-1 border-current`}>
+                  {abreviation}
                 </p>
-              ))}
+              )})
+            }
             </div>
             <div>
               <p className="font-bold text-base truncate">{title}</p>

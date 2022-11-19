@@ -16,6 +16,7 @@ export const ApproveEvent = ({ eventId }) => {
         }
       );
       console.log("successfully approved event", eventId);
+      window.location.reload()
     } catch (e) {
       console.error("Error accepting event", e);
     }

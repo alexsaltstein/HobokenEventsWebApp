@@ -52,6 +52,7 @@ export const AddEventPage = () => {
   };
 
   const handleFormSubmit = async () => {
+    try {
     const newError = {};
     setDeals(dealArr);
     if (!placeInfo.name || placeInfo.name.length === 0) {
@@ -62,7 +63,7 @@ export const AddEventPage = () => {
     }
     setError({ ...newError });
     if (Object.keys(error).length !== 0) {
-      return;
+      throw error
     }
 
     const res = await axios.post(
@@ -82,6 +83,9 @@ export const AddEventPage = () => {
       ...placeInfo,
       deals,
     });
+  } catch(e) {
+    console.error(e)
+  }
   };
 
   const getGoogleDataByPlaceId = async (index) => {
@@ -108,7 +112,7 @@ export const AddEventPage = () => {
             Hi {user.firstName}, lets create a happening
           </p>
           <ErrorText extraProps={"ml-4"}>
-            {Object.keys(error).length > 0 ? "Error submitting form" : null}
+            {Object.keys(error).length > 0 ? {error} : null}
           </ErrorText>
           <div className="relative left-4 mb-4 w-[95%]">
             <div className="text-4xl font-bold ">Location Info</div>
