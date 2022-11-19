@@ -58,6 +58,18 @@ export const capitalizeFirstLetter = (str) => {
   return `${str.charAt(0).toUpperCase()}${str.substring(1)}`;
 };
 
+const ABREVIATED_ENUM = {
+  'Monday': 'Mon.',
+  'Tuesday': 'Tues.', 
+  'Wednesday': 'Wed.',
+  'Thursday': 'Thurs.',
+  'Friday': 'Fri.',
+  'Saturday': 'Sat',
+  'Sunday': 'Sun'
+}
+export const abreviateDay = (day) => {
+  return ABREVIATED_ENUM[day];
+}
 export const handleError = (setError, errorMessage) => {
   setError(errorMessage);
   setTimeout(() => {

@@ -16,6 +16,7 @@ export const DenyEvent = ({ eventId }) => {
         }
       );
       console.log("successfully denied event", eventId);
+      window.location.reload()
     } catch (e) {
       console.error("Error denying event", e);
     }

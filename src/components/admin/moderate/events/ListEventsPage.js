@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
 import { useUserState } from "../../../../utils/userState";
+import { EventItem } from "../../../events/EventItem";
+import { EventList } from "../../../events/EventList";
 import { ApproveEvent } from "./ApproveEvent";
 import { DenyEvent } from "./DenyEvent";
 
@@ -47,10 +49,11 @@ export const ListEventsPage = () => {
       <p>list of events that need to be approved or denied</p>
       <p>
         {data.map((event) => {
-          const { googleInfo, ...rest } = event;
+          const { googleInfo, place, ...rest } = event;
           return (
-            <div className="m-2">
-              <p>{JSON.stringify(rest)}</p>
+            <div className="m-2 border-2">
+              <p>{JSON.stringify(place, null, 2)}</p>
+              <p>{JSON.stringify(rest, null, '\t')}</p>
               <div className="flex flex-row space-x-4 ">
                 <ApproveEvent eventId={event._id} />
                 <DenyEvent eventId={event._id} />

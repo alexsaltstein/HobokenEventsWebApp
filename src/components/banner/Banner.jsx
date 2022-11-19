@@ -3,8 +3,8 @@ import React from "react";
 export default function Banner() {
   return (
     <>
-      <div className="relative w-screen aspect-auto">
-        <div className="relative left-0 flex w-full h-full max-h-96">
+      <div className="flex w-screen aspect-auto">
+        <div className="relative left-0 flex w-full h-1/4 max-h-64">
           <div className="overflow-hidden">
             <img className="xl:hidden" src="/hudson.jpg" alt="banner" />
             <img

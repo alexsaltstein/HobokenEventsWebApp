@@ -8,6 +8,7 @@ import {
   WebsiteIcon,
 } from "../components/icons/Icons";
 import { ResponsiveGrid } from "../components/templates/ResponsiveGrid";
+import { Loading } from "../utils/Loading";
 
 export const Place = () => {
   const { id } = useParams();
@@ -34,7 +35,11 @@ export const Place = () => {
   }, [fetchData]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="p-4 flex w-full items-center flex-col">
+        <Loading className="h-full mb-6" loading={loading}/>
+        </div>
+    )
   }
 
   if (!placeData || placeData.length === 0) {
