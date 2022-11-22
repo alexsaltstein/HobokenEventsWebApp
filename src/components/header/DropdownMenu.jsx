@@ -12,7 +12,7 @@ import "./Header.css";
 export default function DropdownMenu({ open, authed }) {
   return (
     <>
-      <div className="relative text-left z-30 md:hidden">
+      <div className="relative text-left z-20 md:hidden">
         <div
           className={`absolute transition-all duration-500 ${
             open ? "top-0" : "-top-60"
@@ -48,7 +48,16 @@ export default function DropdownMenu({ open, authed }) {
                 <p className="mt-auto mb-auto">Moderate</p>
               </a>
             ) : null}
-            {/* This should be a Sign In button if not authed, Sign Out if authed*/}
+            <a
+                href="/contact"
+                className="text-gray-700 px-4 py-2 text-sm flex hover:bg-gray-100"
+                role="menuitem"
+                tabIndex="-1"
+                id="menu-item-0"
+              >
+                <ContactUsButton params={"mr-2"} />
+                <p className="mt-auto mb-auto">Contact Us</p>
+              </a>
             <a
               href={!authed ? "/admin/login" : "/admin/logout"}
               className="text-gray-700 w-full px-4 py-2 text-left text-sm flex hover:bg-gray-100"

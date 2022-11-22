@@ -25,7 +25,7 @@ export const EventList = ({ title, url }) => {
     })();
   }, [fetchData]);
 
-  if (!eventData || eventData.length === 0 ) {
+  if ((!eventData || eventData.length === 0) && !loading) {
     return (
       <div className='relative xs:top-30 md:top-40 w-screen text-input-label-gray text-center font-semibold text-xl min-h-full'>
         <p className="flex flex-row flex-wrap justify-center items-center  xs:mx-2 xs:mt-4">
@@ -39,9 +39,9 @@ export const EventList = ({ title, url }) => {
   }
 
   return (
-    <div>
+    <div className="p-4 flex items-center">
       <h1 className="underline text-2xl">{title}</h1>
-      {loading && <Loading className="flex items-center justify-self-center" loading={loading}/> } 
+      {loading && <Loading loading={loading}/> } 
       <ResponsiveGrid>{!loading &&  
          eventData.map((event, index) => (
           <EventItem key={`${title}-list-item-${index}`} eventData={event} />
