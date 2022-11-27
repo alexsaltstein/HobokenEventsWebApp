@@ -6,12 +6,20 @@ export default function Banner() {
       <div className="flex w-screen aspect-auto">
         <div className="relative left-0 flex w-full h-1/4 max-h-64">
           <div className="overflow-hidden">
-            <img className="xl:hidden" src="/hudson.jpg" alt="banner" />
-            <img
-              className="hidden xl:block w-full h-full object-cover object-center"
-              src="/nyclarge.jpg"
-              alt="4kbanner"
-            />
+            <picture>
+              <source srcSet="hudson.webp" type="image/webp" />
+              <source srcSet="hudson.jpg" type="image/jpeg" />
+              <img className="xl:hidden w-full h-full" src="/hudson.jpg" alt="banner" />
+            </picture>
+            <picture>
+              <source srcSet="nyclarge.webp" type="image/webp" />
+              <source srcSet="nyclarge.jpg" type="image/jpeg" />
+              <img
+                className="hidden xl:block w-full h-full object-cover object-center"
+                src="/nyclarge.jpg"
+                alt="4kbanner"
+              />
+            </picture>
             <div className="absolute top-0 w-full h-full opacity-50 bg-gradient-to-r from-gray-500 to-transparent" />
           </div>
           <div className="absolute flex h-1/3 items-center">
