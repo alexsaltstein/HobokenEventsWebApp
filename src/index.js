@@ -12,6 +12,7 @@ import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import { Contact } from "./routes/Contact";
 import { About } from "./routes/About";
+import { NotFound } from "./routes/NotFound";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -53,14 +54,7 @@ root.render(
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/" element={<App />} />
-            <Route
-              path="*"
-              element={
-                <main style={{ padding: "1rem" }}>
-                  <p>There's nothing here!</p>
-                </main>
-              }
-            />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
         <div className="flex" id="footer">
