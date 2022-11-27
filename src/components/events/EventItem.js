@@ -38,7 +38,7 @@ export const EventItem = ({ eventData }) => {
                   <p
                     className={`font-bold ${getDayColors(
                       day
-                    )} border-2 p-1 m-1 border-current`}
+                    )} border-2 px-3 m-1 border-current rounded-lg`}
                     key={day}
                   >
                     {abreviation}

@@ -48,3 +48,12 @@ code {
   background-color: #007bc7 !important;
   color: white;
 }
+
+#pageContent {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+#pageContent::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}

@@ -21,7 +21,7 @@ root.render(
       <div>
         <Header />
         <div
-          className="flex min-h-[100vh] my-14 overflow-x-hidden overflow-y-scroll"
+          className="flex min-h-[100vh] my-14 overflow-x-hidden overflow-y-scroll max-w-full"
           id="pageContent"
         >
           <Routes>
