@@ -9,12 +9,14 @@ import {
 } from "../components/icons/Icons";
 import { ResponsiveGrid } from "../components/templates/ResponsiveGrid";
 import { Loading } from "../utils/Loading";
+import { useScrollIntoView } from "../utils/useScrollIntoView";
 
 export const Place = () => {
   const { id } = useParams();
   const [loading, setLoading] = React.useState(true);
   const [placeData, setPlaceData] = React.useState(null);
   const [showExtendedHours, setShowExtendedHours] = React.useState(false);
+  const topElemRef = useScrollIntoView([loading]);
 
   const fetchData = React.useCallback(async () => {
     try {
@@ -37,9 +39,9 @@ export const Place = () => {
   if (loading) {
     return (
       <div className="p-4 flex w-full items-center flex-col">
-        <Loading className="h-full mb-6" loading={loading}/>
-        </div>
-    )
+        <Loading className="h-full mb-6" loading={loading} />
+      </div>
+    );
   }
 
   if (!placeData || placeData.length === 0) {
@@ -55,7 +57,7 @@ export const Place = () => {
 
   const topPhoto = googleInfo.photos?.length > 0 ? googleInfo.photos[0] : null;
   return (
-    <div className="p-4 flex w-full items-center flex-col">
+    <div ref={topElemRef} className="p-4 flex w-full items-center flex-col">
       {topPhoto ? (
         <img
           className="object-none h-32 md:h-48 w-full"
