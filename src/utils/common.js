@@ -12,6 +12,11 @@ export const formatDate = (currDate) => {
       }/${currDate.getDate()}/${currDate.getFullYear()}`;
 };
 
+export const isValidDate = (date) => {
+  const dateObj = new Date(date);
+  return dateObj instanceof Date && !isNaN(dateObj);
+};
+
 export const DAYS_ENUM = {
   Sunday: "sunday",
   Monday: "monday",
@@ -59,17 +64,17 @@ export const capitalizeFirstLetter = (str) => {
 };
 
 const ABREVIATED_ENUM = {
-  'Monday': 'Mon.',
-  'Tuesday': 'Tues.', 
-  'Wednesday': 'Wed.',
-  'Thursday': 'Thurs.',
-  'Friday': 'Fri.',
-  'Saturday': 'Sat',
-  'Sunday': 'Sun'
-}
+  Monday: "Mon.",
+  Tuesday: "Tues.",
+  Wednesday: "Wed.",
+  Thursday: "Thurs.",
+  Friday: "Fri.",
+  Saturday: "Sat",
+  Sunday: "Sun",
+};
 export const abreviateDay = (day) => {
   return ABREVIATED_ENUM[day];
-}
+};
 export const handleError = (setError, errorMessage) => {
   setError(errorMessage);
   setTimeout(() => {

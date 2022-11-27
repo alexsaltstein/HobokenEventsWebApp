@@ -8,7 +8,7 @@ import {
 } from "../../utils/common";
 import { CalendarIcon } from "../icons/Icons";
 
-export const Calendar = ({ selectedDate, setSelectedDate }) => {
+export const Calendar = ({ selectedDate, onDateChange }) => {
   const DateButton = React.forwardRef(({ value, onClick }, ref) => (
     <button onClick={onClick} ref={ref} className="flex items-center gap-x-2">
       <span
@@ -30,7 +30,7 @@ export const Calendar = ({ selectedDate, setSelectedDate }) => {
         selected={selectedDate}
         withPortal={isMobile}
         customInput={<DateButton />}
-        onChange={(date) => setSelectedDate(date)}
+        onChange={onDateChange}
         todayButton={<div>Today</div>}
       />
     </div>
