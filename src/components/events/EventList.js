@@ -1,16 +1,16 @@
 import React from "react";
 import axios from "axios";
 import { EventItem } from "./EventItem";
-import { Loading } from '../../utils/Loading'
+import { Loading } from "../../utils/Loading";
 import { ResponsiveGrid } from "../templates/ResponsiveGrid";
 
-export const EventList = ({ title, url }) => {
+export const EventList = ({ url }) => {
   const [loading, setLoading] = React.useState(true);
   const [eventData, setEventData] = React.useState(null);
 
   const fetchData = React.useCallback(async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const res = await axios.get(url);
       setEventData(res.data);
       setLoading(false);
@@ -25,9 +25,13 @@ export const EventList = ({ title, url }) => {
     })();
   }, [fetchData]);
 
+  if (loading) {
+    return <Loading loading={loading} />;
+  }
+
   if ((!eventData || eventData.length === 0) && !loading) {
     return (
-      <div className='relative xs:top-30 md:top-40 w-screen text-input-label-gray text-center font-semibold text-xl min-h-full'>
+      <div className="relative xs:top-30 md:top-40 w-screen text-input-label-gray text-center font-semibold text-xl min-h-full">
         <p className="flex flex-row flex-wrap justify-center items-center  xs:mx-2 xs:mt-4">
           Looks like nothing is happening...
         </p>
@@ -39,12 +43,10 @@ export const EventList = ({ title, url }) => {
   }
 
   return (
-    <div className="p-4 flex items-center">
-      <h1 className="underline text-2xl">{title}</h1>
-      {loading && <Loading loading={loading}/> } 
-      <ResponsiveGrid>{!loading &&  
-         eventData.map((event, index) => (
-          <EventItem key={`${title}-list-item-${index}`} eventData={event} />
+    <div className="p-4">
+      <ResponsiveGrid>
+        {eventData.map((event, index) => (
+          <EventItem key={`list-item-${index}`} eventData={event} />
         ))}
       </ResponsiveGrid>
     </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import {
   SubmitButton,
-  AboutButton,
   ContactUsButton,
   SignInButton,
   SignOutButton,
@@ -49,15 +48,15 @@ export default function DropdownMenu({ open, authed }) {
               </a>
             ) : null}
             <a
-                href="/contact"
-                className="text-gray-700 px-4 py-2 text-sm flex hover:bg-gray-100"
-                role="menuitem"
-                tabIndex="-1"
-                id="menu-item-0"
-              >
-                <ContactUsButton params={"mr-2"} />
-                <p className="mt-auto mb-auto">Contact Us</p>
-              </a>
+              href="/contact"
+              className="text-gray-700 px-4 py-2 text-sm flex hover:bg-gray-100"
+              role="menuitem"
+              tabIndex="-1"
+              id="menu-item-0"
+            >
+              <ContactUsButton params={"mr-2"} />
+              <p className="mt-auto mb-auto">Contact Us</p>
+            </a>
             <a
               href={!authed ? "/admin/login" : "/admin/logout"}
               className="text-gray-700 w-full px-4 py-2 text-left text-sm flex hover:bg-gray-100"
