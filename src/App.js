@@ -16,6 +16,7 @@ export default function App() {
     setSearchParams({ date });
   };
 
+  // need to do the bad date cause null is a valid date
   const queryDate = searchParams.get("date")
     ? new Date(searchParams.get("date"))
     : "bad date";
