@@ -25,7 +25,7 @@ export default function App() {
   const [selectedDate, setSelectedDate] = React.useState(initialDate);
 
   return (
-    <div>
+    <div className="overflow-y-hidden">
       <Banner />
       <Calendar selectedDate={selectedDate} onDateChange={onDateChange} />
       <FilterBar />
