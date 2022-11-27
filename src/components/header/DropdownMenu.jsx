@@ -1,6 +1,7 @@
 import React from "react";
 import {
   SubmitButton,
+  AboutButton,
   ContactUsButton,
   SignInButton,
   SignOutButton,
@@ -47,16 +48,28 @@ export default function DropdownMenu({ open, authed }) {
                 <p className="mt-auto mb-auto">Moderate</p>
               </a>
             ) : null}
+                        <a
+              href="/about"
+              className="text-gray-700 px-4 py-2 text-sm flex hover:bg-gray-100"
+              role="menuitem"
+              tabIndex="-1"
+              id="menu-item-2"
+            >
+              <AboutButton params={"mr-2"} />
+              <p className="mt-auto mb-auto">About</p>
+            </a>
+            {/* Add this back once we have email service
             <a
               href="/contact"
               className="text-gray-700 px-4 py-2 text-sm flex hover:bg-gray-100"
               role="menuitem"
               tabIndex="-1"
-              id="menu-item-0"
+              id="menu-item-3"
             >
               <ContactUsButton params={"mr-2"} />
               <p className="mt-auto mb-auto">Contact Us</p>
             </a>
+            */}
             <a
               href={!authed ? "/admin/login" : "/admin/logout"}
               className="text-gray-700 w-full px-4 py-2 text-left text-sm flex hover:bg-gray-100"
