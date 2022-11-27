@@ -18,7 +18,10 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a href="/contact" className="mr-4 hover:underline md:mr-6">
+              <a
+                href="mailto:bsoong@hudsonhapps.com?subject=[Hudson Happs]:"
+                className="mr-4 hover:underline md:mr-6"
+              >
                 Contact Us
               </a>
             </li>
