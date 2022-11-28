@@ -26,6 +26,7 @@ export default function App() {
 
   return (
     <div className="overflow-y-hidden overflow-x-hidden">
+      <p>This is a test</p>
       <Banner />
       <Calendar selectedDate={selectedDate} onDateChange={onDateChange} />
       <FilterBar />
