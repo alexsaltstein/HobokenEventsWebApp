@@ -55,7 +55,19 @@ export const EventItem = ({ eventData }) => {
               </p>
               <div className="md:whitespace-normal" id="description">
                 {deals.map((deal, index) => (
-                  <p key={`${deal._id}-${deal}-${index}`}>∙{deal}</p>
+                  deal.includes('https') ?
+                    <button
+                      key={`${deal._id}-${deal}-${index}`}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        window.location=deal;
+                        event.stopPropagation();
+                      }}
+                      className="text-hoboken-blue hover:underline text-xl"
+                    >
+                      View deal menu
+                    </button>:
+                  <p key={`${deal._id}-${deal}-${index}`}>∙{deal}</p> 
                 ))}
               </div>
             </div>
