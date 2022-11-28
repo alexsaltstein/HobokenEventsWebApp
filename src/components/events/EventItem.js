@@ -5,7 +5,6 @@ import {
   capitalizeFirstLetter,
   getDayColors,
 } from "../../utils/common";
-import "./eventItem.css";
 
 export const EventItem = ({ eventData }) => {
   const {
@@ -31,29 +30,31 @@ export const EventItem = ({ eventData }) => {
             src={googleInfo.icon}
           />
           <div>
-          <div>
+            <div>
               <p className="font-bold opacity-75">{place.name}</p>
-              <p className="italic text-base truncate">{title}</p>
-              <p className="truncate">
+              <p className="italic text-base">{title}</p>
+              <p>
                 {startTime}
                 {endTime ? ` - ${endTime}` : null}
               </p>
-              <div className="md:whitespace-normal truncate" id="description">
-                {deals.map((deal, index) => (
-                  deal.includes('https') ?
+              <div className="md:whitespace-normal" id="description">
+                {deals.map((deal, index) =>
+                  deal.includes("https") ? (
                     <button
                       key={`${deal._id}-${deal}-${index}`}
                       onClick={(event) => {
                         event.preventDefault();
-                        window.location=deal;
+                        window.location = deal;
                         event.stopPropagation();
                       }}
                       className="text-hoboken-blue hover:underline text-xl"
                     >
                       View deal menu
-                    </button>:
-                  <p key={`${deal._id}-${deal}-${index}`}>∙{deal}</p> 
-                ))}
+                    </button>
+                  ) : (
+                    <p key={`${deal._id}-${deal}-${index}`}>∙{deal}</p>
+                  )
+                )}
               </div>
             </div>
             <div className="flex flex-wrap mt-1">
