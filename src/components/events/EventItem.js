@@ -31,29 +31,14 @@ export const EventItem = ({ eventData }) => {
             src={googleInfo.icon}
           />
           <div>
-            <div className="flex flex-wrap">
-              {dayOfWeek.map((day) => {
-                const abreviation = abreviateDay(capitalizeFirstLetter(day));
-                return (
-                  <p
-                    className={`font-bold ${getDayColors(
-                      day
-                    )} border-2 px-3 m-1 border-current rounded-lg`}
-                    key={day}
-                  >
-                    {abreviation}
-                  </p>
-                );
-              })}
-            </div>
-            <div>
-              <p className="font-bold text-base truncate">{title}</p>
-              <p className="italic opacity-75">{place.name}</p>
+          <div>
+              <p className="font-bold opacity-75">{place.name}</p>
+              <p className="italic text-base truncate">{title}</p>
               <p className="truncate">
                 {startTime}
                 {endTime ? ` - ${endTime}` : null}
               </p>
-              <div className="md:whitespace-normal" id="description">
+              <div className="md:whitespace-normal truncate" id="description">
                 {deals.map((deal, index) => (
                   deal.includes('https') ?
                     <button
@@ -70,6 +55,21 @@ export const EventItem = ({ eventData }) => {
                   <p key={`${deal._id}-${deal}-${index}`}>∙{deal}</p> 
                 ))}
               </div>
+            </div>
+            <div className="flex flex-wrap mt-1">
+              {dayOfWeek.map((day) => {
+                const abreviation = abreviateDay(capitalizeFirstLetter(day));
+                return (
+                  <p
+                    className={`font-bold ${getDayColors(
+                      day
+                    )} border-2 px-3 m-1 border-current rounded-lg`}
+                    key={day}
+                  >
+                    {abreviation}
+                  </p>
+                );
+              })}
             </div>
           </div>
         </div>
