@@ -1,4 +1,6 @@
 import React from "react";
+import { SocialIcon } from 'react-social-icons';
+
 
 export default function Footer() {
   return (
@@ -11,6 +13,11 @@ export default function Footer() {
               Hudson Happs
             </span>
           </a>
+          <div className="flex gap-x-2">
+            <SocialIcon className="bg-white rounded-full" url="https://discord.gg/vM2cA32Seg" />
+            <SocialIcon className="bg-white rounded-full" url="https://twitter.com/" />
+            <SocialIcon className="bg-white rounded-full" url="https://www.instagram.com/" />
+          </div>
           <ul className="flex flex-wrap items-center mb-6 text-sm text-white sm:mb-0 ">
             <li>
               <a href="/about" className="mr-4 hover:underline md:mr-6 ">
