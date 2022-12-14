@@ -6,6 +6,7 @@ import {
   SignInButton,
   SignOutButton,
   ModerateIcon,
+  TimerIcon,
 } from "../icons/Icons";
 import "./Header.css";
 
@@ -48,7 +49,7 @@ export default function DropdownMenu({ open, authed }) {
                 <p className="mt-auto mb-auto">Moderate</p>
               </a>
             ) : null}
-                        <a
+            <a
               href="/about"
               className="text-gray-700 px-4 py-2 text-sm flex hover:bg-gray-100"
               role="menuitem"
@@ -57,6 +58,16 @@ export default function DropdownMenu({ open, authed }) {
             >
               <AboutButton params={"mr-2"} />
               <p className="mt-auto mb-auto">About</p>
+            </a>
+            <a
+              href="/powerhour"
+              className="text-gray-700 px-4 py-2 text-sm flex hover:bg-gray-100"
+              role="menuitem"
+              tabIndex="-1"
+              id="menu-item-2"
+            >
+              <TimerIcon params={"mr-2"} />
+              <p className="mt-auto mb-auto">Power hour</p>
             </a>
             {/* Add this back once we have email service
             <a

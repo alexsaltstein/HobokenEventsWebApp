@@ -13,6 +13,7 @@ import Footer from "./components/footer/Footer";
 import { Contact } from "./routes/Contact";
 import { About } from "./routes/About";
 import { NotFound } from "./routes/NotFound";
+import { PowerHour } from "./routes/PowerHour";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -53,6 +54,7 @@ root.render(
             <Route path="/place/:id" element={<Place />} />
             <Route path="/about" element={<About />} />
             {/* <Route path="/contact" element={<Contact />} /> */}
+            <Route path="/powerhour" element={<PowerHour />} />
             <Route path="/" element={<App />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
