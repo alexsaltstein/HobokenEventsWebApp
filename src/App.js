@@ -28,7 +28,6 @@ export default function App() {
 
   return (
     <div className="overflow-y-hidden overflow-x-hidden">
-      <div tw="bg-hoboken-blue">hello</div>
       <Banner />
       <Calendar selectedDate={selectedDate} onDateChange={onDateChange} />
       <FilterBar />

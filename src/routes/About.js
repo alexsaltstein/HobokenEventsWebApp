@@ -1,11 +1,8 @@
 import React from "react";
-import "twin.macro";
-/** @jsxImportSource @emotion/react */
 
 export const About = () => {
   return (
     <div className="flex justify-center w-full">
-      <div tw="bg-red-400">hi</div>
       <section className="bg-white">
         <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
           <h2 className="mb-8 text-4xl tracking-tight font-extrabold text-gray-900">
