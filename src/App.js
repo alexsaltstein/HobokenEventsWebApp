@@ -1,7 +1,6 @@
 import "./index.css";
-import { jsx } from "@emotion/react";
 /** @jsxImportSource @emotion/react */
-import tw from "twin.macro";
+import "twin.macro";
 import React from "react";
 import { useSearchParams } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
@@ -29,6 +28,7 @@ export default function App() {
 
   return (
     <div className="overflow-y-hidden overflow-x-hidden">
+      <div tw="bg-hoboken-blue">hello</div>
       <Banner />
       <Calendar selectedDate={selectedDate} onDateChange={onDateChange} />
       <FilterBar />
