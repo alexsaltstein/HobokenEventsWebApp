@@ -1,8 +1,9 @@
+/** @jsxImportSource @emotion/react */
+import "twin.macro";
 import React from "react";
 import {
   SubmitButton,
   AboutButton,
-  ContactUsButton,
   SignInButton,
   SignOutButton,
   ModerateIcon,
@@ -32,7 +33,7 @@ export default function DropdownMenu({ open, authed }) {
                 tabIndex="-1"
                 id="menu-item-0"
               >
-                <SubmitButton params={"mr-2"} />
+                <SubmitButton tw="mr-2" />
                 <p className="mt-auto mb-auto">What's Happening?</p>
               </a>
             )}
@@ -44,18 +45,18 @@ export default function DropdownMenu({ open, authed }) {
                 tabIndex="-1"
                 id="menu-item-1"
               >
-                <ModerateIcon params={"mr-2"} />
+                <ModerateIcon tw="mr-2" />
                 <p className="mt-auto mb-auto">Moderate</p>
               </a>
             ) : null}
-                        <a
+            <a
               href="/about"
               className="text-gray-700 px-4 py-2 text-sm flex hover:bg-gray-100"
               role="menuitem"
               tabIndex="-1"
               id="menu-item-2"
             >
-              <AboutButton params={"mr-2"} />
+              <AboutButton tw="mr-2" />
               <p className="mt-auto mb-auto">About</p>
             </a>
             {/* Add this back once we have email service
@@ -66,7 +67,7 @@ export default function DropdownMenu({ open, authed }) {
               tabIndex="-1"
               id="menu-item-3"
             >
-              <ContactUsButton params={"mr-2"} />
+              <ContactUsButton tw="mr-2" />
               <p className="mt-auto mb-auto">Contact Us</p>
             </a>
             */}
@@ -78,9 +79,9 @@ export default function DropdownMenu({ open, authed }) {
               id="menu-item-3"
             >
               {!authed ? (
-                <SignInButton params={"mr-2"} />
+                <SignInButton tw="mr-2" />
               ) : (
-                <SignOutButton params={"mr-2"} />
+                <SignOutButton tw="mr-2" />
               )}
               <p>{!authed ? "Sign In" : "Sign Out"}</p>
             </a>

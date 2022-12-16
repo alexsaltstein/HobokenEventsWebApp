@@ -94,16 +94,13 @@ export const Login = () => {
         </div>
       </div>
       <div className="relative w-0 m-0 overflow-hidden lg:w-1/2" id="image">
-      <picture>
-        <source srcSet="login.webp" type="image/webp" />
-        <source srcSet="login.jpg" type="image/jpeg" />
-        <img
-          className="absolute object-cover h-full"
-          src="/login.jpg"
-          alt="login"
-        />
+        <picture>
+          <img
+            className="absolute object-cover h-full"
+            src="/login.jpg"
+            alt="login"
+          />
         </picture>
-        
       </div>
     </div>
   );
