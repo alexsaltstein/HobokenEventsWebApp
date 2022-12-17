@@ -1,4 +1,6 @@
 import React from "react";
+import { SocialIcon } from 'react-social-icons';
+
 
 export default function Footer() {
   return (
@@ -11,13 +13,13 @@ export default function Footer() {
               Hudson Happs
             </span>
           </a>
-          <ul className="flex flex-wrap items-center mb-6 text-sm text-white sm:mb-0 ">
-            <li>
+          <ul className="items-center mb-6 text-md text-white sm:mb-0 ">
+            <li className="inline">
               <a href="/about" className="mr-4 hover:underline md:mr-6 ">
                 About
               </a>
             </li>
-            <li>
+            <li className="inline">
               <a
                 href="mailto:bsoong@hudsonhapps.com?subject=[Hudson Happs]:"
                 className="mr-4 hover:underline md:mr-6"
@@ -25,9 +27,17 @@ export default function Footer() {
                 Contact Us
               </a>
             </li>
+            <li>
+              
+            </li>
           </ul>
         </div>
-        <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+        <hr className="my-4 border-gray-200 sm:mx-auto lg:my-4" />
+        <div className="flex gap-x-2 lg:justify-end mr-9 my-2">
+          <SocialIcon target="_blank" rel="noopener noreferrer" style={{height: "35px", width: "35px"}} className="bg-white rounded-full" url="https://discord.gg/vM2cA32Seg" />
+          <SocialIcon target="_blank" rel="noopener noreferrer" style={{height: "35px", width: "35px"}} className="bg-white rounded-full" url="https://twitter.com/HudsonHapps" />
+          <SocialIcon target="_blank" rel="noopener noreferrer" style={{height: "35px", width: "35px"}} className="bg-white rounded-full" url="https://www.instagram.com/hudsonhappsapp/" />
+        </div>
         <span className="block text-sm text-gray-300 sm:text-center ">
           © 2022{" "}
           <a href="/" className="hover:underline">
