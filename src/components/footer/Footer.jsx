@@ -34,9 +34,9 @@ export default function Footer() {
         </div>
         <hr className="my-4 border-gray-200 sm:mx-auto lg:my-4" />
         <div className="flex gap-x-2 lg:justify-end mr-9 my-2">
-          <SocialIcon style={{height: "35px", width: "35px"}} className="bg-white rounded-full" url="https://discord.gg/vM2cA32Seg" />
-          <SocialIcon style={{height: "35px", width: "35px"}} className="bg-white rounded-full" url="https://twitter.com/HudsonHapps" />
-          <SocialIcon style={{height: "35px", width: "35px"}} className="bg-white rounded-full" url="https://www.instagram.com/hudsonhappsapp/" />
+          <SocialIcon target="_blank" rel="noopener noreferrer" style={{height: "35px", width: "35px"}} className="bg-white rounded-full" url="https://discord.gg/vM2cA32Seg" />
+          <SocialIcon target="_blank" rel="noopener noreferrer" style={{height: "35px", width: "35px"}} className="bg-white rounded-full" url="https://twitter.com/HudsonHapps" />
+          <SocialIcon target="_blank" rel="noopener noreferrer" style={{height: "35px", width: "35px"}} className="bg-white rounded-full" url="https://www.instagram.com/hudsonhappsapp/" />
         </div>
         <span className="block text-sm text-gray-300 sm:text-center ">
           © 2022{" "}
