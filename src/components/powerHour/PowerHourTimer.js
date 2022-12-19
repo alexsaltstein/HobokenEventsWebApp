@@ -47,7 +47,7 @@ export const PowerHourTimer = () => {
 
   if (seconds === 0 && timerParts[0] === 0) {
     // fire the animation and sound
-    const shots = new Audio("/audio/shots.mp3");
+    const shots = new Audio("/audio/beerpour.mp3");
     shots.play();
     if (confettiTop.current && confettiBottom.current) {
       confettiTop.current.play();
@@ -92,8 +92,7 @@ export const PowerHourTimer = () => {
       <div className="flex z-10 items-center w-3/4 flex-col md:w-[350px] space-y-3 bg-white rounded shadow-lg p-10">
         <h3 className="text-xl md:text-3xl font-bold">Power hour timer</h3>
         <h4 className="text-lg md:text-xl text-center opacity-70 font-semibold">
-          For every minute that passes take a shot of whatever liquid you are
-          playing with
+          Your traditional power hour timer.
         </h4>
         <div
           className="flex w-1/2 items-center justify-center"
