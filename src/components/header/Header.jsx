@@ -84,16 +84,6 @@ export default function Header() {
                   <p>About</p>
                 </a>
               </li>
-              <li>
-                <a
-                  href="/powerhour"
-                  className={`block py-2 pr-4 pl-3 mt-${
-                    authed ? 4 : 2
-                  } text-white hover:text-gray-200 md:border-0 md:p-0`}
-                >
-                  <p>Power hour</p>
-                </a>
-              </li>
               {authed ? (
                 <li key="moderate">
                   <a
