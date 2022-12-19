@@ -74,7 +74,7 @@ export default function Header() {
             id="navbar-default"
           >
             <ul className="flex flex-col ml-auto mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-hoboken-blue">
-            <li>
+              <li>
                 <a
                   href="/about"
                   className={`block py-2 pr-4 pl-3 mt-${

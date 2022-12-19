@@ -1,6 +1,5 @@
 import React from "react";
-import { SocialIcon } from 'react-social-icons';
-
+import { SocialIcon } from "react-social-icons";
 
 export default function Footer() {
   return (
@@ -27,16 +26,39 @@ export default function Footer() {
                 Contact Us
               </a>
             </li>
-            <li>
-              
-            </li>
           </ul>
         </div>
         <hr className="my-4 border-gray-200 sm:mx-auto lg:my-4" />
-        <div className="flex gap-x-2 lg:justify-end mr-9 my-2">
-          <SocialIcon target="_blank" rel="noopener noreferrer" style={{height: "35px", width: "35px"}} className="bg-white rounded-full" url="https://discord.gg/vM2cA32Seg" />
-          <SocialIcon target="_blank" rel="noopener noreferrer" style={{height: "35px", width: "35px"}} className="bg-white rounded-full" url="https://twitter.com/HudsonHapps" />
-          <SocialIcon target="_blank" rel="noopener noreferrer" style={{height: "35px", width: "35px"}} className="bg-white rounded-full" url="https://www.instagram.com/hudsonhappsapp/" />
+        <div className="flex space-y-2 my-4 md:items-center flex-col md:flex-row md:justify-between">
+          <div className="flex-col">
+            <h4 className="font-bold text-white text-lg">Entertainment</h4>
+            <a href="/powerhour" className="text-white hover:underline">
+              <p>Power hour</p>
+            </a>
+          </div>
+          <div className="flex gap-x-2">
+            <SocialIcon
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ height: "35px", width: "35px" }}
+              className="bg-white rounded-full"
+              url="https://discord.gg/vM2cA32Seg"
+            />
+            <SocialIcon
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ height: "35px", width: "35px" }}
+              className="bg-white rounded-full"
+              url="https://twitter.com/HudsonHapps"
+            />
+            <SocialIcon
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ height: "35px", width: "35px" }}
+              className="bg-white rounded-full"
+              url="https://www.instagram.com/hudsonhappsapp/"
+            />
+          </div>
         </div>
         <span className="block text-sm text-gray-300 sm:text-center ">
           © 2022{" "}
