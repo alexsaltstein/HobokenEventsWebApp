@@ -9,7 +9,6 @@ const formatTime = (timeVal) => {
   }
   return timeVal;
 };
-
 export const PowerHourTimer = () => {
   const confettiTop = React.useRef();
   const confettiBottom = React.useRef();
