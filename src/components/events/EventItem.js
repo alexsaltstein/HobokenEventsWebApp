@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import ReportModal from "./ReportModal";
 import {
   abreviateDay,
   capitalizeFirstLetter,
   getDayColors,
 } from "../../utils/common";
+import { CautionIcon, TimerIcon, LocationIcon } from "../icons/Icons";
 
 export const EventItem = ({ eventData, onClickReport, setReportedDeal, setReportedPlace }) => {
   const { placeId, dayOfWeek, startTime, endTime, title, deals, place } =
@@ -33,11 +33,11 @@ export const EventItem = ({ eventData, onClickReport, setReportedDeal, setReport
             })}
           </div>
           <div className="flex">
-            <svg class="w-6 h-6 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            <LocationIcon params={"mr-2 text-gray-500"} />
             <p className="mb-1">{place.name}</p>
           </div>
             <div className="flex">
-              <svg class="w-6 h-6 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <TimerIcon params={"mr-2 text-gray-500"} />
               <p className="mb-2">
                 {startTime}
                 {endTime ? ` - ${endTime}` : null}
@@ -67,7 +67,7 @@ export const EventItem = ({ eventData, onClickReport, setReportedDeal, setReport
           </div>
           </Link>
           <div className="fixed flex bottom-0 right-4 mb-4"> {/* should be flex when reporting is implemented */}
-              <svg class="w-6 h-6 text-red-400 mr-1 pt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+              <CautionIcon params={"text-red-400 mr-1 pt-1"}/>
               <button className="text-red-400 z-20"
                 onClick={() => {
                   onClickReport(true)

@@ -12,8 +12,6 @@ export const EventList = ({ url }) => {
   const [reportedDeal, setReportedDeal] = useState('')
   const [reportedPlace, setReportedPlace] = useState('')
 
-  console.log(showModal)
-
   const fetchData = React.useCallback(async () => {
     try {
       setLoading(true);
