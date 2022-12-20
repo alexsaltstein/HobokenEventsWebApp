@@ -44,7 +44,7 @@ export const EventItem = ({ eventData, onClickReport, setReportedDeal, setReport
               </p>
             </div>
             <hr />
-            <div className="md:whitespace-normal my-2" id="description">
+            <div className="md:whitespace-normal mt-2 mb-8" id="description">
               {deals.map((deal, index) =>
                 deal.includes("https") ? (
                   <button
