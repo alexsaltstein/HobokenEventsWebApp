@@ -1,12 +1,18 @@
-import React from "react";
+import React, {useState , useEffect} from "react";
 import axios from "axios";
 import { EventItem } from "./EventItem";
 import { Loading } from "../../utils/Loading";
 import { ResponsiveGrid } from "../templates/ResponsiveGrid";
+import ReportModal from "./ReportModal";
 
 export const EventList = ({ url }) => {
   const [loading, setLoading] = React.useState(true);
   const [eventData, setEventData] = React.useState(null);
+  const [showModal, setShowModal] = useState(false)
+  const [reportedDeal, setReportedDeal] = useState('')
+  const [reportedPlace, setReportedPlace] = useState('')
+
+  console.log(showModal)
 
   const fetchData = React.useCallback(async () => {
     try {
@@ -46,9 +52,14 @@ export const EventList = ({ url }) => {
     <div className="p-4">
       <ResponsiveGrid>
         {eventData.map((event, index) => (
-          <EventItem key={`list-item-${index}`} eventData={event} />
+          <EventItem key={`list-item-${index}`} eventData={event} onClickReport={setShowModal} setReportedDeal={setReportedDeal} setReportedPlace={setReportedPlace} />
         ))}
       </ResponsiveGrid>
+      <ReportModal show={showModal} onClickReport={setShowModal} reportedDeal={reportedDeal} reportedPlace={reportedPlace}/>
+      {
+        showModal ?
+          <div className="fixed top-0 left-0 h-full w-full bg-gray-500 opacity-50 z-40 overflow-hidden" /> : null
+      }
     </div>
   );
 };
