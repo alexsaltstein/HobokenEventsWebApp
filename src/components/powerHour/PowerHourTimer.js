@@ -46,7 +46,7 @@ export const PowerHourTimer = () => {
 
   if (seconds === 0 && timerParts[0] === 0) {
     // fire the animation and sound
-    const shots = new Audio("/audio/beerpour.mp3");
+    const shots = new Audio("/audio/shots.mp3");
     shots.play();
     if (confettiTop.current && confettiBottom.current) {
       confettiTop.current.play();
