@@ -2,7 +2,6 @@ import React from "react";
 import {
   SubmitButton,
   AboutButton,
-  ContactUsButton,
   SignInButton,
   SignOutButton,
   ModerateIcon,
@@ -48,7 +47,7 @@ export default function DropdownMenu({ open, authed }) {
                 <p className="mt-auto mb-auto">Moderate</p>
               </a>
             ) : null}
-                        <a
+            <a
               href="/about"
               className="text-gray-700 px-4 py-2 text-sm flex hover:bg-gray-100"
               role="menuitem"

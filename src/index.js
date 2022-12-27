@@ -11,8 +11,8 @@ import { AddEventPage } from "./components/admin/create/events/AddEventPage";
 import { Place } from "./routes/Place";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
-import { Contact } from "./routes/Contact";
 import { About } from "./routes/About";
+import { PowerHour } from "./routes/PowerHour";
 import { NotFound } from "./routes/NotFound";
 import GlobalStyles from "./styles/GlobalStyles";
 
@@ -56,6 +56,7 @@ root.render(
               />
               <Route path="/place/:id" element={<Place />} />
               <Route path="/about" element={<About />} />
+            <Route path="/powerhour" element={<PowerHour />} />
               {/* <Route path="/contact" element={<Contact />} /> */}
               <Route path="/" element={<App />} />
               <Route path="*" element={<NotFound />} />
