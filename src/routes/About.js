@@ -12,7 +12,7 @@ export const About = () => {
             <div>
               <div className="flex mb-10 justify-center">
                 <picture>
-                  <source srcSet="bar.webp" type="image/webp" />
+                  {/* <source srcSet="bar.webp" type="image/webp" /> */}
                   <source srcSet="bar.jpg" type="image/jpeg" />
                   <img className="rounded-lg" src="/bar.jpg" alt="banner" />
                 </picture>
