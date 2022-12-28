@@ -4,6 +4,7 @@ import Checkbox from "./Checkbox";
 import { IDIcon } from "../icons";
 import "./formStyle.css";
 import { DAYS_ENUM } from "../../utils/common";
+import Select from "react-select"
 
 export const AddDealElement = ({
   deal,
@@ -21,6 +22,12 @@ export const AddDealElement = ({
     friday: false,
     saturday: false,
   });
+
+  const options = [
+    {value: 'Food', label: 'Food'},
+    {value: 'Drinks', label: 'Drinks'},
+    {value: 'Event', label: 'Event'}
+  ]
 
   const setDealOption = (option, val) => {
     const tempDayOfWeek = dayOfWeek;
@@ -87,6 +94,7 @@ export const AddDealElement = ({
             type="text"
             label="Title"
             extraProps="w-full"
+            required
             placeholder="Taco Tuesday"
             icon={<IDIcon />}
             onChange={(event) => setDealOption("title", event.target.value)}
@@ -129,6 +137,7 @@ export const AddDealElement = ({
             type="text"
             label="Start Time"
             placeholder="5PM"
+            required
             onChange={(event) => setDealOption("startTime", event.target.value)}
             extraProps="w-[47.5%]"
           />
@@ -141,7 +150,15 @@ export const AddDealElement = ({
             onChange={(event) => setDealOption("endTime", event.target.value)}
             extraProps="w-[47.5%]"
           />
+        </div><div className="flex">
+          <label
+            htmlFor="Deal Description"
+            className="block mb-2 text-sm font-medium text-input-label-gray"
+          >
+            Type <span className="italic text-xs">(optional)</span>
+          </label>
         </div>
+        <Select isMulti options={options}/>
         <div className="flex">
           <label
             htmlFor="Deal Description"
