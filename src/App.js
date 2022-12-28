@@ -1,4 +1,6 @@
 import "./index.css";
+/** @jsxImportSource @emotion/react */
+import "twin.macro";
 import React from "react";
 import { useSearchParams } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
@@ -6,7 +8,6 @@ import { EventList } from "./components/events/EventList";
 import { Calendar } from "../src/components/calendar/Calendar";
 import { getDayOfWeek, isValidDate } from "./utils/common";
 import Banner from "./components/banner/Banner";
-import FilterBar from "./components/filters/FilterBar";
 
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,9 +27,15 @@ export default function App() {
 
   return (
     <div className="overflow-y-hidden overflow-x-hidden">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1461162184042470"
+          crossorigin="anonymous"
+        ></script>
+      </head>
       <Banner />
       <Calendar selectedDate={selectedDate} onDateChange={onDateChange} />
-      <FilterBar />
       <EventList
         url={`${
           process.env.REACT_APP_API_URL

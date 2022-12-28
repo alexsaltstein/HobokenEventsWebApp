@@ -24,7 +24,9 @@ export const Calendar = ({ selectedDate, onDateChange }) => {
   ));
   return (
     <div className="flex ml-4 gap-x-2 mt-4 items-center flex-wrap max-w-full">
-      <h2 className="text-black font-bold text-xl my-1">What's happening on...</h2>
+      <h2 className="text-black font-bold text-xl my-1">
+        What's happening on...
+      </h2>
       <DatePicker
         id="datePicker"
         selected={selectedDate}

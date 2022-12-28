@@ -1,6 +1,8 @@
 import React from "react";
+/** @jsxImportSource @emotion/react */
+import "twin.macro";
 
-export function SubmitButton({ params }) {
+export function SubmitButton(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,7 +10,8 @@ export function SubmitButton({ params }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={`w-6 h-6 ${params}`}
+      tw="w-6 h-6"
+      {...props}
     >
       <path
         strokeLinecap="round"
@@ -19,7 +22,7 @@ export function SubmitButton({ params }) {
   );
 }
 
-export function AboutButton({ params }) {
+export function AboutButton(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +30,8 @@ export function AboutButton({ params }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={`w-6 h-6 ${params}`}
+      tw="w-6 h-6"
+      {...props}
     >
       <path
         strokeLinecap="round"
@@ -38,7 +42,7 @@ export function AboutButton({ params }) {
   );
 }
 
-export function ContactUsButton({ params }) {
+export function ContactUsButton(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +50,8 @@ export function ContactUsButton({ params }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={`w-6 h-6 ${params}`}
+      tw="w-6 h-6"
+      {...props}
     >
       <path
         strokeLinecap="round"
@@ -57,7 +62,7 @@ export function ContactUsButton({ params }) {
   );
 }
 
-export function SignInButton({ params }) {
+export function SignInButton(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +70,8 @@ export function SignInButton({ params }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={`w-6 h-6 ${params}`}
+      tw="w-6 h-6"
+      {...props}
     >
       <path
         strokeLinecap="round"
@@ -76,7 +82,7 @@ export function SignInButton({ params }) {
   );
 }
 
-export function SignOutButton({ params }) {
+export function SignOutButton(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +90,8 @@ export function SignOutButton({ params }) {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={`w-6 h-6 ${params}`}
+      tw="w-6 h-6"
+      {...props}
     >
       <path
         strokeLinecap="round"
@@ -95,13 +102,14 @@ export function SignOutButton({ params }) {
   );
 }
 
-export const PhoneIcon = ({ params }) => (
+export const PhoneIcon = (props) => (
   <svg
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
-    className={`w-6 h-6 ${params}`}
+    tw="w-6 h-6"
+    {...props}
   >
     <title>Phone number</title>
     <path
@@ -113,13 +121,14 @@ export const PhoneIcon = ({ params }) => (
   </svg>
 );
 
-export const WebsiteIcon = ({ params }) => (
+export const WebsiteIcon = (props) => (
   <svg
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
-    className={`w-6 h-6 ${params}`}
+    tw="w-6 h-6"
+    {...props}
   >
     <title>Go to website</title>
     <path
@@ -131,13 +140,14 @@ export const WebsiteIcon = ({ params }) => (
   </svg>
 );
 
-export const DirectionsIcon = ({ params }) => (
+export const DirectionsIcon = (props) => (
   <svg
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
-    className={`w-6 h-6 ${params}`}
+    tw="w-6 h-6"
+    {...props}
   >
     <title>Get directions</title>
     <path
@@ -149,13 +159,14 @@ export const DirectionsIcon = ({ params }) => (
   </svg>
 );
 
-export const ModerateIcon = ({ params }) => (
+export const ModerateIcon = (props) => (
   <svg
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
-    className={`w-6 h-6 ${params}`}
+    tw="w-6 h-6"
+    {...props}
   >
     <path
       strokeLinecap="round"
@@ -166,13 +177,14 @@ export const ModerateIcon = ({ params }) => (
   </svg>
 );
 
-export const CalendarIcon = ({ params }) => (
+export const CalendarIcon = (props) => (
   <svg
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
-    className={`w-6 h-6 ${params}`}
+    tw="w-6 h-6"
+    {...props}
   >
     <path
       strokeLinecap="round"
@@ -180,5 +192,79 @@ export const CalendarIcon = ({ params }) => (
       strokeWidth="2"
       d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
     />
+  </svg>
+);
+
+export const TimerIcon = ({ params }) => (
+  <svg
+    className={`w-6 h-6 ${params}`}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+    ></path>
+  </svg>
+);
+
+export const ResetIcon = ({ params }) => (
+  <svg
+    className={`w-6 h-6 ${params}`}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+    ></path>
+  </svg>
+);
+
+export const PlayIcon = ({ params }) => (
+  <svg
+    className={`w-6 h-6 ${params}`}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+    ></path>
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+    ></path>
+  </svg>
+);
+
+export const PauseIcon = ({ params }) => (
+  <svg
+    className={`w-6 h-6 ${params}`}
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"
+    ></path>
   </svg>
 );

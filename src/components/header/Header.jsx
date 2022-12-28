@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import "twin.macro";
 import React, { useState } from "react";
 import DropdownMenu from "./DropdownMenu";
 import { SubmitButton } from "../icons/Icons";
@@ -74,7 +76,7 @@ export default function Header() {
             id="navbar-default"
           >
             <ul className="flex flex-col ml-auto mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-hoboken-blue">
-            <li>
+              <li>
                 <a
                   href="/about"
                   className={`block py-2 pr-4 pl-3 mt-${
@@ -111,7 +113,7 @@ export default function Header() {
                   to="/admin/create/events"
                   className="flex py-2 pr-4 pl-3 bg-button-blue border-gray-200 text-white mt-2 mr-3 text-sm font-semibold rounded-lg"
                 >
-                  <SubmitButton params={"mr-2"} />
+                  <SubmitButton tw="mr-2" />
                   <p className="m-auto">What's Happening?</p>
                 </Link>
               )}
