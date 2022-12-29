@@ -11,7 +11,7 @@ export const AddEventPage = () => {
   const [user] = useUserState();
   const [placeInfo, setPlaceInfo] = React.useState({});
   const [input, setInput] = React.useState("");
-  const [deals, setDeals] = React.useState([]);
+  const [deals, setDeals] = React.useState([{}]);
   const [error, setError] = React.useState({});
   const [googleData, setGoogleData] = React.useState([]);
   const [hidden, setHidden] = React.useState(true);
@@ -53,19 +53,35 @@ export const AddEventPage = () => {
 
   const handleFormSubmit = async () => {
     try {
-    const newError = {};
+    const newError = [];
     setDeals(dealArr);
     if (!placeInfo.name || placeInfo.name.length === 0) {
-      newError["name"] = "Error: name must not be blank";
+      newError.name = "Location Name is required";
     }
     if (!placeInfo.address || placeInfo.address.length === 0) {
-      newError["address"] = "Error: address must not be blank";
+      newError.address = "Address of Location is required";
     }
-    setError({ ...newError });
-    if (Object.keys(error).length !== 0) {
-      throw error
+    if (deals.length < 1) {
+      newError.deals = "At least 1 deal is required";
+    }else{
+      deals.map(deal => {
+        if(!deal.title || deal.title.length === 0){
+          newError.dealTitle = "Each deal requires a title";
+        }
+        if(!deal.deals || deal.deals.length === 0){
+          newError.dealDesc = "Each deal requires a Description";
+        }
+        if(!deal.dayOfWeek || deal.dayOfWeek.length === 0){
+          newError.dealDay = "Each deal requires at least 1 day of the week";
+        }
+        if(!deal.startTime || deal.startTime.length === 0){
+          newError.dealTime = "Each deal requires a start time";
+        }
+      })
     }
-
+    if (Object.keys(newError).length !== 0) {
+      throw newError
+    }
     const res = await axios.post(
       `${process.env.REACT_APP_API_URL}/api/place/create`,
       {
@@ -86,7 +102,13 @@ export const AddEventPage = () => {
     window.location.reload()
     return;
   } catch(e) {
-    console.error(e)
+    const errors = []
+    Object.keys(e).map(err =>{
+      errors[err] = e[err]
+    })
+    setError({...errors})
+    setDeals([...deals])
+    console.error(error)
   }
   };
 
@@ -100,6 +122,7 @@ export const AddEventPage = () => {
       setPlaceOption("name", placeData.name);
       setPlaceOption("address", placeData.address);
       setPlaceOption("googlePlaceId", googleData[index].place_id);
+      addNewDeal();
     }
   };
   return (
@@ -111,15 +134,12 @@ export const AddEventPage = () => {
         <div className="hidden md:flex md:w-1/6 lg:w-1/3" />
         <div className="md:w-4/6 lg:w-1/3">
           <p className="relative text-xl font-bold text-hoboken-blue left-4">
-            Hi {user.firstName}, lets create a happening
+            Hi {user.firstName}, let's create an event
           </p>
-          <ErrorText extraProps={"ml-4"}>
-            {Object.keys(error).length > 0 ? {error} : null}
-          </ErrorText>
           <div className="relative left-4 mb-4 w-[95%]">
             <div className="text-4xl font-bold ">Location Info</div>
             <p className="text-gray-500 mt-1">
-              Help people in the area discover your happening and let attendees
+              Help people in the area discover your event and let attendees
               know where to show up.
             </p>
           </div>
@@ -133,6 +153,9 @@ export const AddEventPage = () => {
                 setError={setError}
                 childToParent={childToParent}
               />
+              <ErrorText extraProps={"ml-4"}>
+                {error.name}
+              </ErrorText>
               <div
                 className={`relative -top-2 w-[95%] mx-auto border overflow-y-scroll drop-shadow-sm bg-white ${
                   hidden ? "hidden" : ""
@@ -164,11 +187,13 @@ export const AddEventPage = () => {
               extraProps="w-[95%] m-auto mb-2"
               icon={<MapIcon />}
             />
+            <ErrorText extraProps={"ml-4"}>
+              {error.address}
+            </ErrorText>
             <div className="relative left-4 mb-4 w-[95%]">
               <div className="text-4xl font-bold">Event Info</div>
               <p className="text-gray-500 mt-1">
-                Specify the date and time for the happening and what kind of
-                happening it is.
+                Specify the date, time, and other details of the event.
               </p>
             </div>
             {deals.map((deal, index) => {
@@ -177,6 +202,7 @@ export const AddEventPage = () => {
                   key={`deal-${index}`}
                   index={index}
                   deals={deals}
+                  error={error}
                   deal={deal}
                   setDeals={setDeals}
                   addDealToState={() => addDealToState()}
@@ -189,7 +215,7 @@ export const AddEventPage = () => {
           <div className="relative">
             <button
               type="button"
-              className="text-white bg-button-blue focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 m-2"
+              className="border-2 text-black bg-button-blue focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 m-2"
               onClick={() => addNewDeal()}
             >
               Add Deal
@@ -200,7 +226,7 @@ export const AddEventPage = () => {
             <div className="right-0">
               <button
                 type="button"
-                className="text-white bg-button-blue focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 m-2"
+                className="border-2 text-black bg-button-blue focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 m-2"
                 onClick={() => handleFormSubmit()}
               >
                 Submit

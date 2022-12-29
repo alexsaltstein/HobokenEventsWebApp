@@ -4,9 +4,12 @@ import Checkbox from "./Checkbox";
 import { IDIcon } from "../icons";
 import "./formStyle.css";
 import { DAYS_ENUM } from "../../utils/common";
+import Select from "react-select"
+import { ErrorText } from "../form/ErrorText";
 
 export const AddDealElement = ({
   deal,
+  error,
   removeDeal,
   setDeals,
   deals,
@@ -21,6 +24,12 @@ export const AddDealElement = ({
     friday: false,
     saturday: false,
   });
+
+  const options = [
+    {value: 'Food', label: 'Food'},
+    {value: 'Drinks', label: 'Drinks'},
+    {value: 'Event', label: 'Event'}
+  ]
 
   const setDealOption = (option, val) => {
     const tempDayOfWeek = dayOfWeek;
@@ -87,11 +96,15 @@ export const AddDealElement = ({
             type="text"
             label="Title"
             extraProps="w-full"
+            required
             placeholder="Taco Tuesday"
             icon={<IDIcon />}
             onChange={(event) => setDealOption("title", event.target.value)}
           />
         </div>
+        <ErrorText extraProps={"ml-4"}>
+          {error.dealTitle}
+        </ErrorText>
         <div className="flex">
           <label
             htmlFor="Date and Time"
@@ -123,12 +136,16 @@ export const AddDealElement = ({
             ))}
           </div>
         </div>
+        <ErrorText extraProps={"ml-4"}>
+          {error.dealDay}
+        </ErrorText>
         <div className="flex w-full">
           <GenericInput
             name="startTime"
             type="text"
             label="Start Time"
             placeholder="5PM"
+            required
             onChange={(event) => setDealOption("startTime", event.target.value)}
             extraProps="w-[47.5%]"
           />
@@ -142,6 +159,18 @@ export const AddDealElement = ({
             extraProps="w-[47.5%]"
           />
         </div>
+        <ErrorText extraProps={"ml-4"}>
+          {error.dealTime}
+        </ErrorText>
+        <div className="flex">
+          <label
+            htmlFor="Deal Description"
+            className="block mb-2 text-sm font-medium text-input-label-gray"
+          >
+            Type <span className="italic text-xs">(optional)</span>
+          </label>
+        </div>
+        <Select isMulti options={options}/>
         <div className="flex">
           <label
             htmlFor="Deal Description"
@@ -163,6 +192,9 @@ export const AddDealElement = ({
             )
           }
         />
+        <ErrorText extraProps={"ml-4"}>
+          {error.dealDesc}
+        </ErrorText>
       </div>
     </div>
   );
