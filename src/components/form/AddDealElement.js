@@ -5,14 +5,17 @@ import { IDIcon } from "../icons";
 import "./formStyle.css";
 import { DAYS_ENUM } from "../../utils/common";
 import Select from "react-select"
+import { ErrorText } from "../form/ErrorText";
 
 export const AddDealElement = ({
   deal,
+  error,
   removeDeal,
   setDeals,
   deals,
   index,
 }) => {
+  console.log(error)
   const [dayOfWeek, setDayOfWeek] = React.useState({
     sunday: false,
     monday: false,
@@ -100,6 +103,9 @@ export const AddDealElement = ({
             onChange={(event) => setDealOption("title", event.target.value)}
           />
         </div>
+        <ErrorText extraProps={"ml-4"}>
+          {error.dealTitle}
+        </ErrorText>
         <div className="flex">
           <label
             htmlFor="Date and Time"
@@ -131,6 +137,9 @@ export const AddDealElement = ({
             ))}
           </div>
         </div>
+        <ErrorText extraProps={"ml-4"}>
+          {error.dealDay}
+        </ErrorText>
         <div className="flex w-full">
           <GenericInput
             name="startTime"
@@ -150,7 +159,11 @@ export const AddDealElement = ({
             onChange={(event) => setDealOption("endTime", event.target.value)}
             extraProps="w-[47.5%]"
           />
-        </div><div className="flex">
+        </div>
+        <ErrorText extraProps={"ml-4"}>
+          {error.dealTime}
+        </ErrorText>
+        <div className="flex">
           <label
             htmlFor="Deal Description"
             className="block mb-2 text-sm font-medium text-input-label-gray"
@@ -180,6 +193,9 @@ export const AddDealElement = ({
             )
           }
         />
+        <ErrorText extraProps={"ml-4"}>
+          {error.dealDesc}
+        </ErrorText>
       </div>
     </div>
   );

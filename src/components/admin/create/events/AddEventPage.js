@@ -136,9 +136,6 @@ export const AddEventPage = () => {
           <p className="relative text-xl font-bold text-hoboken-blue left-4">
             Hi {user.firstName}, let's create an event
           </p>
-          <ErrorText extraProps={"ml-4"}>
-            {Object.keys(error).map(e => <div>{error[e]}</div>)}
-          </ErrorText>
           <div className="relative left-4 mb-4 w-[95%]">
             <div className="text-4xl font-bold ">Location Info</div>
             <p className="text-gray-500 mt-1">
@@ -156,6 +153,9 @@ export const AddEventPage = () => {
                 setError={setError}
                 childToParent={childToParent}
               />
+              <ErrorText extraProps={"ml-4"}>
+                {error.name}
+              </ErrorText>
               <div
                 className={`relative -top-2 w-[95%] mx-auto border overflow-y-scroll drop-shadow-sm bg-white ${
                   hidden ? "hidden" : ""
@@ -187,6 +187,9 @@ export const AddEventPage = () => {
               extraProps="w-[95%] m-auto mb-2"
               icon={<MapIcon />}
             />
+            <ErrorText extraProps={"ml-4"}>
+              {error.address}
+            </ErrorText>
             <div className="relative left-4 mb-4 w-[95%]">
               <div className="text-4xl font-bold">Event Info</div>
               <p className="text-gray-500 mt-1">
@@ -199,6 +202,7 @@ export const AddEventPage = () => {
                   key={`deal-${index}`}
                   index={index}
                   deals={deals}
+                  error={error}
                   deal={deal}
                   setDeals={setDeals}
                   addDealToState={() => addDealToState()}
