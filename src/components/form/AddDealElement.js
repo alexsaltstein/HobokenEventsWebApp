@@ -15,7 +15,6 @@ export const AddDealElement = ({
   deals,
   index,
 }) => {
-  console.log(error)
   const [dayOfWeek, setDayOfWeek] = React.useState({
     sunday: false,
     monday: false,
