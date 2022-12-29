@@ -9,9 +9,6 @@ export const BannerAd = ({  }) => {
             <Adsense
                 client="ca-pub-1461162184042470"
                 slot="2827695545"
-                style={{ display: 'block' }}
-                layout="display-ads"
-                format="fluid"
             />
         </div>
     )
