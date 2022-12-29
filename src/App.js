@@ -8,6 +8,7 @@ import { EventList } from "./components/events/EventList";
 import { Calendar } from "../src/components/calendar/Calendar";
 import { getDayOfWeek, isValidDate } from "./utils/common";
 import Banner from "./components/banner/Banner";
+import { BannerAd } from "./components/ads/BannerAd";
 
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,6 +44,7 @@ export default function App() {
           selectedDate.getDay()
         )}`}
       />
+      <BannerAd className="bg-black"></BannerAd>
     </div>
   );
 }
