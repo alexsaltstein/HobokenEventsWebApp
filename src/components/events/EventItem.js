@@ -26,7 +26,7 @@ export const EventItem = ({ eventData }) => {
       {showReportModal ? (
         <ReportModal
           shown={showReportModal}
-          title={`Report ${place.name} by ${title}`}
+          title={`Report ${title} by ${place.name}`}
           onDismiss={() => setShowReportModal(false)}
         />
       ) : null}

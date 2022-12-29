@@ -6,7 +6,7 @@ export const useScrollIntoView = (deps) => {
     if (ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, deps);
+  }, [deps]);
 
   return ref;
 };
