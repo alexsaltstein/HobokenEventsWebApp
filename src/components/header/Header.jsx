@@ -28,7 +28,7 @@ export default function Header() {
         <div className="absolute top-0 left-8 container flex flex-wrap justify-between items-center mx-auto md:absolute md:top-auto">
           <a href="/" className="flex items-center">
             {/* INSERT LOGO HERE */}
-            <span className="ml-2 my-auto self-center text-xl font-semibold whitespace-nowrap text-white">
+            <span className="mx-2 mt-2 self-center text-xl font-semibold whitespace-nowrap text-white">
               Hudson Happs
             </span>
           </a>
