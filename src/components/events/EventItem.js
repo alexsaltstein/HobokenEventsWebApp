@@ -5,7 +5,7 @@ import {
   capitalizeFirstLetter,
   getDayColors,
 } from "../../utils/common";
-import { CautionIcon, TimerIcon, LocationIcon } from "../icons/Icons";
+import { CautionIcon, TimerIcon, RightArrowIcon, ExternalLinkIcon } from "../icons/Icons";
 import ReportModal from "./ReportModal";
 
 export const EventItem = ({ eventData }) => {
@@ -33,7 +33,13 @@ export const EventItem = ({ eventData }) => {
       <div className="bg-white border p-4 h-full drop-shadow-md transition duration-200 hover:shadow-lg z-30">
         <Link to={`/place/${placeId}`}>
           <div>
-            <p className="font-semibold opacity-75 text-2xl mb-1">{title}</p>
+            <div className="flex">
+              <p className="font-semibold opacity-75 text-2xl mr-3">{place.name}</p>
+              <RightArrowIcon params={"mt-1"}/>
+            </div>
+            <div className="flex">
+              <p className="mb-1 text-base">{title}</p>
+            </div>
             <div className="flex flex-wrap mt-1 text-xs">
               {dayOfWeek.map((day) => {
                 const abreviation = abreviateDay(capitalizeFirstLetter(day));
@@ -50,10 +56,7 @@ export const EventItem = ({ eventData }) => {
                 );
               })}
             </div>
-            <div className="flex">
-              <LocationIcon params={"mr-2 text-gray-500"} />
-              <p className="mb-1">{place.name}</p>
-            </div>
+
             <div className="flex">
               <TimerIcon params={"mr-2 text-gray-500"} />
               <p className="mb-2">
@@ -65,17 +68,18 @@ export const EventItem = ({ eventData }) => {
             <div className="md:whitespace-normal mt-2 mb-8" id="description">
               {deals.map((deal, index) =>
                 deal.includes("https") ? (
-                  <button
-                    key={`${deal._id}-${deal}-${index}`}
-                    onClick={(event) => {
-                      event.preventDefault();
-                      window.location = deal;
-                      event.stopPropagation();
-                    }}
-                    className="text-hoboken-blue hover:underline text-xl"
-                  >
-                    View deal menu
-                  </button>
+                  <div className="flex">
+                    <ExternalLinkIcon params={"mt-1 mr-2 text-gray-500"}/>
+                    <button
+                      key={`${deal._id}-${deal}-${index}`}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                      }}
+                      className="text-hoboken-blue hover:text-button-blue underline text-xl"
+                    >
+                      <a href={deal} target="_blank" rel="noreferrer">View Deal Menu</a>
+                    </button>
+                  </div>
                 ) : (
                   <p
                     className="text-gray-700"
@@ -91,14 +95,14 @@ export const EventItem = ({ eventData }) => {
         <div className="fixed flex bottom-0 right-4 mb-4">
           {" "}
           {/* should be flex when reporting is implemented */}
-          <CautionIcon params={"text-red-400 mr-1 pt-1"} />
+          <CautionIcon params={"text-gray-500 mr-1 pt-1"} />
           <button
-            className="text-red-400 z-20"
+            className="text-gray-500 z-20"
             onClick={() => {
               setShowReportModal(true);
             }}
           >
-            Report this deal
+            Report Deal
           </button>
         </div>
       </div>

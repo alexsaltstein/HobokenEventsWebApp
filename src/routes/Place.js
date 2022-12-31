@@ -5,7 +5,7 @@ import { EventItem } from "../components/events/EventItem";
 import {
   DirectionsIcon,
   PhoneIcon,
-  WebsiteIcon,
+  ExternalLinkIcon,
 } from "../components/icons/Icons";
 import { ResponsiveGrid } from "../components/templates/ResponsiveGrid";
 import { Loading } from "../utils/Loading";
@@ -57,15 +57,15 @@ export const Place = () => {
 
   const topPhoto = googleInfo.photos?.length > 0 ? googleInfo.photos[0] : null;
   return (
-    <div ref={topElemRef} className="p-4 flex w-full items-center flex-col">
+    <div ref={topElemRef} className="p-4 flex w-full items-center flex-col h">
       {topPhoto ? (
         <img
-          className="object-none h-32 md:h-48 w-full"
+          className="object-none h-40 md:h-48 w-full"
           src={topPhoto}
           alt={`Cover for ${name}`}
         />
       ) : null}
-      <h1 className="underline text-2xl">{name}</h1>
+      <h1 className="text-2xl mt-4 font-bold">{name}</h1>
       <h2 className="text-xl">{googleInfo.address}</h2>
       <button
         className="flex gap-x-2 items-baseline"
@@ -103,7 +103,7 @@ export const Place = () => {
             rel="noreferrer"
             className="bg-button-blue p-2 rounded text-white drop-shadow hover:bg-button-hover-blue"
           >
-            <WebsiteIcon />
+            <ExternalLinkIcon />
           </a>
         ) : null}
         <a
@@ -115,7 +115,7 @@ export const Place = () => {
           <DirectionsIcon />
         </a>
       </div>
-      <div className="w-full mt-4">
+      <div className="w-full mt-4 max-w-screen-2xl">
         <ResponsiveGrid>
           {deals.map((deal) => (
             <EventItem eventData={deal} key={deal._id} />

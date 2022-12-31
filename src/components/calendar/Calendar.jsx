@@ -16,16 +16,16 @@ export const Calendar = ({ selectedDate, onDateChange }) => {
       >
         {capitalizeFirstLetter(getDayOfWeek(selectedDate.getDay()))}
       </span>
-      <div className="bg-button-blue rounded px-2 py-1 text-white flex gap-x-1">
-        <CalendarIcon />
+      <div className="bg-button-blue rounded px-3 py-1 text-white flex gap-x-1 text-lg">
+        <CalendarIcon tw="mr-2"/>
         {value}
       </div>
     </button>
   ));
   return (
-    <div className="flex ml-4 gap-x-2 mt-4 items-center flex-wrap max-w-full">
+    <div className="flex ml-8 gap-x-2 mt-4 items-center flex-wrap max-w-full">
       <h2 className="text-black font-bold text-xl my-1">
-        What's happening on...
+        What's happening:
       </h2>
       <DatePicker
         id="datePicker"
