@@ -81,7 +81,7 @@ export default function Header() {
                 <a
                   href="/about"
                   className={`block py-2 pr-4 under pl-3 mt-${
-                    authed ? 4 : 2
+                    authed ? 3 : 2
                   } ${location.pathname === '/about' ? 'underline underline-offset-8' : null } text-white hover:text-gray-200 md:border-0 md:p-0`}
                 >
                   <p>About Us</p>
@@ -92,7 +92,7 @@ export default function Header() {
                   <a
                     href="/admin/moderate/events"
                     className={`block py-2 pr-4 pl-3 mt-${
-                      authed ? 4 : 2
+                      authed ? 3 : 2
                     } ${location.pathname === '/admin/moderate/events' ? 'underline underline-offset-8' : null } text-white hover:text-gray-200 md:border-0 md:p-0`}
                   >
                     Moderate
@@ -103,7 +103,7 @@ export default function Header() {
                 <a
                   href={!authed ? "/admin/login" : "/admin/logout"}
                   className={`block py-2 pr-4 pl-3 mt-${
-                    authed ? 4 : 2
+                    authed ? 3 : 2
                   } ${location.pathname === '/admin/logout' || location.pathname === '/admin/login' ? 'underline underline-offset-8' : null } text-white hover:text-gray-200 md:border-0 md:p-0`}
                 >
                   <p>{!authed ? "Sign In" : "Sign Out"}</p>
@@ -112,7 +112,7 @@ export default function Header() {
               {!authed ? null : (
                 <Link
                   to="/admin/create/events"
-                  className="flex py-2 pr-4 pl-3 bg-blue-800 border-gray-200 text-white mt-2 mr-3 text-sm font-semibold rounded-lg"
+                  className="flex py-2 pr-4 pl-3 bg-blue-800 border-gray-200 text-white mr-3 text-sm font-semibold rounded-lg"
                 >
                   <SubmitButton tw="mr-2" />
                   <p className="m-auto">What's Happening?</p>
