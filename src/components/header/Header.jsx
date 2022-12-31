@@ -9,7 +9,6 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
   const location = useLocation()
-  console.log(location.pathname)
   const [open, setOpen] = useState(false);
   const [user] = useUserState();
 
@@ -35,7 +34,7 @@ export default function Header() {
           </a>
           <button
             type="button"
-            className="inline-flex items-center p-2 ml-3 mr-3 mt-2 text-sm outline-none  text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200"
+            className="inline-flex items-center p-2 ml-3 mr-10 mt-2 text-sm outline-none  text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200"
             aria-controls="navbar-default"
             aria-expanded="false"
             aria-label="hamburgerMenu"

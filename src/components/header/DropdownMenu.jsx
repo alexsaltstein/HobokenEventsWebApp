@@ -40,7 +40,7 @@ export default function DropdownMenu({ open, authed }) {
             {authed ? (
               <a
                 href="/admin/moderate/events"
-                className="text-gray-700 px-4 py-y text-sm flex border-b hover:bg-gray-100"
+                className="text-gray-700 px-4 py-3 text-sm flex border-b hover:bg-gray-100"
                 role="menuitem"
                 tabIndex="-1"
                 id="menu-item-1"

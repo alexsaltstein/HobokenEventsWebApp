@@ -95,7 +95,7 @@ export const EventItem = ({ eventData }) => {
         <div className="fixed flex bottom-0 right-4 mb-4">
           {" "}
           {/* should be flex when reporting is implemented */}
-          <CautionIcon params={"text-gray-500 mr-1 pt-1"} />
+          <CautionIcon params={"text-red-400 mr-1 pt-1"} />
           <button
             className="text-gray-500 z-20"
             onClick={() => {

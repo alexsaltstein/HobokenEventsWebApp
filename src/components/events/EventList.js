@@ -43,7 +43,7 @@ export const EventList = ({ url }) => {
   }
 
   return (
-    <div className="relative p-4 ml-4">
+    <div className="relative p-4 mx-4">
       <ResponsiveGrid>
         {eventData.map((event, index) => (
           <EventItem key={`list-item-${index}`} eventData={event} />

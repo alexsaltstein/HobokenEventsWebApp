@@ -23,7 +23,7 @@ export const Calendar = ({ selectedDate, onDateChange }) => {
     </button>
   ));
   return (
-    <div className="flex ml-8 gap-x-2 mt-4 items-center flex-wrap max-w-full">
+    <div className="flex ml-8 mr-8 gap-x-2 mt-4 items-center flex-wrap max-w-full">
       <h2 className="text-black font-bold text-xl my-1">
         What's happening:
       </h2>
