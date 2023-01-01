@@ -122,7 +122,6 @@ export const AddEventPage = () => {
       setPlaceOption("name", placeData.name);
       setPlaceOption("address", placeData.address);
       setPlaceOption("googlePlaceId", googleData[index].place_id);
-      addNewDeal();
     }
   };
   return (
