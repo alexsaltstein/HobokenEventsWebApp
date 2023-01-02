@@ -2,7 +2,7 @@ import "twin.macro"
 import axios from "axios";
 import React from "react";
 import { useUserState } from "../../../../utils/userState";
-import { CheckIcon, XIcon } from "../../../icons/Icons";
+import { XIcon } from "../../../icons/Icons";
 
 
 export const DenyEvent = ({ eventId }) => {
