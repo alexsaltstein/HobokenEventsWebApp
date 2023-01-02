@@ -6,7 +6,12 @@ import {
   capitalizeFirstLetter,
   getDayColors,
 } from "../../utils/common";
-import { CautionIcon, TimerIcon, RightArrowIcon, ExternalLinkIcon } from "../icons/Icons";
+import {
+  CautionIcon,
+  TimerIcon,
+  RightArrowIcon,
+  ExternalLinkIcon,
+} from "../icons/Icons";
 import ReportModal from "./ReportModal";
 
 export const EventItem = ({ eventData }) => {
@@ -35,8 +40,10 @@ export const EventItem = ({ eventData }) => {
         <Link to={`/place/${placeId}`}>
           <div>
             <div className="flex">
-              <p className="font-semibold opacity-75 text-2xl mr-3">{place.name}</p>
-              <RightArrowIcon tw="mt-1 h-6"/>
+              <p className="font-semibold opacity-75 text-2xl mr-3">
+                {place.name}
+              </p>
+              <RightArrowIcon tw="mt-1 h-6" />
             </div>
             <div className="flex">
               <p className="mb-1 text-base">{title}</p>
@@ -70,7 +77,7 @@ export const EventItem = ({ eventData }) => {
               {deals.map((deal, index) =>
                 deal.includes("https") ? (
                   <div className="flex">
-                    <ExternalLinkIcon tw="mt-1 mr-2 text-gray-500 h-6"/>
+                    <ExternalLinkIcon tw="mt-1 mr-2 text-gray-500 h-6" />
                     <button
                       key={`${deal._id}-${deal}-${index}`}
                       onClick={(event) => {
@@ -78,7 +85,9 @@ export const EventItem = ({ eventData }) => {
                       }}
                       className="text-hoboken-blue hover:text-button-blue underline text-xl"
                     >
-                      <a href={deal} target="_blank" rel="noreferrer">View Deal Menu</a>
+                      <a href={deal} target="_blank" rel="noreferrer">
+                        View Deal Menu
+                      </a>
                     </button>
                   </div>
                 ) : (
@@ -93,19 +102,22 @@ export const EventItem = ({ eventData }) => {
             </div>
           </div>
         </Link>
-        <div className="fixed flex bottom-0 right-4 mb-4">
-          {" "}
-          {/* should be flex when reporting is implemented */}
-          <CautionIcon tw="text-red-400 mr-1 pt-1 h-6" />
-          <button
-            className="text-gray-500 z-20"
-            onClick={() => {
-              setShowReportModal(true);
-            }}
-          >
-            Report Deal
-          </button>
-        </div>
+        {/* commented out to hide until feature is ready */}
+        {false ? (
+          <div className="fixed flex bottom-0 right-4 mb-4">
+            {" "}
+            {/* should be flex when reporting is implemented */}
+            <CautionIcon tw="text-red-400 mr-1 pt-1 h-6" />
+            <button
+              className="text-gray-500 z-20"
+              onClick={() => {
+                setShowReportModal(true);
+              }}
+            >
+              Report Deal
+            </button>
+          </div>
+        ) : null}
       </div>
     </div>
   );
