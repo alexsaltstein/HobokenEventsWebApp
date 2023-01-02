@@ -1,8 +1,9 @@
 import axios from "axios";
 import React from "react";
 import { useUserState } from "../../../../utils/userState";
-import { ApproveEvent } from "./ApproveEvent";
-import { DenyEvent } from "./DenyEvent";
+import { EventItem } from "../../../events/EventItem";
+import { Loading } from "../../../../utils/Loading";
+
 
 export const ListEventsPage = () => {
   const [user] = useUserState();
@@ -35,31 +36,27 @@ export const ListEventsPage = () => {
   }, [fetchData]);
 
   if (loading) {
-    return <p>loading</p>;
+    return <Loading loading={loading} />;
   }
 
   if (!data || data.length === 0) {
-    return <p>No new events</p>;
+    return <p className="relative text-xl font-bold text-hoboken-blue left-8">No new events</p>;
   }
   return (
-    <div>
-      <p>Hi, {user.firstName}</p>
-      <p>list of events that need to be approved or denied</p>
-      <p>
+    <div className="mt-2">
+      <p className="relative text-xl font-bold text-hoboken-blue left-8">Hi, {user.firstName}</p>
+      <p className="relative left-8 text-lg">Happs to be reviewed:</p>
+      <div>
         {data.map((event) => {
-          const { googleInfo, place, ...rest } = event;
           return (
-            <div className="m-2 border-2">
-              <p>{JSON.stringify(place, null, 2)}</p>
-              <p>{JSON.stringify(rest, null, '\t')}</p>
-              <div className="flex flex-row space-x-4 ">
-                <ApproveEvent eventId={event._id} />
-                <DenyEvent eventId={event._id} />
-              </div>
+            <div
+              key={event._id} 
+              className="mx-8 my-2">
+              <EventItem eventData={event} moderate/>
             </div>
           );
         })}
-      </p>
+      </div>
     </div>
   );
 };
