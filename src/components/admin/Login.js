@@ -1,9 +1,12 @@
+/** @jsxImportSource @emotion/react */
+import "twin.macro";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../utils/admin";
 import { useUserState } from "../../utils/userState";
 import { GenericInput } from "../form/GenericInput";
+import { IconLogoBlue, WordmarkLogo } from "../icons/Icons";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -54,10 +57,11 @@ export const Login = () => {
         <div className="w-80 lg:w-96 h-1/4 m-auto" />
         <div className="w-80 lg:w-96 h-2/4 m-auto">
           <div className="mb-4">
-            <div className="text-lg font-bold text-hoboken-blue">
-              Hoboken Events
+            <div tw="flex items-start gap-x-2">
+              <IconLogoBlue tw="h-10 w-10" />
+              <WordmarkLogo tw="w-[200px] fill-button-blue" />
             </div>
-            <div className="text-4xl font-bold">Welcome back!</div>
+            <div className="text-4xl font-bold">Welcome!</div>
           </div>
           <div className="relative">
             <GenericInput
