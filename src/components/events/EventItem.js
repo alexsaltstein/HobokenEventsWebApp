@@ -8,8 +8,10 @@ import {
 } from "../../utils/common";
 import { CautionIcon, TimerIcon, RightArrowIcon, ExternalLinkIcon } from "../icons/Icons";
 import ReportModal from "./ReportModal";
+import { ApproveEvent } from "../admin/moderate/events/ApproveEvent";
+import { DenyEvent } from "../admin/moderate/events/DenyEvent";
 
-export const EventItem = ({ eventData }) => {
+export const EventItem = ({ eventData, moderate }) => {
   const [showReportModal, setShowReportModal] = React.useState(false);
   const { placeId, dayOfWeek, startTime, endTime, title, deals, place } =
     eventData;
@@ -93,7 +95,15 @@ export const EventItem = ({ eventData }) => {
             </div>
           </div>
         </Link>
-        <div className="fixed flex bottom-0 right-4 mb-4">
+        { moderate ?
+          <div className="flex flex-row space-x-4 justify-center items-center border-t">
+            <p className="text-input-label-gray">Actions:</p>
+            <ApproveEvent eventId={eventData._id} />
+            <DenyEvent eventId={eventData._id} />
+          </div> :
+          null
+        }
+        <div className={`${moderate ? 'hidden' : 'fixed'} flex bottom-0 right-4 mb-4`}>
           {" "}
           {/* should be flex when reporting is implemented */}
           <CautionIcon tw="text-red-400 mr-1 pt-1 h-6" />
