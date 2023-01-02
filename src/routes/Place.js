@@ -57,7 +57,7 @@ export const Place = () => {
 
   const topPhoto = googleInfo.photos?.length > 0 ? googleInfo.photos[0] : null;
   return (
-    <div ref={topElemRef} className="p-4 flex w-full items-center flex-col h">
+    <div ref={topElemRef} className="p-4 flex w-full items-center flex-col">
       {topPhoto ? (
         <img
           className="object-none h-40 md:h-48 w-full"

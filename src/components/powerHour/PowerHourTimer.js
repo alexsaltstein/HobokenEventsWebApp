@@ -113,7 +113,7 @@ export const PowerHourTimer = () => {
               setSecondsLeft(ONE_HOUR_IN_SECONDS);
             }}
           >
-            <ResetIcon params={"mr-2"} />
+            <ResetIcon tw="mr-2" />
             Reset
           </button>
           <button
@@ -123,9 +123,9 @@ export const PowerHourTimer = () => {
             }}
           >
             {paused ? (
-              <PlayIcon params={"mr-2"} />
+              <PlayIcon tw="mr-2" />
             ) : (
-              <PauseIcon params={"mr-2"} />
+              <PauseIcon tw="mr-2" />
             )}
             {paused ? "Play" : "Pause"}
           </button>

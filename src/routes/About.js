@@ -7,7 +7,6 @@ export const About = () => {
         <div className="py-8 px-4 mx-auto max-w-screen sm:py-16 lg:px-6 flex">
           <div className="mr-20 justify-center hidden xl:flex">
             <picture>
-              {/* <source srcSet="bar.webp" type="image/webp" /> */}
               <source srcSet="bar.jpg" type="image/jpeg" />
               <img className="rounded-lg" src="/bar.jpg" alt="banner" />
             </picture>
@@ -19,7 +18,6 @@ export const About = () => {
             <div className="grid pt-8 text-left border-t border-gray-200 md:gap-16 md:grid-cols-1">
               <div className="justify-center mb-4 xl:hidden">
                 <picture>
-                  {/* <source srcSet="bar.webp" type="image/webp" /> */}
                   <source srcSet="bar.jpg" type="image/jpeg" />
                   <img className="rounded-lg" src="/bar.jpg" alt="banner" />
                 </picture>

@@ -195,13 +195,14 @@ export const CalendarIcon = (props) => (
   </svg>
 );
 
-export const TimerIcon = ({ params }) => (
+export const TimerIcon = (props) => (
   <svg
-    className={`w-6 h-6 ${params}`}
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
+    tw="w-6 h-6"
+    {...props}
   >
     <path
       strokeLinecap="round"
@@ -212,13 +213,14 @@ export const TimerIcon = ({ params }) => (
   </svg>
 );
 
-export const ResetIcon = ({ params }) => (
+export const ResetIcon = (props) => (
   <svg
-    className={`w-6 h-6 ${params}`}
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
+    tw="w-6 h-6"
+    {...props}
   >
     <path
       strokeLinecap="round"
@@ -229,13 +231,14 @@ export const ResetIcon = ({ params }) => (
   </svg>
 );
 
-export const PlayIcon = ({ params }) => (
+export const PlayIcon = (props) => (
   <svg
-    className={`w-6 h-6 ${params}`}
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
+    tw="w-6 h-6"
+    {...props}
   >
     <path
       strokeLinecap="round"
@@ -252,13 +255,14 @@ export const PlayIcon = ({ params }) => (
   </svg>
 );
 
-export const PauseIcon = ({ params }) => (
+export const PauseIcon = (props) => (
   <svg
-    className={`w-6 h-6 ${params}`}
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
+    tw="w-6 h-6"
+    {...props}
   >
     <path
       strokeLinecap="round"
@@ -269,13 +273,14 @@ export const PauseIcon = ({ params }) => (
   </svg>
 );
 
-export const LocationIcon = ({ params }) => (
+export const LocationIcon = (props) => (
   <svg
-    className={`w-6 h-6 ${params}`}
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
+    tw="w-6 h-6"
+    {...props}
   >
     <path
       strokeLinecap="round"
@@ -292,13 +297,14 @@ export const LocationIcon = ({ params }) => (
   </svg>
 );
 
-export const CautionIcon = ({ params }) => (
+export const CautionIcon = (props) => (
   <svg
-    className={`w-6 h-6 ${params}`}
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
+    tw="w-6 h-6"
+    {...props}
   >
     <path
       strokeLinecap="round"
@@ -309,13 +315,14 @@ export const CautionIcon = ({ params }) => (
   </svg>
 );
 
-export const XIcon = ({ params }) => (
+export const XIcon = (props) => (
   <svg
     aria-hidden="true"
-    className={`w-6 h-6 ${params}`}
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"
+    tw="w-6 h-6"
+    {...props}
   >
     <path
       fillRule="evenodd"
@@ -325,13 +332,14 @@ export const XIcon = ({ params }) => (
   </svg>
 );
 
-export const RightArrowIcon = ({ params }) => (
+export const RightArrowIcon = (props) => (
   <svg
-    className={`w-6 h-6 ${params}`}
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24" 
     xmlns="http://www.w3.org/2000/svg"
+    tw="w-6 h-6"
+    {...props}
   >
     <path
       strokeLinecap="round"
@@ -342,13 +350,14 @@ export const RightArrowIcon = ({ params }) => (
     </svg>
 );
 
-export const ExternalLinkIcon = ({ params }) => (
+export const ExternalLinkIcon = (props) => (
   <svg
-    className={`w-6 h-6 ${params}`}
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
+    tw="w-6 h-6"
+    {...props}
   >
     <path
       strokeLinecap="round"

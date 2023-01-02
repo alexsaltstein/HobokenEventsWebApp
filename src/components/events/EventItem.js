@@ -1,3 +1,4 @@
+import "twin.macro";
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -35,7 +36,7 @@ export const EventItem = ({ eventData }) => {
           <div>
             <div className="flex">
               <p className="font-semibold opacity-75 text-2xl mr-3">{place.name}</p>
-              <RightArrowIcon params={"mt-1"}/>
+              <RightArrowIcon tw="mt-1 h-6"/>
             </div>
             <div className="flex">
               <p className="mb-1 text-base">{title}</p>
@@ -58,7 +59,7 @@ export const EventItem = ({ eventData }) => {
             </div>
 
             <div className="flex">
-              <TimerIcon params={"mr-2 text-gray-500"} />
+              <TimerIcon tw="mr-2 h-6 text-gray-500" />
               <p className="mb-2">
                 {startTime}
                 {endTime ? ` - ${endTime}` : null}
@@ -69,7 +70,7 @@ export const EventItem = ({ eventData }) => {
               {deals.map((deal, index) =>
                 deal.includes("https") ? (
                   <div className="flex">
-                    <ExternalLinkIcon params={"mt-1 mr-2 text-gray-500"}/>
+                    <ExternalLinkIcon tw="mt-1 mr-2 text-gray-500 h-6"/>
                     <button
                       key={`${deal._id}-${deal}-${index}`}
                       onClick={(event) => {
@@ -95,7 +96,7 @@ export const EventItem = ({ eventData }) => {
         <div className="fixed flex bottom-0 right-4 mb-4">
           {" "}
           {/* should be flex when reporting is implemented */}
-          <CautionIcon params={"text-red-400 mr-1 pt-1"} />
+          <CautionIcon tw="text-red-400 mr-1 pt-1 h-6" />
           <button
             className="text-gray-500 z-20"
             onClick={() => {

@@ -80,7 +80,7 @@ export default function Header() {
               <li>
                 <a
                   href="/about"
-                  className={`block py-2 pr-4 under pl-3 mt-${
+                  className={`block py-2 pr-4 pl-3 mt-${
                     authed ? 3 : 2
                   } ${location.pathname === '/about' ? 'underline underline-offset-8' : null } text-white hover:text-gray-200 md:border-0 md:p-0`}
                 >
