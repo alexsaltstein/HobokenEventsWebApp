@@ -1,8 +1,6 @@
 import axios from "axios";
 import React from "react";
 import { useUserState } from "../../../../utils/userState";
-import { EventItem } from "../../../events/EventItem";
-import { EventList } from "../../../events/EventList";
 import { ApproveEvent } from "./ApproveEvent";
 import { DenyEvent } from "./DenyEvent";
 

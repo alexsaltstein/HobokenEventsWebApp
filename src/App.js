@@ -28,13 +28,6 @@ export default function App() {
 
   return (
     <div className="overflow-y-hidden overflow-x-hidden">
-      <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1461162184042470"
-          crossorigin="anonymous"
-        ></script>
-      </head>
       <Banner />
       <Calendar selectedDate={selectedDate} onDateChange={onDateChange} />
       <EventList

@@ -5,9 +5,10 @@ import DropdownMenu from "./DropdownMenu";
 import { SubmitButton } from "../icons/Icons";
 import "./Header.css";
 import { useUserState } from "../../utils/userState";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
+  const location = useLocation()
   const [open, setOpen] = useState(false);
   const [user] = useUserState();
 
@@ -23,17 +24,17 @@ export default function Header() {
 
   return (
     <>
-      <nav className="absolute flex top-0 left-0 h-14 w-screen bg-hoboken-blue border-gray-200 py-2.5 z-30 shadow md:fixed">
-        <div className="absolute top-0 left-0 container flex flex-wrap justify-between items-center mx-auto md:absolute md:top-auto">
+      <nav className="flex top-0 left-0 h-14 w-screen bg-button-blue border-gray-200 py-2.5 z-30 shadow fixed">
+        <div className="absolute top-0 left-8 container flex flex-wrap justify-between items-center mx-auto md:absolute md:top-auto">
           <a href="/" className="flex items-center">
             {/* INSERT LOGO HERE */}
-            <span className="ml-2 my-auto self-center text-xl font-semibold whitespace-nowrap text-white">
+            <span className="mx-2 mt-2 self-center text-xl font-semibold whitespace-nowrap text-white">
               Hudson Happs
             </span>
           </a>
           <button
             type="button"
-            className="inline-flex items-center p-2 ml-3 mr-3 mt-2 text-sm outline-none text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200"
+            className="inline-flex items-center p-2 ml-3 mr-10 mt-2 text-sm outline-none  text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200"
             aria-controls="navbar-default"
             aria-expanded="false"
             aria-label="hamburgerMenu"
@@ -75,15 +76,15 @@ export default function Header() {
             className="hidden w-full md:block md:w-auto md:fixed md:right-10"
             id="navbar-default"
           >
-            <ul className="flex flex-col ml-auto mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-hoboken-blue">
+            <ul className="flex flex-col ml-auto mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-button-blue">
               <li>
                 <a
                   href="/about"
                   className={`block py-2 pr-4 pl-3 mt-${
-                    authed ? 4 : 2
-                  } text-white hover:text-gray-200 md:border-0 md:p-0`}
+                    authed ? 3 : 2
+                  } ${location.pathname === '/about' ? 'underline underline-offset-8' : null } text-white hover:text-gray-200 md:border-0 md:p-0`}
                 >
-                  <p>About</p>
+                  <p>About Us</p>
                 </a>
               </li>
               {authed ? (
@@ -91,8 +92,8 @@ export default function Header() {
                   <a
                     href="/admin/moderate/events"
                     className={`block py-2 pr-4 pl-3 mt-${
-                      authed ? 4 : 2
-                    } text-white hover:text-gray-200 md:border-0 md:p-0`}
+                      authed ? 3 : 2
+                    } ${location.pathname === '/admin/moderate/events' ? 'underline underline-offset-8' : null } text-white hover:text-gray-200 md:border-0 md:p-0`}
                   >
                     Moderate
                   </a>
@@ -102,8 +103,8 @@ export default function Header() {
                 <a
                   href={!authed ? "/admin/login" : "/admin/logout"}
                   className={`block py-2 pr-4 pl-3 mt-${
-                    authed ? 4 : 2
-                  } text-white hover:text-gray-200 md:border-0 md:p-0`}
+                    authed ? 3 : 2
+                  } ${location.pathname === '/admin/logout' || location.pathname === '/admin/login' ? 'underline underline-offset-8' : null } text-white hover:text-gray-200 md:border-0 md:p-0`}
                 >
                   <p>{!authed ? "Sign In" : "Sign Out"}</p>
                 </a>
@@ -111,7 +112,7 @@ export default function Header() {
               {!authed ? null : (
                 <Link
                   to="/admin/create/events"
-                  className="flex py-2 pr-4 pl-3 bg-button-blue border-gray-200 text-white mt-2 mr-3 text-sm font-semibold rounded-lg"
+                  className="flex py-2 pr-4 pl-3 bg-blue-800 border-gray-200 text-white mr-3 text-sm font-semibold rounded-lg"
                 >
                   <SubmitButton tw="mr-2" />
                   <p className="m-auto">What's Happening?</p>
@@ -121,7 +122,7 @@ export default function Header() {
           </div>
         </div>
       </nav>
-      <div className="relative md:w-1/2">
+      <div className="fixed md:w-1/2 z-20">
         <DropdownMenu open={open} authed={authed} />
       </div>
     </>

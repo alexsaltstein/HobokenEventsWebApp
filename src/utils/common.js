@@ -35,24 +35,24 @@ export const getDayOfWeek = (dateNum) => {
   return Object.values(DAYS_ENUM)[dateNum];
 };
 
-export const getDayColors = (dateVal) => {
+export const getDayColors = (dateVal, background) => {
   const dayOfWeek =
     typeof dateVal === "number" ? getDayOfWeek(dateVal) : dateVal;
   switch (dayOfWeek) {
     case DAYS_ENUM.Sunday:
-      return "text-red-700";
+      return background ? "bg-red-300" : "text-red-700";
     case DAYS_ENUM.Monday:
-      return "text-green-700";
+      return background ? "bg-green-300" :  "text-green-700";
     case DAYS_ENUM.Tuesday:
-      return "text-blue-700";
+      return background ? "bg-blue-300" :  "text-blue-700";
     case DAYS_ENUM.Wednesday:
-      return "text-orange-700";
+      return background ? "bg-orange-300" :  "text-orange-700";
     case DAYS_ENUM.Thursday:
-      return "text-purple-700";
+      return background ? "bg-purple-300" :  "text-purple-700";
     case DAYS_ENUM.Friday:
-      return "text-pink-700";
+      return background ? "bg-pink-300" :  "text-pink-700";
     case DAYS_ENUM.Saturday:
-      return "text-yellow-700";
+      return background ? "bg-yellow-300" :  "text-yellow-700";
     default:
       console.error("Error getting color for dateVal", dateVal);
       return null;
