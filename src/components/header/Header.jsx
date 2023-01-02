@@ -2,7 +2,7 @@
 import "twin.macro";
 import React, { useState } from "react";
 import DropdownMenu from "./DropdownMenu";
-import { SubmitButton, WordmarkLogo } from "../icons/Icons";
+import { IconLogoWhite, SubmitButton, WordmarkLogo } from "../icons/Icons";
 import "./Header.css";
 import { useUserState } from "../../utils/userState";
 import { Link, useLocation } from "react-router-dom";
@@ -25,9 +25,10 @@ export default function Header() {
   return (
     <>
       <nav className="flex top-0 left-0 h-14 w-screen bg-button-blue border-gray-200 py-2.5 z-30 shadow fixed">
-        <div className="absolute top-0 left-8 container flex flex-wrap justify-between items-center mx-auto md:absolute md:top-auto">
-          <a href="/" className="flex items-center">
-            <WordmarkLogo tw="w-[200px] self-center whitespace-nowrap fill-white" />
+        <div className="absolute top-0 left-8 container flex flex-wrap justify-between items-center mx-auto md:top-auto">
+          <a href="/" className="flex md:items-center gap-x-2">
+            <IconLogoWhite tw="h-8 w-8 md:mb-1 mt-3 md:mt-0" />
+            <WordmarkLogo tw="md:w-[200px] w-[150px] md:mt-0 mt-2 self-center whitespace-nowrap fill-white" />
           </a>
           <button
             type="button"

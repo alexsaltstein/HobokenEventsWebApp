@@ -2,17 +2,18 @@
 import "twin.macro";
 import React from "react";
 import { SocialIcon } from "react-social-icons";
-import { WordmarkLogo } from "../icons/Icons";
+import { IconLogoBlue, WordmarkLogo } from "../icons/Icons";
 
 export default function Footer() {
   return (
     <>
-      <footer className=" w-full p-4 border-t-2 border-button-hover-blue shadow md:px-6 md:py-8">
+      <footer className=" w-full p-4 border-t-2 border-gray-400 shadow md:px-6 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
-          <a href="/" className="flex items-center mb-4 sm:mb-0">
+          <a href="/" className="flex items-center mb-4 sm:mb-0 gap-x-2">
+            <IconLogoBlue tw="h-10 w-10 mb-1" />
             <WordmarkLogo tw="w-[200px] self-center whitespace-nowrap fill-button-blue " />
           </a>
-          <ul className="items-center mb-6 text-md text-button-blue sm:mb-0 ">
+          <ul className="items-center mb-2 text-md text-gray-500 sm:mb-0 ">
             <li className="inline">
               <a href="/about" className="mr-4 hover:underline md:mr-6 ">
                 About
@@ -28,13 +29,11 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <hr className="my-4 border-button-hover-blue  sm:mx-auto lg:my-4" />
-        <div className="flex space-y-2 my-4 md:items-center flex-col md:flex-row md:justify-between">
+        <hr className="my-4 sm:mx-auto lg:my-4" />
+        <div className="flex space-y-2 my-3 md:items-center flex-col md:flex-row md:justify-between">
           <div className="flex-col">
-            <h4 className="font-bold text-button-blue text-lg">
-              Entertainment
-            </h4>
-            <a href="/powerhour" className="text-button-blue  hover:underline">
+            <h4 className="font-bold text-gray-500 text-lg">Entertainment</h4>
+            <a href="/powerhour" className="text-gray-500 hover:underline">
               <p>Power hour</p>
             </a>
           </div>
