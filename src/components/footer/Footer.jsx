@@ -16,7 +16,7 @@ export default function Footer() {
           <ul className="items-center mb-2 text-md text-gray-500 sm:mb-0 ">
             <li className="inline">
               <a href="/about" className="mr-4 hover:underline md:mr-6 ">
-                About
+                About Us
               </a>
             </li>
             <li className="inline">
