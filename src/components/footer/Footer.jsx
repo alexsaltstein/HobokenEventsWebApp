@@ -1,18 +1,18 @@
+/** @jsxImportSource @emotion/react */
+import "twin.macro";
 import React from "react";
 import { SocialIcon } from "react-social-icons";
+import { WordmarkLogo } from "../icons/Icons";
 
 export default function Footer() {
   return (
     <>
-      <footer className=" w-full p-4 bg-[#51535C] shadow md:px-6 md:py-8">
+      <footer className=" w-full p-4 border-t-2 border-button-hover-blue shadow md:px-6 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           <a href="/" className="flex items-center mb-4 sm:mb-0">
-            {/* <img src="" className="mr-3 h-8" alt="Hudson Happs Logo" /> */}
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
-              Hudson Happs
-            </span>
+            <WordmarkLogo tw="w-[200px] self-center whitespace-nowrap fill-button-blue " />
           </a>
-          <ul className="items-center mb-6 text-md text-white sm:mb-0 ">
+          <ul className="items-center mb-6 text-md text-button-blue sm:mb-0 ">
             <li className="inline">
               <a href="/about" className="mr-4 hover:underline md:mr-6 ">
                 About
@@ -28,11 +28,13 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <hr className="my-4 border-gray-200 sm:mx-auto lg:my-4" />
+        <hr className="my-4 border-button-hover-blue  sm:mx-auto lg:my-4" />
         <div className="flex space-y-2 my-4 md:items-center flex-col md:flex-row md:justify-between">
           <div className="flex-col">
-            <h4 className="font-bold text-white text-lg">Entertainment</h4>
-            <a href="/powerhour" className="text-white hover:underline">
+            <h4 className="font-bold text-button-blue text-lg">
+              Entertainment
+            </h4>
+            <a href="/powerhour" className="text-button-blue  hover:underline">
               <p>Power hour</p>
             </a>
           </div>
@@ -60,7 +62,7 @@ export default function Footer() {
             />
           </div>
         </div>
-        <span className="block text-sm text-gray-300 sm:text-center ">
+        <span className="block text-sm text-gray-700 sm:text-center ">
           © 2022{" "}
           <a href="/" className="hover:underline">
             Hudson Happs™

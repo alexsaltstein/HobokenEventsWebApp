@@ -2,13 +2,13 @@
 import "twin.macro";
 import React, { useState } from "react";
 import DropdownMenu from "./DropdownMenu";
-import { SubmitButton } from "../icons/Icons";
+import { SubmitButton, WordmarkLogo } from "../icons/Icons";
 import "./Header.css";
 import { useUserState } from "../../utils/userState";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
-  const location = useLocation()
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const [user] = useUserState();
 
@@ -27,10 +27,7 @@ export default function Header() {
       <nav className="flex top-0 left-0 h-14 w-screen bg-button-blue border-gray-200 py-2.5 z-30 shadow fixed">
         <div className="absolute top-0 left-8 container flex flex-wrap justify-between items-center mx-auto md:absolute md:top-auto">
           <a href="/" className="flex items-center">
-            {/* INSERT LOGO HERE */}
-            <span className="mx-2 mt-2 self-center text-xl font-semibold whitespace-nowrap text-white">
-              Hudson Happs
-            </span>
+            <WordmarkLogo tw="w-[200px] self-center whitespace-nowrap fill-white" />
           </a>
           <button
             type="button"
@@ -80,9 +77,11 @@ export default function Header() {
               <li>
                 <a
                   href="/about"
-                  className={`block py-2 pr-4 pl-3 mt-${
-                    authed ? 3 : 2
-                  } ${location.pathname === '/about' ? 'underline underline-offset-8' : null } text-white hover:text-gray-200 md:border-0 md:p-0`}
+                  className={`block py-2 pr-4 pl-3 mt-${authed ? 3 : 2} ${
+                    location.pathname === "/about"
+                      ? "underline underline-offset-8"
+                      : null
+                  } text-white hover:text-gray-200 md:border-0 md:p-0`}
                 >
                   <p>About Us</p>
                 </a>
@@ -91,9 +90,11 @@ export default function Header() {
                 <li key="moderate">
                   <a
                     href="/admin/moderate/events"
-                    className={`block py-2 pr-4 pl-3 mt-${
-                      authed ? 3 : 2
-                    } ${location.pathname === '/admin/moderate/events' ? 'underline underline-offset-8' : null } text-white hover:text-gray-200 md:border-0 md:p-0`}
+                    className={`block py-2 pr-4 pl-3 mt-${authed ? 3 : 2} ${
+                      location.pathname === "/admin/moderate/events"
+                        ? "underline underline-offset-8"
+                        : null
+                    } text-white hover:text-gray-200 md:border-0 md:p-0`}
                   >
                     Moderate
                   </a>
@@ -102,9 +103,12 @@ export default function Header() {
               <li>
                 <a
                   href={!authed ? "/admin/login" : "/admin/logout"}
-                  className={`block py-2 pr-4 pl-3 mt-${
-                    authed ? 3 : 2
-                  } ${location.pathname === '/admin/logout' || location.pathname === '/admin/login' ? 'underline underline-offset-8' : null } text-white hover:text-gray-200 md:border-0 md:p-0`}
+                  className={`block py-2 pr-4 pl-3 mt-${authed ? 3 : 2} ${
+                    location.pathname === "/admin/logout" ||
+                    location.pathname === "/admin/login"
+                      ? "underline underline-offset-8"
+                      : null
+                  } text-white hover:text-gray-200 md:border-0 md:p-0`}
                 >
                   <p>{!authed ? "Sign In" : "Sign Out"}</p>
                 </a>
