@@ -6,6 +6,7 @@ export const useScrollIntoView = (deps) => {
     if (ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 
   return ref;

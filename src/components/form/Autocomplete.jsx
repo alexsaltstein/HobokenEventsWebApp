@@ -14,7 +14,8 @@ export const Autocomplete = ({ input, setInput, setError, setGoogleData, placeIn
     setInput(event.target.value);
   }
 
-  const getAutoCompleteData = async (queryParam) => {
+    React.useEffect(() => {
+      const getAutoCompleteData = async (queryParam) => {
         try {
         if(queryParam) {
           const res = await axios.get(
@@ -26,11 +27,9 @@ export const Autocomplete = ({ input, setInput, setError, setGoogleData, placeIn
           setError(e)
         }
       }
+      getAutoCompleteData(input)
 
-    React.useEffect(() => {
-       getAutoCompleteData(input)
-
-      },[input]);
+      },[input, setError, setGoogleData]);
 
     return (
       <>
