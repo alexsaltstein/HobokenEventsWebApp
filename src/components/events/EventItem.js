@@ -13,8 +13,10 @@ import {
   ExternalLinkIcon,
 } from "../icons/Icons";
 import ReportModal from "./ReportModal";
+import { ApproveEvent } from "../admin/moderate/events/ApproveEvent";
+import { DenyEvent } from "../admin/moderate/events/DenyEvent";
 
-export const EventItem = ({ eventData }) => {
+export const EventItem = ({ eventData, moderate }) => {
   const [showReportModal, setShowReportModal] = React.useState(false);
   const { placeId, dayOfWeek, startTime, endTime, title, deals, place } =
     eventData;
@@ -102,6 +104,14 @@ export const EventItem = ({ eventData }) => {
             </div>
           </div>
         </Link>
+        { moderate ?
+          <div className="flex flex-row space-x-4 justify-center items-center border-t">
+            <p className="text-input-label-gray">Actions:</p>
+            <ApproveEvent eventId={eventData._id} />
+            <DenyEvent eventId={eventData._id} />
+          </div> :
+          null
+        }
         {/* commented out to hide until feature is ready */}
         {false ? (
           <div className="fixed flex bottom-0 right-4 mb-4">
