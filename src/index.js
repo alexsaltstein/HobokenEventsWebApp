@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import { Login } from "./components/admin/Login";
+import { Register } from "./components/admin/Register";
 import { RecoilRoot } from "recoil";
 import { AuthedRoute } from "./routes/AuthedRoute";
 import { ListEventsPage } from "./components/admin/moderate/events/ListEventsPage";
@@ -25,11 +26,12 @@ root.render(
         <div>
           <Header />
           <div
-            className="flex min-h-[100vh] my-14 overflow-x-hidden overflow-y-scroll max-w-full"
+            className="flex min-h-[100vh] mt-14 overflow-x-hidden overflow-y-scroll max-w-full"
             id="pageContent"
           >
             <Routes>
               <Route path="/admin/login" element={<Login />} />
+              <Route path="/admin/register" element={<Register />} />
               <Route
                 path="/admin/moderate/events"
                 element={

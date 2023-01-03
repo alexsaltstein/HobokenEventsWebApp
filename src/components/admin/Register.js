@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /** @jsxImportSource @emotion/react */
 import "twin.macro";
 import axios from "axios";
@@ -8,12 +9,13 @@ import { useUserState } from "../../utils/userState";
 import { GenericInput } from "../form/GenericInput";
 import { IconLogoBlue, WordmarkLogo } from "../icons/Icons";
 
-export const Login = () => {
+export const Register = () => {
   const navigate = useNavigate();
   const [, setUser] = useUserState();
 
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [confirm, setConfirm] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -24,6 +26,8 @@ export const Login = () => {
     }, 3000);
   };
 
+  /*
+  REPLACE WITH REGISTRATION LOGIC
   const login = async (email, pass) => {
     logout(setUser);
     try {
@@ -50,6 +54,7 @@ export const Login = () => {
       setLoading(false);
     }
   };
+  */
 
   return (
     <div className="h-screen w-screen flex" id="splitContainer">
@@ -61,7 +66,7 @@ export const Login = () => {
               <IconLogoBlue tw="h-10 w-10" />
               <WordmarkLogo tw="w-[200px] fill-button-blue" />
             </div>
-            <div className="text-3xl font-bold">Sign In</div>
+            <div className="text-3xl font-bold">Create an account</div>
           </div>
           <div className="relative">
             <GenericInput
@@ -74,7 +79,7 @@ export const Login = () => {
               placeholder="name@company.com"
             />
           </div>
-          <div className="relative top-4 mb-8">
+          <div className="relative top-4 mb-4">
             <GenericInput
               required
               label="Password"
@@ -85,38 +90,30 @@ export const Login = () => {
               placeholder="••••••••"
             />
           </div>
-          {/* Replace hidden with flex when we have remeber me and forgot password infrastructure */}
-          <div class="hidden items-center justify-between text-input-label-gray my-4">
-            <div class="flex items-start">
-              <div class="flex items-center h-5">
-                <input
-                  id="remember"
-                  aria-describedby="remember"
-                  type="checkbox"
-                  class="w-4 h-4 borderborder-gray-300 rounded inline-block bg-gray-50 focus:ring-3 focus:ring-primary-300"
-                  required=""
-                />
-              </div>
-              <div class="ml-3 text-sm">
-                <label for="remember">Remember me</label>
-              </div>
-            </div>
-            <a href="/about" class="text-sm font-medium text-button-blue hover:underline">Forgot password?</a>
+          <div className="relative top-4 mb-8">
+            <GenericInput
+              required
+              label="Confirm Password"
+              name="confirm"
+              type="password"
+              onChange={(event) => setConfirm(event.target.value)}
+              error={error}
+              placeholder="••••••••"
+            />
           </div>
           <div className="flex top-6 mt-1 mb-2 w-full">
             <button
               className="w-full h-10 bg-button-blue border-button-blue text-white mt-2 mb-2 text-sm font-semibold rounded"
-              onClick={async () => await login(email, pass)}
+              /* onClick={async () => await login(email, pass)} */
               disabled={loading}
             >
-              Sign in
+              Create an account
             </button>
           </div>
-          {/* Replace hidden with flex when we have remeber me and forgot password infrastructure */}
-          <div className="hidden text-input-label-gray text-sm">
-            Not registered?
-            <a className="text-button-blue ml-1" href="/admin/register">
-              Start contributing
+          <div className="relative text-input-label-gray text-sm">
+            Already have an account?
+            <a className="text-button-blue ml-1" href="/admin/login">
+              Sign in here
             </a>
           </div>
         </div>
