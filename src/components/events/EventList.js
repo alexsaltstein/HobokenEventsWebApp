@@ -2,8 +2,9 @@ import React from "react";
 import axios from "axios";
 import { EventItem } from "./EventItem";
 import { Loading } from "../../utils/Loading";
-import { ResponsiveGrid } from "../templates/ResponsiveGrid";
-
+import { ResponsiveGridHP } from "../templates/ResponsiveGrid";
+import { BannerAd } from "../ads/BannerAd";
+import { VerticalBannerAd } from "../ads/VerticalBannerAd";
 export const EventList = ({ url }) => {
   const [loading, setLoading] = React.useState(true);
   const [eventData, setEventData] = React.useState(null);
@@ -43,12 +44,23 @@ export const EventList = ({ url }) => {
   }
 
   return (
-    <div className="relative p-4 mx-4">
-      <ResponsiveGrid>
+    <div className="relative p-4">
+      <ResponsiveGridHP>
+        <div>
+          <VerticalBannerAd />
+          </div>
+        <div className="lg:columns-3 w-full lg:gap-0">
         {eventData.map((event, index) => (
+          <div className="m-4 overflow-y-hidden">
           <EventItem key={`list-item-${index}`} eventData={event} />
+          </div>
         ))}
-      </ResponsiveGrid>
+        </div>
+        <div>
+          <VerticalBannerAd />
+          </div>
+      </ResponsiveGridHP>
+      <BannerAd className="bg-black"></BannerAd>
     </div>
   );
 };
