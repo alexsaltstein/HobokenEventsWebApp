@@ -21,7 +21,7 @@ export const EventItem = ({ eventData, moderate }) => {
   const { placeId, dayOfWeek, startTime, endTime, title, deals, place, _id } =
     eventData;
   const reportData = {
-    dealId: eventData._id,
+    dealId: _id,
   }
 
   React.useEffect(() => {
@@ -33,7 +33,7 @@ export const EventItem = ({ eventData, moderate }) => {
   }, [showReportModal]);
 
   return (
-    <div className="font-sans">
+    <>
       {showReportModal ? (
         <ReportModal
           shown={showReportModal}
@@ -41,96 +41,98 @@ export const EventItem = ({ eventData, moderate }) => {
           reportData={reportData}
           onDismiss={() => setShowReportModal(false)}
         />
-      ) : null}
-      <div className="bg-white border p-4 h-full drop-shadow-md transition duration-200 hover:shadow-lg z-30">
-        <Link to={`/place/${placeId}`}>
-          <div>
-            <div className="flex">
-              <p className="font-semibold opacity-75 text-2xl mr-3">
-                {place.name}
-              </p>
-              <RightArrowIcon tw="mt-1 h-6" />
-            </div>
-            <div className="flex">
-              <p className="mb-1 text-base">{title}</p>
-            </div>
-            <div className="flex flex-wrap mt-1 text-xs">
-              {dayOfWeek.map((day) => {
-                const abreviation = abreviateDay(capitalizeFirstLetter(day));
-                return (
-                  <p
-                    className={`font-semibold ${getDayColors(
-                      day,
-                      true
-                    )} px-3 mt-1 mb-2 mr-1 border-current rounded p-1`}
-                    key={day}
-                  >
-                    {abreviation}
-                  </p>
-                );
-              })}
-            </div>
-
-            <div className="flex">
-              <TimerIcon tw="mr-2 h-6 text-gray-500" />
-              <p className="mb-2">
-                {startTime}
-                {endTime ? ` - ${endTime}` : null}
-              </p>
-            </div>
-            <hr />
-            <div className="md:whitespace-normal mt-2 mb-8" id="description">
-              {deals.map((deal, index) =>
-                deal.includes("https") ? (
-                  <div className="flex">
-                    <ExternalLinkIcon tw="mt-1 mr-2 text-gray-500 h-6" />
-                    <button
-                      key={`${deal._id}-${deal}-${index}`}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                      }}
-                      className="text-hoboken-blue hover:text-button-blue underline text-xl"
+      ) : null} 
+      <div className="font-sans">
+        <div className="bg-white border p-4 h-full drop-shadow-md transition duration-200 hover:shadow-lg z-30">
+          <Link to={`/place/${placeId}`}>
+            <div>
+              <div className="flex">
+                <p className="font-semibold opacity-75 text-2xl mr-3">
+                  {place.name}
+                </p>
+                <RightArrowIcon tw="mt-1 h-6" />
+              </div>
+              <div className="flex">
+                <p className="mb-1 text-base">{title}</p>
+              </div>
+              <div className="flex flex-wrap mt-1 text-xs">
+                {dayOfWeek.map((day) => {
+                  const abreviation = abreviateDay(capitalizeFirstLetter(day));
+                  return (
+                    <p
+                      className={`font-semibold ${getDayColors(
+                        day,
+                        true
+                      )} px-3 mt-1 mb-2 mr-1 border-current rounded p-1`}
+                      key={day}
                     >
-                      <a href={deal} target="_blank" rel="noreferrer">
-                        View Deal Menu
-                      </a>
-                    </button>
-                  </div>
-                ) : (
-                  <p
-                    className="text-gray-700"
-                    key={`${deal._id}-${deal}-${index}`}
-                  >
-                    ∙{deal}
-                  </p>
-                )
-              )}
+                      {abreviation}
+                    </p>
+                  );
+                })}
+              </div>
+
+              <div className="flex">
+                <TimerIcon tw="mr-2 h-6 text-gray-500" />
+                <p className="mb-2">
+                  {startTime}
+                  {endTime ? ` - ${endTime}` : null}
+                </p>
+              </div>
+              <hr />
+              <div className="md:whitespace-normal mt-2 mb-8" id="description">
+                {deals.map((deal, index) =>
+                  deal.includes("https") ? (
+                    <div className="flex">
+                      <ExternalLinkIcon tw="mt-1 mr-2 text-gray-500 h-6" />
+                      <button
+                        key={`${deal._id}-${deal}-${index}`}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                        }}
+                        className="text-hoboken-blue hover:text-button-blue underline text-xl"
+                      >
+                        <a href={deal} target="_blank" rel="noreferrer">
+                          View Deal Menu
+                        </a>
+                      </button>
+                    </div>
+                  ) : (
+                    <p
+                      className="text-gray-700"
+                      key={`${deal._id}-${deal}-${index}`}
+                    >
+                      ∙{deal}
+                    </p>
+                  )
+                )}
+              </div>
             </div>
-          </div>
-        </Link>
-        { moderate ?
-          <div className="flex flex-row space-x-4 justify-center items-center border-t">
-            <p className="text-input-label-gray">Actions:</p>
-            <ApproveEvent eventId={eventData._id} />
-            <DenyEvent eventId={eventData._id} />
-          </div> :
-          null
-        }
-        {/* commented out to hide until feature is ready */}
-          <div className="fixed flex bottom-0 right-4 mb-4">
-            {" "}
-            {/* should be flex when reporting is implemented */}
-            <CautionIcon tw="text-red-400 mr-1 pt-1 h-6" />
-            <button
-              className="text-gray-500 z-20"
-              onClick={() => {
-                setShowReportModal(true);
-              }}
-            >
-              Report Deal
-            </button>
-          </div>
+          </Link>
+          { moderate ?
+            <div className="flex flex-row space-x-4 justify-center items-center border-t">
+              <p className="text-input-label-gray">Actions:</p>
+              <ApproveEvent eventId={eventData._id} />
+              <DenyEvent eventId={eventData._id} />
+            </div> :
+            null
+          }
+          {/* commented out to hide until feature is ready */}
+            <div className="fixed flex bottom-0 right-4 mb-4">
+              {" "}
+              {/* should be flex when reporting is implemented */}
+              <CautionIcon tw="text-red-400 mr-1 pt-1 h-6" />
+              <button
+                className="text-gray-500 z-20"
+                onClick={() => {
+                  setShowReportModal(true);
+                }}
+              >
+                Report Deal
+              </button>
+            </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };

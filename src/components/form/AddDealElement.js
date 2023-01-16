@@ -1,6 +1,6 @@
 import React from "react";
 import { GenericInput } from "./GenericInput";
-import Checkbox from "./Checkbox";
+import DaySelect from "./DaySelect";
 import { IDIcon } from "../icons";
 import "./formStyle.css";
 import { DAYS_ENUM } from "../../utils/common";
@@ -123,7 +123,7 @@ export const AddDealElement = ({
         <div className="w-full mt-2 mb-2">
           <div className="m-auto flex justify-center">
             {Object.keys(DAYS_ENUM).map((day) => (
-              <Checkbox
+              <DaySelect
                 key={`${day}-${index}`}
                 id={`${day}-${index}`}
                 text={
