@@ -18,7 +18,6 @@ export const About = () => {
             <div className="grid pt-8 text-left border-t border-gray-200 md:gap-16 md:grid-cols-1">
               <div className="justify-center mb-4 xl:hidden">
                 <picture>
-                  {/* <source srcSet="bar.webp" type="image/webp" /> */}
                   <source srcSet="bar.jpg" type="image/jpeg" />
                   <img className="rounded-lg" src="/bar.jpg" alt="banner" />
                 </picture>
@@ -93,7 +92,7 @@ export const About = () => {
                     How can I help?
                   </h3>
                   <p className="text-gray-500">
-                    FEEDBACK! Reach out via our email at support@hudsonhapps.com, click contact us, or dm
+                    FEEDBACK! Reach out via our email at <a href="mailto:support@hudsonhapps.com" className="text-button-blue">support@hudsonhapps.com</a>, click contact us, or dm
                     us on any socials! Feedback is the best way you can let us know what you’d want us to
                     make! As a communal app we want to hear from all of you.
                   </p>
