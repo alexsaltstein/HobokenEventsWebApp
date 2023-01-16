@@ -13,7 +13,10 @@ export default function ReportModal({ title, reportData, onDismiss }) {
       try {
         await axios.post(
           `${process.env.REACT_APP_API_URL}/api/deal/report`,
-          { dealId: reportData.dealId, reason: reportData.reason },
+          {
+            dealId: reportData.dealId,
+            reason: reportData.reason
+          },
         );
         console.log("successfully reported deal", reportData);
         onDismiss();
@@ -25,14 +28,15 @@ export default function ReportModal({ title, reportData, onDismiss }) {
     };
 
   return (
-    <div className="absolute -top-36 left-0 w-full h-full">
+    <div className="absolute w-screen h-full z-10">
       <div className="fixed top-0 left-0 h-full w-full bg-gray-500 opacity-50 z-30 overflow-hidden" onClick={() => onDismiss()}/>
       {/* <!-- Modal content --> */}
       <div
+        key={reportData.dealId}
         id="reportModal"
         tabIndex="-1"
         aria-hidden="true"
-        className={`relative mx-auto h-fit z-50 flex w-fit p-4 overflow-hidden`}
+        className={`fixed top-1/4 left-0 justify-center h-fit z-50 flex w-full overflow-hidden px-4`}
       >
         <div className="bg-white rounded-lg shadow">
             {/* <!-- Modal header --> */}
