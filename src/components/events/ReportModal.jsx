@@ -1,26 +1,43 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { XIcon } from "../icons/Icons";
 
-export default function ReportModal({ title, onDismiss }) {
+export default function ReportModal({ title, reportData, onDismiss }) {
   const [value, setValue] = useState(null)
   // eslint-disable-next-line no-unused-vars
-  const [message, setMessage] = useState(null)
+  const [reason, setReason] = useState("")
+
+  reportData.reason = (value === 'Other' ? reason : value);
+
+    const onClick = async () => {
+      try {
+        await axios.post(
+          `${process.env.REACT_APP_API_URL}/api/deal/report`,
+          { dealId: reportData.dealId, reason: reportData.reason },
+        );
+        console.log("successfully reported deal", reportData);
+        onDismiss();
+      } catch (e) {
+        console.error("Error reporting deal", e);
+        console.error("Error reporting deal", reportData);
+        onDismiss();
+      }
+    };
 
   return (
-    <div>
-      <div className="fixed top-0 left-0 h-full w-full bg-gray-500 opacity-50 z-30 overflow-hidden" onClick={() => onDismiss()} />
+    <div className="absolute -top-36 left-0 w-full h-full">
+      <div className="fixed top-0 left-0 h-full w-full bg-gray-500 opacity-50 z-30 overflow-hidden" onClick={() => onDismiss()}/>
+      {/* <!-- Modal content --> */}
       <div
         id="reportModal"
         tabIndex="-1"
         aria-hidden="true"
-        className={`fixed top-1/4 left-0 z-50 flex w-full p-4 overflow-hidden md:inset-0 md:h-full`}
+        className={`relative mx-auto h-fit z-50 flex w-fit p-4 overflow-hidden`}
       >
-        <div className="relative my-auto mx-auto w-full h-full max-w-2xl md:h-auto">
-          {/* <!-- Modal content --> */}
-          <div className="relative bg-white rounded-lg shadow">
+        <div className="bg-white rounded-lg shadow">
             {/* <!-- Modal header --> */}
             <div className="flex items-start justify-between p-4 border-b rounded-t">
-              <h3 className="text-xl font-semibold text-gray-900">{title}?</h3>
+              <h3 className="text-xl font-semibold text-gray-900 pt-1">{title}?</h3>
               <button
                 type="button"
                 className="text-gray-400 bg-transparent rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
@@ -57,7 +74,7 @@ export default function ReportModal({ title, onDismiss }) {
                   rows="4"
                   className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
                   placeholder="Write issue with deal here..."
-                  onChange={(e) => setMessage(e.target.value)}
+                  onChange={(e) => setReason(e.target.value)}
                 />
               </div> : null
               }
@@ -66,7 +83,7 @@ export default function ReportModal({ title, onDismiss }) {
             <div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b">
               <button
                 className="text-white bg-red-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                onClick={() => onDismiss()}
+                onClick={() => onClick()}
               >
                 Report
               </button>
@@ -79,8 +96,8 @@ export default function ReportModal({ title, onDismiss }) {
               </button>
             </div>
           </div>
-        </div>
       </div>
+
     </div>
   );
 }

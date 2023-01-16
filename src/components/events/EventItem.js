@@ -18,8 +18,11 @@ import { DenyEvent } from "../admin/moderate/events/DenyEvent";
 
 export const EventItem = ({ eventData, moderate }) => {
   const [showReportModal, setShowReportModal] = React.useState(false);
-  const { placeId, dayOfWeek, startTime, endTime, title, deals, place } =
+  const { placeId, dayOfWeek, startTime, endTime, title, deals, place, _id } =
     eventData;
+  const reportData = {
+    dealId: eventData._id,
+  }
 
   React.useEffect(() => {
     if (showReportModal) {
@@ -35,6 +38,7 @@ export const EventItem = ({ eventData, moderate }) => {
         <ReportModal
           shown={showReportModal}
           title={`Report ${title} by ${place.name}`}
+          reportData={reportData}
           onDismiss={() => setShowReportModal(false)}
         />
       ) : null}
@@ -113,7 +117,6 @@ export const EventItem = ({ eventData, moderate }) => {
           null
         }
         {/* commented out to hide until feature is ready */}
-        {false ? (
           <div className="fixed flex bottom-0 right-4 mb-4">
             {" "}
             {/* should be flex when reporting is implemented */}
@@ -127,7 +130,6 @@ export const EventItem = ({ eventData, moderate }) => {
               Report Deal
             </button>
           </div>
-        ) : null}
       </div>
     </div>
   );
