@@ -44,23 +44,22 @@ export const EventList = ({ url }) => {
   }
 
   return (
-    <div className="relative p-4">
+    <div className="relative p-4 lg:-left-2">
       <ResponsiveGridHP>
-        <div>
+        <div className="hidden lg:flex border-gray-100 border-2 max-w-full max-h-full">
           <VerticalBannerAd />
-          </div>
-        <div className="lg:columns-3 w-full lg:gap-0">
+        </div>
+        <div className="relative md:columns-2 w-full md:gap-0 xl:columns-3">
         {eventData.map((event, index) => (
-          <div className="m-4 overflow-y-hidden">
+          <div className="mx-4 mb-4 overflow-y-hidden">
           <EventItem key={`list-item-${index}`} eventData={event} />
           </div>
         ))}
         </div>
-        <div>
+        <div className="hidden lg:flex border-gray-100 border-2 max-w-full max-h-full">
           <VerticalBannerAd />
-          </div>
+        </div>
       </ResponsiveGridHP>
-      <BannerAd className="bg-black"></BannerAd>
     </div>
   );
 };
