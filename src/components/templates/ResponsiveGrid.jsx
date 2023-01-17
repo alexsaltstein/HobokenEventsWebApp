@@ -2,7 +2,7 @@ import React from "react";
 
 export const ResponsiveGridHP = ({ children }) => {
   return (
-    <div className="grid grid-flow-row gap-4 xl:grid-cols-[15%_70%_15%] lg:grid-cols-2 grid-cols-1 md:grid-cols-2">
+    <div className="lg:mx-4 grid grid-flow-row gap-2 lg:grid-cols-[15%_70%_15%] grid-cols-1">
       {children}
     </div>
   );
