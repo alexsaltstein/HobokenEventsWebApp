@@ -7,6 +7,7 @@ import {
   getDayOfWeek,
 } from "../../utils/common";
 import { CalendarIcon } from "../icons/Icons";
+import { ResponsiveGridHP } from "../templates/ResponsiveGrid";
 
 export const Calendar = ({ selectedDate, onDateChange }) => {
   const DateButton = React.forwardRef(({ value, onClick }, ref) => (
@@ -23,18 +24,21 @@ export const Calendar = ({ selectedDate, onDateChange }) => {
     </button>
   ));
   return (
-    <div className="flex ml-8 mr-8 gap-x-2 mt-4 items-center flex-wrap max-w-full">
-      <h2 className="text-black font-bold text-xl my-1">
-        What's happening:
-      </h2>
-      <DatePicker
-        id="datePicker"
-        selected={selectedDate}
-        withPortal={isMobile}
-        customInput={<DateButton />}
-        onChange={onDateChange}
-        todayButton={<div>Today</div>}
-      />
-    </div>
+    <ResponsiveGridHP>
+      <div />
+      <div className="flex gap-x-2 mt-2 ml-8 lg:ml-4 items-center flex-wrap max-w-full">
+        <h2 className="text-black font-bold text-xl my-1">
+          What's happening:
+        </h2>
+        <DatePicker
+          id="datePicker"
+          selected={selectedDate}
+          withPortal={isMobile}
+          customInput={<DateButton />}
+          onChange={onDateChange}
+          todayButton={<div>Today</div>}
+        />
+      </div>
+    </ResponsiveGridHP>
   );
 };
