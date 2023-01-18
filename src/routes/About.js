@@ -1,11 +1,12 @@
 import React from "react";
+import { BannerAd } from "../components/ads/BannerAd";
 
 export const About = () => {
   return (
     <div className="flex justify-center w-full">
       <section className="bg-white">
         <div className="py-8 px-4 mx-auto max-w-screen sm:py-16 lg:px-6 flex">
-          <div className="mr-20 justify-center hidden xl:flex">
+          <div className="hidden mr-20 justify-center xl:block">
             <picture>
               <source srcSet="bar.jpg" type="image/jpeg" />
               <img className="rounded-lg" src="/bar.jpg" alt="banner" />
@@ -100,6 +101,9 @@ export const About = () => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="border-gray-100 border-2 max-w-full max-h-fit mt-4 mx-4">
+          <BannerAd />
         </div>
       </section>
     </div>
