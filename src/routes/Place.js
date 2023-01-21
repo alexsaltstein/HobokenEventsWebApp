@@ -21,7 +21,7 @@ export const Place = () => {
   const fetchData = React.useCallback(async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/deal?placeId=${id}`
+        `${process.env.REACT_APP_API_URL}/api/place/${id}`
       );
       setPlaceData(res.data);
       setLoading(false);
