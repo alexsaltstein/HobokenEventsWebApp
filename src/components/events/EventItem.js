@@ -5,6 +5,7 @@ import {
   abreviateDay,
   capitalizeFirstLetter,
   getDayColors,
+  getDisplayTime,
 } from "../../utils/common";
 import {
   CautionIcon,
@@ -69,10 +70,7 @@ export const EventItem = ({ eventData, moderate }) => {
 
             <div className="flex">
               <TimerIcon tw="mr-2 h-6 text-gray-500" />
-              <p className="mb-2">
-                {startTime}
-                {endTime ? ` - ${endTime}` : null}
-              </p>
+              <p className="mb-2">{getDisplayTime(startTime, endTime)}</p>
             </div>
             <hr />
             <div className="md:whitespace-normal mt-2 mb-8" id="description">
@@ -104,14 +102,13 @@ export const EventItem = ({ eventData, moderate }) => {
             </div>
           </div>
         </Link>
-        { moderate ?
+        {moderate ? (
           <div className="flex flex-row space-x-4 justify-center items-center border-t">
             <p className="text-input-label-gray">Actions:</p>
             <ApproveEvent eventId={eventData._id} />
             <DenyEvent eventId={eventData._id} />
-          </div> :
-          null
-        }
+          </div>
+        ) : null}
         {/* commented out to hide until feature is ready */}
         {false ? (
           <div className="fixed flex bottom-0 right-4 mb-4">
