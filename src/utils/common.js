@@ -12,6 +12,10 @@ export const formatDate = (currDate) => {
       }/${currDate.getDate()}/${currDate.getFullYear()}`;
 };
 
+export const displayDate = (date) => {
+  return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+};
+
 const convertMilitaryToReg = (val) => {
   const time = val.split(":");
   const hours = Number(time[0]);

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import {
   abreviateDay,
   capitalizeFirstLetter,
+  displayDate,
   getDayColors,
   getDisplayTime,
 } from "../../utils/common";
@@ -12,6 +13,7 @@ import {
   TimerIcon,
   RightArrowIcon,
   ExternalLinkIcon,
+  CheckIcon,
 } from "../icons/Icons";
 import ReportModal from "./ReportModal";
 import { ApproveEvent } from "../admin/moderate/events/ApproveEvent";
@@ -19,8 +21,16 @@ import { DenyEvent } from "../admin/moderate/events/DenyEvent";
 
 export const EventItem = ({ eventData, moderate }) => {
   const [showReportModal, setShowReportModal] = React.useState(false);
-  const { placeId, dayOfWeek, startTime, endTime, title, deals, place } =
-    eventData;
+  const {
+    placeId,
+    dayOfWeek,
+    startTime,
+    endTime,
+    title,
+    deals,
+    place,
+    updatedAt,
+  } = eventData;
 
   React.useEffect(() => {
     if (showReportModal) {
@@ -99,6 +109,12 @@ export const EventItem = ({ eventData, moderate }) => {
                   </p>
                 )
               )}
+            </div>
+            <div className="flex items-center space-x-1">
+              <CheckIcon className="text-green-600" />
+              <p className="text-gray-500">
+                Verified: {displayDate(new Date(updatedAt))}
+              </p>
             </div>
           </div>
         </Link>
