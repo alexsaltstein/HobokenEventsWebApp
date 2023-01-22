@@ -8,9 +8,6 @@ export const VerticalBannerAd = ({  }) => {
             <Adsense
                 client="ca-pub-1461162184042470"
                 slot="8172603135"
-                style={{ display: 'block' }}
-                layout="display-ads"
-                format="fluid"
             />
         </div>
     )
