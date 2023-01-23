@@ -46,17 +46,17 @@ export const EventList = ({ url }) => {
   return (
     <div className="relative p-4 lg:-left-2">
       <ResponsiveGridHP>
-        <div className="hidden lg:flex border-gray-100 border-2 max-w-full max-h-full">
+        <div className="hidden lg:flex max-w-full max-h-full">
           <VerticalBannerAd />
         </div>
         <div className="relative md:columns-2 w-full md:gap-0 xl:columns-3">
         {eventData.map((event, index) => (
-          <div className="mx-4 mb-4 overflow-y-hidden" key={`list-item-${index}-wrapper`}>
-          <EventItem key={`list-item-${index}`} eventData={event} />
+          <div className="mx-4 mb-4 overflow-y-hidden hover:drop-shadow-lg transition duration-200  key={`list-item-${index}-wrapper`}">
+            <EventItem key={`list-item-${index}`} eventData={event} />
           </div>
         ))}
         </div>
-        <div className="hidden lg:flex border-gray-100 border-2 max-w-full max-h-full">
+        <div className="hidden lg:flex max-w-full max-h-full">
           <VerticalBannerAd />
         </div>
       </ResponsiveGridHP>
