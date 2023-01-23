@@ -106,6 +106,7 @@ export const AddEventPage = () => {
     window.location.reload()
     return;
   } catch(e) {
+    setLoading(false);
     const errors = []
     Object.keys(e).map(err => {
       errors[err] = e[err]
