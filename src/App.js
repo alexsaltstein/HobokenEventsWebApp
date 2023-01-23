@@ -31,15 +31,17 @@ export default function App() {
       <Banner />
       <div>
         <Calendar selectedDate={selectedDate} onDateChange={onDateChange} />
-        <EventList
-          url={`${
-            process.env.REACT_APP_API_URL
-          }/api/deal?approved=true&dayOfWeek=${getDayOfWeek(
-            selectedDate.getDay()
-          )}`}
-        />
+        <div className="drop-shadow-md">
+          <EventList
+            url={`${
+              process.env.REACT_APP_API_URL
+            }/api/deal?approved.state=active&dayOfWeek=${getDayOfWeek(
+              selectedDate.getDay()
+            )}`}
+          />
+        </div>
       </div>
-      <div className="lg:hidden border-gray-100 border-2 max-w-full max-h-fit mt-4 mx-4">
+      <div className="lg:hidden max-w-full max-h-fit mt-4 mx-4">
         <BannerAd />
       </div>
     </div>

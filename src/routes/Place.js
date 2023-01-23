@@ -21,7 +21,7 @@ export const Place = () => {
   const fetchData = React.useCallback(async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/deal?placeId=${id}`
+        `${process.env.REACT_APP_API_URL}/api/place/${id}`
       );
       setPlaceData(res.data);
       setLoading(false);
@@ -66,7 +66,7 @@ export const Place = () => {
         />
       ) : null}
       <h1 className="text-2xl mt-4 font-bold">{name}</h1>
-      <h2 className="text-xl">{googleInfo.address}</h2>
+      <h2 className="text-xl">{googleInfo.address.street + ', ' + googleInfo.address.city + ', ' + googleInfo.address.state}</h2>
       <button
         className="flex gap-x-2 items-baseline"
         onClick={() => setShowExtendedHours(!showExtendedHours)}

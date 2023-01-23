@@ -4,13 +4,16 @@ import { Link } from "react-router-dom";
 import {
   abreviateDay,
   capitalizeFirstLetter,
+  displayDate,
   getDayColors,
+  getDisplayTime,
 } from "../../utils/common";
 import {
   CautionIcon,
   TimerIcon,
   RightArrowIcon,
   ExternalLinkIcon,
+  CheckIcon,
 } from "../icons/Icons";
 import ReportModal from "./ReportModal";
 import { ApproveEvent } from "../admin/moderate/events/ApproveEvent";
@@ -18,8 +21,16 @@ import { DenyEvent } from "../admin/moderate/events/DenyEvent";
 
 export const EventItem = ({ eventData, moderate }) => {
   const [showReportModal, setShowReportModal] = React.useState(false);
-  const { placeId, dayOfWeek, startTime, endTime, title, deals, place } =
-    eventData;
+  const {
+    placeId,
+    dayOfWeek,
+    startTime,
+    endTime,
+    title,
+    deals,
+    place,
+    updatedAt,
+  } = eventData;
 
   React.useEffect(() => {
     if (showReportModal) {
@@ -38,7 +49,7 @@ export const EventItem = ({ eventData, moderate }) => {
           onDismiss={() => setShowReportModal(false)}
         />
       ) : null}
-      <div className="bg-white border p-4 h-full drop-shadow-md transition duration-200 hover:shadow-lg z-30">
+      <div className="bg-white border p-4 h-full z-30">
         <Link to={`/place/${placeId}`}>
           <div>
             <div className="flex">
@@ -69,17 +80,14 @@ export const EventItem = ({ eventData, moderate }) => {
 
             <div className="flex">
               <TimerIcon tw="mr-2 h-6 text-gray-500" />
-              <p className="mb-2">
-                {startTime}
-                {endTime ? ` - ${endTime}` : null}
-              </p>
+              <p className="mb-2">{getDisplayTime(startTime, endTime)}</p>
             </div>
             <hr />
             <div className="md:whitespace-normal mt-2 mb-8" id="description">
               {deals.map((deal, index) =>
                 deal.includes("https") ? (
-                  <div className="flex">
-                    <ExternalLinkIcon tw="mt-1 mr-2 text-gray-500 h-6" />
+                  <div className="flex" key={`${deal._id}-${deal}-${index}-wrapper`}>
+                    <ExternalLinkIcon tw="mt-1 mr-2 text-gray-500 h-6" key={`${deal._id}-${deal}-${index}-link-icon`}/>
                     <button
                       key={`${deal._id}-${deal}-${index}`}
                       onClick={(event) => {
@@ -87,7 +95,7 @@ export const EventItem = ({ eventData, moderate }) => {
                       }}
                       className="text-hoboken-blue hover:text-button-blue underline text-xl"
                     >
-                      <a href={deal} target="_blank" rel="noreferrer">
+                      <a href={deal} target="_blank" rel="noreferrer" key={`${deal._id}-${deal}-${index}-link`}>
                         View Deal Menu
                       </a>
                     </button>
@@ -102,16 +110,21 @@ export const EventItem = ({ eventData, moderate }) => {
                 )
               )}
             </div>
+            <div className="flex items-center space-x-1">
+              <CheckIcon className="text-green-600" />
+              <p className="text-gray-500">
+                Verified: {displayDate(new Date(updatedAt))}
+              </p>
+            </div>
           </div>
         </Link>
-        { moderate ?
+        {moderate ? (
           <div className="flex flex-row space-x-4 justify-center items-center border-t">
             <p className="text-input-label-gray">Actions:</p>
             <ApproveEvent eventId={eventData._id} />
             <DenyEvent eventId={eventData._id} />
-          </div> :
-          null
-        }
+          </div>
+        ) : null}
         {/* commented out to hide until feature is ready */}
         {false ? (
           <div className="fixed flex bottom-0 right-4 mb-4">

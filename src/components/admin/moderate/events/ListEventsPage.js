@@ -14,7 +14,7 @@ export const ListEventsPage = () => {
   const fetchData = React.useCallback(async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/deal?approved=false`,
+        `${process.env.REACT_APP_API_URL}/api/deal?approved.state=unapproved`,
         {
           headers: {
             Authorization: `${user.token}`,
