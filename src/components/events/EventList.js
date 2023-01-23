@@ -51,7 +51,7 @@ export const EventList = ({ url }) => {
         </div>
         <div className="relative md:columns-2 w-full md:gap-0 xl:columns-3">
         {eventData.map((event, index) => (
-          <div className="mx-4 mb-4 overflow-y-hidden">
+          <div className="mx-4 mb-4 overflow-y-hidden" key={`list-item-${index}-wrapper`}>
           <EventItem key={`list-item-${index}`} eventData={event} />
           </div>
         ))}

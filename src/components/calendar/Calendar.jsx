@@ -37,6 +37,7 @@ export const Calendar = ({ selectedDate, onDateChange }) => {
           customInput={<DateButton />}
           onChange={onDateChange}
           todayButton={<div>Today</div>}
+          minDate={new Date()}
         />
       </div>
     </ResponsiveGridHP>
