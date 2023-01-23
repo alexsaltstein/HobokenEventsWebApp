@@ -41,7 +41,7 @@ export const Login = () => {
       if (!res.data) {
         return;
       }
-      setUser({ token: res.data.token, firstName: res.data.firstName });
+      setUser({ token: res.data.token, firstName: res.data.firstName, id: res.data._id });
       setLoading(false);
       navigate("/admin/create/events", { replace: true });
     } catch (e) {
