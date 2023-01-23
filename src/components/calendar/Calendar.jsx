@@ -30,14 +30,15 @@ export const Calendar = ({ selectedDate, onDateChange }) => {
         <h2 className="text-black font-bold text-xl my-1">
           What's happening:
         </h2>
-        <DatePicker
-          id="datePicker"
-          selected={selectedDate}
-          withPortal={isMobile}
-          customInput={<DateButton />}
-          onChange={onDateChange}
-          todayButton={<div>Today</div>}
-        />
+        <div id="datePicker">
+          <DatePicker
+            selected={selectedDate}
+            withPortal={isMobile}
+            customInput={<DateButton />}
+            onChange={onDateChange}
+            todayButton={<div>Today</div>}
+          />
+        </div>
       </div>
     </ResponsiveGridHP>
   );
