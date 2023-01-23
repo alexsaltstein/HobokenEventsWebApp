@@ -30,8 +30,8 @@ export const AddDealElement = ({
     saturday: false,
   });
 
-  const [startTime, setStartTime] = useState();
-  const [endTime, setEndTime] = useState();
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(25);
   const [allDay, setAllDay] = useState(false);
   const [selectedTags, setSelectedTags] = useState([]);
 
@@ -74,19 +74,30 @@ export const AddDealElement = ({
   ]
 
   const startTimeAction = (time) => {
-    setStartTime(time);
-    let hours = time.getHours().toString();
-    let minutes = time.getMinutes().toString();
-    let militaryTime = `${hours <  10 ? hours.padStart(2, 0) : hours}:${minutes <  10 ? minutes.padStart(2, 0) : minutes}`;
-    setDealOption('startTime', militaryTime);
+    if (time === null) {
+      setDealOption('startTime', null);
+      setStartTime(null)
+    } else {
+      setStartTime(time);
+      let hours = time.getHours().toString();
+      let minutes = time.getMinutes().toString();
+      let militaryTime = `${hours <  10 ? hours.padStart(2, 0) : hours}:${minutes <  10 ? minutes.padStart(2, 0) : minutes}`;
+      setDealOption('startTime', militaryTime);
+    }
+
   }
 
   const endTimeAction = (time) => {
-    setEndTime(time)
-    let hours = time.getHours().toString();
-    let minutes = time.getMinutes().toString();
-    let militaryTime = `${hours <  10 ? hours.padStart(2, 0) : hours}:${minutes <  10 ? minutes.padStart(2, 0) : minutes}`;
-    setDealOption('endTime', militaryTime);
+    if (time === null) {
+      setDealOption('endTime', 25);
+      setEndTime(null)
+    } else {
+      setEndTime(time)
+      let hours = time.getHours().toString();
+      let minutes = time.getMinutes().toString();
+      let militaryTime = `${hours <  10 ? hours.padStart(2, 0) : hours}:${minutes <  10 ? minutes.padStart(2, 0) : minutes}`;
+      setDealOption('endTime', militaryTime);
+    }
   }
 
   const allDayAction = () => {
@@ -97,8 +108,8 @@ export const AddDealElement = ({
     } else {
       setStartTime(null);
       setDealOption('startTime', startTime);
-      setEndTime(null);
-      setDealOption('startTime', startTime);
+      setEndTime(25);
+      setDealOption('endTime', endTime);
 
     }
   }
@@ -252,12 +263,11 @@ export const AddDealElement = ({
                 className="absolute left-1 -top-1 z-10 m-1 mt-1 text-input-label-gray text-sm"
               >
                 {'End Time'}
-                {true ? <span className="text-red-400 ml-1">*</span> : null}
               </label>
             </div>
             <div className={`relative border rounded mb-2 w-full ${allDay ? 'bg-[#F4F4F4]' : null}`}>
               <DatePicker
-                selected={allDay ? null : endTime}
+                selected={allDay || endTime === 25 ? null : endTime}
                 onChange={(time) => endTimeAction(time)}
                 showTimeSelect
                 showTimeSelectOnly
