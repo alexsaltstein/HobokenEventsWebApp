@@ -9,6 +9,7 @@ import { DAYS_ENUM } from "../../utils/common";
 import Select from "react-select"
 import makeAnimated from 'react-select/animated';
 import { ErrorText } from "../form/ErrorText";
+import { groupedTags } from "../../constants/formTags";
 
 const animatedComponents = makeAnimated();
 
@@ -34,44 +35,6 @@ export const AddDealElement = ({
   const [endTime, setEndTime] = useState(25);
   const [allDay, setAllDay] = useState(false);
   const [selectedTags, setSelectedTags] = useState([]);
-
-  const foodTags = [
-      {value: 'brunch', label: 'Brunch'},
-      {value: 'lunch', label: 'Lunch'},
-      {value: 'dinner', label: 'Dinner'},
-      {value: 'apps', label: 'Apps'},
-  ]
-  const drinkTags = [
-    {value: 'drinks', label: 'Drinks'},
-    {value: 'cocktails', label: 'Cocktails'},
-  ]
-  const eventTags = [
-    {value: 'trivia', label: 'Trivia'},
-  ]
-  const entertainmentTags = [
-    {value: 'comedy', label: 'Comedy'},
-    {value: 'music_Live', label: 'Music: Live'},
-    {value: 'music_DJ', label: 'Music: DJ'},
-  ]
-
-  const groupedTags = [
-    {
-      label: "Food",
-      options: foodTags,
-    },
-    {
-      label: "Drinks",
-      options: drinkTags,
-    },
-    {
-      label: "Event",
-      options: eventTags,
-    },
-    {
-      label: "Entertainment",
-      options: entertainmentTags,
-    },
-  ]
 
   const startTimeAction = (time) => {
     if (time === null) {
