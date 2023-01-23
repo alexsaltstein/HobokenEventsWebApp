@@ -29,15 +29,21 @@ export default function App() {
   return (
     <div className="overflow-y-hidden overflow-x-hidden">
       <Banner />
-      <Calendar selectedDate={selectedDate} onDateChange={onDateChange} />
-      <EventList
-        url={`${
-          process.env.REACT_APP_API_URL
-        }/api/deal?approved=true&dayOfWeek=${getDayOfWeek(
-          selectedDate.getDay()
-        )}`}
-      />
-      <BannerAd className="bg-black"></BannerAd>
+      <div>
+        <Calendar selectedDate={selectedDate} onDateChange={onDateChange} />
+        <div className="drop-shadow-md">
+          <EventList
+            url={`${
+              process.env.REACT_APP_API_URL
+            }/api/deal?approved=true&dayOfWeek=${getDayOfWeek(
+              selectedDate.getDay()
+            )}`}
+          />
+        </div>
+      </div>
+      <div className="lg:hidden max-w-full max-h-fit mt-4 mx-4">
+        <BannerAd />
+      </div>
     </div>
   );
 }

@@ -4,13 +4,16 @@ import { Link } from "react-router-dom";
 import {
   abreviateDay,
   capitalizeFirstLetter,
+  displayDate,
   getDayColors,
+  getDisplayTime,
 } from "../../utils/common";
 import {
   CautionIcon,
   TimerIcon,
   RightArrowIcon,
   ExternalLinkIcon,
+  CheckIcon,
 } from "../icons/Icons";
 import ReportModal from "./ReportModal";
 import { ApproveEvent } from "../admin/moderate/events/ApproveEvent";
@@ -18,9 +21,19 @@ import { DenyEvent } from "../admin/moderate/events/DenyEvent";
 
 export const EventItem = ({ eventData, moderate }) => {
   const [showReportModal, setShowReportModal] = React.useState(false);
-  const { placeId, dayOfWeek, startTime, endTime, title, deals, place, _id } =
-    eventData;
-  const reportData = {
+  const {
+    placeId,
+    dayOfWeek,
+    startTime,
+    endTime,
+    title,
+    deals,
+    place,
+    updatedAt,
+    _id
+  } = eventData;
+  
+    const reportData = {
     dealId: _id,
   }
 
@@ -71,35 +84,18 @@ export const EventItem = ({ eventData, moderate }) => {
                   );
                 })}
               </div>
+            <div className="flex">
+              <TimerIcon tw="mr-2 h-6 text-gray-500" />
+              <p className="mb-2">{getDisplayTime(startTime, endTime)}</p>
+            </div>
+            <hr />
+            <div className="md:whitespace-normal mt-2 mb-8" id="description">
+              {deals.map((deal, index) =>
+                deal.includes("https") ? (
+                  <div className="flex">
+                    <ExternalLinkIcon tw="mt-1 mr-2 text-gray-500 h-6" />
+                    <button
 
-              <div className="flex">
-                <TimerIcon tw="mr-2 h-6 text-gray-500" />
-                <p className="mb-2">
-                  {startTime}
-                  {endTime ? ` - ${endTime}` : null}
-                </p>
-              </div>
-              <hr />
-              <div className="md:whitespace-normal mt-2 mb-8" id="description">
-                {deals.map((deal, index) =>
-                  deal.includes("https") ? (
-                    <div className="flex">
-                      <ExternalLinkIcon tw="mt-1 mr-2 text-gray-500 h-6" />
-                      <button
-                        key={`${deal._id}-${deal}-${index}`}
-                        onClick={(event) => {
-                          event.stopPropagation();
-                        }}
-                        className="text-hoboken-blue hover:text-button-blue underline text-xl"
-                      >
-                        <a href={deal} target="_blank" rel="noreferrer">
-                          View Deal Menu
-                        </a>
-                      </button>
-                    </div>
-                  ) : (
-                    <p
-                      className="text-gray-700"
                       key={`${deal._id}-${deal}-${index}`}
                     >
                       ∙{deal}
@@ -131,8 +127,38 @@ export const EventItem = ({ eventData, moderate }) => {
                 Report Deal
               </button>
             </div>
-        </div>
-      </div>
+            <div className="flex items-center space-x-1">
+              <CheckIcon className="text-green-600" />
+              <p className="text-gray-500">
+                Verified: {displayDate(new Date(updatedAt))}
+              </p>
+            </div>
+          </div>
+        </Link>
+        {moderate ? (
+          <div className="flex flex-row space-x-4 justify-center items-center border-t">
+            <p className="text-input-label-gray">Actions:</p>
+            <ApproveEvent eventId={eventData._id} />
+            <DenyEvent eventId={eventData._id} />
+          </div>
+        ) : null}
+        {/* commented out to hide until feature is ready */}
+        {false ? (
+          <div className="fixed flex bottom-0 right-4 mb-4">
+            {" "}
+            {/* should be flex when reporting is implemented */}
+            <CautionIcon tw="text-red-400 mr-1 pt-1 h-6" />
+            <button
+              className="text-gray-500 z-20"
+              onClick={() => {
+                setShowReportModal(true);
+              }}
+            >
+              Report Deal
+            </button>
+          </div>
+        ) : null}
+       </div>
     </>
   );
 };
