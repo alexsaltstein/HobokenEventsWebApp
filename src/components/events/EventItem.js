@@ -86,8 +86,8 @@ export const EventItem = ({ eventData, moderate }) => {
             <div className="md:whitespace-normal mt-2 mb-8" id="description">
               {deals.map((deal, index) =>
                 deal.includes("https") ? (
-                  <div className="flex">
-                    <ExternalLinkIcon tw="mt-1 mr-2 text-gray-500 h-6" />
+                  <div className="flex" key={`${deal._id}-${deal}-${index}-wrapper`}>
+                    <ExternalLinkIcon tw="mt-1 mr-2 text-gray-500 h-6" key={`${deal._id}-${deal}-${index}-link-icon`}/>
                     <button
                       key={`${deal._id}-${deal}-${index}`}
                       onClick={(event) => {
@@ -95,7 +95,7 @@ export const EventItem = ({ eventData, moderate }) => {
                       }}
                       className="text-hoboken-blue hover:text-button-blue underline text-xl"
                     >
-                      <a href={deal} target="_blank" rel="noreferrer">
+                      <a href={deal} target="_blank" rel="noreferrer" key={`${deal._id}-${deal}-${index}-link`}>
                         View Deal Menu
                       </a>
                     </button>
