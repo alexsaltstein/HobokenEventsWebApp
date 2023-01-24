@@ -11,17 +11,24 @@
     margin: auto;
 }
 
-#button {
+#daySelect #button {
     color: #007bc7;
 }
 
 
-input[type=checkbox]{
+#daySelect input[type=checkbox]{
     display: none;
 }
 
-input[type=checkbox]:checked + #button{
+#daySelect input[type=checkbox]:checked + #button{
     background-color: #007bc7;
     color: white;
 }
-    
+
+.react-datepicker-wrapper {
+    width: 90% !important;
+}
+
+.react-datepicker-wrapper input {
+    width: 100% !important;
+}

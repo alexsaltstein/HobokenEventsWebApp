@@ -66,7 +66,7 @@ export const Place = () => {
         />
       ) : null}
       <h1 className="text-2xl mt-4 font-bold">{name}</h1>
-      <h2 className="text-xl">{googleInfo.address}</h2>
+      <h2 className="text-xl">{googleInfo.address.street + ', ' + googleInfo.address.city + ', ' + googleInfo.address.state}</h2>
       <button
         className="flex gap-x-2 items-baseline"
         onClick={() => setShowExtendedHours(!showExtendedHours)}

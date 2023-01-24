@@ -92,19 +92,35 @@ export const EventItem = ({ eventData, moderate }) => {
             <div className="md:whitespace-normal mt-2 mb-8" id="description">
               {deals.map((deal, index) =>
                 deal.includes("https") ? (
-                  <div className="flex">
-                    <ExternalLinkIcon tw="mt-1 mr-2 text-gray-500 h-6" />
+                  <div className="flex" key={`${deal._id}-${deal}-${index}-wrapper`}>
+                    <ExternalLinkIcon tw="mt-1 mr-2 text-gray-500 h-6" key={`${deal._id}-${deal}-${index}-link-icon`}/>
                     <button
 
                       key={`${deal._id}-${deal}-${index}`}
                     >
-                      ∙{deal}
-                    </p>
-                  )
-                )}
-              </div>
+                      <a href={deal} target="_blank" rel="noreferrer" key={`${deal._id}-${deal}-${index}-link`}>
+                        View Deal Menu
+                      </a>
+                    </button>
+                  </div>
+                ) : (
+                  <p
+                    className="text-gray-700"
+                    key={`${deal._id}-${deal}-${index}`}
+                  >
+                    ∙{deal}
+                  </p>
+                )
+              )}
             </div>
-          </Link>
+            <div className="flex items-center space-x-1">
+              <CheckIcon className="text-green-600" />
+              <p className="text-gray-500">
+                Verified: {displayDate(new Date(updatedAt))}
+              </p>
+            </div>
+          </div>
+        </Link>
           { moderate ?
             <div className="flex flex-row space-x-4 justify-center items-center border-t">
               <p className="text-input-label-gray">Actions:</p>
@@ -126,36 +142,6 @@ export const EventItem = ({ eventData, moderate }) => {
               >
                 Report Deal
               </button>
-            </div>
-            <div className="flex items-center space-x-1">
-              <CheckIcon className="text-green-600" />
-              <p className="text-gray-500">
-                Verified: {displayDate(new Date(updatedAt))}
-              </p>
-            </div>
-          </div>
-        </Link>
-        {moderate ? (
-          <div className="flex flex-row space-x-4 justify-center items-center border-t">
-            <p className="text-input-label-gray">Actions:</p>
-            <ApproveEvent eventId={eventData._id} />
-            <DenyEvent eventId={eventData._id} />
-          </div>
-        ) : null}
-        {/* commented out to hide until feature is ready */}
-        {false ? (
-          <div className="fixed flex bottom-0 right-4 mb-4">
-            {" "}
-            {/* should be flex when reporting is implemented */}
-            <CautionIcon tw="text-red-400 mr-1 pt-1 h-6" />
-            <button
-              className="text-gray-500 z-20"
-              onClick={() => {
-                setShowReportModal(true);
-              }}
-            >
-              Report Deal
-            </button>
           </div>
         ) : null}
        </div>
