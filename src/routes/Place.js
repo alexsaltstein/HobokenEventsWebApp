@@ -118,7 +118,9 @@ export const Place = () => {
       <div className="w-full mt-4 max-w-screen-2xl">
         <ResponsiveGrid>
           {deals.map((deal) => (
-            <EventItem eventData={deal} key={deal._id} />
+            deal.approved.state === 'active' ?
+            <EventItem eventData={deal} key={deal._id} /> :
+            null
           ))}
         </ResponsiveGrid>
       </div>
