@@ -10,7 +10,7 @@ export const ApproveEvent = ({ eventId }) => {
     try {
       await axios.put(
         `${process.env.REACT_APP_API_URL}/api/deal/edit/${eventId}`,
-        { approved: {state: 'active', approverId: user.id} },
+        { approved: {state: 'active', user: user} },
         {
           headers: {
             Authorization: `${user.token}`,
