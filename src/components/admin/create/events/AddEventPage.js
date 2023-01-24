@@ -6,6 +6,7 @@ import { ErrorText } from "../../../form/ErrorText";
 import { GenericInput } from "../../../form/GenericInput";
 import { MapIcon } from "../../../icons";
 import { Autocomplete } from "../../../form/Autocomplete";
+import { LoadingAnimation } from "../../../icons/LoadingAnimation";
 
 export const AddEventPage = () => {
   const [user] = useUserState();
@@ -15,6 +16,7 @@ export const AddEventPage = () => {
   const [error, setError] = React.useState({});
   const [googleData, setGoogleData] = React.useState([]);
   const [hidden, setHidden] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
   const dealArr = [];
 
   const childToParent = (childData) => {
@@ -52,6 +54,7 @@ export const AddEventPage = () => {
   };
 
   const handleFormSubmit = async () => {
+    setLoading(true);
     try {
     const newError = [];
     setDeals(dealArr);
@@ -99,11 +102,13 @@ export const AddEventPage = () => {
       ...placeInfo,
       deals,
     });
+    setLoading(false);
     window.location.reload()
     return;
   } catch(e) {
+    setLoading(false);
     const errors = []
-    Object.keys(e).map(err =>{
+    Object.keys(e).map(err => {
       errors[err] = e[err]
     })
     setError({...errors})
@@ -127,15 +132,15 @@ export const AddEventPage = () => {
   return (
     <>
       <div
-        className="flex relative w-full min-h-full"
+        className="flex relative w-full min-h-full mx-4"
         onClick={() => setHidden(true)}
       >
         <div className="hidden md:flex md:w-1/6 lg:w-1/3" />
-        <div className="md:w-4/6 lg:w-1/3">
-          <p className="relative text-xl font-bold text-hoboken-blue left-4">
+        <div className="max-w-2xl mt-4">
+          <p className="relative text-xl font-bold text-hoboken-blue">
             Hi {user.firstName}, let's create an event
           </p>
-          <div className="relative left-4 mb-4 w-[95%]">
+          <div className="relative mb-4">
             <div className="text-4xl font-bold ">Location Info</div>
             <p className="text-gray-500 mt-1">
               Help people in the area discover your event and let attendees
@@ -143,7 +148,7 @@ export const AddEventPage = () => {
             </p>
           </div>
           <div className="relative">
-            <div className="relative z-20">
+            <div className="relative z-10">
               <Autocomplete
                 placeInfo={placeInfo}
                 setInput={setInput}
@@ -152,20 +157,20 @@ export const AddEventPage = () => {
                 setError={setError}
                 childToParent={childToParent}
               />
-              <ErrorText extraProps={"ml-4"}>
+              <ErrorText extraProps={"mb-2"}>
                 {error.name}
               </ErrorText>
               <div
-                className={`relative -top-2 w-[95%] mx-auto border overflow-y-scroll drop-shadow-sm bg-white ${
+                className={`relative -top-1 mx-auto border overflow-y-scroll drop-shadow-sm bg-white ${
                   hidden ? "hidden" : ""
                 }`}
               >
-                <ul className="">
+                <ul>
                   {googleData &&
                     googleData.map((guess, i) => {
                       return (
                         <li
-                          className="w-[95%] h-auto m-auto pt-2 pb-2 border-t hover:text-button-blue"
+                          className="h-auto m-auto  ml-2 pt-2 pb-2 border-t hover:text-button-blue"
                           onClick={() => getGoogleDataByPlaceId(i)}
                           key={i}
                         >
@@ -176,20 +181,22 @@ export const AddEventPage = () => {
                 </ul>
               </div>
             </div>
-            <GenericInput
-              required
-              label="Address of Location"
-              type="text"
-              value={placeInfo.address}
-              onChange={(event) => handleChangeEvent(event, "address")}
-              error={error}
-              extraProps="w-[95%] m-auto mb-2"
-              icon={<MapIcon />}
-            />
-            <ErrorText extraProps={"ml-4"}>
-              {error.address}
-            </ErrorText>
-            <div className="relative left-4 mb-4 w-[95%]">
+            <div className="mb-2">
+              <GenericInput
+                required
+                label="Address of Location"
+                type="text"
+                value={placeInfo.address}
+                onChange={(event) => handleChangeEvent(event, "address")}
+                error={error}
+                extraProps="m-auto"
+                icon={<MapIcon />}
+              />
+              <ErrorText>
+                {error.address}
+              </ErrorText>
+            </div>
+            <div className="relative mb-4">
               <div className="text-4xl font-bold">Event Info</div>
               <p className="text-gray-500 mt-1">
                 Specify the date, time, and other details of the event.
@@ -213,8 +220,7 @@ export const AddEventPage = () => {
           </div>
           <div className="relative">
             <button
-              type="button"
-              className="border-2 text-black bg-button-blue focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 m-2"
+              className=" text-white bg-button-blue focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 my-4"
               onClick={() => addNewDeal()}
             >
               Add Deal
@@ -224,11 +230,17 @@ export const AddEventPage = () => {
             <hr className="w-full bg-white" />
             <div className="right-0">
               <button
-                type="button"
-                className="border-2 text-black bg-button-blue focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 m-2"
+                className="flex text-white bg-button-blue focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-5 py-2.5 my-4"
                 onClick={() => handleFormSubmit()}
               >
                 Submit
+                { loading ? (
+                  <div className="relative left-2">
+                    <LoadingAnimation />
+                  </div>
+                  
+                ) : null
+                }
               </button>
             </div>
           </div>
