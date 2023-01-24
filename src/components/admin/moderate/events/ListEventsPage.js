@@ -14,7 +14,7 @@ export const ListEventsPage = () => {
   const fetchData = React.useCallback(async () => {
     try {
       const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/deal?approved=false`,
+        `${process.env.REACT_APP_API_URL}/api/deal?approved.state=unapproved`,
         {
           headers: {
             Authorization: `${user.token}`,
@@ -47,7 +47,7 @@ export const ListEventsPage = () => {
       <p className="relative text-xl font-bold text-hoboken-blue left-8">Hi, {user.firstName}</p>
       <p className="relative left-8 text-lg">Happs to be reviewed:</p>
       <div>
-        {data.map((event) => {
+        {Array.isArray(data) ? data.map((event) => {
           return (
             <div
               key={event._id} 
@@ -55,7 +55,12 @@ export const ListEventsPage = () => {
               <EventItem eventData={event} moderate/>
             </div>
           );
-        })}
+        }) : 
+        <div
+          key={data._id} 
+          className="mx-8 my-2">
+          <EventItem eventData={data} moderate/>
+        </div>}
       </div>
     </div>
   );

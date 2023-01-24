@@ -35,7 +35,7 @@ export default function App() {
           <EventList
             url={`${
               process.env.REACT_APP_API_URL
-            }/api/deal?approved=true&dayOfWeek=${getDayOfWeek(
+            }/api/deal?approved.state=active&dayOfWeek=${getDayOfWeek(
               selectedDate.getDay()
             )}`}
           />
