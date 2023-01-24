@@ -7,6 +7,10 @@ import { GenericInput } from "../../../form/GenericInput";
 import { MapIcon } from "../../../icons";
 import { Autocomplete } from "../../../form/Autocomplete";
 import { LoadingAnimation } from "../../../icons/LoadingAnimation";
+import {
+  CLOSE_TIME_VALUE,
+  OPEN_TIME_VALUE,
+} from "../../../../constants/common";
 
 export const AddEventPage = () => {
   const [user] = useUserState();
@@ -56,65 +60,69 @@ export const AddEventPage = () => {
   const handleFormSubmit = async () => {
     setLoading(true);
     try {
-    const newError = [];
-    setDeals(dealArr);
-    if (!placeInfo.name || placeInfo.name.length === 0) {
-      newError.name = "Location Name is required";
-    }
-    if (!placeInfo.address || placeInfo.address.length === 0) {
-      newError.address = "Address of Location is required";
-    }
-    if (deals.length < 1) {
-      newError.deals = "At least 1 deal is required";
-    }else{
-      deals.map(deal => {
-        if(!deal.title || deal.title.length === 0){
-          newError.dealTitle = "Each deal requires a title";
+      const newError = [];
+      setDeals(dealArr);
+      if (!placeInfo.name || placeInfo.name.length === 0) {
+        newError.name = "Location Name is required";
+      }
+      if (!placeInfo.address || placeInfo.address.length === 0) {
+        newError.address = "Address of Location is required";
+      }
+      if (deals.length < 1) {
+        newError.deals = "At least 1 deal is required";
+      } else {
+        deals.map((deal) => {
+          if (!deal.title || deal.title.length === 0) {
+            newError.dealTitle = "Each deal requires a title";
+          }
+          if (!deal.deals || deal.deals.length === 0) {
+            newError.dealDesc = "Each deal requires a Description";
+          }
+          if (!deal.dayOfWeek || deal.dayOfWeek.length === 0) {
+            newError.dealDay = "Each deal requires at least 1 day of the week";
+          }
+          if (!deal.startTime) {
+            deal.startTime = OPEN_TIME_VALUE;
+          }
+          if (!deal.endTime) {
+            deal.endTime = CLOSE_TIME_VALUE;
+          }
+        });
+      }
+      if (Object.keys(newError).length !== 0) {
+        throw newError;
+      }
+
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/place/create`,
+        {
+          ...placeInfo,
+          deals,
+        },
+        {
+          headers: {
+            Authorization: `${user.token}`,
+          },
         }
-        if(!deal.deals || deal.deals.length === 0){
-          newError.dealDesc = "Each deal requires a Description";
-        }
-        if(!deal.dayOfWeek || deal.dayOfWeek.length === 0){
-          newError.dealDay = "Each deal requires at least 1 day of the week";
-        }
-        if(!deal.startTime || deal.startTime.length === 0){
-          newError.dealTime = "Each deal requires a start time";
-        }
-      })
-    }
-    if (Object.keys(newError).length !== 0) {
-      throw newError
-    }
-    const res = await axios.post(
-      `${process.env.REACT_APP_API_URL}/api/place/create`,
-      {
+      );
+      console.log("res", res);
+      console.log("stuff", {
         ...placeInfo,
         deals,
-      },
-      {
-        headers: {
-          Authorization: `${user.token}`,
-        },
-      }
-    );
-    console.log("res", res);
-    console.log("stuff", {
-      ...placeInfo,
-      deals,
-    });
-    setLoading(false);
-    window.location.reload()
-    return;
-  } catch(e) {
-    setLoading(false);
-    const errors = []
-    Object.keys(e).map(err => {
-      errors[err] = e[err]
-    })
-    setError({...errors})
-    setDeals([...deals])
-    console.error(error)
-  }
+      });
+      setLoading(false);
+      window.location.reload();
+      return;
+    } catch (e) {
+      setLoading(false);
+      const errors = [];
+      Object.keys(e).map((err) => {
+        errors[err] = e[err];
+      });
+      setError({ ...errors });
+      setDeals([...deals]);
+      console.error(error);
+    }
   };
 
   const getGoogleDataByPlaceId = async (index) => {
@@ -143,8 +151,8 @@ export const AddEventPage = () => {
           <div className="relative mb-4">
             <div className="text-4xl font-bold ">Location Info</div>
             <p className="text-gray-500 mt-1">
-              Help people in the area discover your event and let attendees
-              know where to show up.
+              Help people in the area discover your event and let attendees know
+              where to show up.
             </p>
           </div>
           <div className="relative">
@@ -157,9 +165,7 @@ export const AddEventPage = () => {
                 setError={setError}
                 childToParent={childToParent}
               />
-              <ErrorText extraProps={"mb-2"}>
-                {error.name}
-              </ErrorText>
+              <ErrorText extraProps={"mb-2"}>{error.name}</ErrorText>
               <div
                 className={`relative -top-1 mx-auto border overflow-y-scroll drop-shadow-sm bg-white ${
                   hidden ? "hidden" : ""
@@ -192,9 +198,7 @@ export const AddEventPage = () => {
                 extraProps="m-auto"
                 icon={<MapIcon />}
               />
-              <ErrorText>
-                {error.address}
-              </ErrorText>
+              <ErrorText>{error.address}</ErrorText>
             </div>
             <div className="relative mb-4">
               <div className="text-4xl font-bold">Event Info</div>
@@ -234,13 +238,11 @@ export const AddEventPage = () => {
                 onClick={() => handleFormSubmit()}
               >
                 Submit
-                { loading ? (
+                {loading ? (
                   <div className="relative left-2">
                     <LoadingAnimation />
                   </div>
-                  
-                ) : null
-                }
+                ) : null}
               </button>
             </div>
           </div>

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import { GenericInput } from "./GenericInput";
-import Checkbox from "./Checkbox"
+import Checkbox from "./Checkbox";
 import DaySelect from "./DaySelect";
 import { IDIcon } from "../icons";
 import "./formStyle.css";
 import { DAYS_ENUM } from "../../utils/common";
-import Select from "react-select"
-import makeAnimated from 'react-select/animated';
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 import { ErrorText } from "../form/ErrorText";
 import { groupedTags } from "../../constants/formTags";
 
@@ -31,56 +31,28 @@ export const AddDealElement = ({
     saturday: false,
   });
 
-  const [startTime, setStartTime] = useState(null);
+  const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState(25);
   const [allDay, setAllDay] = useState(false);
   const [selectedTags, setSelectedTags] = useState([]);
 
-  const startTimeAction = (time) => {
-    if (time === null) {
-      setDealOption('startTime', null);
-      setStartTime(null)
-    } else {
-      setStartTime(time);
-      let hours = time.getHours().toString();
-      let minutes = time.getMinutes().toString();
-      let militaryTime = `${hours <  10 ? hours.padStart(2, 0) : hours}:${minutes <  10 ? minutes.padStart(2, 0) : minutes}`;
-      setDealOption('startTime', militaryTime);
-    }
+  React.useEffect(() => {
+    setDealOption("startTime", startTime);
+  }, [startTime]);
 
-  }
-
-  const endTimeAction = (time) => {
-    if (time === null) {
-      setDealOption('endTime', 25);
-      setEndTime(null)
-    } else {
-      setEndTime(time)
-      let hours = time.getHours().toString();
-      let minutes = time.getMinutes().toString();
-      let militaryTime = `${hours <  10 ? hours.padStart(2, 0) : hours}:${minutes <  10 ? minutes.padStart(2, 0) : minutes}`;
-      setDealOption('endTime', militaryTime);
-    }
-  }
+  React.useEffect(() => {
+    setDealOption("endTime", endTime);
+  }, [endTime]);
 
   const allDayAction = () => {
-    setAllDay(!allDay)
-    if (!allDay) {
-      setDealOption('startTime', -1);
-      setDealOption('endTime', 25);
-    } else {
-      setStartTime(null);
-      setDealOption('startTime', startTime);
-      setEndTime(25);
-      setDealOption('endTime', endTime);
-
-    }
-  }
+    setAllDay(!allDay);
+    setStartTime("");
+  };
 
   const tagsAction = (tags) => {
-    setSelectedTags(tags)
-    setDealOption('tags', tags);
-  }
+    setSelectedTags(tags);
+    setDealOption("tags", tags);
+  };
 
   const setDealOption = (option, val) => {
     const tempDayOfWeek = dayOfWeek;
@@ -158,20 +130,18 @@ export const AddDealElement = ({
             onChange={(event) => setDealOption("title", event.target.value)}
           />
         </div>
-        <ErrorText extraProps={"ml-4"}>
-          {error.dealTitle}
-        </ErrorText>
+        <ErrorText extraProps={"ml-4"}>{error.dealTitle}</ErrorText>
         <div className="flex mx-4">
           <label
-            htmlFor="Date and Time"
+            htmlFor="Date"
             className="block text-sm font-medium text-input-label-gray mt-2"
           >
-            Days and Time
+            Days
             <span className="text-red-400">&nbsp;*</span>
           </label>
         </div>
         <label
-          htmlFor="Date and Time"
+          htmlFor="Date"
           className="block text-xs font-medium text-input-label-gray italic mb-4 mx-4"
         >
           Select at least one day of the week
@@ -192,63 +162,67 @@ export const AddDealElement = ({
             ))}
           </div>
         </div>
-        <ErrorText extraProps={"ml-4 mb-4"}>
-          {error.dealDay}
-        </ErrorText>
+        <ErrorText extraProps={"ml-4 mb-4"}>{error.dealDay}</ErrorText>
+        <div className="flex mx-4 flex-col">
+          <label
+            htmlFor="Time"
+            className="block text-sm font-medium text-input-label-gray mt-2"
+          >
+            Time
+            <span className="text-red-400">&nbsp;*</span>
+          </label>
+          <label
+            htmlFor="Time"
+            className="block text-xs font-medium text-input-label-gray italic mb-4"
+          >
+            Leave blank for deals that Start/End at Open/Close
+          </label>
+        </div>
         <div className="grid grid-cols-5 gap-x-4 mx-4">
           <div className="col-span-2">
-            <div className='relative'>
-              <label
-                className="absolute left-1 -top-1 z-10 m-1 mt-1 text-input-label-gray text-sm"
-              >
-                {'Start Time'}
-                {true ? <span className="text-red-400 ml-1">*</span> : null}
+            <div className="relative">
+              <label className="absolute left-1 -top-1 z-10 m-1 mt-1 text-input-label-gray text-sm">
+                Start Time
               </label>
             </div>
-            <div className={`relative border rounded mb-2 w-full ${allDay ? 'bg-[#F4F4F4]' : null}`}>
-              <DatePicker
-                selected={allDay ? null : startTime}
-                onChange={(time) => startTimeAction(time)}
-                showTimeSelect
-                showTimeSelectOnly
+            <div className="relative border rounded mb-2">
+              <input
+                className="pt-4 p-2 w-full"
+                type="time"
                 disabled={allDay}
-                timeIntervals={15}
-                timeCaption="Time"
-                dateFormat="h:mm aa"
-                className="mt-5 mx-2"
-              >
-              </DatePicker>
+                value={startTime}
+                onChange={(event) => {
+                  setStartTime(event.target.value);
+                }}
+              />
             </div>
           </div>
           <div className="col-span-2">
             <div className={`relative`}>
-              <label
-                className="absolute left-1 -top-1 z-10 m-1 mt-1 text-input-label-gray text-sm"
-              >
-                {'End Time'}
+              <label className="absolute left-1 -top-1 z-10 m-1 mt-1 text-input-label-gray text-sm">
+                End Time
               </label>
             </div>
-            <div className={`relative border rounded mb-2 w-full ${allDay ? 'bg-[#F4F4F4]' : null}`}>
-              <DatePicker
-                selected={allDay || endTime === 25 ? null : endTime}
-                onChange={(time) => endTimeAction(time)}
-                showTimeSelect
-                showTimeSelectOnly
+            <div className="relative border rounded mb-2">
+              <input
+                className="pt-4 p-2 w-full"
+                type="time"
                 disabled={allDay}
-                timeIntervals={15}
-                timeCaption="Time"
-                dateFormat="h:mm aa"
-                className="mt-5 mx-2"
+                value={endTime}
+                onChange={(event) => {
+                  setEndTime(event.target.value);
+                }}
               />
             </div>
           </div>
           <div className="relative -top-2 md:top-1 text-input-label-gray">
-            <Checkbox id="allDay" text={"All day?"} onClick={() => allDayAction()}/>
+            <Checkbox
+              id="allDay"
+              text={"All day?"}
+              onClick={() => allDayAction()}
+            />
           </div>
         </div>
-        <ErrorText extraProps={"ml-4"}>
-          {error.dealTime}
-        </ErrorText>
         <div className="mx-4">
           <div className="flex mt-2">
             <label
@@ -258,13 +232,14 @@ export const AddDealElement = ({
               Tags <span className="italic text-xs">(optional, up to 4)</span>
             </label>
           </div>
-          <Select 
+          <Select
             value={selectedTags}
             onChange={(tags) => tagsAction(tags)}
             components={animatedComponents}
             isMulti
             options={groupedTags}
-            isOptionDisabled={() => selectedTags.length >= 4}/>
+            isOptionDisabled={() => selectedTags.length >= 4}
+          />
         </div>
         <div className="my-2 mx-4">
           <div className="flex">
@@ -289,9 +264,7 @@ export const AddDealElement = ({
             }
           />
         </div>
-        <ErrorText extraProps={"ml-4"}>
-          {error.dealDesc}
-        </ErrorText>
+        <ErrorText extraProps={"ml-4"}>{error.dealDesc}</ErrorText>
       </div>
     </div>
   );
