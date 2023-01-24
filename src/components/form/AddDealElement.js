@@ -50,8 +50,8 @@ export const AddDealElement = ({
   };
 
   const tagsAction = (tags) => {
-    setSelectedTags(tags);
-    setDealOption("tags", tags);
+    setSelectedTags(tags)
+    setDealOption('tags', tags.map(tag => tag.value));
   };
 
   const setDealOption = (option, val) => {
