@@ -29,9 +29,7 @@ export default function App() {
   return (
     <div className="overflow-y-hidden overflow-x-hidden">
       <Banner />
-      <div>
         <Calendar selectedDate={selectedDate} onDateChange={onDateChange} />
-        <div className="drop-shadow-md">
           <EventList
             url={`${
               process.env.REACT_APP_API_URL
@@ -39,8 +37,6 @@ export default function App() {
               selectedDate.getDay()
             )}`}
           />
-        </div>
-      </div>
       <div className="lg:hidden max-w-full max-h-fit mt-4 mx-4">
         <BannerAd />
       </div>
