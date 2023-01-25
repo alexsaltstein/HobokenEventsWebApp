@@ -113,26 +113,18 @@ export const EventItem = ({ eventData, moderate }) => {
                 )
               )}
             </div>
-            <div className="flex items-center space-x-1">
-              <CheckIcon className="text-green-600" />
-              <p className="text-gray-500">
-                Verified: {displayDate(new Date(updatedAt))}
-              </p>
-            </div>
           </div>
         </Link>
+        <div className="flex flex-wrap w-full">
+          <div className="flex items-center space-x-1">
+            <CheckIcon className="text-green-600" />
+            <p className="text-gray-500">
+              Verified: {displayDate(new Date(updatedAt))}
+            </p>
+          </div>
           { moderate ?
-            <div className="flex flex-row space-x-4 justify-center items-center border-t">
-              <p className="text-input-label-gray">Actions:</p>
-              <ApproveEvent eventId={eventData._id} />
-              <DenyEvent eventId={eventData._id} />
-            </div> :
-            null
-          }
-          {/* commented out to hide until feature is ready */}
-            <div className="fixed flex bottom-0 right-4 mb-4">
-              {" "}
-              {/* should be flex when reporting is implemented */}
+            null :
+            <div className="fixed flex bottom-0 right-4 mb-[18px] fol:max-xs:items-center fold:max-xs:space-x-1 fold:max-xs:relative fold:max-xs:right-0 fold:max-xs:mt-2">
               <CautionIcon tw="text-red-400 mr-1 pt-1 h-6" />
               <button
                 className="text-gray-500 z-20"
@@ -143,6 +135,16 @@ export const EventItem = ({ eventData, moderate }) => {
                 Report Deal
               </button>
             </div>
+          }
+        </div>
+          { moderate ?
+            <div className="flex flex-row space-x-4 justify-center items-center border-t">
+              <p className="text-input-label-gray">Actions:</p>
+              <ApproveEvent eventId={eventData._id} />
+              <DenyEvent eventId={eventData._id} />
+            </div> :
+            null
+          }
           </div>
        </div>
     </>

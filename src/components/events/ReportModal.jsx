@@ -32,7 +32,7 @@ export default function ReportModal({ title, reportData, onDismiss }) {
         id="reportModal"
         tabIndex="-1"
         aria-hidden="true"
-        className={`relative mx-auto h-fit z-50 flex w-fit p-4 overflow-hidden`}
+        className={`fixed top-1/4 mx-auto h-fit z-50 flex w-fit p-4 overflow-hidden`}
       >
         <div className="bg-white rounded-lg shadow">
             {/* <!-- Modal header --> */}
