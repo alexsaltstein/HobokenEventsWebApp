@@ -9,12 +9,9 @@ import { Calendar } from "../src/components/calendar/Calendar";
 import { getDayOfWeek, isValidDate } from "./utils/common";
 import Banner from "./components/banner/Banner";
 import { BannerAd } from "./components/ads/BannerAd";
-import { Helmet } from "react-helmet";
 import { GoogleTags } from "./meta/GoogleTags";
 
 export default function App() {
-  console.log(process.env.REACT_APP_GOOGLE_TAG_ID);
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   const onDateChange = (date) => {
