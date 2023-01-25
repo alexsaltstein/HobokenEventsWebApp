@@ -9,6 +9,7 @@ import { Calendar } from "../src/components/calendar/Calendar";
 import { getDayOfWeek, isValidDate } from "./utils/common";
 import Banner from "./components/banner/Banner";
 import { BannerAd } from "./components/ads/BannerAd";
+import { GoogleTags } from "./meta/GoogleTags";
 
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -28,6 +29,7 @@ export default function App() {
 
   return (
     <div className="overflow-y-hidden overflow-x-hidden">
+      <GoogleTags />
       <Banner />
         <Calendar selectedDate={selectedDate} onDateChange={onDateChange} />
           <EventList

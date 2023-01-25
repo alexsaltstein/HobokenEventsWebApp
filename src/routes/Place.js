@@ -72,7 +72,7 @@ export const Place = () => {
         onClick={() => setShowExtendedHours(!showExtendedHours)}
       >
         <h2 className="text-xl font-bold">
-          {googleInfo.opening_hours.open_now ? (
+          {googleInfo.opening_hours?.open_now ? (
             <span className="text-green-600">Open now</span>
           ) : (
             <span className="text-red-600">Closed</span>
@@ -82,7 +82,7 @@ export const Place = () => {
       </button>
       {showExtendedHours ? (
         <div>
-          {googleInfo.opening_hours.weekday_text.map((hours, index) => (
+          {googleInfo.opening_hours?.weekday_text.map((hours, index) => (
             <p className={index === dayOfWeek ? `font-bold` : null}>{hours}</p>
           ))}
         </div>
