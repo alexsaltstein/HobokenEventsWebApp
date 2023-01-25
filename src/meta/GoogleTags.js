@@ -17,7 +17,7 @@ export const GoogleTags = () => {
     }
     gtag("js", new Date());
     gtag("config", "${id}", {
-      debug_mode: true,
+      debug_mode: false,
     })`}
       </script>
     </Helmet>
