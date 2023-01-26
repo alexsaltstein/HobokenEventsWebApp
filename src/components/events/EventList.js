@@ -5,6 +5,9 @@ import { Loading } from "../../utils/Loading";
 import { ResponsiveGridHP } from "../templates/ResponsiveGrid";
 import { BannerAd } from "../ads/BannerAd";
 import { VerticalBannerAd } from "../ads/VerticalBannerAd";
+import { FilterMenuDesktop } from "../filters/FilterMenu";
+import Checkbox from "../form/Checkbox";
+
 export const EventList = ({ url }) => {
   const [loading, setLoading] = React.useState(true);
   const [eventData, setEventData] = React.useState(null);
@@ -46,12 +49,12 @@ export const EventList = ({ url }) => {
   return (
     <div className="relative p-4 lg:-left-2">
       <ResponsiveGridHP>
-        <div className="hidden lg:flex max-w-full max-h-full">
-          <VerticalBannerAd />
-        </div>
+        <FilterMenuDesktop />
         <div className="relative md:columns-2 w-full md:gap-0 xl:columns-3">
           {eventData.map((event, index) => (
-            <EventItem key={`list-item-${index}`} eventData={event} />
+            <div className="mx-4 mb-4 overflow-y-hidden hover:drop-shadow-lg transition duration-200">
+              <EventItem key={`list-item-${index}`} eventData={event} />
+            </div>
           ))}
         </div>
         <div className="hidden lg:flex max-w-full max-h-full">

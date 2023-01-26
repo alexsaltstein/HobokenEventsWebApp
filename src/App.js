@@ -10,6 +10,7 @@ import { getDayOfWeek, isValidDate } from "./utils/common";
 import Banner from "./components/banner/Banner";
 import { BannerAd } from "./components/ads/BannerAd";
 import { GoogleTags } from "./meta/GoogleTags";
+import { FilterIcon } from "./components/icons/Icons";
 
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
