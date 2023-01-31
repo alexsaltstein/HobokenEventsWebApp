@@ -31,7 +31,6 @@ export const EventItem = ({ eventData, moderate }) => {
     tags,
   } = eventData;
 
-  console.log(tags);
   const reportData = {
     dealId: _id,
   };

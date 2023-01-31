@@ -8,7 +8,6 @@ export const DayDisplay = ({ availableDays }) => {
     <div tw="flex space-x-2">
       {Object.keys(DAYS_ENUM).map((key) => {
         const day = DAYS_ENUM[key];
-
         const text = key.substring(
           0,
           key.startsWith("T") || key.startsWith("S") ? 2 : 1
