@@ -49,7 +49,7 @@ export const EventList = ({ url }) => {
         <div className="hidden lg:flex max-w-full max-h-full">
           <VerticalBannerAd />
         </div>
-        <div className="relative lg:columns-2 w-full md:gap-0 xl:columns-3">
+        <div className="relative xl:columns-2 w-full sm:gap-0">
           {eventData.map((event, index) => (
             <EventItem key={`list-item-${index}`} eventData={event} />
           ))}

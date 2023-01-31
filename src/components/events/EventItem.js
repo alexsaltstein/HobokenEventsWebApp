@@ -1,13 +1,8 @@
+/** @jsxImportSource @emotion/react */
 import "twin.macro";
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  abreviateDay,
-  capitalizeFirstLetter,
-  displayDate,
-  getDayColors,
-  getDisplayTime,
-} from "../../utils/common";
+import { displayDate, getDisplayTime } from "../../utils/common";
 import {
   CautionIcon,
   TimerIcon,
@@ -18,6 +13,8 @@ import {
 import ReportModal from "./ReportModal";
 import { ApproveEvent } from "../admin/moderate/events/ApproveEvent";
 import { DenyEvent } from "../admin/moderate/events/DenyEvent";
+import { DayDisplay } from "./components/DayDisplay";
+import { TagsDisplay } from "./components/TagsDisplay";
 
 export const EventItem = ({ eventData, moderate }) => {
   const [showReportModal, setShowReportModal] = React.useState(false);
@@ -31,8 +28,10 @@ export const EventItem = ({ eventData, moderate }) => {
     place,
     updatedAt,
     _id,
+    tags,
   } = eventData;
 
+  console.log(tags);
   const reportData = {
     dealId: _id,
   };
@@ -59,31 +58,21 @@ export const EventItem = ({ eventData, moderate }) => {
         <div className="bg-white border p-4 h-full z-30">
           <Link to={`/place/${placeId}`}>
             <div>
-              <div className="flex">
-                <p className="font-semibold opacity-75 text-2xl mr-3">
-                  {place.name}
-                </p>
-                <RightArrowIcon tw="mt-1 h-6" />
+              <div className="flex justify-between sm:flex-row flex-col-reverse sm:space-y-0">
+                <div className="flex flex-wrap">
+                  <p className="font-semibold opacity-75 text-2xl mr-2">
+                    {place.name}
+                  </p>
+                  <RightArrowIcon tw="mt-1 h-5" />
+                </div>
+                <div className="sm:pl-4 pl-0 sm:mb-0 mb-1">
+                  <DayDisplay availableDays={dayOfWeek} />
+                </div>
               </div>
               <div className="flex">
                 <p className="mb-1 text-base">{title}</p>
               </div>
-              <div className="flex flex-wrap mt-1 text-xs">
-                {dayOfWeek.map((day) => {
-                  const abreviation = abreviateDay(capitalizeFirstLetter(day));
-                  return (
-                    <p
-                      className={`font-semibold ${getDayColors(
-                        day,
-                        true
-                      )} px-3 mt-1 mb-2 mr-1 border-current rounded p-1`}
-                      key={day}
-                    >
-                      {abreviation}
-                    </p>
-                  );
-                })}
-              </div>
+              <TagsDisplay tags={tags} tw="mb-1" />
               <div className="flex">
                 <TimerIcon tw="mr-2 h-6 text-gray-500" />
                 <p className="mb-2">{getDisplayTime(startTime, endTime)}</p>
