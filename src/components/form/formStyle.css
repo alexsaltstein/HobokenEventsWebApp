@@ -24,11 +24,3 @@
     background-color: #007bc7;
     color: white;
 }
-
-.react-datepicker-wrapper {
-    width: 90% !important;
-}
-
-.react-datepicker-wrapper input {
-    width: 100% !important;
-}
