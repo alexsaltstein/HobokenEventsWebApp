@@ -97,7 +97,7 @@ export function FilterBottomSheet({ isOpen, setOpen, filters, setFilters, numRes
                     </div>
                     </Sheet.Header>
                     <Sheet.Content>
-                        <div className="text-lg mt-14">
+                        <div className="text-lg mt-14 overflow-y-scroll">
                             <h1 className="text-lg px-8 font-semibold">Location</h1>
                             <Checkbox text={'Hoboken'} checked={filters.hobo} onClick={() => setFilters((prev) => ({...prev, hobo: !filters.hobo }))}/>
                             <Checkbox text={'Jersey City'} checked={filters.jc} onClick={() => setFilters((prev) => ({...prev, jc: !filters.jc }))}/>
