@@ -15,6 +15,7 @@ import {
   FilterMenuDesktop,
 } from "./components/filters/FilterMenu";
 import { FilterIcon } from "./components/icons/Icons";
+import { filter } from "lodash";
 
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -27,16 +28,24 @@ export default function App() {
     lunch: false,
     dinner: false,
     cocktails: false,
-    otherDrink: false,
+    drinks: false,
     trivia: false,
     live: false,
     dj: false,
     comedy: false,
+    active: false,
   });
   let filterResult = Object.keys(filters)
     .filter((k) => filters[k])
     .map((i) => `tags[]=${i}`)
     .join("&");
+
+  filterResult = filterResult.replace('tags[]=hobo&','')
+  filterResult = filterResult.replace('tags[]=hobo','')
+  filterResult = filterResult.replace('tags[]=jc','')
+  filterResult = filterResult.replace('tags[]=active','')
+
+
 
   const onDateChange = (date) => {
     setSelectedDate(date);
@@ -62,7 +71,7 @@ export default function App() {
               process.env.REACT_APP_API_URL
             }/api/deal?approved.state=active&dayOfWeek=${getDayOfWeek(
               selectedDate.getDay()
-            )}&${filterResult}`}
+            )}&${filterResult}${filters.hobo ? '&city=Hoboken' : ''}${filters.jc ? '&city=Jersey City' : ''}${filters.active ? `&active=${filters.active}` : ''}`}
             setNumResults={setNumResults}
             menu={
               <FilterMenuDesktop filters={filters} setFilters={setFilters} />

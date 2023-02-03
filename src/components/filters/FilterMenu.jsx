@@ -13,11 +13,23 @@ export function FilterMenuDesktop({ filters, setFilters }) {
         setFilters((prev) => ({...prev, lunch: false }))
         setFilters((prev) => ({...prev, dinner: false }))        
         setFilters((prev) => ({...prev, cocktails: false }))
-        setFilters((prev) => ({...prev, otherDrinks: false }))
+        setFilters((prev) => ({...prev, drinks: false }))
         setFilters((prev) => ({...prev, trivia: false }))
         setFilters((prev) => ({...prev, live: false }))
         setFilters((prev) => ({...prev, dj: false }))
         setFilters((prev) => ({...prev, comedy: false }))
+        setFilters((prev) => ({...prev, active: false }))
+    }
+
+    function getTime() {
+        let currentTime;
+        if (!filters.active) {
+            let d = new Date();
+            currentTime = `${d.getHours().toString()}:${d.getMinutes().toString().padStart(2, '0')}`
+        } else {
+            setFilters((prev) => ({...prev, active: false }))
+        }
+        return currentTime;
     }
 
     return (
@@ -38,7 +50,7 @@ export function FilterMenuDesktop({ filters, setFilters }) {
                     <Checkbox text={'Dinner'}  checked={filters.dinner} onClick={() => setFilters((prev) => ({...prev, dinner: !filters.dinner }))}/>
                     <h1 className="mt-2 font-semibold">Drinks</h1>
                     <Checkbox text={'Cocktails'}  checked={filters.cocktails} onClick={() => setFilters((prev) => ({...prev, cocktails: !filters.cocktails }))}/>
-                    <Checkbox text={'Other Drinks'}  checked={filters.otherDrinks} onClick={() => setFilters((prev) => ({...prev, otherDrinks: !filters.otherDrinks }))}/>
+                    <Checkbox text={'Other Drinks'}  checked={filters.drinks} onClick={() => setFilters((prev) => ({...prev, drinks: !filters.drinks }))}/>
                     <hr className="my-4 w-full"></hr>
                     <h1 className="text-lg mt-2 font-semibold">Entertainment</h1>
                     <Checkbox text={'Triva'} checked={filters.trivia} onClick={() => setFilters((prev) => ({...prev, trivia: !filters.trivia }))}/>
@@ -47,7 +59,7 @@ export function FilterMenuDesktop({ filters, setFilters }) {
                     <Checkbox text={'Comedy'} checked={filters.comedy} onClick={() => setFilters((prev) => ({...prev, comedy: !filters.comedy }))}/>
                     <hr className="my-4 w-full"></hr>
                     <h1 className="text-lg mt-2 font-semibold">Other Filters</h1>
-                    <Checkbox text={'Active Now'}/>
+                    <Checkbox text={'Active Now'} checked={filters.active} onClick={() => setFilters((prev) => ({...prev, active: getTime() }))}/>
                 </div>
                 <button
                     className="relative w-20 h-10 bg-transparent underline text-input-label-gray my-4 text-sm font-semibold rounded"
@@ -70,11 +82,23 @@ export function FilterBottomSheet({ isOpen, setOpen, filters, setFilters, numRes
         setFilters((prev) => ({...prev, lunch: false }))
         setFilters((prev) => ({...prev, dinner: false }))        
         setFilters((prev) => ({...prev, cocktails: false }))
-        setFilters((prev) => ({...prev, otherDrinks: false }))
+        setFilters((prev) => ({...prev, drinks: false }))
         setFilters((prev) => ({...prev, trivia: false }))
         setFilters((prev) => ({...prev, live: false }))
         setFilters((prev) => ({...prev, dj: false }))
         setFilters((prev) => ({...prev, comedy: false }))
+        setFilters((prev) => ({...prev, active: false }))
+    }
+
+    function getTime() {
+        let currentTime;
+        if (!filters.active) {
+            let d = new Date();
+            currentTime = `${d.getHours().toString()}:${d.getMinutes().toString().padStart(2, '0')}`
+        } else {
+            setFilters((prev) => ({...prev, active: false }))
+        }
+        return currentTime;
     }
 
     return (
@@ -109,7 +133,7 @@ export function FilterBottomSheet({ isOpen, setOpen, filters, setFilters, numRes
                             <hr className="my-2 w-full"></hr>
                             <h1 className="text-lg px-8 font-semibold">Drinks</h1>
                             <Checkbox text={'Cocktails'}  checked={filters.cocktails} onClick={() => setFilters((prev) => ({...prev, cocktails: !filters.cocktails }))}/>
-                            <Checkbox text={'Other Drinks'}  checked={filters.otherDrinks} onClick={() => setFilters((prev) => ({...prev, otherDrinks: !filters.otherDrinks }))}/>
+                            <Checkbox text={'Other Drinks'}  checked={filters.drinks} onClick={() => setFilters((prev) => ({...prev, drinks: !filters.drinks }))}/>
                             <hr className="my-2 w-full"></hr>
                             <h1 className="text-lg px-8 font-semibold">Entertainment</h1>
                             <Checkbox text={'Triva'} checked={filters.trivia} onClick={() => setFilters((prev) => ({...prev, trivia: !filters.trivia }))}/>
@@ -118,7 +142,7 @@ export function FilterBottomSheet({ isOpen, setOpen, filters, setFilters, numRes
                             <Checkbox text={'Comedy'} checked={filters.comedy} onClick={() => setFilters((prev) => ({...prev, comedy: !filters.comedy }))}/>
                             <hr className="my-2 w-full"></hr>
                             <h1 className="text-lg px-8 font-semibold">Other Filters</h1>
-                            <Checkbox text={'Active Now'}/>
+                            <Checkbox text={'Active Now'} checked={filters.active} onClick={() => setFilters((prev) => ({...prev, active: getTime() }))}/>
                         </div>
                     </Sheet.Content>
                     <div className="flex mt-20 w-full">
