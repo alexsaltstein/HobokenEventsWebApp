@@ -93,6 +93,10 @@ export const EventItem = ({ eventData, moderate }) => {
                           target="_blank"
                           rel="noreferrer"
                           key={`${deal._id}-${deal}-${index}-link`}
+                          onClick={(event) => {
+                            event.stopPropagation();
+                          }}
+                          className="text-hoboken-blue hover:text-button-blue underline text-xl"
                         >
                           View Deal Menu
                         </a>
