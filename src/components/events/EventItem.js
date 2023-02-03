@@ -53,7 +53,7 @@ export const EventItem = ({ eventData, moderate }) => {
           onDismiss={() => setShowReportModal(false)}
         />
       ) : null}
-      <div className="fold:max-w-[250px] xs:max-w-[70%] sm:max-w-none font-sans mx-4 mb-4 overflow-y-hidden drop-shadow-md transition duration-200 hover:shadow-lg">
+      <div className="fold:max-w-[250px] xs:max-w-[70%] sm:max-w-none font-sans mx-4 mb-4 overflow-y-hidden drop-shadow-md hover:drop-shadow-lg">
         <div className="bg-white border p-4 h-full z-30">
           <Link to={`/place/${placeId}`}>
             <div>

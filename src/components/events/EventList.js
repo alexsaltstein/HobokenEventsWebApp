@@ -69,10 +69,7 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
         {calendar}
         <div className="grid cols-1 md:block md:columns-2 md:gap-0 xl:columns-3 md:mx-4">
           {eventData.map((event, index) => (
-            <div
-              key={`list-item-${index}`}
-              className="mb-4 overflow-y-hidden hover:drop-shadow-lg transition duration-200"
-            >
+            <div key={`list-item-${index}`} className="mb-4 overflow-y-hidden">
               <EventItem key={`list-item-${index}`} eventData={event} />
             </div>
           ))}
