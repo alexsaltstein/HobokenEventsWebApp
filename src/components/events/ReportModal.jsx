@@ -6,7 +6,7 @@ import { LoadingAnimation } from "../icons/LoadingAnimation";
 
 export default function ReportModal({ title, reportData, onDismiss }) {
   const [value, setValue] = useState("Choose an issue...");
-  const [reason, setReason] = useState(null);
+  const [reason, setReason] = useState("");
   const [showError, setShowError] = useState(null);
   const [loading, setLoading] = React.useState(false);
 
@@ -15,7 +15,13 @@ export default function ReportModal({ title, reportData, onDismiss }) {
   const onClick = async () => {
     setLoading(true);
 
-    if (value !== "Choose an issue..." && value !== "Other" && !reason) {
+    if (
+      value === "Choose an issue..." ||
+      (value === "Other" && reason.length === 0)
+    ) {
+      setShowError(true);
+      setLoading(false);
+    } else {
       try {
         await axios.post(`${process.env.REACT_APP_API_URL}/api/deal/report`, {
           dealId: reportData.dealId,
@@ -28,8 +34,6 @@ export default function ReportModal({ title, reportData, onDismiss }) {
         console.error("Error reporting deal", reportData);
         onDismiss();
       }
-    } else {
-      setShowError(true);
     }
   };
 
@@ -76,7 +80,7 @@ export default function ReportModal({ title, reportData, onDismiss }) {
                 onChange={(e) => {
                   console.log(e.target.value);
                   setValue(e.target.value);
-                  setReason(null);
+                  setReason("");
                   setShowError(false);
                 }}
               >
@@ -102,7 +106,6 @@ export default function ReportModal({ title, reportData, onDismiss }) {
                     className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
                     placeholder="Write issue with deal here..."
                     onChange={(e) => {
-                      console.log(e.target.value);
                       setReason(e.target.value);
                       setShowError(false);
                     }}
