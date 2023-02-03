@@ -53,7 +53,7 @@ export const EventItem = ({ eventData, moderate }) => {
           onDismiss={() => setShowReportModal(false)}
         />
       ) : null}
-      <div className="font-sans mx-4 mb-4 overflow-y-hidden drop-shadow-md transition duration-200 hover:shadow-lg">
+      <div className="fold:max-w-[250px] xs:max-w-[70%] sm:max-w-none font-sans mx-4 mb-4 overflow-y-hidden drop-shadow-md transition duration-200 hover:shadow-lg">
         <div className="bg-white border p-4 h-full z-30">
           <Link to={`/place/${placeId}`}>
             <div>
@@ -111,7 +111,7 @@ export const EventItem = ({ eventData, moderate }) => {
               </div>
             </div>
           </Link>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between sm:items-center sm:flex-row flex-col">
             <div className="flex items-center space-x-1">
               <CheckIcon className="text-green-600" />
               <p className="text-gray-500 lg:text-sm">

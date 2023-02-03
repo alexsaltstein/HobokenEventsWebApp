@@ -16,7 +16,7 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
       } else {
         setEventData([]);
       }
-      setNumResults(res.data.length)
+      setNumResults(res.data.length);
       setLoading(false);
     } catch (e) {
       setLoading(false);
@@ -30,16 +30,16 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
   }, [fetchData]);
 
   if (loading) {
-    return(
+    return (
       <div className="relative flex lg:-left-2 ">
-          {menu}
-          <div className="relative w-full">
-            {calendar}
-            <div className="flex xs:top-10 md:top-40 w-fit mr-24 text-input-label-gray font-semibold text-xl min-h-fit">
-              <Loading loading={loading} />
-            </div>
+        {menu}
+        <div className="relative w-full">
+          {calendar}
+          <div className="flex xs:top-10 md:top-40 w-fit mr-24 text-input-label-gray font-semibold text-xl min-h-fit">
+            <Loading loading={loading} />
           </div>
-    </div>
+        </div>
+      </div>
     );
   }
 
@@ -63,21 +63,22 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
   }
 
   return (
-    <div className="relative flex">
-        {menu}
-        <div className="2xl:min-w-fit max-w-7xl mx-auto">
-          {calendar}
-          <div className="relative md:columns-2 md:gap-0 xl:columns-3 mx-4">
-            {eventData.map((event, index) => (
-              <div key={`list-item-${index}`} className="mb-4 overflow-y-hidden hover:drop-shadow-lg transition duration-200">
-                <EventItem key={`list-item-${index}`} eventData={event} />
-              </div>
-            ))}
-          </div>
+    <div className="flex">
+      {menu}
+      <div>
+        {calendar}
+        <div className="grid cols-1 md:block md:columns-2 md:gap-0 xl:columns-3 md:mx-4">
+          {eventData.map((event, index) => (
+            <div
+              key={`list-item-${index}`}
+              className="mb-4 overflow-y-hidden hover:drop-shadow-lg transition duration-200"
+            >
+              <EventItem key={`list-item-${index}`} eventData={event} />
+            </div>
+          ))}
         </div>
-        <div className="hidden border border-red-500 w-full">
-
-        </div>
+      </div>
+      <div className="hidden border border-red-500 w-full"></div>
     </div>
   );
 };
