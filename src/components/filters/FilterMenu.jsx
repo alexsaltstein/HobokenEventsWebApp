@@ -79,7 +79,7 @@ export function FilterBottomSheet({ isOpen, setOpen, filters, setFilters, numRes
 
     return (
         <>
-            <Sheet isOpen={isOpen} onClose={() => setOpen(false)} snapPoints={[0.75]}>
+            <Sheet isOpen={isOpen} onClose={() => setOpen(false)} detent="content-height">
                 <Sheet.Container>
                     <Sheet.Header>
                     <div className="flex">

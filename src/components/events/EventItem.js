@@ -53,7 +53,7 @@ export const EventItem = ({ eventData, moderate }) => {
           onDismiss={() => setShowReportModal(false)}
         />
       ) : null}
-      <div className="fold:max-w-[250px] xs:max-w-[70%] sm:max-w-none font-sans mx-4 mb-4 overflow-y-hidden drop-shadow-md hover:drop-shadow-lg">
+      <div className="fold:max-sm:max-w-screen sm:max-w-none font-sans mb-4 overflow-y-hidden drop-shadow-md hover:drop-shadow-lg">
         <div className="bg-white border p-4 h-full z-30">
           <Link to={`/place/${placeId}`}>
             <div>
@@ -62,7 +62,6 @@ export const EventItem = ({ eventData, moderate }) => {
                   <p className="font-semibold opacity-75 text-2xl mr-2">
                     {place.name}
                   </p>
-                  <RightArrowIcon tw="mt-1 h-5" />
                 </div>
                 <div className="sm:pl-4 pl-0 sm:mb-0 mb-1">
                   <DayDisplay availableDays={dayOfWeek} />
@@ -133,7 +132,7 @@ export const EventItem = ({ eventData, moderate }) => {
             )}
           </div>
           {moderate ? (
-            <div className="flex flex-row space-x-4 justify-center items-center border-t">
+            <div className="flex flex-row space-x-4 justify-center items-center border-t mt-4">
               <p className="text-input-label-gray">Actions:</p>
               <ApproveEvent eventId={eventData._id} />
               <DenyEvent eventId={eventData._id} />

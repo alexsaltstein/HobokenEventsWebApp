@@ -56,7 +56,7 @@ export default function App() {
       <GoogleTags />
       <Banner />
       <div className="flex">
-        <div>
+        <div className="">
           <EventList
             url={`${
               process.env.REACT_APP_API_URL
@@ -73,7 +73,7 @@ export default function App() {
                 onDateChange={onDateChange}
                 filterButton={
                   <button
-                    className="h-6 w-6 absolute right-6 lg:hidden"
+                    className="h-6 w-6 right-6 lg:hidden"
                     onClick={() => setOpen(true)}
                   >
                     <FilterIcon

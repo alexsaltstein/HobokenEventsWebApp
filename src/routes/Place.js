@@ -66,7 +66,7 @@ export const Place = () => {
         />
       ) : null}
       <h1 className="text-2xl mt-4 font-bold">{name}</h1>
-      <h2 className="text-xl">{googleInfo.address.street + ', ' + googleInfo.address.city + ', ' + googleInfo.address.state}</h2>
+      <h2 className="text-xl text-center">{googleInfo.address.street + ', ' + googleInfo.address.city + ', ' + googleInfo.address.state}</h2>
       <button
         className="flex gap-x-2 items-baseline"
         onClick={() => setShowExtendedHours(!showExtendedHours)}
@@ -115,12 +115,12 @@ export const Place = () => {
           <DirectionsIcon />
         </a>
       </div>
-      <div className="w-full mt-4 max-w-screen-2xl">
-        <ResponsiveGrid>
+      <div className="flex flex-wrap w-screen md:px-8 mt-4 max-w-screen-2xl md:columns-2 md:gap-0 2xl:columns-3 justify-center">
           {deals.map((deal) => (
-            <EventItem eventData={deal} key={deal._id} />
+            <div className="px-4 md:px-4 max-w-[370px] w-full">
+              <EventItem eventData={deal} key={deal._id} />
+            </div>
           ))}
-        </ResponsiveGrid>
       </div>
     </div>
   );
