@@ -49,7 +49,7 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
         {menu}
         <div className="w-full max-w-7xl">
           {calendar}
-          <div className="relative xs:top-30 md:top-40 w-fit mx-auto px-4 text-input-label-gray text-center font-semibold text-xl min-h-full">
+          <div className="relative xs:top-30 md:top-40 w-screen px-4 text-input-label-gray text-center font-semibold text-xl min-h-full">
             <p className="flex flex-row flex-wrap justify-center items-center  xs:mx-2 xs:mt-4">
               Looks like nothing is happening...
             </p>
