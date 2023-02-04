@@ -1,7 +1,7 @@
 import React from "react";
 import "./formStyle.css";
 
-export default function Checkbox({ id, text, onClick }) {
+export default function Checkbox({ id, text, onClick, extraProps }) {
   return (
     <>
       <div className="flex ml-auto w-full">
@@ -9,7 +9,7 @@ export default function Checkbox({ id, text, onClick }) {
         <label
           id="button"
           htmlFor={id}
-          className="my-1.5 ml-2 outline-button-blue fill-white checked:bg-button-blue checked:text-white"
+          className={`ml-2 outline-button-blue fill-white checked:bg-button-blue checked:text-white ${extraProps}`}
           onClick={onClick}
         >
           <p>{text}</p>

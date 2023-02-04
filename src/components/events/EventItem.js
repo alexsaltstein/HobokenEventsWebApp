@@ -1,13 +1,8 @@
+/** @jsxImportSource @emotion/react */
 import "twin.macro";
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  abreviateDay,
-  capitalizeFirstLetter,
-  displayDate,
-  getDayColors,
-  getDisplayTime,
-} from "../../utils/common";
+import { displayDate, getDisplayTime } from "../../utils/common";
 import {
   CautionIcon,
   TimerIcon,
@@ -18,6 +13,8 @@ import {
 import ReportModal from "./ReportModal";
 import { ApproveEvent } from "../admin/moderate/events/ApproveEvent";
 import { DenyEvent } from "../admin/moderate/events/DenyEvent";
+import { DayDisplay } from "./components/DayDisplay";
+import { TagsDisplay } from "./components/TagsDisplay";
 
 export const EventItem = ({ eventData, moderate }) => {
   const [showReportModal, setShowReportModal] = React.useState(false);
@@ -31,6 +28,7 @@ export const EventItem = ({ eventData, moderate }) => {
     place,
     updatedAt,
     _id,
+    tags,
   } = eventData;
 
   const reportData = {
@@ -55,35 +53,24 @@ export const EventItem = ({ eventData, moderate }) => {
           onDismiss={() => setShowReportModal(false)}
         />
       ) : null}
-      <div className="font-sans mx-4 mb-4 overflow-y-hidden drop-shadow-md transition duration-200 hover:shadow-lg">
+      <div className="fold:max-sm:max-w-screen sm:max-w-none font-sans mb-4 overflow-y-hidden drop-shadow-md hover:drop-shadow-lg">
         <div className="bg-white border p-4 h-full z-30">
           <Link to={`/place/${placeId}`}>
             <div>
-              <div className="flex">
-                <p className="font-semibold opacity-75 text-2xl mr-3">
-                  {place.name}
-                </p>
-                <RightArrowIcon tw="mt-1 h-6" />
+              <div className="flex justify-between sm:flex-row flex-col-reverse sm:space-y-0">
+                <div className="flex flex-wrap">
+                  <p className="font-semibold opacity-75 text-2xl mr-2">
+                    {place.name}
+                  </p>
+                </div>
+                <div className="sm:pl-4 pl-0 sm:mb-0 mb-1">
+                  <DayDisplay availableDays={dayOfWeek} />
+                </div>
               </div>
               <div className="flex">
                 <p className="mb-1 text-base">{title}</p>
               </div>
-              <div className="flex flex-wrap mt-1 text-xs">
-                {dayOfWeek.map((day) => {
-                  const abreviation = abreviateDay(capitalizeFirstLetter(day));
-                  return (
-                    <p
-                      className={`font-semibold ${getDayColors(
-                        day,
-                        true
-                      )} px-3 mt-1 mb-2 mr-1 border-current rounded p-1`}
-                      key={day}
-                    >
-                      {abreviation}
-                    </p>
-                  );
-                })}
-              </div>
+              <TagsDisplay tags={tags} tw="mb-1" />
               <div className="flex">
                 <TimerIcon tw="mr-2 h-6 text-gray-500" />
                 <p className="mb-2">{getDisplayTime(startTime, endTime)}</p>
@@ -106,6 +93,10 @@ export const EventItem = ({ eventData, moderate }) => {
                           target="_blank"
                           rel="noreferrer"
                           key={`${deal._id}-${deal}-${index}-link`}
+                          onClick={(event) => {
+                            event.stopPropagation();
+                          }}
+                          className="text-hoboken-blue hover:text-button-blue underline text-xl"
                         >
                           View Deal Menu
                         </a>
@@ -123,7 +114,7 @@ export const EventItem = ({ eventData, moderate }) => {
               </div>
             </div>
           </Link>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between sm:items-center sm:flex-row flex-col">
             <div className="flex items-center space-x-1">
               <CheckIcon className="text-green-600" />
               <p className="text-gray-500 lg:text-sm">
@@ -145,7 +136,7 @@ export const EventItem = ({ eventData, moderate }) => {
             )}
           </div>
           {moderate ? (
-            <div className="flex flex-row space-x-4 justify-center items-center border-t">
+            <div className="flex flex-row space-x-4 justify-center items-center border-t mt-4">
               <p className="text-input-label-gray">Actions:</p>
               <ApproveEvent eventId={eventData._id} />
               <DenyEvent eventId={eventData._id} />
