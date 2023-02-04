@@ -10,31 +10,16 @@ import { getDayOfWeek, isValidDate } from "./utils/common";
 import Banner from "./components/banner/Banner";
 import { BannerAd } from "./components/ads/BannerAd";
 import { GoogleTags } from "./meta/GoogleTags";
-import {
-  FilterBottomSheet,
-  FilterMenuDesktop,
-} from "./components/filters/FilterMenu";
+import { FilterMenuDesktop } from "./components/filters/FilterMenu";
+import { FilterBottomSheet } from "./components/filters/FilterBottomSheet";
 import { FilterIcon } from "./components/icons/Icons";
-import { filter } from "lodash";
+import { INITIAL_FILTER } from "./constants/common";
 
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isOpen, setOpen] = useState(false);
   const [numResults, setNumResults] = useState();
-  const [filters, setFilters] = useState({
-    hobo: false,
-    jc: false,
-    brunch: false,
-    lunch: false,
-    dinner: false,
-    cocktails: false,
-    drinks: false,
-    trivia: false,
-    live: false,
-    dj: false,
-    comedy: false,
-    active: false,
-  });
+  const [filters, setFilters] = useState(INITIAL_FILTER);
   let filterResult = Object.keys(filters)
     .filter((k) => filters[k])
     .map((i) => `tags[]=${i}`)
@@ -65,7 +50,7 @@ export default function App() {
       <GoogleTags />
       <Banner />
       <div className="flex">
-        <div className="">
+        <div>
           <EventList
             url={`${
               process.env.REACT_APP_API_URL
