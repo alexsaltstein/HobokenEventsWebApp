@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { EventItem } from "./EventItem";
 import { Loading } from "../../utils/Loading";
+import { BannerAd } from "../ads/BannerAd";
 
 export const EventList = ({ url, menu, setNumResults, calendar }) => {
   const [loading, setLoading] = React.useState(true);
@@ -71,6 +72,14 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
             {eventData.map((event, index) => (
               <div key={`list-item-${index}`} className="mb-4 px-8 md:px-4 w-screen md:w-auto lg:w-96 xl:w-auto overflow-y-hidden hover:drop-shadow-lg transition duration-200">
                 <EventItem key={`list-item-${index}`} eventData={event} />
+                {index!==0 && index % 3 === 0 ?
+                  <div className="flex max-h-fit mt-4 mx-4 lg:hidden">
+                    <div className="h-fit w-full m-4">
+                      <BannerAd />
+                    </div>
+                  </div> :
+                  ''
+                }
               </div>
             ))}
           </div>
