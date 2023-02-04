@@ -14,4 +14,4 @@ export const INITIAL_FILTER = {
     dj: false,
     comedy: false,
     active: false,
-}
+};
