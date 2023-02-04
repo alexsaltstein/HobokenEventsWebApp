@@ -2,11 +2,12 @@ import React from "react";
 import axios from "axios";
 import { EventItem } from "./EventItem";
 import { Loading } from "../../utils/Loading";
+import { BannerAd } from "../ads/BannerAd";
+import { EVENTS_BETWEEN_ADS } from "../../constants/common";
 
 export const EventList = ({ url, menu, setNumResults, calendar }) => {
   const [loading, setLoading] = React.useState(true);
   const [eventData, setEventData] = React.useState(null);
-
   const fetchData = React.useCallback(async () => {
     try {
       setLoading(true);
@@ -32,14 +33,14 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
   if (loading) {
     return (
       <div className="relative flex lg:-left-2 ">
-        {menu}
-        <div className="relative w-full">
-          {calendar}
-          <div className="flex xs:top-10 md:top-40 w-fit mr-24 text-input-label-gray font-semibold text-xl min-h-fit">
-            <Loading loading={loading} />
+          {menu}
+          <div className="relative w-full">
+            {calendar}
+            <div className="flex xs:top-10 md:top-40 w-fit mr-24 text-input-label-gray font-semibold text-xl min-h-fit">
+              <Loading loading={loading} />
+            </div>
           </div>
-        </div>
-      </div>
+    </div>
     );
   }
 
@@ -49,7 +50,7 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
         {menu}
         <div className="w-full max-w-7xl">
           {calendar}
-          <div className="relative xs:top-30 md:top-40 w-fit mx-auto px-4 text-input-label-gray text-center font-semibold text-xl min-h-full">
+          <div className="relative xs:top-30 md:top-40 w-screen px-4 text-input-label-gray text-center font-semibold text-xl min-h-full">
             <p className="flex flex-row flex-wrap justify-center items-center  xs:mx-2 xs:mt-4">
               Looks like nothing is happening...
             </p>
@@ -63,19 +64,26 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
   }
 
   return (
-    <div className="flex">
-      {menu}
-      <div>
-        {calendar}
-        <div className="grid cols-1 md:block md:columns-2 md:gap-0 xl:columns-3 md:mx-4">
-          {eventData.map((event, index) => (
-            <div key={`list-item-${index}`} className="mb-4 overflow-y-hidden">
-              <EventItem key={`list-item-${index}`} eventData={event} />
-            </div>
-          ))}
+    <div className="relative flex w-screen">
+        {menu}
+        <div className="w-[80%] max-w-7xl">
+          {calendar}
+          <div className="relative md:columns-2 md:gap-0 2xl:columns-3 w-screen lg:w-full md:px-4">
+            {eventData.map((event, index) => (
+              <div key={`list-item-${index}`} className="mb-4 px-8 md:px-4 w-screen md:w-auto lg:w-96 xl:w-auto overflow-y-hidden hover:drop-shadow-lg transition duration-200">
+                <EventItem key={`list-item-${index}`} eventData={event} />
+                {index!==0 && index % EVENTS_BETWEEN_ADS === 0 ?
+                  <div className="flex max-h-fit mt-4 mx-4 lg:hidden">
+                    <div className="h-fit w-full m-4">
+                      <BannerAd />
+                    </div>
+                  </div> :
+                  null
+                }
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="hidden border border-red-500 w-full"></div>
     </div>
   );
 };

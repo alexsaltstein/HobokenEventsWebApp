@@ -10,33 +10,27 @@ import { getDayOfWeek, isValidDate } from "./utils/common";
 import Banner from "./components/banner/Banner";
 import { BannerAd } from "./components/ads/BannerAd";
 import { GoogleTags } from "./meta/GoogleTags";
-import {
-  FilterBottomSheet,
-  FilterMenuDesktop,
-} from "./components/filters/FilterMenu";
+import { FilterMenuDesktop } from "./components/filters/FilterMenu";
+import { FilterBottomSheet } from "./components/filters/FilterBottomSheet";
 import { FilterIcon } from "./components/icons/Icons";
+import { INITIAL_FILTER } from "./constants/common";
 
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isOpen, setOpen] = useState(false);
   const [numResults, setNumResults] = useState();
-  const [filters, setFilters] = useState({
-    hobo: false,
-    jc: false,
-    brunch: false,
-    lunch: false,
-    dinner: false,
-    cocktails: false,
-    otherDrink: false,
-    trivia: false,
-    live: false,
-    dj: false,
-    comedy: false,
-  });
+  const [filters, setFilters] = useState(INITIAL_FILTER);
   let filterResult = Object.keys(filters)
     .filter((k) => filters[k])
     .map((i) => `tags[]=${i}`)
     .join("&");
+
+  filterResult = filterResult.replace('tags[]=hobo&','')
+  filterResult = filterResult.replace('tags[]=hobo','')
+  filterResult = filterResult.replace('tags[]=jc','')
+  filterResult = filterResult.replace('tags[]=active','')
+
+
 
   const onDateChange = (date) => {
     setSelectedDate(date);
@@ -62,7 +56,7 @@ export default function App() {
               process.env.REACT_APP_API_URL
             }/api/deal?approved.state=active&dayOfWeek=${getDayOfWeek(
               selectedDate.getDay()
-            )}&${filterResult}`}
+            )}&${filterResult}${filters.hobo ? '&city=Hoboken' : ''}${filters.jc ? '&city=Jersey City' : ''}${filters.active ? `&active=${filters.active}` : ''}`}
             setNumResults={setNumResults}
             menu={
               <FilterMenuDesktop filters={filters} setFilters={setFilters} />
@@ -73,7 +67,7 @@ export default function App() {
                 onDateChange={onDateChange}
                 filterButton={
                   <button
-                    className="h-6 w-6 absolute right-6 lg:hidden"
+                    className="h-6 w-6 right-6 lg:hidden"
                     onClick={() => setOpen(true)}
                   >
                     <FilterIcon

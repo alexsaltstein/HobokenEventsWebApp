@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     screens: {
       fold: "280px",
-      xs: "370px",
+      xs: "360px",
       duo: "550px",
       ...defaultTheme.screens,
     },
