@@ -28,23 +28,23 @@ code {
   width: 6rem;
 }
 
-.react-datepicker {
+#datePicker .react-datepicker {
   position: absolute;
   top: 0px;
   left: 0px;
 }
 
-.react-datepicker__header {
+#datePicker .react-datepicker__header {
   background-color: white !important;
 }
 
-.react-datepicker__day--keyboard-selected,
+#datePicker .react-datepicker__day--keyboard-selected,
 .react-datepicker__day--selected {
   background-color: #007bc7 !important;
   border-radius: 1rem !important;
 }
 
-.react-datepicker__today-button {
+#datePicker .react-datepicker__today-button {
   background-color: #007bc7 !important;
   color: white;
 }

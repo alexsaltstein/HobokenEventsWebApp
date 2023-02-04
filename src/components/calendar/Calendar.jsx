@@ -1,3 +1,4 @@
+import "twin.macro";
 import React from "react";
 import DatePicker from "react-datepicker";
 import { isMobile } from "react-device-detect";
@@ -7,9 +8,13 @@ import {
   getDayOfWeek,
 } from "../../utils/common";
 import { CalendarIcon } from "../icons/Icons";
-import { ResponsiveGridHP } from "../templates/ResponsiveGrid";
 
-export const Calendar = ({ selectedDate, onDateChange }) => {
+export const Calendar = ({
+  selectedDate,
+  onDateChange,
+  filterButton,
+  children,
+}) => {
   const DateButton = React.forwardRef(({ value, onClick }, ref) => (
     <button onClick={onClick} ref={ref} className="flex items-center gap-x-2">
       <span
@@ -18,27 +23,36 @@ export const Calendar = ({ selectedDate, onDateChange }) => {
         {capitalizeFirstLetter(getDayOfWeek(selectedDate.getDay()))}
       </span>
       <div className="bg-button-blue rounded px-3 py-1 text-white flex gap-x-1 text-lg">
-        <CalendarIcon tw="mr-2"/>
+        <CalendarIcon tw="h-6 w-6 mr-2" />
         {value}
       </div>
     </button>
   ));
   return (
-    <ResponsiveGridHP>
-      <div />
-      <div className="flex gap-x-2 mt-2 ml-8 lg:ml-4 items-center flex-wrap max-w-full">
-        <h2 className="text-black font-bold text-xl my-1">
-          What's happening:
-        </h2>
-        <DatePicker
-          id="datePicker"
-          selected={selectedDate}
-          withPortal={isMobile}
-          customInput={<DateButton />}
-          onChange={onDateChange}
-          todayButton={<div>Today</div>}
-        />
+    <>
+      <div className="flex mb-4 w-screen">
+        <div className="flex px-8 md:px-0 w-screen flex-col md:flex-row md:gap-x-2 mt-4 md:ml-8 md:items-center md:flex-wrap max-w-full">
+          <h2 className="flex text-black font-bold text-xl my-1 justify-between">
+            What's happening:
+            <div className="md:hidden">
+              {filterButton}
+            </div>
+          </h2>
+          <DatePicker
+            id="datePicker"
+            selected={selectedDate}
+            withPortal={isMobile}
+            customInput={<DateButton />}
+            onChange={onDateChange}
+            todayButton={<div>Today</div>}
+            minDate={new Date()}
+          />
+          <div className="fold:max-md:hidden absolute right-8 top-6">
+            {filterButton}
+          </div>
+        </div>
       </div>
-    </ResponsiveGridHP>
+      {children}
+    </>
   );
 };

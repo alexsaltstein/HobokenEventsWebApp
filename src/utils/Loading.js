@@ -3,7 +3,7 @@ import React from "react";
 export const Loading = ({ loading }) => {
   if (loading) {
     return (
-      <div className="w-full flex items-center justify-start ml-8 mt-6">
+      <div className="flex mt-6 mx-8">
         <div role="status" className="animate-pulse gap-x-4 flex items-center">
           <div className="flex justify-center items-center h-24 w-80 sm:h-48 bg-gray-300 rounded sm:w-96">
             <svg

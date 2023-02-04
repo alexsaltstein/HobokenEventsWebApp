@@ -33,10 +33,10 @@ export const Autocomplete = ({ input, setInput, setError, setGoogleData, placeIn
 
     return (
       <>
-        <div className='relative w-[95%] m-auto z-10 focus:drop-shadow-sm'>
+        <div className='relative m-auto focus:drop-shadow-sm'>
           <label
             htmlFor={"Name of Location"}
-            className="absolute left-1 top-1 z-10 m-1 text-input-label-gray text-sm"
+            className="absolute left-1 top-1 m-1 text-input-label-gray text-sm"
           >
             Name of Location
             <span className="text-red-400">&nbsp;*</span>
