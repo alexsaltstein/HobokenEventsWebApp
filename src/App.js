@@ -92,7 +92,7 @@ export default function App() {
             <div className="h-fit w-full m-4">
               <BannerAd />
             </div>
-            <div className="h-fit w-full m-4">
+            <div className="h-fit w-full m-4 hidden lg:flex">
               <BannerAd />
             </div>
           </div>
