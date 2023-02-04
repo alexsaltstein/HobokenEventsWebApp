@@ -1,10 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import "twin.macro";
-import React from "react";
+import React, { useState } from "react";
 import { SocialIcon } from "react-social-icons";
 import { IconLogoBlue, WordmarkLogo } from "../icons/Icons";
 
 export default function Footer() {
+  const [isDesktop, setDesktop] = useState(window.innerWidth > 1450);
+
+  const updateMedia = () => {
+    setDesktop(window.innerWidth > 1450);
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
+  });
+
   return (
     <>
       <footer className=" w-full p-4 border-t-2 border-gray-400 shadow md:px-6 md:py-8">
@@ -30,6 +41,7 @@ export default function Footer() {
           </ul>
         </div>
         <hr className="my-4 sm:mx-auto lg:my-4" />
+        { isDesktop ?
         <div className="flex space-y-2 my-3 md:items-center flex-col md:flex-row md:justify-between">
           <div className="flex-col">
             <h4 className="font-bold text-gray-500 text-lg">Entertainment</h4>
@@ -60,7 +72,39 @@ export default function Footer() {
               url="https://www.instagram.com/hudsonhappsapp/"
             />
           </div>
-        </div>
+        </div> :
+        <div className="flex space-y-2 my-3 md:items-center flex-col md:flex-row md:justify-between">
+          <div className="flex gap-x-2">
+            <SocialIcon
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ height: "35px", width: "35px" }}
+              className="bg-white rounded-full"
+              url="https://discord.gg/vM2cA32Seg"
+            />
+            <SocialIcon
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ height: "35px", width: "35px" }}
+              className="bg-white rounded-full"
+              url="https://twitter.com/HudsonHapps"
+            />
+            <SocialIcon
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ height: "35px", width: "35px" }}
+              className="bg-white rounded-full"
+              url="https://www.instagram.com/hudsonhappsapp/"
+            />
+          </div>
+          <div className="flex-col">
+            <h4 className="font-bold text-gray-500 text-lg">Entertainment</h4>
+            <a href="/powerhour" className="text-gray-500 hover:underline">
+              <p>Power hour</p>
+            </a>
+          </div>
+        </div> 
+        }
         <span className="block text-sm text-gray-700 sm:text-center ">
           © 2022{" "}
           <a href="/" className="hover:underline">
