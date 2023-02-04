@@ -25,12 +25,10 @@ export default function App() {
     .map((i) => `tags[]=${i}`)
     .join("&");
 
-  filterResult = filterResult.replace('tags[]=hobo&','')
-  filterResult = filterResult.replace('tags[]=hobo','')
-  filterResult = filterResult.replace('tags[]=jc','')
-  filterResult = filterResult.replace('tags[]=active','')
-
-
+  filterResult = filterResult.replace("tags[]=hobo&", "");
+  filterResult = filterResult.replace("tags[]=hobo", "");
+  filterResult = filterResult.replace("tags[]=jc", "");
+  filterResult = filterResult.replace("tags[]=active", "");
 
   const onDateChange = (date) => {
     setSelectedDate(date);
@@ -56,7 +54,9 @@ export default function App() {
               process.env.REACT_APP_API_URL
             }/api/deal?approved.state=active&dayOfWeek=${getDayOfWeek(
               selectedDate.getDay()
-            )}&${filterResult}${filters.hobo ? '&city=Hoboken' : ''}${filters.jc ? '&city=Jersey City' : ''}${filters.active ? `&active=${filters.active}` : ''}`}
+            )}&${filterResult}${filters.hobo ? "&city=Hoboken" : ""}${
+              filters.jc ? "&city=Jersey City" : ""
+            }${filters.active ? `&active=${filters.active}` : ""}`}
             setNumResults={setNumResults}
             menu={
               <FilterMenuDesktop filters={filters} setFilters={setFilters} />
