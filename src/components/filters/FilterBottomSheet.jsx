@@ -135,7 +135,7 @@ export function FilterBottomSheet({
               <hr className="my-2 w-full"></hr>
               <h1 className="text-lg px-8 font-semibold">Entertainment</h1>
               <Checkbox
-                text={"Triva"}
+                text={"Trivia"}
                 checked={filters.trivia}
                 onClick={() =>
                   setFilters((prev) => ({ ...prev, trivia: !filters.trivia }))
