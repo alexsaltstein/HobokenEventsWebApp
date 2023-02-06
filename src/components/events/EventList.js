@@ -78,7 +78,6 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
               {index !== 0 && index % EVENTS_BETWEEN_ADS === 0 ? (
                 <div className="flex max-h-96 mt-4 lg:hidden">
                   <div className="w-full">
-                    <div className="h-96 w-full bg-slate-900" />
                     <BannerAd />
                   </div>
                 </div>

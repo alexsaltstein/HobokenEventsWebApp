@@ -88,7 +88,7 @@ export default function App() {
               </Calendar>
             }
           />
-          <div className="border-gray-100 border-2 max-w-full max-h-fit mt-4 mx-4">
+          <div className="max-w-full max-h-fit mt-4 mx-4">
             <BannerAd />
           </div>
         </div>
