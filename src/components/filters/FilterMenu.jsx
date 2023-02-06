@@ -105,7 +105,7 @@ export function FilterMenuDesktop({ filters, setFilters }) {
           <hr className="my-4 w-full"></hr>
           <h1 className="text-lg mt-2 font-semibold">Entertainment</h1>
           <Checkbox
-            text={"Triva"}
+            text={"Trivia"}
             checked={filters.trivia}
             onClick={() =>
               setFilters((prev) => ({ ...prev, trivia: !filters.trivia }))
