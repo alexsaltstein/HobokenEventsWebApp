@@ -88,13 +88,13 @@ export default function App() {
               </Calendar>
             }
           />
-          <div className="flex max-w-full max-h-fit mt-4 mx-4">
+          <div className="flex max-w-full max-h-fit mt-4 mx-4 justify-center">
             <div className="h-fit w-full m-4">
               <BannerAd />
             </div>
-            <div className="h-fit w-full m-4 hidden lg:flex">
+            {/* <div className="h-fit w-full m-4 hidden lg:flex">
               <BannerAd />
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="hidden border border-red-500">{/* PUT MAP HERE */}</div>
