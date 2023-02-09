@@ -4,9 +4,14 @@ import { EventItem } from "./EventItem";
 import { Loading } from "../../utils/Loading";
 import { BannerAd } from "../ads/BannerAd";
 import { EVENTS_BETWEEN_ADS } from "../../constants/common";
+import { useScrollIntoView } from "../../utils/useScrollIntoView";
+import { useSearchParams } from "react-router-dom";
 
 export const EventList = ({ url, menu, setNumResults, calendar }) => {
   const [loading, setLoading] = React.useState(true);
+  const [searchParams] = useSearchParams();
+  const selectedDeal = searchParams.get("deal_id");
+  const topElemRef = useScrollIntoView([selectedDeal, loading]);
   const [eventData, setEventData] = React.useState(null);
   const fetchData = React.useCallback(async () => {
     try {
@@ -73,6 +78,7 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
             <div
               key={`list-item-${index}`}
               className="mb-4 px-8 md:px-4 w-screen md:w-auto lg:w-96 xl:w-auto overflow-y-hidden"
+              ref={selectedDeal === event._id ? topElemRef : null}
             >
               <EventItem key={`list-item-${index}`} eventData={event} />
               {index !== 0 && index % EVENTS_BETWEEN_ADS === 0 ? (

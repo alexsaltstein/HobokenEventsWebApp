@@ -1,13 +1,12 @@
 import axios from "axios";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { EventItem } from "../components/events/EventItem";
 import {
   DirectionsIcon,
   PhoneIcon,
   ExternalLinkIcon,
 } from "../components/icons/Icons";
-import { ResponsiveGrid } from "../components/templates/ResponsiveGrid";
 import { Loading } from "../utils/Loading";
 import { useScrollIntoView } from "../utils/useScrollIntoView";
 
@@ -16,7 +15,9 @@ export const Place = () => {
   const [loading, setLoading] = React.useState(true);
   const [placeData, setPlaceData] = React.useState(null);
   const [showExtendedHours, setShowExtendedHours] = React.useState(false);
-  const topElemRef = useScrollIntoView([loading]);
+  const [searchParams] = useSearchParams();
+  const selectedDeal = searchParams.get("deal_id");
+  const topElemRef = useScrollIntoView([selectedDeal, loading]);
 
   const fetchData = React.useCallback(async () => {
     try {
@@ -59,7 +60,7 @@ export const Place = () => {
 
   const topPhoto = googleInfo.photos?.length > 0 ? googleInfo.photos[0] : null;
   return (
-    <div ref={topElemRef} className="p-4 flex w-full items-center flex-col">
+    <div className="p-4 flex w-full items-center flex-col">
       {topPhoto ? (
         <img
           className="object-none h-40 md:h-48 w-full"
@@ -125,7 +126,10 @@ export const Place = () => {
       </div>
       <div className="flex flex-wrap w-screen md:px-8 mt-4 max-w-screen-2xl md:columns-2 md:gap-0 2xl:columns-3 justify-center">
         {deals.map((deal) => (
-          <div className="px-4 md:px-4 max-w-[370px] w-full">
+          <div
+            className="px-4 md:px-4 max-w-[370px] w-full"
+            ref={selectedDeal === deal._id ? topElemRef : null}
+          >
             <EventItem eventData={deal} key={deal._id} />
           </div>
         ))}
