@@ -60,7 +60,7 @@ export const EventItem = ({ eventData, moderate }) => {
       <div className="fold:max-sm:max-w-screen sm:max-w-none font-sans mb-4 overflow-y-hidden drop-shadow-md hover:drop-shadow-lg">
         <div
           className={`bg-white border p-4 h-full z-30 ${
-            selectedDeal === _id ? "border-blue-400" : null
+            selectedDeal === _id ? "border-hoboken-blue" : null
           }`}
         >
           <Link to={`/place/${placeId}`}>
