@@ -77,7 +77,7 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
           {eventData.map((event, index) => (
             <div
               key={`list-item-${index}`}
-              className="mb-4 px-8 md:px-4 w-screen md:w-auto lg:w-96 xl:w-auto overflow-y-hidden"
+              className="mb-4 px-8 md:px-4 w-screen md:w-auto lg:w-96 xl:w-auto"
               ref={selectedDeal === event._id ? topElemRef : null}
             >
               <EventItem key={`list-item-${index}`} eventData={event} />
