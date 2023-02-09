@@ -8,12 +8,14 @@ import {
   TimerIcon,
   ExternalLinkIcon,
   CheckIcon,
+  ShareIcon,
 } from "../icons/Icons";
 import ReportModal from "./ReportModal";
 import { ApproveEvent } from "../admin/moderate/events/ApproveEvent";
 import { DenyEvent } from "../admin/moderate/events/DenyEvent";
 import { DayDisplay } from "./components/DayDisplay";
 import { TagsDisplay } from "./components/TagsDisplay";
+import toast from "react-hot-toast";
 
 const dealQueryParam = "deal_id";
 export const EventItem = ({ eventData, moderate }) => {
@@ -60,7 +62,7 @@ export const EventItem = ({ eventData, moderate }) => {
       <div className="fold:max-sm:max-w-screen sm:max-w-none font-sans mb-4 overflow-y-hidden drop-shadow-md hover:drop-shadow-lg">
         <div
           className={`bg-white border p-4 h-full z-30 ${
-            selectedDeal === _id ? "border-hoboken-blue" : null
+            selectedDeal === _id ? "border-button-blue" : null
           }`}
         >
           <Link to={`/place/${placeId}`}>
@@ -79,9 +81,29 @@ export const EventItem = ({ eventData, moderate }) => {
                 <p className="mb-1 text-base">{title}</p>
               </div>
               <TagsDisplay tags={tags} tw="mb-1" />
-              <div className="flex">
-                <TimerIcon tw="mr-2 h-6 text-gray-500" />
-                <p className="mb-2">{getDisplayTime(startTime, endTime)}</p>
+              <div className="flex justify-between">
+                <div className="flex">
+                  <TimerIcon tw="mr-2 h-6 text-gray-500" />
+                  <p className="mb-2">{getDisplayTime(startTime, endTime)}</p>
+                </div>
+                <button
+                  className="flex items-center text-gray-500 z-40 lg:text-sm"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    const old = {};
+                    searchParams.forEach((val, key) => {
+                      old[key] = val;
+                    });
+                    old[dealQueryParam] = _id;
+                    setSearchParams(old);
+                    const url = window.location.href;
+                    navigator.clipboard.writeText(url);
+                    toast.success("Copied to clipboard");
+                  }}
+                >
+                  <ShareIcon tw="mr-1 h-5" />
+                  Share
+                </button>
               </div>
               <hr />
               <div className="md:whitespace-normal mt-2 mb-8" id="description">
@@ -142,25 +164,6 @@ export const EventItem = ({ eventData, moderate }) => {
                 </button>
               </div>
             )}
-            <button
-              onClick={() => {
-                const old = {};
-                searchParams.forEach((val, key) => {
-                  old[key] = val;
-                });
-                setSearchParams({
-                  ...old,
-                  [dealQueryParam]: _id,
-                });
-                const url = window.location.href;
-                navigator.clipboard.writeText(url);
-
-                // Alert the copied text
-                alert("Copied the text: " + url);
-              }}
-            >
-              share
-            </button>
           </div>
           {moderate ? (
             <div className="flex flex-row space-x-4 justify-center items-center border-t mt-4">

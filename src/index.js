@@ -15,10 +15,12 @@ import { About } from "./routes/About";
 import { PowerHour } from "./routes/PowerHour";
 import { NotFound } from "./routes/NotFound";
 import GlobalStyles from "./styles/GlobalStyles";
+import { Toaster } from "react-hot-toast";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <Toaster />
     <GlobalStyles />
     <RecoilRoot>
       <BrowserRouter>
@@ -56,7 +58,7 @@ root.render(
               />
               <Route path="/place/:id" element={<Place />} />
               <Route path="/about" element={<About />} />
-            <Route path="/powerhour" element={<PowerHour />} />
+              <Route path="/powerhour" element={<PowerHour />} />
               {/* <Route path="/contact" element={<Contact />} /> */}
               <Route path="/" element={<App />} />
               <Route path="*" element={<NotFound />} />
