@@ -1,12 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import "twin.macro";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { displayDate, getDisplayTime } from "../../utils/common";
 import {
   CautionIcon,
   TimerIcon,
-  RightArrowIcon,
   ExternalLinkIcon,
   CheckIcon,
 } from "../icons/Icons";
@@ -16,7 +15,12 @@ import { DenyEvent } from "../admin/moderate/events/DenyEvent";
 import { DayDisplay } from "./components/DayDisplay";
 import { TagsDisplay } from "./components/TagsDisplay";
 
+const dealQueryParam = "deal_id";
 export const EventItem = ({ eventData, moderate }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const selectedDeal = searchParams.get(dealQueryParam);
+
   const [showReportModal, setShowReportModal] = React.useState(false);
   const {
     placeId,
@@ -54,7 +58,11 @@ export const EventItem = ({ eventData, moderate }) => {
         />
       ) : null}
       <div className="fold:max-sm:max-w-screen sm:max-w-none font-sans mb-4 overflow-y-hidden drop-shadow-md hover:drop-shadow-lg">
-        <div className="bg-white border p-4 h-full z-30">
+        <div
+          className={`bg-white border p-4 h-full z-30 ${
+            selectedDeal === _id ? "border-blue-400" : null
+          }`}
+        >
           <Link to={`/place/${placeId}`}>
             <div>
               <div className="flex justify-between sm:flex-row flex-col-reverse sm:space-y-0">
@@ -134,6 +142,25 @@ export const EventItem = ({ eventData, moderate }) => {
                 </button>
               </div>
             )}
+            <button
+              onClick={() => {
+                const old = {};
+                searchParams.forEach((val, key) => {
+                  old[key] = val;
+                });
+                setSearchParams({
+                  ...old,
+                  [dealQueryParam]: _id,
+                });
+                const url = window.location.href;
+                navigator.clipboard.writeText(url);
+
+                // Alert the copied text
+                alert("Copied the text: " + url);
+              }}
+            >
+              share
+            </button>
           </div>
           {moderate ? (
             <div className="flex flex-row space-x-4 justify-center items-center border-t mt-4">
