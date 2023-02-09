@@ -9,7 +9,6 @@ import {
 } from "../components/icons/Icons";
 import { ShareButton } from "../components/share/ShareButton";
 import { DEAL_QUERY_PARAM } from "../constants/common";
-import { copyToClipboard } from "../utils/common";
 import { Loading } from "../utils/Loading";
 import { useScrollIntoView } from "../utils/useScrollIntoView";
 
@@ -81,8 +80,7 @@ export const Place = () => {
       </h2>
       <div className="relative">
         <ShareButton
-          onClipboardClick={() => copyToClipboard(window.location.href)}
-          body={name}
+          body={`I found ${name} on Hudson Happs! ${window.location.href}`}
         />
       </div>
       <button

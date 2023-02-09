@@ -90,24 +90,17 @@ export const EventItem = ({ eventData, moderate }) => {
                   <TimerIcon tw="mr-2 h-6 text-gray-500" />
                   <p className="mb-2">{getDisplayTime(startTime, endTime)}</p>
                 </div>
-                <ShareButton />
-                {/* <button
-                  className="flex items-center text-gray-500 z-40 lg:text-sm"
-                  onClick={(event) => {
-                    event.preventDefault();
+                <ShareButton
+                  onClick={() => {
                     const old = {};
                     searchParams.forEach((val, key) => {
                       old[key] = val;
                     });
                     old[DEAL_QUERY_PARAM] = _id;
                     setSearchParams(old);
-                    const url = window.location.href;
-                    copyToClipboard(url);
                   }}
-                >
-                  <ShareIcon tw="mr-1 h-5" />
-                  Share
-                </button> */}
+                  body={`I found a great deal on Hudson Happs: ${title} ${window.location.href}`}
+                />
               </div>
               <hr />
               <div className="md:whitespace-normal mt-2 mb-8" id="description">
