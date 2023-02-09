@@ -25,7 +25,12 @@ const ShareMenu = ({ onDismiss, body }) => {
       </button>
       <a
         href={`sms:&body=${body}`}
+        target="_blank"
+        rel="noreferrer"
         className="flex gap-x-2 py-1 px-2 border-b lg:hidden"
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
       >
         <SMSIcon />
         Send a text
@@ -33,6 +38,11 @@ const ShareMenu = ({ onDismiss, body }) => {
       <a
         href={`mailto:?subject=Check out Hudson Happs!&body=${body}`}
         className="flex py-1 px-2 gap-x-2"
+        target="_blank"
+        rel="noreferrer"
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
       >
         <MailIcon /> Send an email
       </a>
@@ -54,6 +64,7 @@ export const ShareButton = ({ onClick, body }) => {
       <button
         className="flex items-center text-gray-500 z-40 lg:text-sm"
         onClick={(event) => {
+          event.preventDefault();
           if (onClick) {
             console.log("here");
             onClick();
