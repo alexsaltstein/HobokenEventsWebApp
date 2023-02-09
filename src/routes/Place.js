@@ -6,8 +6,10 @@ import {
   DirectionsIcon,
   PhoneIcon,
   ExternalLinkIcon,
+  ShareIcon,
 } from "../components/icons/Icons";
 import { DEAL_QUERY_PARAM } from "../constants/common";
+import { copyToClipboard } from "../utils/common";
 import { Loading } from "../utils/Loading";
 import { useScrollIntoView } from "../utils/useScrollIntoView";
 
@@ -77,6 +79,17 @@ export const Place = () => {
           ", " +
           googleInfo.address.state}
       </h2>
+      <button
+        className="flex items-center text-gray-500 z-40 lg:text-sm"
+        onClick={(event) => {
+          event.preventDefault();
+          const url = window.location.href;
+          copyToClipboard(url);
+        }}
+      >
+        <ShareIcon tw="mr-1 h-5" />
+        Share
+      </button>
       <button
         className="flex gap-x-2 items-baseline"
         onClick={() => setShowExtendedHours(!showExtendedHours)}
