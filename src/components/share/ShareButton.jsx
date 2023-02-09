@@ -66,7 +66,6 @@ export const ShareButton = ({ onClick, body }) => {
         onClick={(event) => {
           event.preventDefault();
           if (onClick) {
-            console.log("here");
             onClick();
           }
           onDismiss(event);

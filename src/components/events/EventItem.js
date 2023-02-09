@@ -53,6 +53,7 @@ export const EventItem = ({ eventData, moderate }) => {
     }
   }, [showReportModal]);
 
+  console.log(_id);
   return (
     <>
       {showReportModal ? (
@@ -92,10 +93,7 @@ export const EventItem = ({ eventData, moderate }) => {
                 </div>
                 <ShareButton
                   onClick={() => {
-                    const old = {};
-                    searchParams.forEach((val, key) => {
-                      old[key] = val;
-                    });
+                    const old = Object.fromEntries([...searchParams]);
                     old[DEAL_QUERY_PARAM] = _id;
                     setSearchParams(old);
                   }}
