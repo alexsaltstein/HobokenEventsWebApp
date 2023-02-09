@@ -2,7 +2,11 @@
 import "twin.macro";
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { displayDate, getDisplayTime } from "../../utils/common";
+import {
+  copyToClipboard,
+  displayDate,
+  getDisplayTime,
+} from "../../utils/common";
 import {
   CautionIcon,
   TimerIcon,
@@ -15,13 +19,12 @@ import { ApproveEvent } from "../admin/moderate/events/ApproveEvent";
 import { DenyEvent } from "../admin/moderate/events/DenyEvent";
 import { DayDisplay } from "./components/DayDisplay";
 import { TagsDisplay } from "./components/TagsDisplay";
-import toast from "react-hot-toast";
+import { DEAL_QUERY_PARAM } from "../../constants/common";
 
-const dealQueryParam = "deal_id";
 export const EventItem = ({ eventData, moderate }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const selectedDeal = searchParams.get(dealQueryParam);
+  const selectedDeal = searchParams.get(DEAL_QUERY_PARAM);
 
   const [showReportModal, setShowReportModal] = React.useState(false);
   const {
@@ -94,11 +97,10 @@ export const EventItem = ({ eventData, moderate }) => {
                     searchParams.forEach((val, key) => {
                       old[key] = val;
                     });
-                    old[dealQueryParam] = _id;
+                    old[DEAL_QUERY_PARAM] = _id;
                     setSearchParams(old);
                     const url = window.location.href;
-                    navigator.clipboard.writeText(url);
-                    toast.success("Copied to clipboard");
+                    copyToClipboard(url);
                   }}
                 >
                   <ShareIcon tw="mr-1 h-5" />

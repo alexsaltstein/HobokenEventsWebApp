@@ -7,6 +7,7 @@ import {
   PhoneIcon,
   ExternalLinkIcon,
 } from "../components/icons/Icons";
+import { DEAL_QUERY_PARAM } from "../constants/common";
 import { Loading } from "../utils/Loading";
 import { useScrollIntoView } from "../utils/useScrollIntoView";
 
@@ -16,7 +17,7 @@ export const Place = () => {
   const [placeData, setPlaceData] = React.useState(null);
   const [showExtendedHours, setShowExtendedHours] = React.useState(false);
   const [searchParams] = useSearchParams();
-  const selectedDeal = searchParams.get("deal_id");
+  const selectedDeal = searchParams.get(DEAL_QUERY_PARAM);
   const topElemRef = useScrollIntoView([selectedDeal, loading]);
 
   const fetchData = React.useCallback(async () => {
