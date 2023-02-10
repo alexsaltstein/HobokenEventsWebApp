@@ -16,3 +16,4 @@ export const INITIAL_FILTER = {
   comedy: false,
   active: false,
 };
+export const DEAL_QUERY_PARAM = "deal_id";
