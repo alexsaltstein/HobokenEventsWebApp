@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import "twin.macro";
 import axios from "axios";
 import React from "react";
 import { useParams, useSearchParams } from "react-router-dom";
@@ -71,7 +73,19 @@ export const Place = () => {
           alt={`Cover for ${name}`}
         />
       ) : null}
-      <h1 className="text-2xl mt-4 font-bold">{name}</h1>
+      <div className="mt-4 flex items-center gap-x-2">
+        <h1 className="text-2xl font-bold">{name}</h1>
+        <button
+          className="text-gray-500 z-40"
+          onClick={(event) => {
+            event.preventDefault();
+            const url = window.location.href;
+            copyToClipboard(url);
+          }}
+        >
+          <ShareIcon tw="h-5" />
+        </button>
+      </div>
       <h2 className="text-xl text-center">
         {googleInfo.address.street +
           ", " +
@@ -79,17 +93,6 @@ export const Place = () => {
           ", " +
           googleInfo.address.state}
       </h2>
-      <button
-        className="flex items-center text-gray-500 z-40 lg:text-sm"
-        onClick={(event) => {
-          event.preventDefault();
-          const url = window.location.href;
-          copyToClipboard(url);
-        }}
-      >
-        <ShareIcon tw="mr-1 h-5" />
-        Share
-      </button>
       <button
         className="flex gap-x-2 items-baseline"
         onClick={() => setShowExtendedHours(!showExtendedHours)}
