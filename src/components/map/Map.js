@@ -6,10 +6,11 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import axios from "axios";
+import { LoadingAnimation } from "../icons/LoadingAnimation";
 
 const containerStyle = {
   width: "100%",
-  height: "600px",
+  height: "100%",
   position: "relative",
 };
 
@@ -18,7 +19,7 @@ const center = {
   lng: -74.034775,
 };
 
-function Map({ deals }) {
+const Map = ({ deals }) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -59,7 +60,6 @@ function Map({ deals }) {
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
-      {/* Child components, such as markers, info windows, etc. */}
       {markerLocations.map((mark) => (
         <Marker
           key={mark.dealId}
@@ -76,8 +76,11 @@ function Map({ deals }) {
       ))}
     </GoogleMap>
   ) : (
-    <></>
+    <div className="flex items-center justify-center w-full h-full">
+      <LoadingAnimation />
+      <p>Map loading...</p>
+    </div>
   );
-}
+};
 
 export default React.memo(Map);

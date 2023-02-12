@@ -72,9 +72,9 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
   return (
     <div className="relative flex w-screen">
       {menu}
-      <div className="w-[80%] max-w-7xl">
+      <div className="2xl:w-[60%] w-[85%]">
         {calendar}
-        <div className="relative md:columns-2 md:gap-0 2xl:columns-3 w-screen lg:w-full md:px-4">
+        <div className="relative md:columns-2 md:gap-0 3xl:columns-3 w-screen lg:w-full md:px-4">
           {eventData.map((event, index) => (
             <div
               key={`list-item-${index}`}
@@ -93,7 +93,7 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
           ))}
         </div>
       </div>
-      <div className="w-full">
+      <div className="hidden 2xl:flex w-full h-[70vh]">
         <Map deals={eventData} />
       </div>
     </div>
