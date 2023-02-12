@@ -6,6 +6,7 @@ import { BannerAd } from "../ads/BannerAd";
 import { DEAL_QUERY_PARAM, EVENTS_BETWEEN_ADS } from "../../constants/common";
 import { useScrollIntoView } from "../../utils/useScrollIntoView";
 import { useSearchParams } from "react-router-dom";
+import Map from "../map/Map";
 
 export const EventList = ({ url, menu, setNumResults, calendar }) => {
   const [loading, setLoading] = React.useState(true);
@@ -91,6 +92,9 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
             </div>
           ))}
         </div>
+      </div>
+      <div className="w-full">
+        <Map deals={eventData} />
       </div>
     </div>
   );

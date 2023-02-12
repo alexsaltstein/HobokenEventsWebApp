@@ -92,12 +92,8 @@ export default function App() {
             <div className="h-fit w-full m-4">
               <BannerAd />
             </div>
-            {/* <div className="h-fit w-full m-4 hidden lg:flex">
-              <BannerAd />
-            </div> */}
           </div>
         </div>
-        <div className="hidden border border-red-500">{/* PUT MAP HERE */}</div>
       </div>
     </div>
   );
