@@ -90,7 +90,6 @@ export const EventItem = ({ eventData, moderate }) => {
                   <DayDisplay availableDays={dayOfWeek} />
                 </div>
               </div>
-
               <div className="flex justify-between items-center mb-2">
                 <div className="flex items-center">
                   <TimerIcon tw="mr-2 h-5 text-gray-500" />
