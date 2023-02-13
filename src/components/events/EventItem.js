@@ -26,7 +26,6 @@ export const EventItem = ({ eventData, moderate }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedDeal = searchParams.get(DEAL_QUERY_PARAM);
   const [showReportModal, setShowReportModal] = React.useState(false);
-  console.log(eventData);
 
   const {
     placeId,
