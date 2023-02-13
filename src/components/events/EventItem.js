@@ -13,6 +13,7 @@ import {
   ExternalLinkIcon,
   CheckIcon,
   ShareIcon,
+  MapPinIcon,
 } from "../icons/Icons";
 import ReportModal from "./ReportModal";
 import { ApproveEvent } from "../admin/moderate/events/ApproveEvent";
@@ -70,23 +71,29 @@ export const EventItem = ({ eventData, moderate }) => {
           <Link to={`/place/${placeId}`}>
             <div>
               <div className="flex justify-between sm:flex-row flex-col-reverse sm:space-y-0">
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap flex-col">
                   <p className="font-semibold opacity-75 text-2xl mr-2">
                     {place.name}
                   </p>
+                  <div className="flex">
+                    <p className="mb-1 text-base">{title}</p>
+                  </div>
+                  <TagsDisplay tags={tags} tw="mb-1" />
                 </div>
-                <div className="sm:pl-4 pl-0 sm:mb-0 mb-1">
+                <div className="flex flex-row-reverse md:flex-col justify-between md:justify-start sm:pl-4 pl-0 sm:mb-0 mb-1">
+                  <div tw="flex justify-end mb-1 md:mt-1">
+                    <div tw="text-sm flex items-center text-hoboken-blue">
+                      <MapPinIcon tw="h-5" />
+                      {place.address.city}
+                    </div>
+                  </div>
                   <DayDisplay availableDays={dayOfWeek} />
                 </div>
               </div>
-              <div className="flex">
-                <p className="mb-1 text-base">{title}</p>
-              </div>
-              <TagsDisplay tags={tags} tw="mb-1" />
-              <div className="flex justify-between">
-                <div className="flex">
-                  <TimerIcon tw="mr-2 h-6 text-gray-500" />
-                  <p className="mb-2">{getDisplayTime(startTime, endTime)}</p>
+              <div className="flex justify-between items-center mb-2">
+                <div className="flex items-center">
+                  <TimerIcon tw="mr-2 h-5 text-gray-500" />
+                  <p>{getDisplayTime(startTime, endTime)}</p>
                 </div>
                 <button
                   className="flex items-center text-gray-500 z-40 lg:text-sm"
