@@ -112,10 +112,19 @@ const Map = ({ deals }) => {
         })}
       </GoogleMap>
       {selectedMark ? (
-        <div className="w-full bg-white mt-2 p-3 rounded-lg shadow-md">
-          <h1 className="text-2xl font-bold">{selectedMark?.placeName}</h1>
-          <h3>{selectedMark.title}</h3>
-        </div>
+        <button
+          onClick={() => {
+            map.panTo({ lat: selectedMark.lat, lng: selectedMark.lng });
+            if (map.zoom !== 17) {
+              map.setZoom(17);
+            }
+          }}
+        >
+          <div className="w-full bg-white mt-2 p-3 rounded-lg shadow-md">
+            <h1 className="text-2xl font-bold">{selectedMark?.placeName}</h1>
+            <h3>{selectedMark.title}</h3>
+          </div>
+        </button>
       ) : null}
     </div>
   ) : (
