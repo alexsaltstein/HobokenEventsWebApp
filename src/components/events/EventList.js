@@ -83,8 +83,8 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
             >
               <EventItem key={`list-item-${index}`} eventData={event} />
               {index !== 0 && index % EVENTS_BETWEEN_ADS === 0 ? (
-                <div className="flex max-h-6 mt-4 mx-4 lg:hidden overflow-hidden">
-                  <div className="h-fit w-full m-4">
+                <div className="flex max-h-96 mt-4 lg:hidden">
+                  <div className="w-full">
                     <BannerAd />
                   </div>
                 </div>
