@@ -7,6 +7,7 @@ const containerStyle = {
   width: "100%",
   height: "100%",
   position: "relative",
+  borderRadius: "0.5rem",
 };
 
 const center = {
@@ -25,7 +26,7 @@ const Map = ({ deals }) => {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
-  const [selectedPlace, setSelectedPlace] = React.useState(null);
+  const [selectedPlace, setSelectedPlace] = React.useState(0);
   const [map, setMap] = React.useState(null);
   const [markerLocations, setMarkerLocations] = React.useState([]);
 
@@ -53,55 +54,70 @@ const Map = ({ deals }) => {
     setMap(null);
   }, []);
 
+  const selectedMark = markerLocations[selectedPlace];
   return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={10}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
-    >
-      {markerLocations.map((mark, index) => {
-        const selected = selectedPlace === index;
-        return (
-          <OverlayView
-            position={{ lat: mark.lat, lng: mark.lng }}
-            mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-            getPixelPositionOffset={getPixelPositionOffset}
-          >
-            <button
-              onClick={() => {
-                setSelectedPlace(index);
-                map.panTo({ lat: mark.lat, lng: mark.lng });
-                if (map.zoom !== 17) {
-                  map.setZoom(17);
-                }
-              }}
-              title={mark.title}
+    <div className="w-full flex h-full flex-col p-4">
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        {markerLocations.map((mark, index) => {
+          const selected = selectedPlace === index;
+          return (
+            <OverlayView
+              position={{ lat: mark.lat, lng: mark.lng }}
+              mapPaneName={
+                selected
+                  ? OverlayView.FLOAT_PANE
+                  : OverlayView.OVERLAY_MOUSE_TARGET
+              }
+              getPixelPositionOffset={getPixelPositionOffset}
             >
-              <div className="popup-container">
-                <div
-                  className={`popup-bubble ${
-                    selected ? "bg-green-600" : "bg-button-blue"
-                  }`}
-                >
-                  <h1 className={`text-white ${selected ? "font-bold" : null}`}>
-                    {mark.placeName}
-                  </h1>
+              <button
+                onClick={() => {
+                  setSelectedPlace(index);
+                  map.panTo({ lat: mark.lat, lng: mark.lng });
+                  if (map.zoom !== 17) {
+                    map.setZoom(17);
+                  }
+                }}
+                title={mark.title}
+              >
+                <div className="popup-container">
+                  <div
+                    className={`popup-bubble ${
+                      selected ? "bg-green-600" : "bg-button-blue"
+                    }`}
+                  >
+                    <h1
+                      className={`text-white ${selected ? "font-bold" : null}`}
+                    >
+                      {mark.placeName}
+                    </h1>
+                  </div>
+                  <div
+                    className={`${
+                      selected
+                        ? "popup-bubble-anchor-selected"
+                        : "popup-bubble-anchor"
+                    }`}
+                  />
                 </div>
-                <div
-                  className={`${
-                    selected
-                      ? "popup-bubble-anchor-selected"
-                      : "popup-bubble-anchor"
-                  }`}
-                />
-              </div>
-            </button>
-          </OverlayView>
-        );
-      })}
-    </GoogleMap>
+              </button>
+            </OverlayView>
+          );
+        })}
+      </GoogleMap>
+      {selectedMark ? (
+        <div className="w-full bg-white mt-2 p-3 rounded-lg shadow-md">
+          <h1 className="text-2xl font-bold">{selectedMark?.placeName}</h1>
+          <h3>{selectedMark.title}</h3>
+        </div>
+      ) : null}
+    </div>
   ) : (
     <div className="flex items-center justify-center w-full h-full">
       <LoadingAnimation />
