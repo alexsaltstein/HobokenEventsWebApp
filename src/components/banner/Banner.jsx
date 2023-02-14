@@ -7,6 +7,7 @@ export default function Banner() {
         <div className="relative left-0 flex w-full h-1/4 max-h-64">
           <div className="overflow-hidden">
             <picture>
+              <source srcSet="nyclarge.webp" type="image/webp" media="(min-width: 1536px)"/>
               <source srcSet="hudson.webp" type="image/webp" media="(min-width: 1280px)"/>
               <source srcSet="hudson-1280_x_640.webp" type="image/webp" media="(min-width: 1024px)"/>
               <source srcSet="hudson-1024_x_512.webp" type="image/webp" media="(min-width: 768px)"/>
