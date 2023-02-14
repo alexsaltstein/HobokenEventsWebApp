@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { SearchIcon } from '../icons';
+import { SearchIcon } from '../icons/Icons';
 import { DebounceInput } from 'react-debounce-input';
 
 
