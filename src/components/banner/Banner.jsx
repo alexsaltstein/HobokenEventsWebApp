@@ -7,22 +7,25 @@ export default function Banner() {
         <div className="relative left-0 flex w-full h-1/4 max-h-64">
           <div className="overflow-hidden">
             <picture>
-              {/* <source srcSet="hudson.webp" type="image/webp" /> */}
-              <source srcSet="hudson.jpg" type="image/jpeg" />
+              <source srcSet="hudson.webp" type="image/webp" media="(min-width: 1280px)"/>
+              <source srcSet="hudson-1280_x_640.webp" type="image/webp" media="(min-width: 1024px)"/>
+              <source srcSet="hudson-1024_x_512.webp" type="image/webp" media="(min-width: 768px)"/>
+              <source srcSet="hudson-768_x_384.webp" type="image/webp" media="(min-width: 640px)"/>
+              <source srcSet="hudson-640_x_320.webp" type="image/webp" media="(min-width: 0px)"/>
+              <source srcSet="nyclarge.jpg" type="image/jpeg" media="(min-width: 1536px)"/>
+              <source srcSet="hudson.jpg" type="image/jpeg" media="(min-width: 1280px)"/>
+              <source srcSet="hudson-1280_x_640.jpg" type="image/jpeg" media="(min-width: 1024px)"/>
+              <source srcSet="hudson-1024_x_512.jpg" type="image/jpeg" media="(min-width: 768px)"/>
+              <source srcSet="hudson-768_x_384.jpg" type="image/jpeg" media="(min-width: 640px)"/>
+              <source srcSet="hudson-640_x_320.jpg" type="image/jpeg" media="(min-width: 0px)"/>
               <img
-                className="xl:hidden w-full h-full"
-                src="/hudson.jpg"
+                className="w-full h-full object-cover"
+                src="/hudson-640_x_320.jpg"
                 alt="banner"
               />
             </picture>
             <picture>
               {/* <source srcSet="nyclarge.webp" type="image/webp" /> */}
-              <source srcSet="nyclarge.jpg" type="image/jpeg" />
-              <img
-                className="hidden xl:block w-full h-full object-cover object-center"
-                src="/nyclarge.jpg"
-                alt="4kbanner"
-              />
             </picture>
             <div className="absolute top-0 w-full h-full opacity-50 bg-gradient-to-r from-gray-500 to-transparent" />
           </div>
