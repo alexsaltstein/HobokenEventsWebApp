@@ -1,3 +1,5 @@
+import toast from "react-hot-toast";
+
 export const formatDate = (currDate) => {
   const today = new Date();
   const isToday =
@@ -120,4 +122,9 @@ export const handleError = (setError, errorMessage) => {
   setTimeout(() => {
     setError(null);
   }, 3000);
+};
+
+export const copyToClipboard = (text) => {
+  navigator.clipboard.writeText(text);
+  toast.success("Copied to clipboard");
 };

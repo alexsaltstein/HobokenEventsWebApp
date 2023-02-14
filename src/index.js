@@ -8,6 +8,7 @@ import { ListEventsPage } from "./components/admin/moderate/events/ListEventsPag
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import GlobalStyles from "./styles/GlobalStyles";
+import { Toaster } from "react-hot-toast";
 
 const Login = lazy(() => import("./components/admin/Login"));
 const Logout = lazy(() => import("./components/admin/Logout"));
@@ -23,6 +24,7 @@ const NotFound = lazy(() => import("./routes/NotFound"));
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <Toaster />
     <GlobalStyles />
     <RecoilRoot>
       <BrowserRouter>
