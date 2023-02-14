@@ -7,7 +7,6 @@ import {
   PhoneIcon,
   ExternalLinkIcon,
 } from "../components/icons/Icons";
-import { ResponsiveGrid } from "../components/templates/ResponsiveGrid";
 import { Loading } from "../utils/Loading";
 import { useScrollIntoView } from "../utils/useScrollIntoView";
 
@@ -133,3 +132,5 @@ export const Place = () => {
     </div>
   );
 };
+
+export default Place;

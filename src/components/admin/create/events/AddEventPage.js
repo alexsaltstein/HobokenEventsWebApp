@@ -252,3 +252,5 @@ export const AddEventPage = () => {
     </>
   );
 };
+
+export default AddEventPage;

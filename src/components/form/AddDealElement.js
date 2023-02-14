@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
 import { GenericInput } from "./GenericInput";
 import Checkbox from "./Checkbox";
 import DaySelect from "./DaySelect";
@@ -269,3 +268,5 @@ export const AddDealElement = ({
     </div>
   );
 };
+
+export default AddDealElement;

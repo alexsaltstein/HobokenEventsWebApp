@@ -8,3 +8,5 @@ export const PowerHour = () => {
     </div>
   );
 };
+
+export default PowerHour;
