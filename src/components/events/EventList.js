@@ -93,7 +93,7 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
           ))}
         </div>
       </div>
-      <div className="hidden 2xl:flex w-full h-[70vh]">
+      <div className="w-full h-[90vh] sticky top-[50px] z-50">
         <Map deals={eventData} />
       </div>
     </div>

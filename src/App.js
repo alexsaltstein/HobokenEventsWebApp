@@ -44,7 +44,7 @@ export default function App() {
   const [selectedDate, setSelectedDate] = React.useState(initialDate);
 
   return (
-    <div className="overflow-y-hidden overflow-x-hidden">
+    <div className="overflow-y-clip overflow-x-clip">
       <GoogleTags />
       <Banner />
       <div className="flex">

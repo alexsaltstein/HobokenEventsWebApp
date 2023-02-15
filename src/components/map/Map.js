@@ -1,8 +1,17 @@
+/** @jsxImportSource @emotion/react */
+import "twin.macro";
 import React from "react";
 import { GoogleMap, useJsApiLoader, OverlayView } from "@react-google-maps/api";
 import axios from "axios";
 import { LoadingAnimation } from "../icons/LoadingAnimation";
 import "./test.css";
+import { Link } from "react-router-dom";
+import {
+  RightArrowIcon,
+  CenterLocationIcon,
+  DirectionsIcon,
+} from "../icons/Icons";
+import { MapIcon } from "../icons";
 const containerStyle = {
   width: "100%",
   height: "100%",
@@ -63,6 +72,7 @@ const Map = ({ deals }) => {
         zoom={10}
         onLoad={onLoad}
         onUnmount={onUnmount}
+        clickableIcons={false}
       >
         {markerLocations.map((mark, index) => {
           const selected = selectedPlace === index;
@@ -111,21 +121,61 @@ const Map = ({ deals }) => {
           );
         })}
       </GoogleMap>
-      {selectedMark ? (
-        <button
-          onClick={() => {
-            map.panTo({ lat: selectedMark.lat, lng: selectedMark.lng });
-            if (map.zoom !== 17) {
-              map.setZoom(17);
-            }
-          }}
-        >
-          <div className="w-full bg-white mt-2 p-3 rounded-lg shadow-md">
-            <h1 className="text-2xl font-bold">{selectedMark?.placeName}</h1>
-            <h3>{selectedMark.title}</h3>
-          </div>
-        </button>
-      ) : null}
+      <div className="absolute bottom-10 flex justify-center w-full">
+        <div className="bg-white mt-2 p-3 rounded-lg shadow-md w-2/3">
+          {selectedMark ? (
+            <div>
+              <div className="flex justify-between items-end">
+                <button
+                  onClick={() => {
+                    map.panTo({ lat: selectedMark.lat, lng: selectedMark.lng });
+                    if (map.zoom !== 17) {
+                      map.setZoom(17);
+                    }
+                  }}
+                  className="text-button-blue hover:underline flex items-center"
+                >
+                  <CenterLocationIcon tw="h-4" />
+                  Re-center map
+                </button>
+                <a
+                  href={`https://www.google.com/maps/dir//${selectedMark.lat},${selectedMark.lng}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-button-blue p-1 rounded text-white drop-shadow hover:bg-button-hover-blue flex items-center"
+                >
+                  <DirectionsIcon tw="h-4" />
+                  Directions
+                </a>
+              </div>
+              <Link
+                to={`/place/${selectedMark.placeId}`}
+                className="flex items-center gap-x-2 flex-wrap"
+              >
+                <h1 className="text-2xl font-bold">
+                  {selectedMark?.placeName}
+                </h1>
+                <RightArrowIcon />
+              </Link>
+              <h3>All deals available: {selectedMark.title}</h3>
+              <hr className="my-1" />
+              <div className="flex justify-end">
+                <Link
+                  to={`/place/${selectedMark.placeId}`}
+                  className="italic text-hoboken-blue text-sm hover:underline"
+                >
+                  See all deals...
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center justify-center w-full h-full gap-x-2">
+              <LoadingAnimation />
+              <p>Places loading...</p>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   ) : (
     <div className="flex items-center justify-center w-full h-full">
