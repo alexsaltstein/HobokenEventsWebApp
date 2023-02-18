@@ -16,6 +16,10 @@ export const About = () => {
                 alt="banner"
               />
             </picture>
+            <p className="text-center text-sm">
+              From left to right:{" "}
+              <span className="italic">Brandon, Tony, Alex, Dyer, Andy</span>
+            </p>
           </div>
           <div className=" max-w-screen-sm">
             <h2 className="mb-2 text-2xl tracking-tight font-bold text-gray-900">
@@ -37,6 +41,12 @@ export const About = () => {
                     }}
                   />
                 </picture>
+                <p className="text-center text-sm">
+                  From left to right:{" "}
+                  <span className="italic">
+                    Brandon, Tony, Alex, Dyer, Andy
+                  </span>
+                </p>
               </div>
               <div>
                 <div className="mb-10">
