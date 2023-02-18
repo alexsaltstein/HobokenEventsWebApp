@@ -2,14 +2,16 @@ import React from "react";
 import { BannerAd } from "../components/ads/BannerAd";
 
 export const About = () => {
+  const [image, setImage] = React.useState('/team.png');
   return (
     <div className="flex justify-center w-full">
       <section className="bg-white">
         <div className="py-8 px-4 mx-auto max-w-screen sm:py-16 lg:px-6 flex">
-          <div className="hidden mr-20 justify-center xl:block">
+          <div className="hidden mr-20 justify-center  max-h-10 max-w-10 xl:block">
             <picture>
-              <source srcSet="bar.jpg" type="image/jpeg" />
-              <img className="rounded-lg" src="/bar.jpg" alt="banner" />
+              <img className="rounded-lg max-h-96 max-w-96 " src="/team.png"
+                onMouseOver={e => (e.currentTarget.src = "/chug.png")}
+                onMouseOut={e => (e.currentTarget.src = "/team.png")} alt="banner" />
             </picture>
           </div>
           <div className=" max-w-screen-sm">
@@ -19,8 +21,7 @@ export const About = () => {
             <div className="grid pt-8 text-left border-t border-gray-200 md:gap-16 md:grid-cols-1">
               <div className="justify-center mb-4 xl:hidden">
                 <picture>
-                  <source srcSet="bar.jpg" type="image/jpeg" />
-                  <img className="rounded-lg" src="/bar.jpg" alt="banner" />
+                  <img className="rounded-lg" src="/team.png" alt="banner" />
                 </picture>
               </div>
               <div>
