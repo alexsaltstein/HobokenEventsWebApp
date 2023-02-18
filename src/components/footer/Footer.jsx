@@ -41,70 +41,71 @@ export default function Footer() {
           </ul>
         </div>
         <hr className="my-4 sm:mx-auto lg:my-4" />
-        { isDesktop ?
-        <div className="flex space-y-2 my-3 md:items-center flex-col md:flex-row md:justify-between">
-          <div className="flex-col">
-            <h4 className="font-bold text-gray-500 text-lg">Entertainment</h4>
-            <a href="/powerhour" className="text-gray-500 hover:underline">
-              <p>Power hour</p>
-            </a>
+        {isDesktop ? (
+          <div className="flex space-y-2 my-3 md:items-center flex-col md:flex-row md:justify-between">
+            <div className="flex-col">
+              <h4 className="font-bold text-gray-500 text-lg">Entertainment</h4>
+              <a href="/powerhour" className="text-gray-500 hover:underline">
+                <p>Power hour</p>
+              </a>
+            </div>
+            <div className="flex gap-x-2">
+              <SocialIcon
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ height: "35px", width: "35px" }}
+                className="bg-white rounded-full"
+                url="https://discord.gg/vM2cA32Seg"
+              />
+              <SocialIcon
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ height: "35px", width: "35px" }}
+                className="bg-white rounded-full"
+                url="https://twitter.com/HudsonHapps"
+              />
+              <SocialIcon
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ height: "35px", width: "35px" }}
+                className="bg-white rounded-full"
+                url="https://www.instagram.com/hudson_happs/"
+              />
+            </div>
           </div>
-          <div className="flex gap-x-2">
-            <SocialIcon
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ height: "35px", width: "35px" }}
-              className="bg-white rounded-full"
-              url="https://discord.gg/vM2cA32Seg"
-            />
-            <SocialIcon
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ height: "35px", width: "35px" }}
-              className="bg-white rounded-full"
-              url="https://twitter.com/HudsonHapps"
-            />
-            <SocialIcon
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ height: "35px", width: "35px" }}
-              className="bg-white rounded-full"
-              url="https://www.instagram.com/hudsonhappsapp/"
-            />
+        ) : (
+          <div className="flex space-y-2 my-3 md:items-center flex-col md:flex-row md:justify-between">
+            <div className="flex gap-x-2">
+              <SocialIcon
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ height: "35px", width: "35px" }}
+                className="bg-white rounded-full"
+                url="https://discord.gg/vM2cA32Seg"
+              />
+              <SocialIcon
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ height: "35px", width: "35px" }}
+                className="bg-white rounded-full"
+                url="https://twitter.com/HudsonHapps"
+              />
+              <SocialIcon
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ height: "35px", width: "35px" }}
+                className="bg-white rounded-full"
+                url="https://www.instagram.com/hudson_happs/"
+              />
+            </div>
+            <div className="flex-col">
+              <h4 className="font-bold text-gray-500 text-lg">Entertainment</h4>
+              <a href="/powerhour" className="text-gray-500 hover:underline">
+                <p>Power hour</p>
+              </a>
+            </div>
           </div>
-        </div> :
-        <div className="flex space-y-2 my-3 md:items-center flex-col md:flex-row md:justify-between">
-          <div className="flex gap-x-2">
-            <SocialIcon
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ height: "35px", width: "35px" }}
-              className="bg-white rounded-full"
-              url="https://discord.gg/vM2cA32Seg"
-            />
-            <SocialIcon
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ height: "35px", width: "35px" }}
-              className="bg-white rounded-full"
-              url="https://twitter.com/HudsonHapps"
-            />
-            <SocialIcon
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ height: "35px", width: "35px" }}
-              className="bg-white rounded-full"
-              url="https://www.instagram.com/hudsonhappsapp/"
-            />
-          </div>
-          <div className="flex-col">
-            <h4 className="font-bold text-gray-500 text-lg">Entertainment</h4>
-            <a href="/powerhour" className="text-gray-500 hover:underline">
-              <p>Power hour</p>
-            </a>
-          </div>
-        </div> 
-        }
+        )}
         <span className="block text-sm text-gray-700 sm:text-center ">
           © 2022{" "}
           <a href="/" className="hover:underline">
