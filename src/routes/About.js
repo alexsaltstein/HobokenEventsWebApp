@@ -29,7 +29,6 @@ export const About = () => {
                     src="/team.png"
                     alt="banner"
                     onClick={(e) => {
-                      console.log(e.currentTarget.src);
                       e.currentTarget.src = e.currentTarget.src.endsWith(
                         "/chug.png"
                       )
