@@ -2,7 +2,6 @@ import React from "react";
 import { BannerAd } from "../components/ads/BannerAd";
 
 export const About = () => {
-  const [image, setImage] = React.useState('/team.png');
   return (
     <div className="flex justify-center w-full">
       <section className="bg-white">
