@@ -157,7 +157,16 @@ const Map = ({ deals }) => {
                 </h1>
                 <RightArrowIcon />
               </Link>
-              <h3>All deals available: {selectedMark.title}</h3>
+              <div>
+                All deals available:{" "}
+                {selectedMark.deals.map((deal) => {
+                  return (
+                    <Link to={`/place/${deal.placeId}?deal_id=${deal._id}`}>
+                      <h3 className="hover:underline">- {deal.title}</h3>
+                    </Link>
+                  );
+                })}
+              </div>
               <hr className="my-1" />
               <div className="flex justify-end">
                 <Link
