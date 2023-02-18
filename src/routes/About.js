@@ -8,9 +8,13 @@ export const About = () => {
         <div className="py-8 px-4 mx-auto max-w-screen sm:py-16 lg:px-6 flex">
           <div className="hidden mr-20 justify-center  max-h-10 max-w-10 xl:block">
             <picture>
-              <img className="rounded-lg max-h-96 max-w-96 " src="/team.png"
-                onMouseOver={e => (e.currentTarget.src = "/chug.png")}
-                onMouseOut={e => (e.currentTarget.src = "/team.png")} alt="banner" />
+              <img
+                className="rounded-lg max-h-96 max-w-96 "
+                src="/team.png"
+                onMouseOver={(e) => (e.currentTarget.src = "/chug.png")}
+                onMouseOut={(e) => (e.currentTarget.src = "/team.png")}
+                alt="banner"
+              />
             </picture>
           </div>
           <div className=" max-w-screen-sm">
@@ -20,7 +24,19 @@ export const About = () => {
             <div className="grid pt-8 text-left border-t border-gray-200 md:gap-16 md:grid-cols-1">
               <div className="justify-center mb-4 xl:hidden">
                 <picture>
-                  <img className="rounded-lg" src="/team.png" alt="banner" />
+                  <img
+                    className="rounded-lg"
+                    src="/team.png"
+                    alt="banner"
+                    onClick={(e) => {
+                      console.log(e.currentTarget.src);
+                      e.currentTarget.src = e.currentTarget.src.endsWith(
+                        "/chug.png"
+                      )
+                        ? "/team.png"
+                        : "/chug.png";
+                    }}
+                  />
                 </picture>
               </div>
               <div>
@@ -41,12 +57,14 @@ export const About = () => {
                     What is Hudson Happs about?
                   </h3>
                   <p className="text-gray-500">
-                  HudsonHapps wants to bring friends and community back together. 
+                    HudsonHapps wants to bring friends and community back
+                    together.
                   </p>
                   <br />
                   <p className="text-gray-500">
-                  Living in the Hudson County/NYC area can be expensive, especially in today's economy. So
-                  our team started looking for deals so we can still be social and not break the bank.
+                    Living in the Hudson County/NYC area can be expensive,
+                    especially in today's economy. So our team started looking
+                    for deals so we can still be social and not break the bank.
                   </p>
                   <br />
                   <p className="text-gray-500">
@@ -73,7 +91,9 @@ export const About = () => {
                     Who are we?
                   </h3>
                   <p className="text-gray-500">
-                    Software Engineers from Stevens Institute of Technology (20/21) looking to improve Hudson County’s communal painpoints with tech.
+                    Software Engineers from Stevens Institute of Technology
+                    (20/21) looking to improve Hudson County’s communal
+                    painpoints with tech.
                   </p>
                 </div>
                 <div className="mb-10">
@@ -93,9 +113,16 @@ export const About = () => {
                     How can I help?
                   </h3>
                   <p className="text-gray-500">
-                    FEEDBACK! Reach out via our email at <a href="mailto:support@hudsonhapps.com" className="text-button-blue">support@hudsonhapps.com</a>, click contact us, or dm
-                    us on any socials! Feedback is the best way you can let us know what you’d want us to
-                    make! As a communal app we want to hear from all of you.
+                    FEEDBACK! Reach out via our email at{" "}
+                    <a
+                      href="mailto:support@hudsonhapps.com"
+                      className="text-button-blue"
+                    >
+                      support@hudsonhapps.com
+                    </a>
+                    , click contact us, or dm us on any socials! Feedback is the
+                    best way you can let us know what you’d want us to make! As
+                    a communal app we want to hear from all of you.
                   </p>
                 </div>
               </div>
