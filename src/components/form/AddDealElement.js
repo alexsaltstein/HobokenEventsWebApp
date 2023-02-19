@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import { GenericInput } from "./GenericInput";
 import Checkbox from "./Checkbox";
 import DaySelect from "./DaySelect";
-import { IDIcon } from "../icons";
+import { IdIcon } from "../icons/Icons";
 import "./formStyle.css";
 import { DAYS_ENUM } from "../../utils/common";
 import Select from "react-select";
@@ -126,7 +126,7 @@ export const AddDealElement = ({
             extraProps="w-full"
             required
             placeholder="Taco Tuesday"
-            icon={<IDIcon />}
+            icon={<IdIcon />}
             onChange={(event) => setDealOption("title", event.target.value)}
           />
         </div>
