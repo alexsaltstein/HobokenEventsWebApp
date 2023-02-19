@@ -4,7 +4,7 @@ import { useUserState } from "../../../../utils/userState";
 import { AddDealElement } from "../../../form/AddDealElement";
 import { ErrorText } from "../../../form/ErrorText";
 import { GenericInput } from "../../../form/GenericInput";
-import { MapIcon } from "../../../icons";
+import { MapIcon } from "../../../icons/Icons";
 import { Autocomplete } from "../../../form/Autocomplete";
 import { LoadingAnimation } from "../../../icons/LoadingAnimation";
 import {

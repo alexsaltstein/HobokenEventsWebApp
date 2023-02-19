@@ -13,8 +13,8 @@ const eventTags = [
 ]
 const entertainmentTags = [
   {value: 'comedy', label: 'Comedy'},
-  {value: 'music_Live', label: 'Music: Live'},
-  {value: 'music_DJ', label: 'Music: DJ'},
+  {value: 'live', label: 'Music: Live'},
+  {value: 'dj', label: 'Music: DJ'},
 ]
 
 export const groupedTags = [

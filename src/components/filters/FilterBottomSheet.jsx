@@ -2,7 +2,7 @@ import React from "react";
 import Sheet from "react-modal-sheet";
 import Checkbox from "./FilterCheckbox";
 import { XIcon } from "../icons/Icons";
-import { INITIAL_FILTER } from "../../constants/common";
+import { INITIAL_FILTER, FILTER_VALUES } from "../../constants/common";
 
 export function FilterBottomSheet({
   isOpen,
@@ -66,102 +66,27 @@ export function FilterBottomSheet({
                   setFilters((prev) => ({ ...prev, active: getTime() }))
                 }
               />
-              <hr className="my-2 w-full"></hr>
-              <h1 className="text-lg px-8 font-semibold">Location</h1>
-              <Checkbox
-                text={"Hoboken"}
-                checked={filters.hobo}
-                onClick={() =>
-                  setFilters((prev) => ({ ...prev, hobo: !filters.hobo }))
-                }
-              />
-              <Checkbox
-                text={"Jersey City"}
-                checked={filters.jc}
-                onClick={() =>
-                  setFilters((prev) => ({ ...prev, jc: !filters.jc }))
-                }
-              />
-              <hr className="my-2 w-full"></hr>
-              <h1 className="text-lg px-8 font-semibold">Food</h1>
-              <Checkbox
-                text={"Brunch"}
-                checked={filters.brunch}
-                onClick={() =>
-                  setFilters((prev) => ({ ...prev, brunch: !filters.brunch }))
-                }
-              />
-              <Checkbox
-                text={"Apps"}
-                checked={filters.apps}
-                onClick={() =>
-                  setFilters((prev) => ({ ...prev, apps: !filters.apps }))
-                }
-              />
-
-              <Checkbox
-                text={"Lunch"}
-                checked={filters.lunch}
-                onClick={() =>
-                  setFilters((prev) => ({ ...prev, lunch: !filters.lunch }))
-                }
-              />
-              <Checkbox
-                text={"Dinner"}
-                checked={filters.dinner}
-                onClick={() =>
-                  setFilters((prev) => ({ ...prev, dinner: !filters.dinner }))
-                }
-              />
-              <hr className="my-2 w-full"></hr>
-              <h1 className="text-lg px-8 font-semibold">Drinks</h1>
-              <Checkbox
-                text={"Cocktails"}
-                checked={filters.cocktails}
-                onClick={() =>
-                  setFilters((prev) => ({
-                    ...prev,
-                    cocktails: !filters.cocktails,
-                  }))
-                }
-              />
-              <Checkbox
-                text={"Other Drinks"}
-                checked={filters.drinks}
-                onClick={() =>
-                  setFilters((prev) => ({ ...prev, drinks: !filters.drinks }))
-                }
-              />
-              <hr className="my-2 w-full"></hr>
-              <h1 className="text-lg px-8 font-semibold">Entertainment</h1>
-              <Checkbox
-                text={"Trivia"}
-                checked={filters.trivia}
-                onClick={() =>
-                  setFilters((prev) => ({ ...prev, trivia: !filters.trivia }))
-                }
-              />
-              <Checkbox
-                text={"Music - Live"}
-                checked={filters.live}
-                onClick={() =>
-                  setFilters((prev) => ({ ...prev, live: !filters.live }))
-                }
-              />
-              <Checkbox
-                text={"Music - DJ"}
-                checked={filters.dj}
-                onClick={() =>
-                  setFilters((prev) => ({ ...prev, dj: !filters.dj }))
-                }
-              />
-              <Checkbox
-                text={"Comedy"}
-                checked={filters.comedy}
-                onClick={() =>
-                  setFilters((prev) => ({ ...prev, comedy: !filters.comedy }))
-                }
-              />
+              {
+                FILTER_VALUES.map((category) => (
+                  <div>
+                    <hr className="my-4"></hr>
+                    <h1 className="text-lg font-semibold ml-8">{Object.keys(category)[0]}</h1>
+                    {
+                      Object.values(category).map((filterGroup) => (
+                        Object.values(filterGroup).map((filter) => (
+                            <Checkbox
+                              text={filter.label}
+                              checked={filters[filter.val]}
+                              onClick={() =>
+                                setFilters((prev) => ({ ...prev, [filter.val]: !filters[filter.val] }))
+                              }
+                            />
+                        ))
+                      ))
+                    }
+                  </div>
+                ))
+              }
             </div>
           </Sheet.Content>
           <div className="flex mt-20 w-full">
