@@ -88,8 +88,10 @@ export default function App() {
               </Calendar>
             }
           />
-          <div className="max-w-full max-h-fit mt-4 mx-4">
-            <BannerAd />
+          <div className="flex max-w-full max-h-fit mt-4 justify-center">
+            <div className="w-fit h-fit">
+              <BannerAd />  
+            </div>
           </div>
         </div>
       </div>

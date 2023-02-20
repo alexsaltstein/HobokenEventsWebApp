@@ -11,7 +11,6 @@ import {
   CenterLocationIcon,
   DirectionsIcon,
 } from "../icons/Icons";
-import { MapIcon } from "../icons";
 const containerStyle = {
   width: "100%",
   height: "100%",
@@ -65,7 +64,7 @@ const Map = ({ deals }) => {
 
   const selectedMark = markerLocations[selectedPlace];
   return isLoaded ? (
-    <div className="w-full flex h-full flex-col p-4">
+    <div className="w-full flex h-screen flex-col p-4 lg:pr-14 xl:pr-4">
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -73,6 +72,7 @@ const Map = ({ deals }) => {
         onLoad={onLoad}
         onUnmount={onUnmount}
         clickableIcons={false}
+        options={{fullscreenControl: false, zoomControl : false}}
       >
         {markerLocations.map((mark, index) => {
           const selected = selectedPlace === index;
@@ -121,8 +121,8 @@ const Map = ({ deals }) => {
           );
         })}
       </GoogleMap>
-      <div className="absolute bottom-10 flex justify-center w-full">
-        <div className="bg-white mt-2 p-3 rounded-lg shadow-md w-2/3">
+      <div className="absolute left-0 bottom-10 flex justify-center w-full ">
+        <div className="bg-white mt-2 p-3 rounded-lg shadow-md w-3/4 z-50">
           {selectedMark ? (
             <div>
               <div className="flex justify-between items-end">
