@@ -74,7 +74,7 @@ export const EventItem = ({ eventData, moderate }) => {
               <div className="flex justify-between sm:flex-row flex-col-reverse sm:space-y-0">
                 <div className="flex flex-wrap flex-col">
                   <p className="font-semibold opacity-75 text-2xl mr-2">
-                    {p.name}
+                    {placeData.name}
                   </p>
                   <div className="flex">
                     <p className="mb-1 text-base">{title}</p>
