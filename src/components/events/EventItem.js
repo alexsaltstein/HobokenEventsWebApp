@@ -52,7 +52,7 @@ export const EventItem = ({ eventData, moderate }) => {
     }
   }, [showReportModal]);
 
-  const p = place[0];
+  const placeData = place[0];
   return (
     <>
       {showReportModal ? (
