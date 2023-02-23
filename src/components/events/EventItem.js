@@ -85,7 +85,7 @@ export const EventItem = ({ eventData, moderate }) => {
                   <div tw="flex justify-end mb-1 md:mt-1">
                     <div tw="text-sm flex items-center text-hoboken-blue">
                       <MapPinIcon tw="h-5" />
-                      {p.address.city}
+                      {placeData.address.city}
                     </div>
                   </div>
                   <DayDisplay availableDays={dayOfWeek} />
