@@ -30,6 +30,7 @@ export const Place = () => {
       const res = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/place/${id}`
       );
+      console.log("fired", res);
       console.log(res.error);
       setPlaceData(res.data);
       setLoading(false);
@@ -37,8 +38,10 @@ export const Place = () => {
       setLoading(false);
     }
   }, [id]);
+  console.log(placeData);
 
   React.useEffect(() => {
+    setLoading(true);
     (async () => {
       await fetchData();
     })();

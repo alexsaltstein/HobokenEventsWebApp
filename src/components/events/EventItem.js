@@ -52,6 +52,7 @@ export const EventItem = ({ eventData, moderate }) => {
     }
   }, [showReportModal]);
 
+  const p = place[0];
   return (
     <>
       {showReportModal ? (
@@ -73,7 +74,7 @@ export const EventItem = ({ eventData, moderate }) => {
               <div className="flex justify-between sm:flex-row flex-col-reverse sm:space-y-0">
                 <div className="flex flex-wrap flex-col">
                   <p className="font-semibold opacity-75 text-2xl mr-2">
-                    {place.name}
+                    {p.name}
                   </p>
                   <div className="flex">
                     <p className="mb-1 text-base">{title}</p>
@@ -84,7 +85,7 @@ export const EventItem = ({ eventData, moderate }) => {
                   <div tw="flex justify-end mb-1 md:mt-1">
                     <div tw="text-sm flex items-center text-hoboken-blue">
                       <MapPinIcon tw="h-5" />
-                      {place.address.city}
+                      {p.address.city}
                     </div>
                   </div>
                   <DayDisplay availableDays={dayOfWeek} />
