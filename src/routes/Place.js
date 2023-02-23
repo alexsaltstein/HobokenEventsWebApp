@@ -26,19 +26,16 @@ export const Place = () => {
 
   const fetchData = React.useCallback(async () => {
     try {
-      console.log(`${process.env.REACT_APP_API_URL}/api/place/${id}`);
       const res = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/place/${id}`
       );
-      console.log("fired", res);
-      console.log(res.error);
       setPlaceData(res.data);
       setLoading(false);
     } catch (e) {
+      console.log(e);
       setLoading(false);
     }
   }, [id]);
-  console.log(placeData);
 
   React.useEffect(() => {
     setLoading(true);

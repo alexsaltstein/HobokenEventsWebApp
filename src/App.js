@@ -14,7 +14,6 @@ import { FilterMenuDesktop } from "./components/filters/FilterMenu";
 import { FilterBottomSheet } from "./components/filters/FilterBottomSheet";
 import { FilterIcon } from "./components/icons/Icons";
 import { INITIAL_FILTER } from "./constants/common";
-import axios from "axios";
 
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,21 +42,6 @@ export default function App() {
 
   const initialDate = isValidDate(queryDate) ? queryDate : new Date();
   const [selectedDate, setSelectedDate] = React.useState(initialDate);
-
-  // React.useEffect(() => {
-  //   (async () => {
-  //     const res = await axios.get(
-  //       `${
-  //         process.env.REACT_APP_API_URL
-  //       }/api/deal/count?approved.state=active&pageNum=0&dayOfWeek=${getDayOfWeek(
-  //         selectedDate.getDay()
-  //       )}&${filterResult}${filters.hobo ? "&city=Hoboken" : ""}${
-  //         filters.jc ? "&city=Jersey City" : ""
-  //       }${filters.active ? `&active=${filters.active}` : ""}`
-  //     );
-  //     console.log(res.data);
-  //   })();
-  // }, [filters, filterResult, selectedDate]);
 
   return (
     <div className="overflow-y-hidden overflow-x-hidden">
