@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import { EventList } from "./components/events/EventList";
 import { Calendar } from "../src/components/calendar/Calendar";
-import { getDayOfWeek, isValidDate } from "./utils/common";
+import { getCurrPage, getDayOfWeek, isValidDate } from "./utils/common";
 import Banner from "./components/banner/Banner";
 import { BannerAd } from "./components/ads/BannerAd";
 import { GoogleTags } from "./meta/GoogleTags";
@@ -14,6 +14,9 @@ import { FilterMenuDesktop } from "./components/filters/FilterMenu";
 import { FilterBottomSheet } from "./components/filters/FilterBottomSheet";
 import { FilterIcon } from "./components/icons/Icons";
 import { INITIAL_FILTER } from "./constants/common";
+import axios from "axios";
+import { PageNumbers } from "./utils/PageNumbers";
+import { useScrollIntoView } from "./utils/useScrollIntoView";
 
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,6 +46,23 @@ export default function App() {
   const initialDate = isValidDate(queryDate) ? queryDate : new Date();
   const [selectedDate, setSelectedDate] = React.useState(initialDate);
 
+  const [totalPages, setTotalPages] = React.useState(0);
+  React.useEffect(() => {
+    (async () => {
+      const url = `${
+        process.env.REACT_APP_API_URL
+      }/api/deal/count?approved.state=active&dayOfWeek=${getDayOfWeek(
+        selectedDate.getDay()
+      )}&${filterResult}${filters.hobo ? "&city=Hoboken" : ""}${
+        filters.jc ? "&city=Jersey City" : ""
+      }${filters.active ? `&active=${filters.active}` : ""}`;
+      const res = await axios.get(url);
+      setTotalPages(res.data / 20);
+    })();
+  }, [filters, selectedDate]);
+
+  const currPage = getCurrPage(searchParams, totalPages);
+
   return (
     <div className="overflow-y-hidden overflow-x-hidden">
       <GoogleTags />
@@ -52,7 +72,7 @@ export default function App() {
           <EventList
             url={`${
               process.env.REACT_APP_API_URL
-            }/api/deal?approved.state=active&dayOfWeek=${getDayOfWeek(
+            }/api/deal?approved.state=active&pageNum=${currPage}&dayOfWeek=${getDayOfWeek(
               selectedDate.getDay()
             )}&${filterResult}${filters.hobo ? "&city=Hoboken" : ""}${
               filters.jc ? "&city=Jersey City" : ""
@@ -88,6 +108,9 @@ export default function App() {
               </Calendar>
             }
           />
+          <div className="w-full flex justify-center">
+            <PageNumbers currPage={currPage} totalPages={totalPages} />
+          </div>
           <div className="max-w-full max-h-fit mt-4 mx-4">
             <BannerAd />
           </div>

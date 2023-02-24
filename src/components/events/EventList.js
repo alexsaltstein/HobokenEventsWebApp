@@ -12,6 +12,7 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
   const [searchParams] = useSearchParams();
   const selectedDeal = searchParams.get(DEAL_QUERY_PARAM);
   const topElemRef = useScrollIntoView([selectedDeal, loading]);
+
   const [eventData, setEventData] = React.useState(null);
   const fetchData = React.useCallback(async () => {
     try {
@@ -34,6 +35,8 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
       await fetchData();
     })();
   }, [fetchData]);
+
+  const topAnchor = useScrollIntoView([eventData]);
 
   if (loading) {
     return (
@@ -69,29 +72,32 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
   }
 
   return (
-    <div className="relative flex w-screen">
-      {menu}
-      <div className="w-[80%] max-w-7xl">
-        {calendar}
-        <div className="relative md:columns-2 md:gap-0 2xl:columns-3 w-screen lg:w-full md:px-4">
-          {eventData.map((event, index) => (
-            <div
-              key={`list-item-${index}`}
-              className="mb-4 px-8 md:px-4 w-screen md:w-auto lg:w-96 xl:w-auto overflow-y-hidden"
-              ref={selectedDeal === event._id ? topElemRef : null}
-            >
-              <EventItem key={`list-item-${index}`} eventData={event} />
-              {index !== 0 && index % EVENTS_BETWEEN_ADS === 0 ? (
-                <div className="flex max-h-96 mt-4 lg:hidden">
-                  <div className="w-full">
-                    <BannerAd />
+    <>
+      <div ref={topAnchor} />
+      <div className="relative flex w-screen">
+        {menu}
+        <div className="w-[80%] max-w-7xl">
+          {calendar}
+          <div className="relative md:columns-2 md:gap-0 2xl:columns-3 w-screen lg:w-full md:px-4">
+            {eventData.map((event, index) => (
+              <div
+                key={`list-item-${index}`}
+                className="mb-4 px-8 md:px-4 w-screen md:w-auto lg:w-96 xl:w-auto overflow-y-hidden"
+                ref={selectedDeal === event._id ? topElemRef : null}
+              >
+                <EventItem key={`list-item-${index}`} eventData={event} />
+                {index !== 0 && index % EVENTS_BETWEEN_ADS === 0 ? (
+                  <div className="flex max-h-96 mt-4 lg:hidden">
+                    <div className="w-full">
+                      <BannerAd />
+                    </div>
                   </div>
-                </div>
-              ) : null}
-            </div>
-          ))}
+                ) : null}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
