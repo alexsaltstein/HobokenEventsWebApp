@@ -1,4 +1,5 @@
 import toast from "react-hot-toast";
+import { PAGE_QUERY_PARAM } from "./PageNumbers";
 
 export const formatDate = (currDate) => {
   const today = new Date();
@@ -127,4 +128,27 @@ export const handleError = (setError, errorMessage) => {
 export const copyToClipboard = (text) => {
   navigator.clipboard.writeText(text);
   toast.success("Copied to clipboard");
+};
+
+export const safeCastNum = (string) => {
+  try {
+    const num = parseInt(string);
+    if (num != string || isNaN(num)) {
+      throw "string is not a valid int";
+    }
+    return num;
+  } catch (e) {
+    console.error("error in safeCastNum", e);
+    return 0;
+  }
+};
+
+export const getCurrPage = (searchParams, totalPages) => {
+  const queryParam = searchParams.get(PAGE_QUERY_PARAM)
+    ? safeCastNum(searchParams.get(PAGE_QUERY_PARAM))
+    : 0;
+  if (queryParam < 0 || queryParam > totalPages) {
+    return 0;
+  }
+  return queryParam;
 };
