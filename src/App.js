@@ -16,6 +16,7 @@ import { FilterIcon } from "./components/icons/Icons";
 import { INITIAL_FILTER } from "./constants/common";
 import axios from "axios";
 import { PageNumbers } from "./utils/PageNumbers";
+import { useScrollIntoView } from "./utils/useScrollIntoView";
 
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
