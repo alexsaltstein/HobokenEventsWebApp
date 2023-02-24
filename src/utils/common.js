@@ -147,7 +147,7 @@ export const getCurrPage = (searchParams, totalPages) => {
   const queryParam = searchParams.get(PAGE_QUERY_PARAM)
     ? safeCastNum(searchParams.get(PAGE_QUERY_PARAM))
     : 0;
-  if (queryParam < 0 || queryParam > totalPages) {
+  if (queryParam < 0 || queryParam >= totalPages) {
     return 0;
   }
   return queryParam;
