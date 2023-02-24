@@ -1,9 +1,8 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import { getCurrPage, safeCastNum } from "./common";
 
 export const PAGE_QUERY_PARAM = "page_num";
-export const PageNumbers = ({ totalPages }) => {
+export const PageNumbers = ({ currPage, totalPages }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const onPageChange = (newPageNum) => {
     if (newPageNum < 0 || newPageNum > totalPages) {
@@ -30,8 +29,6 @@ export const PageNumbers = ({ totalPages }) => {
       return [currPage, currPage + 1, currPage + 2];
     }
   };
-
-  const currPage = getCurrPage(searchParams, totalPages);
 
   return (
     <>

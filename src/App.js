@@ -108,7 +108,7 @@ export default function App() {
             }
           />
           <div className="w-full flex justify-center">
-            <PageNumbers totalPages={totalPages} />
+            <PageNumbers currPage={currPage} totalPages={totalPages} />
           </div>
           <div className="max-w-full max-h-fit mt-4 mx-4">
             <BannerAd />
