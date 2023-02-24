@@ -72,7 +72,7 @@ const Map = ({ deals }) => {
         onLoad={onLoad}
         onUnmount={onUnmount}
         clickableIcons={false}
-        options={{fullscreenControl: false, zoomControl : false}}
+        options={{ fullscreenControl: false, zoomControl: false }}
       >
         {markerLocations.map((mark, index) => {
           const selected = selectedPlace === index;
