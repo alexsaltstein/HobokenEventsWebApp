@@ -16,7 +16,7 @@ import { DonateButton } from "../buyUsABeer/DonateButton";
 export default function DropdownMenu({ open, authed }) {
   return (
     <>
-      <div className="relative text-left md:hidden">
+      <div className="relative text-left lg:hidden">
         <div
           className={`fixed transition-all duration-500 ${
             open ? "top-12" : "-top-80"
@@ -31,7 +31,7 @@ export default function DropdownMenu({ open, authed }) {
             {!authed ? null : (
               <a
                 href="/admin/create/events"
-                className="text-gray-700 px-4 py-3 text-sm flex border-b hover:bg-gray-100"
+                className="text-gray-700 px-4 py-3 text-sm flex border-b hover:bg-gray-100 items-center "
                 role="menuitem"
                 tabIndex="-1"
                 id="menu-item-0"
@@ -40,20 +40,14 @@ export default function DropdownMenu({ open, authed }) {
                 <p className="mt-auto mb-auto">What's Happening?</p>
               </a>
             )}
-            <a
-                href="https://www.paypal.com/donate/?hosted_button_id=LL9SK9JNL2E54"
-                className="text-gray-700 px-4 py-3 text-sm flex border-b hover:bg-gray-100"
-                role="menuitem"
-                tabIndex="-1"
-                id="menu-item-0"
-              >
-                <CurrencyDollarIcon tw="mr-2" />
-                <p className="mt-auto mb-auto">Buy us a beer! 🍻</p>
-              </a>
+            <div tw="text-gray-700 px-4 py-3 text-sm flex items-center border-b hover:bg-gray-100">
+              <CurrencyDollarIcon tw="mr-2" />
+              <DonateButton tw="w-full" />
+            </div>
             {authed ? (
               <a
                 href="/admin/moderate/events"
-                className="text-gray-700 px-4 py-3 text-sm flex border-b hover:bg-gray-100"
+                className="text-gray-700 px-4 py-3 text-sm flex border-b hover:bg-gray-100 items-center"
                 role="menuitem"
                 tabIndex="-1"
                 id="menu-item-1"
@@ -64,7 +58,7 @@ export default function DropdownMenu({ open, authed }) {
             ) : null}
             <a
               href="/about"
-              className="text-gray-700 px-4 py-3 text-sm flex border-b hover:bg-gray-100"
+              className="text-gray-700 px-4 py-3 text-sm flex border-b hover:bg-gray-100 items-center "
               role="menuitem"
               tabIndex="-1"
               id="menu-item-2"

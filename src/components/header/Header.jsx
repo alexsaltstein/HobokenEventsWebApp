@@ -26,14 +26,14 @@ export default function Header() {
   return (
     <>
       <nav className="flex top-0 left-0 h-14 w-screen bg-button-blue border-gray-200 py-2.5 z-30 shadow fixed">
-        <div className="absolute w-screen top-0 left-8 container flex justify-between items-start mx-auto md:top-auto">
+        <div className="absolute w-full top-0 left-8 flex justify-between items-start mx-auto top-auto">
           <a href="/" className="flex md:items-center gap-x-2">
-            <IconLogoWhite tw="h-8 w-8 md:mb-1 mt-3 md:mt-0" />
-            <WordmarkLogo tw="md:w-[200px] w-[150px] md:mt-0 mt-2 self-center whitespace-nowrap fill-white" />
+            <IconLogoWhite tw="h-8 w-8 md:mb-1 md:mt-0" />
+            <WordmarkLogo tw="md:w-[200px] w-[150px] self-center whitespace-nowrap fill-white" />
           </a>
           <button
             type="button"
-            className="inline-flex items-center p-2 ml-3 mr-10 mt-2 text-sm outline-none  text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200"
+            className=" p-2 ml-3 mr-10 text-sm outline-none text-gray-500 rounded-lg lg:hidden focus:outline-none focus:ring-2 focus:ring-gray-200"
             aria-controls="navbar-default"
             aria-expanded="false"
             aria-label="hamburgerMenu"
@@ -72,12 +72,16 @@ export default function Header() {
             )}
           </button>
           <div
-            className="hidden w-full md:block md:w-auto md:fixed md:right-6"
+            className="hidden w-full lg:block md:w-auto md:fixed md:right-6"
             id="navbar-default"
           >
             <ul className="flex flex-col ml-auto mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-button-blue">
               <li>
-                <DonateButton/>
+                <DonateButton
+                  className={`block py-2 pr-4 pl-3 mt-${
+                    authed ? 3 : 2
+                  } text-white hover:text-gray-200 md:border-0 md:p-0`}
+                />
               </li>
               <li>
                 <a
