@@ -7,6 +7,7 @@ import {
   SignInButton,
   SignOutButton,
   ModerateIcon,
+  CurrencyDollarIcon,
 } from "../icons/Icons";
 import "./Header.css";
 import { SocialIcon } from "react-social-icons";
@@ -46,7 +47,8 @@ export default function DropdownMenu({ open, authed }) {
                 tabIndex="-1"
                 id="menu-item-0"
               >
-                <p className="mt-auto mb-auto">Buy us a beer!</p>
+                <CurrencyDollarIcon tw="mr-2" />
+                <p className="mt-auto mb-auto">Buy us a beer! 🍻</p>
               </a>
             {authed ? (
               <a
