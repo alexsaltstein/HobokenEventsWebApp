@@ -51,7 +51,7 @@ export const PageNumbers = ({ currPage, totalPages }) => {
                   page === currPage
                     ? "border-button-blue bg-blue-200 text-button-blue"
                     : " text-gray-500"
-                } border  px-3 py-2 hover:bg-gray-200`}
+                } border px-3 py-2 hover:bg-gray-200`}
                 onClick={() => {
                   onPageChange(page);
                 }}
@@ -62,7 +62,7 @@ export const PageNumbers = ({ currPage, totalPages }) => {
           })}
           {currPage < totalPages - 1 ? (
             <button
-              className="border text-gray-500  px-3 py-2 rounded-r-lg hover:bg-gray-200"
+              className="border text-gray-500 px-3 py-2 rounded-r-lg hover:bg-gray-200"
               onClick={() => {
                 onPageChange(currPage + 1);
               }}
