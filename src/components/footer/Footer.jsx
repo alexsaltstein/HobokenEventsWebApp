@@ -3,6 +3,7 @@ import "twin.macro";
 import React, { useState } from "react";
 import { SocialIcon } from "react-social-icons";
 import { IconLogoBlue, WordmarkLogo } from "../icons/Icons";
+import { DonateButton } from "../buyUsABeer/DonateButton";
 
 export default function Footer() {
   const [isDesktop, setDesktop] = useState(window.innerWidth > 1450);
@@ -24,19 +25,22 @@ export default function Footer() {
             <IconLogoBlue tw="h-10 w-10 mb-1" />
             <WordmarkLogo tw="w-[200px] self-center whitespace-nowrap fill-button-blue " />
           </a>
-          <ul className="items-center mb-2 text-md text-gray-500 sm:mb-0 ">
+          <ul className="flex items-center mb-2 text-md text-gray-500 sm:mb-0 space-x-4 md:space-x-6">
             <li className="inline">
-              <a href="/about" className="mr-4 hover:underline md:mr-6 ">
+              <a href="/about" className="hover:underline ">
                 About Us
               </a>
             </li>
-            <li className="inline">
+            <li className="hover:underline">
               <a
                 href="mailto:bsoong@hudsonhapps.com?subject=[Hudson Happs]:"
-                className="mr-4 hover:underline md:mr-6"
+                className="hover:underline"
               >
                 Contact Us
               </a>
+            </li>
+            <li>
+              <DonateButton tw="text-gray-500 hover:underline" />
             </li>
           </ul>
         </div>
