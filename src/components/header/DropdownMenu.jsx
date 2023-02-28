@@ -10,6 +10,7 @@ import {
 } from "../icons/Icons";
 import "./Header.css";
 import { SocialIcon } from "react-social-icons";
+import { DonateButton } from "../buyUsABeer/DonateButton";
 
 export default function DropdownMenu({ open, authed }) {
   return (
@@ -38,6 +39,15 @@ export default function DropdownMenu({ open, authed }) {
                 <p className="mt-auto mb-auto">What's Happening?</p>
               </a>
             )}
+            <a
+                href="https://www.paypal.com/donate/?hosted_button_id=LL9SK9JNL2E54"
+                className="text-gray-700 px-4 py-3 text-sm flex border-b hover:bg-gray-100"
+                role="menuitem"
+                tabIndex="-1"
+                id="menu-item-0"
+              >
+                <p className="mt-auto mb-auto">Buy us a beer!</p>
+              </a>
             {authed ? (
               <a
                 href="/admin/moderate/events"

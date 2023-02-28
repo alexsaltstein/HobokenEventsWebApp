@@ -6,6 +6,7 @@ import { IconLogoWhite, SubmitButton, WordmarkLogo } from "../icons/Icons";
 import "./Header.css";
 import { useUserState } from "../../utils/userState";
 import { Link, useLocation } from "react-router-dom";
+import { DonateButton } from "../buyUsABeer/DonateButton";
 
 export default function Header() {
   const location = useLocation();
@@ -75,6 +76,9 @@ export default function Header() {
             id="navbar-default"
           >
             <ul className="flex flex-col ml-auto mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-button-blue">
+              <li>
+                <DonateButton/>
+              </li>
               <li>
                 <a
                   href="/about"
