@@ -107,7 +107,7 @@ export default function App() {
               </Calendar>
             }
           />
-          <div className="w-full flex justify-center">
+          <div className="w-screen flex justify-center">
             <PageNumbers currPage={currPage} totalPages={totalPages} />
           </div>
           <div className="max-w-full max-h-fit mt-4 mx-4">

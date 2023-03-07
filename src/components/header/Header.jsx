@@ -26,9 +26,9 @@ export default function Header() {
   return (
     <>
       <nav className="flex top-0 left-0 h-14 w-screen bg-button-blue border-gray-200 py-2.5 z-30 shadow fixed">
-        <div className="absolute w-full top-0 left-8 flex justify-between items-start mx-auto top-auto">
+        <div className="absolute w-full top-2 left-8 flex justify-between items-start mx-auto">
           <a href="/" className="flex md:items-center gap-x-2">
-            <IconLogoWhite tw="h-8 w-8 md:mb-1 md:mt-0" />
+            <IconLogoWhite tw="h-8 w-8 md:mb-1 md:mt-0 mt-1.5" />
             <WordmarkLogo tw="md:w-[200px] w-[150px] self-center whitespace-nowrap fill-white" />
           </a>
           <button
