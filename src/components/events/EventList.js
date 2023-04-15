@@ -78,21 +78,23 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
     );
   }
 
+  const onClick = () => {
+    setMapView(!mapView);
+    setOverflow(!overflow);
+    setDisplay(!display);
+    window.scrollTo(0, 0);
+    document.body.style.overflow = (overflow ? 'hidden' : 'unset');
+    const banner = document.getElementById("banner");
+    banner.style.display = (display ? 'none' : 'unset');
+  }
+
   return (
     <>
       <div ref={topAnchor} />
       <div className="relative flex w-screen">
         <ViewButton
           mapView={mapView}
-          onClick={() => {
-            setMapView(!mapView);
-            setOverflow(!overflow);
-            setDisplay(!display);
-            window.scrollTo(0, 0);
-            document.body.style.overflow = (overflow ? 'hidden' : 'unset');
-            let banner = document.getElementById("banner");
-            banner.style.display = (display ? 'none' : 'unset');
-          }}
+          onClick={() => onClick()}
         />
         {menu}
         <div className="h-full 2xl:w-[60%] w-[85%]">

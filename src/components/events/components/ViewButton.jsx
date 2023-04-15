@@ -1,6 +1,6 @@
 import "twin.macro";
 import React from 'react'
-import { MapIcon } from "../../icons/Icons";
+import { MapIcon, ListIcon } from "../../icons/Icons";
 
 
 export const ViewButton = ({ mapView, onClick }) => {
@@ -17,7 +17,7 @@ export const ViewButton = ({ mapView, onClick }) => {
                     Map
                   </> :
                   <>
-                    <MapIcon tw="h-5 w-5 mr-1 mt-0.5 fill-transparent" />
+                    <ListIcon tw="h-5 w-5 mr-1 mt-0.5 fill-transparent" />
                     List
                   </>                  
                 }
