@@ -6,6 +6,7 @@ import { IconLogoWhite, SubmitButton, WordmarkLogo } from "../icons/Icons";
 import "./Header.css";
 import { useUserState } from "../../utils/userState";
 import { Link, useLocation } from "react-router-dom";
+import { DonateButton } from "../buyUsABeer/DonateButton";
 
 export default function Header() {
   const location = useLocation();
@@ -27,8 +28,8 @@ export default function Header() {
       <nav className="flex top-0 left-0 h-14 pl-8 pr-7 w-screen bg-button-blue border-gray-200 py-2.5 z-30 shadow fixed">
         <div className="flex w-screen top-0 container justify-between items-center mx-auto md:top-auto">
           <a href="/" className="flex md:items-center gap-x-2">
-            <IconLogoWhite tw="h-8 w-8 md:mb-1 mt-3 md:mt-0" />
-            <WordmarkLogo tw="md:w-[200px] w-[150px] md:mt-0 mt-2 self-center whitespace-nowrap fill-white" />
+            <IconLogoWhite tw="h-8 w-8 md:mb-1 md:mt-0" />
+            <WordmarkLogo tw="md:w-[200px] w-[150px] self-center whitespace-nowrap fill-white" />
           </a>
           <button
             type="button"
@@ -71,10 +72,17 @@ export default function Header() {
             )}
           </button>
           <div
-            className="hidden w-full md:block md:w-auto md:fixed md:right-6"
+            className="hidden w-full lg:block md:w-auto md:fixed md:right-6"
             id="navbar-default"
           >
             <ul className="flex flex-col ml-auto mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-button-blue">
+              <li>
+                <DonateButton
+                  className={`block py-2 pr-4 pl-3 mt-${
+                    authed ? 3 : 2
+                  } text-white hover:text-gray-200 md:border-0 md:p-0`}
+                />
+              </li>
               <li>
                 <a
                   href="/about"

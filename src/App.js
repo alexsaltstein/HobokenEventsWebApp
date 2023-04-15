@@ -67,7 +67,7 @@ export default function App() {
       <GoogleTags />
       <Banner />
       <div className="flex">
-        <div>
+        <div> 
           <EventList
             url={`${
               process.env.REACT_APP_API_URL
