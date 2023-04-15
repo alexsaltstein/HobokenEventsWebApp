@@ -3,7 +3,7 @@ import React from "react";
 export default function Banner() {
   return (
     <>
-      <div className="flex w-screen aspect-auto">
+      <div className="flex w-screen aspect-auto" id="banner">
         <div className="relative left-0 flex w-full h-1/4 max-h-64">
           <div className="overflow-hidden">
             <picture>

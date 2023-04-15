@@ -13,6 +13,9 @@ import { ViewButton } from "./components/ViewButton";
 export const EventList = ({ url, menu, setNumResults, calendar }) => {
   const [loading, setLoading] = React.useState(true);
   const [mapView, setMapView] = React.useState(false);
+  const [overflow, setOverflow] = React.useState(true);
+  const [display, setDisplay] = React.useState(true);
+
   const [searchParams] = useSearchParams();
   const selectedDeal = searchParams.get(DEAL_QUERY_PARAM);
   const topElemRef = useScrollIntoView([selectedDeal, loading]);
@@ -83,7 +86,12 @@ export const EventList = ({ url, menu, setNumResults, calendar }) => {
           mapView={mapView}
           onClick={() => {
             setMapView(!mapView);
+            setOverflow(!overflow);
+            setDisplay(!display);
             window.scrollTo(0, 0);
+            document.body.style.overflow = (overflow ? 'hidden' : 'unset');
+            let banner = document.getElementById("banner");
+            banner.style.display = (display ? 'none' : 'unset');
           }}
         />
         {menu}

@@ -5,7 +5,7 @@ import { MapIcon } from "../../icons/Icons";
 
 export const ViewButton = ({ mapView, onClick }) => {
     return (
-        <div className={`fixed h-20 w-screen ${mapView ? 'top-16' : 'bottom-5'} z-30 2xl:hidden`}>
+        <div className={`fixed h-20 w-screen ${mapView ? 'top-40' : 'bottom-5'} z-30 2xl:hidden`}>
           <div className="flex h-full w-full justify-center items-center">
               <button
                 className="flex h-10 w-24 bg-button-blue top rounded justify-center items-center shadow text-white stroke-white"
