@@ -35,7 +35,7 @@ export const EventItem = ({ eventData, moderate }) => {
     title,
     deals,
     place,
-    updatedAt,
+    verifiedAt,
     _id,
     tags,
   } = eventData;
@@ -157,7 +157,7 @@ export const EventItem = ({ eventData, moderate }) => {
             <div className="flex items-center space-x-1">
               <CheckIcon className="text-green-600" />
               <p className="text-gray-500 lg:text-sm">
-                Verified: {displayDate(new Date(updatedAt))}
+                Verified: {displayDate(new Date(verifiedAt))}
               </p>
             </div>
             {moderate ? null : (
