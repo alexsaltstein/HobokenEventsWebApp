@@ -26,10 +26,10 @@ export default function Header() {
   return (
     <>
       <nav className="flex top-0 left-0 h-14 pl-8 pr-7 w-screen bg-button-blue border-gray-200 py-2.5 z-30 shadow fixed">
-        <div className="flex w-screen top-0 container justify-between items-center mx-auto md:top-auto">
-          <a href="/" className="flex md:items-center gap-x-2">
+        <div className="flex w-screen top-2 container justify-between items-center mx-auto md:top-auto">
+          <a href="/" className="flex items-center gap-x-2">
             <IconLogoWhite tw="h-8 w-8 md:mb-1 md:mt-0" />
-            <WordmarkLogo tw="md:w-[200px] w-[150px] self-center whitespace-nowrap fill-white" />
+            <WordmarkLogo tw="md:w-[200px] w-[150px] self-center pt-1 md:pt-0 whitespace-nowrap fill-white" />
           </a>
           <button
             type="button"

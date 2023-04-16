@@ -120,7 +120,7 @@ const Map = ({ deals }) => {
           );
         })}
       </GoogleMap>
-      <div className="absolute left-0 bottom-48 md:bottom-32 flex px-4 justify-center w-full">
+      <div className="absolute left-0 bottom-56 md:bottom-32 flex px-4 justify-center w-full">
         <div className="bg-white mt-2 p-3 w-full lg:w-3/4 rounded-lg shadow-md z-50">
           {selectedMark ? (
             <div>
