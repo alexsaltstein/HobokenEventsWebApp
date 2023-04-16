@@ -27,13 +27,6 @@ const getPixelPositionOffset = (width, height) => ({
   y: -(height / 2),
 });
 
-window.addEventListener("load",function() {
-  setTimeout(function(){
-      // This hides the address bar:
-      window.scrollTo(0, 1);
-  }, 0);
-});
-
 const Map = ({ deals }) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -134,7 +127,7 @@ const Map = ({ deals }) => {
               <div className="flex justify-between items-center">
                 <button
                   onClick={() => {
-                    map.panTo({ lat: selectedMark.lat, lng: selectedMark.lng });
+                    map.panTo({ lat: selectedMark.lat - 0.0005, lng: selectedMark.lng });
                     if (map.zoom !== 17) {
                       map.setZoom(17);
                     }

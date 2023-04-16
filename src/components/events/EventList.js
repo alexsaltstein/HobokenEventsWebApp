@@ -84,7 +84,7 @@ export const EventList = ({ url, menu, setNumResults, calendar, currPage, totalP
     setOverflow(!overflow);
     setDisplay(!display);
     window.scrollTo(0, 0);
-    document.body.style.overflow = (overflow ? 'clip' : 'unset');
+    document.body.style.overflow = (overflow ? 'hidden' : 'unset');
     const banner = document.getElementById("banner");
     banner.style.display = (display ? 'none' : 'unset');
   }
