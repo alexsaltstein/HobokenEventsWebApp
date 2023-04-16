@@ -123,7 +123,7 @@ export const EventItem = ({ eventData, moderate }) => {
                       key={`${deal._id}-${deal}-${index}-wrapper`}
                     >
                       <ExternalLinkIcon
-                        tw="mt-1 mr-2 text-gray-500 h-6"
+                        tw="mt-1 mr-2 text-gray-400 h-6"
                         key={`${deal._id}-${deal}-${index}-link-icon`}
                       />
                       <button key={`${deal._id}-${deal}-${index}`}>
