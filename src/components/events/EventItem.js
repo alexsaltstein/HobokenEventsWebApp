@@ -117,13 +117,13 @@ export const EventItem = ({ eventData, moderate }) => {
               <hr />
               <div className="md:whitespace-normal mt-2 mb-8" id="description">
                 {deals.map((deal, index) =>
-                  deal.includes("https") || deal.includes("http") ? (
+                  deal.includes("http") ? (
                     <div
-                      className="flex"
+                      className="flex justify"
                       key={`${deal._id}-${deal}-${index}-wrapper`}
                     >
                       <ExternalLinkIcon
-                        tw="mt-1 mr-2 text-gray-400 h-6"
+                        tw="mt-0.5 mr-2 text-gray-500 h-6"
                         key={`${deal._id}-${deal}-${index}-link-icon`}
                       />
                       <button key={`${deal._id}-${deal}-${index}`}>
@@ -135,7 +135,7 @@ export const EventItem = ({ eventData, moderate }) => {
                           onClick={(event) => {
                             event.stopPropagation();
                           }}
-                          className="text-hoboken-blue hover:text-button-blue underline text-xl"
+                          className="text-hoboken-blue hover:text-button-blue underline text-lg items-center"
                         >
                           View Deal Menu
                         </a>
