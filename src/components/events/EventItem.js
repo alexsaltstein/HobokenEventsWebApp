@@ -117,7 +117,7 @@ export const EventItem = ({ eventData, moderate }) => {
               <hr />
               <div className="md:whitespace-normal mt-2 mb-8" id="description">
                 {deals.map((deal, index) =>
-                  deal.includes("https") ? (
+                  deal.includes("https") || deal.includes("http") ? (
                     <div
                       className="flex"
                       key={`${deal._id}-${deal}-${index}-wrapper`}
