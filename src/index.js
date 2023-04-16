@@ -26,10 +26,7 @@ root.render(
       <BrowserRouter>
         <div>
           <Header />
-          <div
-            className="flex min-h-[100vh] my-14 overflow-x-hidden overflow-y-scroll max-w-full"
-            id="pageContent"
-          >
+          <div className="min-h-[100vh] my-14 max-w-full" id="pageContent">
             <Routes>
               <Route path="/admin/login" element={<Login />} />
               <Route

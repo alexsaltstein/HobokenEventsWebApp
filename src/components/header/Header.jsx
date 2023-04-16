@@ -25,15 +25,15 @@ export default function Header() {
 
   return (
     <>
-      <nav className="flex top-0 left-0 h-14 w-screen bg-button-blue border-gray-200 py-2.5 z-30 shadow fixed">
-        <div className="absolute w-full top-0 left-8 flex justify-between items-start mx-auto top-auto">
-          <a href="/" className="flex md:items-center gap-x-2">
+      <nav className="flex top-0 left-0 h-14 pl-8 pr-7 w-screen bg-button-blue border-gray-200 py-2.5 z-30 shadow fixed">
+        <div className="flex w-screen top-2 container justify-between items-center mx-auto md:top-auto">
+          <a href="/" className="flex items-center gap-x-2">
             <IconLogoWhite tw="h-8 w-8 md:mb-1 md:mt-0" />
-            <WordmarkLogo tw="md:w-[200px] w-[150px] self-center whitespace-nowrap fill-white" />
+            <WordmarkLogo tw="md:w-[200px] w-[150px] self-center pt-1 md:pt-0 whitespace-nowrap fill-white" />
           </a>
           <button
             type="button"
-            className=" p-2 ml-3 mr-10 text-sm outline-none text-gray-500 rounded-lg lg:hidden focus:outline-none focus:ring-2 focus:ring-gray-200"
+            className="inline-flex items-center mt-2 text-sm outline-none  text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200"
             aria-controls="navbar-default"
             aria-expanded="false"
             aria-label="hamburgerMenu"
@@ -42,7 +42,7 @@ export default function Header() {
           >
             {open ? (
               <svg
-                className="w-6 h-6"
+                className="w-7 h-7"
                 fill="none"
                 stroke="white"
                 viewBox="0 0 24 24"
@@ -57,7 +57,7 @@ export default function Header() {
               </svg>
             ) : (
               <svg
-                className="w-6 h-6"
+                className="w-7 h-7"
                 aria-hidden="true"
                 fill="white"
                 viewBox="0 0 20 20"

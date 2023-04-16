@@ -498,6 +498,27 @@ export const MapPinIcon = (props) => {
   );
 };
 
+export const CenterLocationIcon = (props) => {
+  return (
+    <svg
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      tw="w-6 h-6"
+      {...props}
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5"
+      ></path>
+    </svg>
+  );
+};
+
 export const SearchIcon = (props) => (
   <svg
     aria-hidden="true"
@@ -549,12 +570,41 @@ export const IdIcon = (props) => (
   </svg>
 )
 
+export const ListIcon = (props) => (
+  <svg
+    aria-hidden="true"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2.5}
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    tw="w-6 h-6"
+    {...props}
+  >
+    <path
+      d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+</svg>
+)
+
 export function CurrencyDollarIcon(props) {
   return (
-    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"     tw="w-6 h-6"
-    aria-hidden="true" {...props}>
-      <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    <svg
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      tw="w-6 h-6"
+      aria-hidden="true"
+      {...props}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
   );
 }
-
