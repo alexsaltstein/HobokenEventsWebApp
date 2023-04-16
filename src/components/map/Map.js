@@ -88,7 +88,7 @@ const Map = ({ deals }) => {
               <button
                 onClick={() => {
                   setSelectedPlace(index);
-                  map.panTo({ lat: mark.lat, lng: mark.lng });
+                  map.panTo({ lat: mark.lat - 0.0005, lng: mark.lng });
                   if (map.zoom !== 17) {
                     map.setZoom(17);
                   }
