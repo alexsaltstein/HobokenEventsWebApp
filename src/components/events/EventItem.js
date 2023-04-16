@@ -152,28 +152,30 @@ export const EventItem = ({ eventData, moderate }) => {
                 )}
               </div>
             </div>
-          </Link>
-          <div className="flex justify-between sm:items-center sm:flex-row flex-col">
-            <div className="flex items-center space-x-1">
-              <CheckIcon className="text-green-600" />
-              <p className="text-gray-500 lg:text-sm">
-                Verified: {displayDate(new Date(verifiedAt))}
-              </p>
-            </div>
-            {moderate ? null : (
-              <div className="flex items-center">
-                <CautionIcon tw="text-red-400 mr-1 h-4" />
-                <button
-                  className="text-gray-500 z-20 lg:text-sm"
-                  onClick={() => {
-                    setShowReportModal(true);
-                  }}
-                >
-                  Report Deal
-                </button>
+            <div className="flex justify-between sm:items-center sm:flex-row flex-col">
+              <div className="flex items-center space-x-1">
+                <CheckIcon className="text-green-600" />
+                <p className="text-gray-500 lg:text-sm">
+                  Verified: {displayDate(new Date(verifiedAt))}
+                </p>
               </div>
-            )}
-          </div>
+              {moderate ? null : (
+                <div className="flex items-center">
+                  <button
+                    className="text-gray-500 z-20 lg:text-sm inline-flex"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setShowReportModal(true);
+                    }}
+                  >
+                    <CautionIcon tw="text-red-400 mr-1 h-4" />
+                    Report Deal
+                  </button>
+                </div>
+              )}
+            </div>
+          </Link> 
           {moderate ? (
             <div className="flex flex-row space-x-4 justify-center items-center border-t mt-4">
               <p className="text-input-label-gray">Actions:</p>
