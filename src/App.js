@@ -8,14 +8,12 @@ import { EventList } from "./components/events/EventList";
 import { Calendar } from "../src/components/calendar/Calendar";
 import { getCurrPage, getDayOfWeek, isValidDate } from "./utils/common";
 import Banner from "./components/banner/Banner";
-import { BannerAd } from "./components/ads/BannerAd";
 import { GoogleTags } from "./meta/GoogleTags";
 import { FilterMenuDesktop } from "./components/filters/FilterMenu";
 import { FilterBottomSheet } from "./components/filters/FilterBottomSheet";
 import { FilterIcon } from "./components/icons/Icons";
 import { INITIAL_FILTER } from "./constants/common";
 import axios from "axios";
-import { PageNumbers } from "./utils/PageNumbers";
 
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -106,13 +104,9 @@ export default function App() {
                 />
               </Calendar>
             }
+            currPage={currPage}
+            totalPages={totalPages}
           />
-          <div className="w-full flex justify-center">
-            <PageNumbers currPage={currPage} totalPages={totalPages} />
-          </div>
-          <div className="max-w-full max-h-fit mt-4 mx-4">
-            <BannerAd />
-          </div>
         </div>
       </div>
     </div>
