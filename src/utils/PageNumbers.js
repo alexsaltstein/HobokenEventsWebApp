@@ -6,7 +6,6 @@ export const PageNumbers = ({ currPage, totalPages }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const onPageChange = (newPageNum) => {
     if (newPageNum < 0 || newPageNum > totalPages+1) {
-      console.log('doing this')
       return;
     }
     const old = {};
