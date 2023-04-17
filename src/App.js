@@ -106,6 +106,9 @@ export default function App() {
             }
             currPage={currPage}
             totalPages={totalPages}
+            day={getDayOfWeek(selectedDate.getDay())}
+            filters={filters}
+            filterResult={filterResult}
           />
         </div>
       </div>

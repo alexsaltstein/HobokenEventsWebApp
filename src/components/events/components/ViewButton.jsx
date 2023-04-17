@@ -5,7 +5,7 @@ import { MapIcon, ListIcon } from "../../icons/Icons";
 
 export const ViewButton = ({ mapView, onClick }) => {
     return (
-        <div className={`fixed h-20 w-screen ${mapView ? 'top-40' : 'bottom-5'} z-30 2xl:hidden`}>
+        <div className={'fixed h-20 w-screen bottom-5 z-30 2xl:hidden'}>
           <div className="flex h-full w-full justify-center items-center">
               <button
                 className="flex h-10 w-24 bg-button-blue top rounded justify-center items-center shadow text-white stroke-white"
@@ -13,11 +13,11 @@ export const ViewButton = ({ mapView, onClick }) => {
               >
                 {!mapView ?
                   <>
-                    <MapIcon tw="h-5 w-5 mr-1 mt-0.5 fill-transparent" />
+                    <MapIcon tw="h-5 w-5 mr-1 fill-transparent" />
                     Map
                   </> :
                   <>
-                    <ListIcon tw="h-5 w-5 mr-1 mt-0.5 fill-transparent" />
+                    <ListIcon tw="h-5 w-5 mr-1 fill-transparent" />
                     List
                   </>                  
                 }
