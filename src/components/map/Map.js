@@ -138,7 +138,7 @@ const Map = ({ deals }) => {
                   Re-center map
                 </button>
                 <a
-                  href={`https://www.google.com/maps/dir//${selectedMark.lat},${selectedMark.lng}`}
+                  href={`https://www.google.com/maps/dir//${selectedMark.placeName}, ${selectedMark.address}`}
                   target="_blank"
                   rel="noreferrer"
                   className="bg-button-blue p-2 rounded text-white drop-shadow hover:bg-button-hover-blue flex items-center"
