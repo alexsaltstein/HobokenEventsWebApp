@@ -92,13 +92,13 @@ export const EventList = ({ url, menu, setNumResults, calendar, currPage, totalP
   return (
     <>
       <div ref={topAnchor} />
-      <div className="relative flex w-screen">
+      <div className="flex w-screen">
         <ViewButton
           mapView={mapView}
           onClick={() => onClick()}
         />
         {menu}
-        <div className="h-full 2xl:w-[60%] w-[85%]">
+        <div className="h-full 2xl:w-[60%] w-full">
           {calendar}
           {!mapView ? (
             <>
@@ -128,7 +128,7 @@ export const EventList = ({ url, menu, setNumResults, calendar, currPage, totalP
               </div>
             </>
           ) : (
-            <div className="sticky w-screen lg:w-full lg:pr-10 h-screen -mt-4">
+            <div className="w-screen lg:w-full lg:pr-10 h-screen -mt-4">
               <Map deals={eventData} />
             </div>
           )}
