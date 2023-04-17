@@ -68,7 +68,7 @@ const Map = ({ deals }) => {
 
   const selectedMark = markerLocations[selectedPlace];
   return isLoaded ? (
-    <div className="sticky w-full lg:pr-2 flex h-screen pt-4 flex-col">
+    <div className="w-full lg:pr-2 flex h-full min-h-screen pt-4 flex-col">
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -93,7 +93,7 @@ const Map = ({ deals }) => {
               <button
                 onClick={() => {
                   setSelectedPlace(index);
-                  map.panTo({ lat: mark.lat - 0.0005, lng: mark.lng });
+                  map.panTo({ lat: mark.lat - 0.0008, lng: mark.lng });
                   if (map.zoom !== 17) {
                     map.setZoom(17);
                   }
@@ -126,7 +126,7 @@ const Map = ({ deals }) => {
         })}
       </GoogleMap>
       {selectedMark  && selectedPlace !== -1 ? (
-      <div className="absolute left-0 bottom-48 md:bottom-32 flex px-4 justify-center w-full">
+      <div className="absolute left-0 bottom-0 md:bottom-32 flex px-4 justify-center w-full">
         <div className="bg-white mt-2 p-3 w-full lg:w-3/4 rounded-lg shadow-md z-50">
             <div>
               <button
@@ -140,7 +140,7 @@ const Map = ({ deals }) => {
               <div className="flex justify-between items-center">
                 <button
                   onClick={() => {
-                    map.panTo({ lat: selectedMark.lat - 0.0005, lng: selectedMark.lng });
+                    map.panTo({ lat: selectedMark.lat - 0.0008, lng: selectedMark.lng });
                     if (map.zoom !== 17) {
                       map.setZoom(17);
                     }
