@@ -137,7 +137,7 @@ const Map = ({ deals }) => {
                       map.setZoom(17);
                     }
                   }}
-                  className="mr-20 text-button-blue hover:underline flex items-center"
+                  className="lg:mr-20 xs:mr-9 sm:mr-12 md:mr-15 text-button-blue hover:underline flex items-center"
                 >
                   <CenterLocationIcon tw="h-4" />
                   Jump To Location
@@ -157,7 +157,7 @@ const Map = ({ deals }) => {
                     closeButton()
                   }}
                 >
-                  <XIcon tw="mr-1 h-5" />
+                  <XIcon tw="h-10 w-8" />
                 </button>
               </div>
               <Link
