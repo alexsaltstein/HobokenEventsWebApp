@@ -73,7 +73,3 @@
   /* The max width of the info window. */
   width: 200px;
 }
-
-#pageContent {
-  min-height: -webkit-fill-available;
-}
