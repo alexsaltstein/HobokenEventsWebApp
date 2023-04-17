@@ -129,15 +129,7 @@ const Map = ({ deals }) => {
       <div className="absolute left-0 bottom-0 md:bottom-32 flex px-4 justify-center w-full">
         <div className="bg-white mt-2 p-3 w-full lg:w-3/4 rounded-lg shadow-md z-50">
             <div>
-              <button
-                  className="flex items-center text-gray-500 z-40 lg:text-sm"
-                  onClick={() => {
-                    closeButton()
-                  }}
-                >
-                  <XIcon tw="mr-1 h-5" />
-                </button>
-              <div className="flex justify-between items-center">
+              <div className="flex items-center justify-end">
                 <button
                   onClick={() => {
                     map.panTo({ lat: selectedMark.lat - 0.0008, lng: selectedMark.lng });
@@ -145,20 +137,28 @@ const Map = ({ deals }) => {
                       map.setZoom(17);
                     }
                   }}
-                  className="text-button-blue hover:underline flex items-center"
+                  className="mr-20 text-button-blue hover:underline flex items-center"
                 >
                   <CenterLocationIcon tw="h-4" />
-                  Re-center map
+                  Jump To Location
                 </button>
                 <a
                   href={`https://www.google.com/maps/dir//${selectedMark.placeName}, ${selectedMark.address}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="bg-button-blue p-2 rounded text-white drop-shadow hover:bg-button-hover-blue flex items-center"
+                  className="bg-button-blue p-2 rounded text-white drop-shadow hover:bg-button-hover-blue flex items-center justify-end"
                 >
                   <DirectionsIcon tw="h-4" />
                   Directions
                 </a>
+                <button
+                  className="flex items-center text-gray-500 z-40 lg:text-sm"
+                  onClick={() => {
+                    closeButton()
+                  }}
+                >
+                  <XIcon tw="mr-1 h-5" />
+                </button>
               </div>
               <Link
                 to={`/place/${selectedMark.placeId}`}
