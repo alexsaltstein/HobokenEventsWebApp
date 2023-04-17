@@ -133,7 +133,7 @@ export const copyToClipboard = (text) => {
 export const safeCastNum = (string) => {
   try {
     const num = parseInt(string);
-    if (num != string || isNaN(num)) {
+    if (num !== string || isNaN(num)) {
       throw "string is not a valid int";
     }
     return num;
