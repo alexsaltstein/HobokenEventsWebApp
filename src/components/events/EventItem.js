@@ -69,7 +69,7 @@ export const EventItem = ({ eventData, moderate }) => {
             selectedDeal === _id ? "border-button-blue" : null
           }`}
         >
-          <Link to={`/place/${placeId}`}>
+          <Link to={`/place/${placeId}?deal_id=${_id}`}>
             <div>
               <div className="flex justify-between sm:flex-row flex-col-reverse sm:space-y-0">
                 <div className="flex flex-wrap flex-col">
