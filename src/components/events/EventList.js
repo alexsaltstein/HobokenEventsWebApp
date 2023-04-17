@@ -11,7 +11,7 @@ import Map from "../map/Map";
 import { ViewButton } from "./components/ViewButton";
 import { PageNumbers } from "../../utils/PageNumbers";
 
-export const EventList = ({ url, menu, setNumResults, calendar, currPage, totalPages }) => {
+export const EventList = ({ url, menu, setNumResults, calendar, currPage, totalPages, day, filters, filterResult}) => {
   const [loading, setLoading] = React.useState(true);
   const [mapView, setMapView] = React.useState(false);
   const [overflow, setOverflow] = React.useState(true);
@@ -129,12 +129,12 @@ export const EventList = ({ url, menu, setNumResults, calendar, currPage, totalP
             </>
           ) : (
             <div className="w-screen lg:w-full lg:pr-10 h-screen -mt-4">
-              <Map deals={eventData} />
+              <Map day={day} />
             </div>
           )}
         </div>
         <div className="w-full mr-2 h-screen sticky top-[50px] hidden 2xl:block">
-          <Map deals={eventData} />
+          <Map day={day} filters={filters} filterResult={filterResult}/>
         </div>
       </div>
     </>

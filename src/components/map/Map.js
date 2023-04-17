@@ -28,7 +28,7 @@ const getPixelPositionOffset = (width, height) => ({
   y: -(height / 2),
 });
 
-const Map = ({ deals }) => {
+const Map = ({ day, filters, filterResult }) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -39,10 +39,9 @@ const Map = ({ deals }) => {
   const [markerLocations, setMarkerLocations] = React.useState([]);
 
   const onLoad = React.useCallback(async function callback(map) {
-    const url = `${process.env.REACT_APP_API_URL}/api/map/locations${deals
-      .map((data, index) => `${index === 0 ? "?" : "&"}deals=${data._id}`)
-      .toString()
-      .replaceAll(",", "")}`;
+    const url = `${process.env.REACT_APP_API_URL}/api/map/locations?day=${day}&${filterResult}${filters.hobo ? "&city=Hoboken" : ""}${
+      filters.jc ? "&city=Jersey City" : ""
+    }${filters.active ? `&active=${filters.active}` : ""}`;
     const res = await axios.get(url);
     const locations = res.data.mapLocations;
     setMarkerLocations(res.data.mapLocations);
