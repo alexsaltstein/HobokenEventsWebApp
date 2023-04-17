@@ -129,7 +129,7 @@ export const EventList = ({ url, menu, setNumResults, calendar, currPage, totalP
             </>
           ) : (
             <div className="w-screen lg:w-full lg:pr-10 h-screen -mt-4">
-              <Map day={day} />
+              <Map day={day} filters={filters} filterResult={filterResult}/>
             </div>
           )}
         </div>

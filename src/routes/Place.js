@@ -133,7 +133,7 @@ export const Place = () => {
           </a>
         ) : null}
         <a
-          href={`https://www.google.com/maps/dir//${googleInfo.location.lat},${googleInfo.location.lng}`}
+          href={`https://www.google.com/maps/dir//${placeData.name}, ${placeData.address.street}, ${placeData.address.city}, ${placeData.address.state}`}
           target="_blank"
           rel="noreferrer"
           className="bg-button-blue p-2 rounded text-white drop-shadow hover:bg-button-hover-blue"
