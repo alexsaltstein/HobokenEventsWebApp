@@ -61,9 +61,17 @@ const Map = ({ deals }) => {
     setMap(null);
   }, []);
 
+  const resizer = () => {
+    document.getElementById("pageContent").style.height = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) + "px";
+  }
+
+  window.addEventListener("resize", (_e) => resizer());
+
+  document.addEventListener("DOMContentLoaded", (_e) => resizer());
+
   const selectedMark = markerLocations[selectedPlace];
   return isLoaded ? (
-    <div className="sticky w-full lg:pr-2 flex h-screen min-h-screen pt-4 flex-col" id="map">
+    <div className="sticky w-full lg:pr-2 flex h-screen min-h-screen pt-4 flex-col">
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
