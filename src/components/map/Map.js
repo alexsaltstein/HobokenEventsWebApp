@@ -88,7 +88,7 @@ const Map = ({ deals }) => {
               <button
                 onClick={() => {
                   setSelectedPlace(index);
-                  map.panTo({ lat: mark.lat - 0.0005, lng: mark.lng });
+                  map.panTo({ lat: mark.lat - 0.0008, lng: mark.lng });
                   if (map.zoom !== 17) {
                     map.setZoom(17);
                   }
@@ -127,7 +127,7 @@ const Map = ({ deals }) => {
               <div className="flex justify-between items-center">
                 <button
                   onClick={() => {
-                    map.panTo({ lat: selectedMark.lat - 0.0005, lng: selectedMark.lng });
+                    map.panTo({ lat: selectedMark.lat - 0.0008, lng: selectedMark.lng });
                     if (map.zoom !== 17) {
                       map.setZoom(17);
                     }
