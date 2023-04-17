@@ -63,7 +63,7 @@ const Map = ({ deals }) => {
 
   const selectedMark = markerLocations[selectedPlace];
   return isLoaded ? (
-    <div className="sticky w-full lg:pr-2 flex h-screen pt-4 flex-col">
+    <div className="sticky w-full lg:pr-2 flex h-screen min-h-screen pt-4 flex-col" id="map">
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
