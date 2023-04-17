@@ -34,7 +34,7 @@ const Map = ({ deals }) => {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
-  const [selectedPlace, setSelectedPlace] = React.useState(0);
+  const [selectedPlace, setSelectedPlace] = React.useState(-1);
   const [map, setMap] = React.useState(null);
   const [markerLocations, setMarkerLocations] = React.useState([]);
 
@@ -126,22 +126,44 @@ const Map = ({ deals }) => {
         })}
       </GoogleMap>
       {selectedMark  && selectedPlace !== -1 ? (
-      <div className="absolute left-0 bottom-0 md:bottom-32 flex px-4 justify-center w-full">
+      <div className="absolute left-0 bottom-2 md:bottom-32 flex px-4 justify-center w-full">
         <div className="bg-white mt-2 p-3 w-full lg:w-3/4 rounded-lg shadow-md z-50">
             <div>
-              <div className="flex items-center justify-space-between">
-                <button
-                  onClick={() => {
-                    map.panTo({ lat: selectedMark.lat - 0.0008, lng: selectedMark.lng });
-                    if (map.zoom !== 17) {
-                      map.setZoom(17);
-                    }
-                  }}
-                  className="text-button-blue hover:underline flex items-center"
+              <div>
+                <div className="flex justify-between">
+                  <button
+                    onClick={() => {
+                      map.panTo({ lat: selectedMark.lat - 0.0008, lng: selectedMark.lng });
+                      if (map.zoom !== 17) {
+                        map.setZoom(17);
+                      }
+                    }}
+                    className="text-button-blue hover:underline flex items-center"
+                  >
+                    <CenterLocationIcon tw="h-4" />
+                    Jump To Location
+                  </button>
+                  <button
+                    className="flex items-center text-gray-500 z-40 lg:text-sm"
+                    onClick={() => {
+                      closeButton()
+                    }}
+                  >
+                    <XIcon tw="h-6 w-6" />
+                  </button>
+                </div>
+              <hr className="my-1" />
+              </div>
+              <div className="flex items-center justify-space-between pt-1">
+                <Link
+                  to={`/place/${selectedMark.placeId}`}
+                  className="flex items-center gap-x-2 flex-wrap"
                 >
-                  <CenterLocationIcon tw="h-4" />
-                  Jump To Location
-                </button>
+                  <h1 className="text-2xl font-bold">
+                    {selectedMark?.placeName}
+                  </h1>
+                  <RightArrowIcon />
+                </Link>
                 <div className="flex ml-auto">
                   <a
                     href={`https://www.google.com/maps/dir//${selectedMark.placeName}, ${selectedMark.address}`}
@@ -152,25 +174,8 @@ const Map = ({ deals }) => {
                     <DirectionsIcon tw="h-4" />
                     Directions
                   </a>
-                  <button
-                    className="flex items-center text-gray-500 z-40 lg:text-sm"
-                    onClick={() => {
-                      closeButton()
-                    }}
-                  >
-                    <XIcon tw="h-10 w-8" />
-                  </button>
                 </div>
               </div>
-              <Link
-                to={`/place/${selectedMark.placeId}`}
-                className="flex items-center gap-x-2 flex-wrap"
-              >
-                <h1 className="text-2xl font-bold">
-                  {selectedMark?.placeName}
-                </h1>
-                <RightArrowIcon />
-              </Link>
               <div>
                 All deals available:{" "}
                 {selectedMark.deals.map((deal) => {
@@ -180,15 +185,6 @@ const Map = ({ deals }) => {
                     </Link>
                   );
                 })}
-              </div>
-              <hr className="my-1" />
-              <div className="flex justify-end">
-                <Link
-                  to={`/place/${selectedMark.placeId}`}
-                  className="italic text-hoboken-blue text-sm hover:underline"
-                >
-                  See all deals...
-                </Link>
               </div>
             </div>
         </div>
