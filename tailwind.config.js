@@ -8,6 +8,7 @@ module.exports = {
       fold: "280px",
       xs: "360px",
       duo: "550px",
+      "3xl": "1900px",
       ...defaultTheme.screens,
     },
     extend: {

@@ -35,7 +35,7 @@ export const EventItem = ({ eventData, moderate }) => {
     title,
     deals,
     place,
-    updatedAt,
+    verifiedAt,
     _id,
     tags,
   } = eventData;
@@ -69,7 +69,7 @@ export const EventItem = ({ eventData, moderate }) => {
             selectedDeal === _id ? "border-button-blue" : null
           }`}
         >
-          <Link to={`/place/${placeId}`}>
+          <Link to={`/place/${placeId}?deal_id=${_id}`}>
             <div>
               <div className="flex justify-between sm:flex-row flex-col-reverse sm:space-y-0">
                 <div className="flex flex-wrap flex-col">
@@ -117,13 +117,13 @@ export const EventItem = ({ eventData, moderate }) => {
               <hr />
               <div className="md:whitespace-normal mt-2 mb-8" id="description">
                 {deals.map((deal, index) =>
-                  deal.includes("https") ? (
+                  deal.includes("http") ? (
                     <div
-                      className="flex"
+                      className="flex justify"
                       key={`${deal._id}-${deal}-${index}-wrapper`}
                     >
                       <ExternalLinkIcon
-                        tw="mt-1 mr-2 text-gray-500 h-6"
+                        tw="mt-0.5 mr-2 text-gray-500 h-6"
                         key={`${deal._id}-${deal}-${index}-link-icon`}
                       />
                       <button key={`${deal._id}-${deal}-${index}`}>
@@ -135,7 +135,7 @@ export const EventItem = ({ eventData, moderate }) => {
                           onClick={(event) => {
                             event.stopPropagation();
                           }}
-                          className="text-hoboken-blue hover:text-button-blue underline text-xl"
+                          className="text-hoboken-blue hover:text-button-blue underline text-lg items-center"
                         >
                           View Deal Menu
                         </a>
@@ -152,28 +152,30 @@ export const EventItem = ({ eventData, moderate }) => {
                 )}
               </div>
             </div>
-          </Link>
-          <div className="flex justify-between sm:items-center sm:flex-row flex-col">
-            <div className="flex items-center space-x-1">
-              <CheckIcon className="text-green-600" />
-              <p className="text-gray-500 lg:text-sm">
-                Verified: {displayDate(new Date(updatedAt))}
-              </p>
-            </div>
-            {moderate ? null : (
-              <div className="flex items-center">
-                <CautionIcon tw="text-red-400 mr-1 h-4" />
-                <button
-                  className="text-gray-500 z-20 lg:text-sm"
-                  onClick={() => {
-                    setShowReportModal(true);
-                  }}
-                >
-                  Report Deal
-                </button>
+            <div className="flex justify-between sm:items-center sm:flex-row flex-col">
+              <div className="flex items-center space-x-1">
+                <CheckIcon className="text-green-600" />
+                <p className="text-gray-500 lg:text-sm">
+                  Verified: {displayDate(new Date(verifiedAt))}
+                </p>
               </div>
-            )}
-          </div>
+              {moderate ? null : (
+                <div className="flex items-center">
+                  <button
+                    className="text-gray-500 z-20 lg:text-sm inline-flex"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setShowReportModal(true);
+                    }}
+                  >
+                    <CautionIcon tw="text-red-400 mr-1 h-4" />
+                    Report Deal
+                  </button>
+                </div>
+              )}
+            </div>
+          </Link> 
           {moderate ? (
             <div className="flex flex-row space-x-4 justify-center items-center border-t mt-4">
               <p className="text-input-label-gray">Actions:</p>
