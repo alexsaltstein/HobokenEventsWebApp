@@ -124,7 +124,7 @@ const Map = ({ day, filters, filterResult }) => {
           );
         })}
       </GoogleMap>
-      <div className="absolute left-0 top-44 flex px-4 w-full">
+      <div className="absolute left-0 top-44 md:top-32 lg:left-52 xl:left-0 xl:top-6 flex px-4 w-full">
           <button
             className="bg-white border-button-blue font-bold text-button-blue border-2 mt-2 p-2 w-fit rounded-lg shadow-md z-50"
             onClick={() => {
