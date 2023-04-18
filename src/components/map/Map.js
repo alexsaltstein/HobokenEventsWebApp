@@ -10,7 +10,7 @@ import {
   RightArrowIcon,
   CenterLocationIcon,
   DirectionsIcon,
-  XIcon
+  XIcon,
 } from "../icons/Icons";
 const containerStyle = {
   width: "100%",
@@ -31,7 +31,10 @@ const getPixelPositionOffset = (width, height) => ({
 const Map = ({ day, filters, filterResult }) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey:
+      process.env.REACT_APP_GOOGLE_MAPS_API_KEY != "null"
+        ? process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+        : undefined,
   });
 
   const [selectedPlace, setSelectedPlace] = React.useState(-1);
@@ -39,9 +42,13 @@ const Map = ({ day, filters, filterResult }) => {
   const [markerLocations, setMarkerLocations] = React.useState([]);
 
   const onLoad = React.useCallback(async function callback(map) {
-    const url = `${process.env.REACT_APP_API_URL}/api/map/locations?day=${day}&${filterResult}${filters.hobo ? "&city=Hoboken" : ""}${
-      filters.jc ? "&city=Jersey City" : ""
-    }${filters.active ? `&active=${filters.active}` : ""}`;
+    const url = `${
+      process.env.REACT_APP_API_URL
+    }/api/map/locations?day=${day}&${filterResult}${
+      filters.hobo ? "&city=Hoboken" : ""
+    }${filters.jc ? "&city=Jersey City" : ""}${
+      filters.active ? `&active=${filters.active}` : ""
+    }`;
     const res = await axios.get(url);
     const locations = res.data.mapLocations;
     setMarkerLocations(res.data.mapLocations);
@@ -75,7 +82,12 @@ const Map = ({ day, filters, filterResult }) => {
         onLoad={onLoad}
         onUnmount={onUnmount}
         clickableIcons={false}
-        options={{ fullscreenControl: false, zoomControl: false, gestureHandling: 'greedy' }}
+        options={{
+          fullscreenControl: false,
+          zoomControl: false,
+          gestureHandling: "greedy",
+          mapTypeControl: false,
+        }}
       >
         {markerLocations.map((mark, index) => {
           const selected = selectedPlace === index;
@@ -126,26 +138,29 @@ const Map = ({ day, filters, filterResult }) => {
         })}
       </GoogleMap>
       <div className="absolute left-0 top-44 md:top-32 lg:left-52 xl:left-0 xl:top-6 flex px-4 w-full">
-          <button
-            className="bg-white border-button-blue font-bold text-button-blue border-2 mt-2 p-2 w-fit rounded-lg shadow-md z-50"
-            onClick={() => {
-              map.panTo({ lat: center.lat, lng: center.lng });
-              map.setZoom(13);
-            }}
-          >
-            Reset View
-          </button>
+        <button
+          className="bg-white border-button-blue font-bold text-button-blue border-2 mt-2 p-2 w-fit rounded-lg shadow-md z-50"
+          onClick={() => {
+            map.panTo({ lat: center.lat, lng: center.lng });
+            map.setZoom(13);
+          }}
+        >
+          Reset View
+        </button>
       </div>
-      {selectedMark  && selectedPlace !== -1 ? (
-      <>
-        <div className="absolute left-0 bottom-2 md:bottom-32 flex px-4 justify-center w-full">
-          <div className="bg-white mt-2 p-3 w-full lg:w-3/4 rounded-lg shadow-md z-50">
+      {selectedMark && selectedPlace !== -1 ? (
+        <>
+          <div className="absolute left-0 bottom-2 md:bottom-32 flex px-4 justify-center w-full">
+            <div className="bg-white mt-2 p-3 w-full lg:w-3/4 rounded-lg shadow-md z-50">
               <div>
                 <div>
                   <div className="flex justify-between">
                     <button
                       onClick={() => {
-                        map.panTo({ lat: selectedMark.lat - 0.0008, lng: selectedMark.lng });
+                        map.panTo({
+                          lat: selectedMark.lat - 0.0008,
+                          lng: selectedMark.lng,
+                        });
                         if (map.zoom !== 17) {
                           map.setZoom(17);
                         }
@@ -158,13 +173,13 @@ const Map = ({ day, filters, filterResult }) => {
                     <button
                       className="flex items-center text-gray-500 z-40 lg:text-sm"
                       onClick={() => {
-                        closeButton()
+                        closeButton();
                       }}
                     >
                       <XIcon tw="h-6 w-6" />
                     </button>
                   </div>
-                <hr className="my-1" />
+                  <hr className="my-1" />
                 </div>
                 <div className="flex items-center justify-space-between pt-1">
                   <Link
@@ -192,24 +207,29 @@ const Map = ({ day, filters, filterResult }) => {
                   All deals available:{" "}
                   {selectedMark.deals.map((deal) => {
                     return (
-                      <Link key={`${deal}-link`} to={`/place/${deal.placeId}?deal_id=${deal._id}`}>
-                        <h3 key={`${deal}-title`} className="hover:underline">- {deal.title}</h3>
+                      <Link
+                        key={`${deal}-link`}
+                        to={`/place/${deal.placeId}?deal_id=${deal._id}`}
+                      >
+                        <h3 key={`${deal}-title`} className="hover:underline">
+                          - {deal.title}
+                        </h3>
                       </Link>
                     );
                   })}
                 </div>
               </div>
+            </div>
           </div>
-        </div>
-      </>
+        </>
       ) : selectedPlace !== -1 ? (
         <div className="absolute left-0 bottom-48 md:bottom-32 flex px-4 justify-center w-full">
-        <div className="bg-white mt-2 p-3 w-full lg:w-3/4 rounded-lg shadow-md z-50">
-        <div className="flex items-center justify-center w-full h-full gap-x-2">
-          <LoadingAnimation />
-          <p>Places loading...</p>
-        </div>
-        </div>
+          <div className="bg-white mt-2 p-3 w-full lg:w-3/4 rounded-lg shadow-md z-50">
+            <div className="flex items-center justify-center w-full h-full gap-x-2">
+              <LoadingAnimation />
+              <p>Places loading...</p>
+            </div>
+          </div>
         </div>
       ) : null}
     </div>
