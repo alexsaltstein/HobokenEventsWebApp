@@ -13,8 +13,9 @@ export const DayDisplay = ({ availableDays }) => {
           key.startsWith("T") || key.startsWith("S") ? 2 : 1
         );
         return (
-          <div tw="flex flex-col items-center text-sm">
+          <div key={`${day}-wrapper`} tw="flex flex-col items-center text-sm">
             <p
+              key={`${day}-text`}
               className={`${
                 availableDays.includes(day)
                   ? "text-black"
@@ -23,7 +24,8 @@ export const DayDisplay = ({ availableDays }) => {
             >
               {text}
             </p>
-            <div
+            <div              
+              key={`${day}-indicator`}
               tw="w-2 h-2 rounded-full"
               className={`${
                 availableDays.includes(day)

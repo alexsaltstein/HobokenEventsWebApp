@@ -8,8 +8,8 @@ export const TagsDisplay = ({ tags, className }) => {
     <div tw="flex gap-2 flex-wrap" className={className}>
       {tags.map((tag) => {
         return (
-          <div tw="text-sm bg-light-gray rounded px-2 py-1 flex-wrap">
-            <p>{capitalizeFirstLetter(tag).replace("_", " ")}</p>
+          <div key={`${tag}-wrapper`} tw="text-sm bg-light-gray rounded px-2 py-1 flex-wrap">
+            <p key={tag}>{capitalizeFirstLetter(tag).replace("_", " ")}</p>
           </div>
         );
       })}
