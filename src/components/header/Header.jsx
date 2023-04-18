@@ -25,8 +25,8 @@ export default function Header() {
 
   return (
     <>
-      <nav className="flex top-0 left-0 h-14 pl-8 pr-7 w-screen bg-button-blue border-gray-200 py-2.5 z-30 shadow fixed">
-        <div className="flex w-screen top-2 container justify-between items-center mx-auto md:top-auto">
+      <nav className="flex top-0 left-0 h-14 pl-8 xl:pl-0 pr-7 w-screen bg-button-blue border-gray-200 py-2.5 z-30 shadow fixed">
+        <div className="flex w-screen top-2 container justify-between items-center xl:mx-8 mx-auto md:top-auto">
           <a href="/" className="flex items-center gap-x-2">
             <IconLogoWhite tw="h-8 w-8 md:mb-1 md:mt-0" />
             <WordmarkLogo tw="md:w-[200px] w-[150px] self-center pt-1 md:pt-0 whitespace-nowrap fill-white" />
@@ -78,7 +78,7 @@ export default function Header() {
             <ul className="flex flex-col ml-auto mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-button-blue">
               <li>
                 <DonateButton
-                  className={`block py-2 pr-4 pl-3 mt-${
+                  className={`block font-bold py-2 pr-4 pl-3 mt-${
                     authed ? 3 : 2
                   } text-white hover:text-gray-200 md:border-0 md:p-0`}
                 />
@@ -86,7 +86,7 @@ export default function Header() {
               <li>
                 <a
                   href="/about"
-                  className={`block py-2 pr-4 pl-3 mt-${authed ? 3 : 2} ${
+                  className={`block font-bold py-2 pr-4 pl-3 mt-${authed ? 3 : 2} ${
                     location.pathname === "/about"
                       ? "underline underline-offset-8"
                       : null
@@ -99,7 +99,7 @@ export default function Header() {
                 <li key="moderate">
                   <a
                     href="/admin/moderate/events"
-                    className={`block py-2 pr-4 pl-3 mt-${authed ? 3 : 2} ${
+                    className={`block font-bold py-2 pr-4 pl-3 mt-${authed ? 3 : 2} ${
                       location.pathname === "/admin/moderate/events"
                         ? "underline underline-offset-8"
                         : null
@@ -112,7 +112,7 @@ export default function Header() {
               <li>
                 <a
                   href={!authed ? "/admin/login" : "/admin/logout"}
-                  className={`block py-2 pr-4 pl-3 mt-${authed ? 3 : 2} ${
+                  className={`block font-bold py-2 pr-4 pl-3 mt-${authed ? 3 : 2} ${
                     location.pathname === "/admin/logout" ||
                     location.pathname === "/admin/login"
                       ? "underline underline-offset-8"
@@ -125,7 +125,7 @@ export default function Header() {
               {!authed ? null : (
                 <Link
                   to="/admin/create/events"
-                  className="flex py-2 pr-4 pl-3 bg-blue-800 border-gray-200 text-white mr-3 text-sm font-semibold rounded-lg"
+                  className="flex py-2 pr-4 pl-3 bg-blue-800 border-gray-200 text-white mr-3 text-sm font-bold rounded-lg"
                 >
                   <SubmitButton tw="mr-2" />
                   <p className="m-auto">What's Happening?</p>

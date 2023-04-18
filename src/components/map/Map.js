@@ -81,6 +81,7 @@ const Map = ({ day, filters, filterResult }) => {
           const selected = selectedPlace === index;
           return (
             <OverlayView
+              key={`${mark.placeId}-${index}`}
               position={{ lat: mark.lat, lng: mark.lng }}
               mapPaneName={
                 selected
@@ -124,7 +125,7 @@ const Map = ({ day, filters, filterResult }) => {
           );
         })}
       </GoogleMap>
-      <div className="absolute left-0 top-44 flex px-4 w-full">
+      <div className="absolute left-0 top-44 md:top-32 lg:left-52 xl:left-0 xl:top-6 flex px-4 w-full">
           <button
             className="bg-white border-button-blue font-bold text-button-blue border-2 mt-2 p-2 w-fit rounded-lg shadow-md z-50"
             onClick={() => {
@@ -191,8 +192,8 @@ const Map = ({ day, filters, filterResult }) => {
                   All deals available:{" "}
                   {selectedMark.deals.map((deal) => {
                     return (
-                      <Link to={`/place/${deal.placeId}?deal_id=${deal._id}`}>
-                        <h3 className="hover:underline">- {deal.title}</h3>
+                      <Link key={`${deal}-link`} to={`/place/${deal.placeId}?deal_id=${deal._id}`}>
+                        <h3 key={`${deal}-title`} className="hover:underline">- {deal.title}</h3>
                       </Link>
                     );
                   })}

@@ -98,7 +98,7 @@ export const EventList = ({ url, menu, setNumResults, calendar, currPage, totalP
           onClick={() => onClick()}
         />
         {menu}
-        <div className="h-full 2xl:w-[60%] w-full">
+        <div className="h-full lg:w-5/6 2xl:w-[60%] w-full">
           {calendar}
           {!mapView ? (
             <>
