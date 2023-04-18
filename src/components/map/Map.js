@@ -81,6 +81,7 @@ const Map = ({ day, filters, filterResult }) => {
           const selected = selectedPlace === index;
           return (
             <OverlayView
+              key={`${mark.placeId}-${index}`}
               position={{ lat: mark.lat, lng: mark.lng }}
               mapPaneName={
                 selected
@@ -191,8 +192,8 @@ const Map = ({ day, filters, filterResult }) => {
                   All deals available:{" "}
                   {selectedMark.deals.map((deal) => {
                     return (
-                      <Link to={`/place/${deal.placeId}?deal_id=${deal._id}`}>
-                        <h3 className="hover:underline">- {deal.title}</h3>
+                      <Link key={`${deal}-link`} to={`/place/${deal.placeId}?deal_id=${deal._id}`}>
+                        <h3 key={`${deal}-title`} className="hover:underline">- {deal.title}</h3>
                       </Link>
                     );
                   })}

@@ -52,6 +52,7 @@ export const PageNumbers = ({ currPage, totalPages }) => {
           {getPageDisplay().map((page) => {
             return (
               <button
+                key={`page-${page}-button`}
                 className={`${
                   page === currPage+1
                     ? "border-button-blue bg-blue-200 text-button-blue"

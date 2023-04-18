@@ -41,13 +41,14 @@ export function FilterMenuDesktop({ filters, setFilters }) {
         />        
         {
           FILTER_VALUES.map((category) => (
-            <div>
-              <hr className="my-4"></hr>
-              <h1 className="text-lg font-semibold">{Object.keys(category)[0]}</h1>
+            <div key={`${Object.keys(category)[0]}-wrapper`}>
+              <hr key={`${Object.keys(category)[0]}-hr`} className="my-4"></hr>
+              <h1 key={`${Object.keys(category)[0]}-header`} className="text-lg font-semibold">{Object.keys(category)[0]}</h1>
               {
                 Object.values(category).map((filterGroup) => (
                   Object.values(filterGroup).map((filter) => (
                       <Checkbox
+                        key={filter.label}
                         text={filter.label}
                         checked={filters[filter.val]}
                         onClick={() =>
