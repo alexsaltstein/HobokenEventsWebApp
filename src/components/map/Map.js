@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import "twin.macro";
 import React from "react";
-import { GoogleMap, useJsApiLoader, OverlayView } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader, OverlayView, OverlayViewF } from "@react-google-maps/api";
 import axios from "axios";
 import { LoadingAnimation } from "../icons/LoadingAnimation";
 import "./test.css";
@@ -92,7 +92,7 @@ const Map = ({ day, filters, filterResult }) => {
         {markerLocations.map((mark, index) => {
           const selected = selectedPlace === index;
           return (
-            <OverlayView
+            <OverlayViewF
               key={`${mark.placeId}-${index}`}
               position={{ lat: mark.lat, lng: mark.lng }}
               mapPaneName={
@@ -133,7 +133,7 @@ const Map = ({ day, filters, filterResult }) => {
                   />
                 </div>
               </button>
-            </OverlayView>
+            </OverlayViewF>
           );
         })}
       </GoogleMap>
