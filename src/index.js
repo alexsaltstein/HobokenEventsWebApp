@@ -1,6 +1,4 @@
-// remove "import ReactDOM from "react-dom";" and uncomment below to revert back to react 18
-// import ReactDOM from "react-dom/client";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
@@ -19,11 +17,8 @@ import { NotFound } from "./routes/NotFound";
 import GlobalStyles from "./styles/GlobalStyles";
 import { Toaster } from "react-hot-toast";
 
-// Have to revert to React 17 to prevent map flicker
-// https://github.com/google-map-react/google-map-react/issues/1117
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
     <Toaster />
     <GlobalStyles />
@@ -73,6 +68,4 @@ ReactDOM.render(
       </BrowserRouter>
     </RecoilRoot>
   </React.StrictMode>,
-  // remove below if going back to react 18
-  document.getElementById("root")
 );
