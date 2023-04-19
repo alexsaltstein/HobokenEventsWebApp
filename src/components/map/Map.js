@@ -150,7 +150,7 @@ const Map = ({ day, filters, filterResult }) => {
       </div>
       {selectedMark && selectedPlace !== -1 ? (
         <>
-          <div className="absolute left-0 bottom-2 md:bottom-32 flex px-4 justify-center w-full">
+          <div className="absolute left-0 bottom-2 md:bottom-32 lg:bottom-0 lg:left-20 xl:left-16 flex px-4 justify-center w-full">
             <div className="bg-white mt-2 p-3 w-full lg:w-3/4 rounded-lg shadow-md z-50">
               <div>
                 <div>
