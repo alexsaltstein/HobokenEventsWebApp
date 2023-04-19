@@ -31,7 +31,7 @@ export const Calendar = ({
   return (
     <>
       <div className="flex mb-4 w-screen">
-        <div className="flex px-8 md:px-0 w-screen flex-col md:flex-row md:gap-x-2 mt-4 md:ml-8 md:items-center md:flex-wrap max-w-full">
+        <div className="flex px-8 md:px-0 w-screen flex-col md:flex-row md:gap-x-2 mt-4 md:mx-8 md:items-center md:flex-wrap max-w-full">
           <h2 className="flex text-black font-bold text-xl my-1 justify-between">
             What's happening:
             <div className="md:hidden">
@@ -47,7 +47,7 @@ export const Calendar = ({
             todayButton={<div>Today</div>}
             minDate={new Date()}
           />
-          <div className="fold:max-md:hidden absolute right-8 top-6">
+          <div className="fold:max-md:hidden absolute md:relative right-0 md:top-0 ml-auto">
             {filterButton}
           </div>
         </div>
