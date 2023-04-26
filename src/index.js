@@ -16,6 +16,7 @@ import { PowerHour } from "./routes/PowerHour";
 import { NotFound } from "./routes/NotFound";
 import GlobalStyles from "./styles/GlobalStyles";
 import { Toaster } from "react-hot-toast";
+import { Register } from "./components/admin/Register";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -29,6 +30,7 @@ root.render(
           <div className="min-h-[100vh] my-14 max-w-full" id="pageContent">
             <Routes>
               <Route path="/admin/login" element={<Login />} />
+              <Route path="/admin/register" element={<Register />} />
               <Route
                 path="/admin/moderate/events"
                 element={
@@ -67,5 +69,5 @@ root.render(
         </div>
       </BrowserRouter>
     </RecoilRoot>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
