@@ -2,7 +2,7 @@
 import "twin.macro";
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../utils/admin";
 import { useUserState } from "../../utils/userState";
 import { GenericInput } from "../form/GenericInput";
@@ -55,7 +55,7 @@ export const Login = () => {
     <div className="h-screen w-screen flex" id="splitContainer">
       <div className="w-full h-screen m-0 lg:w-1/2" id="form">
         <div className="w-80 lg:w-96 h-1/4 m-auto" />
-        <div className="w-80 lg:w-96 h-2/4 m-auto">
+        <div className="w-80 lg:w-96 h-2/4 m-auto ">
           <div className="mb-4">
             <div tw="flex items-start gap-x-2">
               <IconLogoBlue tw="h-10 w-10" />
@@ -63,7 +63,7 @@ export const Login = () => {
             </div>
             <div className="text-4xl font-bold">Welcome!</div>
           </div>
-          <div className="relative">
+          <div tw="flex flex-col space-y-4">
             <GenericInput
               required
               label="Email Address"
@@ -72,8 +72,6 @@ export const Login = () => {
               onChange={(event) => setEmail(event.target.value)}
               error={error}
             />
-          </div>
-          <div className="relative top-4">
             <GenericInput
               required
               label="Password"
@@ -82,15 +80,22 @@ export const Login = () => {
               onChange={(event) => setPass(event.target.value)}
               error={error}
             />
-          </div>
-          <div className="relative top-6 m-1 w-full">
-            <button
-              className="w-full h-10 bg-button-blue border-button-blue text-white mt-2 mb-2 text-sm font-semibold rounded"
-              onClick={async () => await login(email, pass)}
-              disabled={loading}
-            >
-              Log in
-            </button>
+            <div className="w-full">
+              <button
+                className="w-full h-10 bg-button-blue border-button-blue text-white mt-2 mb-2 text-sm font-semibold rounded"
+                onClick={async () => await login(email, pass)}
+                disabled={loading}
+              >
+                Sign in
+              </button>
+            </div>
+            <div tw="text-center italic">
+              Already have an account? Please{" "}
+              <Link to="/admin/register" tw="text-button-blue hover:underline">
+                register here
+              </Link>
+              !
+            </div>
           </div>
         </div>
         <div className="w-96 h-1/4 m-auto" id="errors">

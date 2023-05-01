@@ -2,7 +2,7 @@
 import "twin.macro";
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { logout } from "../../utils/admin";
 import { useUserState } from "../../utils/userState";
 import { GenericInput } from "../form/GenericInput";
@@ -135,6 +135,13 @@ export const Register = () => {
               >
                 Register
               </button>
+            </div>
+            <div tw="text-center italic">
+              Already have an account? Please{" "}
+              <Link to="/admin/login" tw="text-button-blue hover:underline">
+                sign in here
+              </Link>
+              !
             </div>
           </div>
         </div>
