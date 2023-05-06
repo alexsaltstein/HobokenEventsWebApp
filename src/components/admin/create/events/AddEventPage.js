@@ -146,7 +146,7 @@ export const AddEventPage = () => {
         <div className="hidden md:flex md:w-1/6 lg:w-1/3" />
         <div className="max-w-2xl mt-4">
           <p className="relative text-xl font-bold text-hoboken-blue">
-            Hi {user.firstName}, let's create an event
+            Hi {user.name}, let's create an event
           </p>
           <div className="relative mb-4">
             <div className="text-4xl font-bold ">Location Info</div>

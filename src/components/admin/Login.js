@@ -29,7 +29,7 @@ export const Login = () => {
     try {
       setLoading(true);
       if (!email || email.length === 0 || !pass || pass.length === 0) {
-        throw new Error("email or pass not valid");
+        throw new Error("email or password not valid");
       }
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/auth/login`,
@@ -41,7 +41,7 @@ export const Login = () => {
       if (!res.data) {
         return;
       }
-      setUser({ token: res.data.token, firstName: res.data.firstName });
+      setUser({ token: res.data.token, name: res.data.name });
       setLoading(false);
       navigate("/admin/create/events", { replace: true });
     } catch (e) {
@@ -89,7 +89,10 @@ export const Login = () => {
                 Sign in
               </button>
             </div>
-            <div tw="text-center italic">
+            <div className="text-red-400 italic" id="errors">
+              {error ? `Error: ${error}` : null}
+            </div>
+            <div tw="italic">
               Already have an account? Please{" "}
               <Link to="/admin/register" tw="text-button-blue hover:underline">
                 register here
@@ -97,9 +100,6 @@ export const Login = () => {
               !
             </div>
           </div>
-        </div>
-        <div className="w-96 h-1/4 m-auto" id="errors">
-          {error ? error : null}
         </div>
       </div>
       <div className="relative w-0 m-0 overflow-hidden lg:w-1/2" id="image">

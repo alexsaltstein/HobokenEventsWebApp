@@ -7,6 +7,7 @@ import { logout } from "../../utils/admin";
 import { useUserState } from "../../utils/userState";
 import { GenericInput } from "../form/GenericInput";
 import { IconLogoBlue, WordmarkLogo } from "../icons/Icons";
+import { isValidEmail } from "../../utils/common";
 
 export const Register = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -14,9 +15,10 @@ export const Register = () => {
   const [, setUser] = useUserState();
   const initialRefToken = searchParams.get("refToken");
 
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [confirmedPassMatch, setConfirmedPassMatch] = useState(false);
+  const [confirmedPass, setConfirmedPass] = useState("");
   const [registrationToken, setRegistrationToken] = useState(initialRefToken);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -32,22 +34,38 @@ export const Register = () => {
     logout(setUser);
     try {
       setLoading(true);
+      if (!name || name.length === 0) {
+        throw new Error("name is required");
+      }
       if (!email || email.length === 0) {
         throw new Error("email is required");
       }
       if (!pass || pass.length === 0) {
         throw new Error("password is required");
       }
-      if (!confirmedPassMatch) {
+      if (confirmedPass !== pass) {
         throw new Error("confirm password and password must match");
       }
-      if (!registrationToken || registrationToken) {
+      if (!registrationToken || registrationToken.length === 0) {
         throw new Error("registration token is required");
       }
+      if (pass.length < 8) {
+        throw new Error("password must be atleast 8 characters long");
+      }
+      if (!isValidEmail(email)) {
+        throw new Error("email must be a valid email");
+      }
       // TODO: change to register route
+      // console.log("", {
+      //   name,
+      //   email,
+      //   password: pass,
+      //   refToken: registrationToken,
+      // });
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/auth/register`,
+        `${process.env.REACT_APP_API_URL}/auth/signup`,
         {
+          name,
           email,
           password: pass,
           refToken: registrationToken,
@@ -56,7 +74,7 @@ export const Register = () => {
       if (!res.data) {
         return;
       }
-      setUser({ token: res.data.token, firstName: res.data.firstName });
+      setUser({ token: res.data.token, name: res.data.name });
       setLoading(false);
       //TODO: change to route to place that they registered
       navigate("/admin/create/events", { replace: true });
@@ -85,9 +103,17 @@ export const Register = () => {
           <div tw="flex flex-col space-y-4">
             <GenericInput
               required
+              label="name"
+              name="name"
+              type="text"
+              onChange={(event) => setName(event.target.value)}
+              error={error}
+            />
+            <GenericInput
+              required
               label="Email Address"
               name="emailAddress"
-              type="text"
+              type="email"
               onChange={(event) => setEmail(event.target.value)}
               error={error}
             />
@@ -105,12 +131,10 @@ export const Register = () => {
                 label="Confirm Password"
                 name="passwordConfirm"
                 type="password"
-                onChange={(event) =>
-                  setConfirmedPassMatch(event.target.value === pass)
-                }
+                onChange={(event) => setConfirmedPass(event.target.value)}
                 error={error}
               />
-              {confirmedPassMatch && pass.length > 0 ? (
+              {pass.length > 0 && confirmedPass === pass ? (
                 <div tw="text-green-600 italic text-xs">✓ Passwords match</div>
               ) : (
                 <div tw="text-red-600 italic text-xs">
@@ -127,6 +151,7 @@ export const Register = () => {
               onChange={(event) => setRegistrationToken(event.target.value)}
               error={error}
             />
+
             <div className="w-full">
               <button
                 className="w-full h-10 bg-button-blue border-button-blue text-white mt-2 mb-2 text-sm font-semibold rounded"
@@ -136,7 +161,10 @@ export const Register = () => {
                 Register
               </button>
             </div>
-            <div tw="text-center italic">
+            <div className="text-red-400 italic" id="errors">
+              {error ? `Error: ${error}` : null}
+            </div>
+            <div tw="italic">
               Already have an account? Please{" "}
               <Link to="/admin/login" tw="text-button-blue hover:underline">
                 sign in here
@@ -144,9 +172,6 @@ export const Register = () => {
               !
             </div>
           </div>
-        </div>
-        <div className="w-96 h-1/4 m-auto" id="errors">
-          {error ? error : null}
         </div>
       </div>
       <div className="relative w-0 m-0 overflow-hidden lg:w-1/2" id="image">

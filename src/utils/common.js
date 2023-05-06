@@ -152,3 +152,8 @@ export const getCurrPage = (searchParams, totalPages) => {
   }
   return queryParam;
 };
+
+export const isValidEmail = (str) => {
+  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return regex.test(str);
+};
