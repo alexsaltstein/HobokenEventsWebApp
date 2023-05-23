@@ -10,12 +10,14 @@ import { useSearchParams } from "react-router-dom";
 import Map from "../map/Map";
 import { ViewButton } from "./components/ViewButton";
 import { PageNumbers } from "../../utils/PageNumbers";
+import SortBottomSheet from "../filters/SortBottomSheet";
 
 export const EventList = ({ url, menu, setNumResults, calendar, currPage, totalPages, day, filters, filterResult}) => {
   const [loading, setLoading] = React.useState(true);
   const [mapView, setMapView] = React.useState(false);
   const [overflow, setOverflow] = React.useState(true);
   const [display, setDisplay] = React.useState(true);
+  const [isOpen, setOpen] = React.useState(false);
 
   const [searchParams] = useSearchParams();
   const selectedDeal = searchParams.get(DEAL_QUERY_PARAM);
@@ -79,7 +81,7 @@ export const EventList = ({ url, menu, setNumResults, calendar, currPage, totalP
     );
   }
 
-  const onClick = () => {
+  const mapOnClick = () => {
     setMapView(!mapView);
     setOverflow(!overflow);
     setDisplay(!display);
@@ -89,13 +91,22 @@ export const EventList = ({ url, menu, setNumResults, calendar, currPage, totalP
     banner.style.display = (display ? 'none' : 'unset');
   }
 
+  const sortOnClick = () => {
+    setOpen(!mapView);
+  }
+
   return (
     <>
       <div ref={topAnchor} />
       <div className="flex w-screen">
         <ViewButton
           mapView={mapView}
-          onClick={() => onClick()}
+          mapOnClick={() => mapOnClick()}
+          sortOnClick={() => sortOnClick()}
+        />
+        <SortBottomSheet
+          isOpen={isOpen}
+          setOpen={setOpen}
         />
         {menu}
         <div className="h-full lg:w-5/6 2xl:w-[60%] w-full">
