@@ -107,6 +107,9 @@ export const EventList = ({ url, menu, setNumResults, calendar, currPage, totalP
         <SortBottomSheet
           isOpen={isOpen}
           setOpen={setOpen}
+          setEventData={setEventData}
+          eventData={eventData}
+          url={url}
         />
         {menu}
         <div className="h-full lg:w-5/6 2xl:w-[60%] w-full">
