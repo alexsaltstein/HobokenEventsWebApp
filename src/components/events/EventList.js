@@ -11,6 +11,7 @@ import Map from "../map/Map";
 import { ViewButton } from "./components/ViewButton";
 import { PageNumbers } from "../../utils/PageNumbers";
 import SortBottomSheet from "../filters/SortBottomSheet";
+import { EmailListCard } from "./components/EmailListCard";
 
 export const EventList = ({ url, menu, setNumResults, calendar, currPage, totalPages, day, filters, filterResult}) => {
   const [loading, setLoading] = React.useState(true);
@@ -139,6 +140,9 @@ export const EventList = ({ url, menu, setNumResults, calendar, currPage, totalP
               </div>
               <div className="w-full h-fit flex justify-center">
                 <BannerAd />
+              </div>
+              <div className="flex justify-center my-4 px-8 overflow-y-hidden">
+                  <EmailListCard />
               </div>
             </>
           ) : (

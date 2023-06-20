@@ -11,6 +11,7 @@ export const GenericInput = ({
   placeholder,
   required,
   extraProps,
+  inputProps,
   icon,
   value,
 }) => {
@@ -36,7 +37,7 @@ export const GenericInput = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="border mt-1 mb-1 rounded w-full h-12 pl-2 pt-5"
+        className={`border mt-1 mb-1 rounded w-full h-12 pl-2 pt-5 ${inputProps}`}
       />
       <ErrorText>{error?.[name]}</ErrorText>
     </div>

@@ -25,15 +25,15 @@ export default function Header() {
 
   return (
     <>
-      <nav className="flex top-0 left-0 h-14 pl-8 xl:pl-0 pr-7 w-screen bg-button-blue border-gray-200 py-2.5 z-30 shadow fixed">
-        <div className="flex w-screen top-2 container justify-between items-center xl:mx-8 mx-auto md:top-auto">
+      <nav className="flex top-0 left-0 h-14 w-screen bg-button-blue border-gray-200 py-2.5 z-30 shadow fixed">
+        <div className="flex w-full top-2 justify-between items-center mx-8 md:top-auto">
           <a href="/" className="flex items-center gap-x-2">
             <IconLogoWhite tw="h-8 w-8 md:mb-1 md:mt-0" />
             <WordmarkLogo tw="md:w-[200px] w-[150px] self-center pt-1 md:pt-0 whitespace-nowrap fill-white" />
           </a>
           <button
             type="button"
-            className="inline-flex items-center mt-2 text-sm outline-none  text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200"
+            className="inline-flex items-center mt-1 text-sm outline-none  text-gray-500 rounded-lg lg:hidden focus:outline-none focus:ring-2 focus:ring-gray-200"
             aria-controls="navbar-default"
             aria-expanded="false"
             aria-label="hamburgerMenu"
@@ -72,7 +72,7 @@ export default function Header() {
             )}
           </button>
           <div
-            className="hidden w-full lg:block md:w-auto md:fixed md:right-6"
+            className="hidden w-fit lg:block md:w-auto"
             id="navbar-default"
           >
             <ul className="flex flex-col ml-auto mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-button-blue">

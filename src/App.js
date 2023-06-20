@@ -84,7 +84,7 @@ export default function App() {
                 onDateChange={onDateChange}
                 filterButton={
                   <button
-                    className="h-6 w-6 right-6 lg:hidden"
+                    className="h-6 w-6 mr-1 lg:hidden"
                     onClick={() => setOpen(true)}
                   >
                     <FilterIcon
