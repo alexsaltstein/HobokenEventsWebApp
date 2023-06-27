@@ -17,57 +17,81 @@ import { NotFound } from "./routes/NotFound";
 import GlobalStyles from "./styles/GlobalStyles";
 import { Toaster } from "react-hot-toast";
 import { Register } from "./components/admin/Register";
+import { FullSiteSearch } from "./components/search/FullSiteSearch";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <Toaster />
-    <GlobalStyles />
-    <RecoilRoot>
-      <BrowserRouter>
-        <div>
-          <Header />
-          <div className="min-h-[100vh] my-14 max-w-full" id="pageContent">
-            <Routes>
-              <Route path="/admin/login" element={<Login />} />
-              <Route path="/admin/register" element={<Register />} />
-              <Route
-                path="/admin/moderate/events"
-                element={
-                  <AuthedRoute>
-                    <ListEventsPage />
-                  </AuthedRoute>
-                }
-              />
-              <Route
-                path="/admin/create/events"
-                element={
-                  <AuthedRoute>
-                    <AddEventPage />
-                  </AuthedRoute>
-                }
-              />
-              <Route
-                path="/admin/logout"
-                element={
-                  <AuthedRoute>
-                    <Logout />
-                  </AuthedRoute>
-                }
-              />
-              <Route path="/place/:id" element={<Place />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/powerhour" element={<PowerHour />} />
-              {/* <Route path="/contact" element={<Contact />} /> */}
-              <Route path="/" element={<App />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+const TopLevel = () => {
+  const [showSiteSearch, setShowSiteSearch] = React.useState(false);
+
+  React.useEffect(() => {
+    if (showSiteSearch) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [showSiteSearch]);
+
+  return (
+    <React.StrictMode>
+      <Toaster />
+      <GlobalStyles />
+      <RecoilRoot>
+        <BrowserRouter>
+          <div>
+            <FullSiteSearch
+              showSearch={showSiteSearch}
+              onSearchDismiss={() => {
+                setShowSiteSearch(false);
+              }}
+            />
+            <Header
+              onSearchClicked={() => {
+                setShowSiteSearch(true);
+              }}
+            />
+            <div className="min-h-[100vh] my-14 max-w-full" id="pageContent">
+              <Routes>
+                <Route path="/admin/login" element={<Login />} />
+                <Route path="/admin/register" element={<Register />} />
+                <Route
+                  path="/admin/moderate/events"
+                  element={
+                    <AuthedRoute>
+                      <ListEventsPage />
+                    </AuthedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/create/events"
+                  element={
+                    <AuthedRoute>
+                      <AddEventPage />
+                    </AuthedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/logout"
+                  element={
+                    <AuthedRoute>
+                      <Logout />
+                    </AuthedRoute>
+                  }
+                />
+                <Route path="/place/:id" element={<Place />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/powerhour" element={<PowerHour />} />
+                {/* <Route path="/contact" element={<Contact />} /> */}
+                <Route path="/" element={<App />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </div>
+            <div className="flex" id="footer">
+              <Footer />
+            </div>
           </div>
-          <div className="flex" id="footer">
-            <Footer />
-          </div>
-        </div>
-      </BrowserRouter>
-    </RecoilRoot>
-  </React.StrictMode>
-);
+        </BrowserRouter>
+      </RecoilRoot>
+    </React.StrictMode>
+  );
+};
+root.render(<TopLevel />);

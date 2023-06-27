@@ -8,18 +8,19 @@ import {
   SignOutButton,
   ModerateIcon,
   CurrencyDollarIcon,
+  MagnifyingIcon,
 } from "../icons/Icons";
 import "./Header.css";
 import { SocialIcon } from "react-social-icons";
 import { DonateButton } from "../buyUsABeer/DonateButton";
 
-export default function DropdownMenu({ open, authed }) {
+export default function DropdownMenu({ open, authed, onSearchClicked }) {
   return (
     <>
       <div className="relative text-left lg:hidden">
         <div
           className={`fixed transition-all duration-500 ${
-            open ? "top-12" : "-top-80"
+            open ? "top-12" : "-top-[100%]"
           } left-0 w-full origin-top-left bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
           role="menu"
           aria-orientation="vertical"
@@ -58,14 +59,21 @@ export default function DropdownMenu({ open, authed }) {
             ) : null}
             <a
               href="/about"
-              className="text-gray-700 px-4 py-3 text-sm flex border-b hover:bg-gray-100 items-center "
+              className="text-gray-700 px-4 py-3 text-sm flex border-b hover:bg-gray-100 items-center"
               role="menuitem"
               tabIndex="-1"
               id="menu-item-2"
             >
               <AboutButton tw="mr-2" />
               <p className="mt-auto mb-auto">About Us</p>
-            </a>
+            </a>{" "}
+            <button
+              onClick={() => onSearchClicked()}
+              className="text-gray-700 px-4 py-3 text-sm flex border-b hover:bg-gray-100 items-center w-full"
+            >
+              <MagnifyingIcon tw="mr-2" />
+              <p className="mt-auto mb-auto">Search</p>
+            </button>
             <a
               href="https://www.instagram.com/hudson_happs/"
               className="text-gray-700 px-4 py-3 text-sm flex border-b hover:bg-gray-100"

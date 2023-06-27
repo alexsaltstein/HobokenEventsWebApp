@@ -2,13 +2,18 @@
 import "twin.macro";
 import React, { useState } from "react";
 import DropdownMenu from "./DropdownMenu";
-import { IconLogoWhite, SubmitButton, WordmarkLogo } from "../icons/Icons";
+import {
+  IconLogoWhite,
+  SubmitButton,
+  WordmarkLogo,
+  MagnifyingIcon,
+} from "../icons/Icons";
 import "./Header.css";
 import { useUserState } from "../../utils/userState";
 import { Link, useLocation } from "react-router-dom";
 import { DonateButton } from "../buyUsABeer/DonateButton";
 
-export default function Header() {
+export default function Header({ onSearchClicked }) {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [user] = useUserState();
@@ -71,10 +76,7 @@ export default function Header() {
               </svg>
             )}
           </button>
-          <div
-            className="hidden w-fit lg:block md:w-auto"
-            id="navbar-default"
-          >
+          <div className="hidden w-fit lg:block md:w-auto" id="navbar-default">
             <ul className="flex flex-col ml-auto mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-button-blue">
               <li>
                 <DonateButton
@@ -86,7 +88,9 @@ export default function Header() {
               <li>
                 <a
                   href="/about"
-                  className={`block font-bold py-2 pr-4 pl-3 mt-${authed ? 3 : 2} ${
+                  className={`block font-bold py-2 pr-4 pl-3 mt-${
+                    authed ? 3 : 2
+                  } ${
                     location.pathname === "/about"
                       ? "underline underline-offset-8"
                       : null
@@ -99,7 +103,9 @@ export default function Header() {
                 <li key="moderate">
                   <a
                     href="/admin/moderate/events"
-                    className={`block font-bold py-2 pr-4 pl-3 mt-${authed ? 3 : 2} ${
+                    className={`block font-bold py-2 pr-4 pl-3 mt-${
+                      authed ? 3 : 2
+                    } ${
                       location.pathname === "/admin/moderate/events"
                         ? "underline underline-offset-8"
                         : null
@@ -112,7 +118,9 @@ export default function Header() {
               <li>
                 <a
                   href={!authed ? "/admin/login" : "/admin/logout"}
-                  className={`block font-bold py-2 pr-4 pl-3 mt-${authed ? 3 : 2} ${
+                  className={`block font-bold py-2 pr-4 pl-3 mt-${
+                    authed ? 3 : 2
+                  } ${
                     location.pathname === "/admin/logout" ||
                     location.pathname === "/admin/login"
                       ? "underline underline-offset-8"
@@ -131,12 +139,24 @@ export default function Header() {
                   <p className="m-auto">What's Happening?</p>
                 </Link>
               )}
+              <li tw="text-white flex items-center justify-center">
+                <button onClick={() => onSearchClicked()}>
+                  <MagnifyingIcon />
+                </button>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
       <div className="fixed md:w-1/2 z-20">
-        <DropdownMenu open={open} authed={authed} />
+        <DropdownMenu
+          open={open}
+          authed={authed}
+          onSearchClicked={() => {
+            setOpen(false);
+            onSearchClicked();
+          }}
+        />
       </div>
     </>
   );
