@@ -2,11 +2,12 @@
 import tw from "twin.macro";
 import React from "react";
 import { XIcon } from "../icons/Icons";
+import axios from "axios";
 
-const SearchResultItem = ({ placeTitle, placeId, dealTitle, className }) => {
+const SearchResultItem = ({ placeTitle, placeLink, dealTitle, className }) => {
   return (
     <div className={className} tw="p-4">
-      <a href={`/place/${placeId}`}>
+      <a href={`/place/${placeLink}`}>
         <h3 tw="font-bold text-xl">{placeTitle}</h3>
         <p>{dealTitle}</p>
       </a>
@@ -14,14 +15,31 @@ const SearchResultItem = ({ placeTitle, placeId, dealTitle, className }) => {
   );
 };
 export const FullSiteSearch = ({ showSearch, onSearchDismiss }) => {
-  const [searchResults, setSearchResults] = React.useState([
-    //Change this
-    ...Array(100).keys(),
-  ]);
-
+  const [searchResults, setSearchResults] = React.useState(null);
   const [searchTerm, setSearchTerm] = React.useState("");
 
-  //create a function to get the search results based on the term
+  const fetchData = React.useCallback(async () => {
+    if (searchTerm.length < 2) {
+      setSearchResults(null);
+      return;
+    }
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/deal/search?text=${searchTerm}`
+      );
+      setSearchResults(res.data);
+    } catch (e) {
+      console.error("Error fetching data", e);
+      setSearchResults(null);
+    }
+  }, [searchTerm]);
+
+  React.useEffect(() => {
+    (async () => {
+      await fetchData();
+    })();
+  }, [fetchData]);
+
   return (
     <>
       {showSearch ? (
@@ -52,13 +70,58 @@ export const FullSiteSearch = ({ showSearch, onSearchDismiss }) => {
               />
             </div>
             <div tw="h-[70vh] w-[80vw] overflow-scroll px-4 py-2">
-              {searchResults.map((val, index) => (
-                <SearchResultItem
-                  css={index !== searchResults.length - 1 ? tw`border-b` : null}
-                  placeTitle={"A place " + val}
-                  dealTitle={"dealTitle" + val}
-                />
-              ))}
+              {!searchResults ? (
+                <div>Type atleast 3 characters to search</div>
+              ) : (
+                <div>
+                  <div>
+                    <h4>Deals:</h4>
+                    {!searchResults.deals?.length ? (
+                      <div>no deals found</div>
+                    ) : null}
+                    {searchResults.deals.map((val, index) => (
+                      <SearchResultItem
+                        key={val._id}
+                        css={
+                          index !== searchResults.length - 1
+                            ? tw`border-b`
+                            : null
+                        }
+                        placeLink={`${val.placeId}?deal_id=${val._id}`}
+                        placeTitle={val.place[0].name}
+                        dealTitle={val.title}
+                      />
+                    ))}
+                  </div>
+                  <div>
+                    <h4>Places:</h4>
+                    {!searchResults.places?.length ? (
+                      <div>no places found</div>
+                    ) : null}
+                    {searchResults.places.map((val, index) => (
+                      <SearchResultItem
+                        key={val._id}
+                        css={
+                          index !== searchResults.length - 1
+                            ? tw`border-b`
+                            : null
+                        }
+                        placeLink={`${val._id}`}
+                        placeTitle={val.name}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+              {/* {searchResults.map((val, index) => (
+                  <SearchResultItem
+                    css={
+                      index !== searchResults.length - 1 ? tw`border-b` : null
+                    }
+                    placeTitle={"A place " + val}
+                    dealTitle={"dealTitle" + val}
+                  />
+                ))} */}
             </div>
           </div>
         </div>
