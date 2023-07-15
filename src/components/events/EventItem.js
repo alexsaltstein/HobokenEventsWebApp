@@ -43,7 +43,7 @@ export const EventItem = ({ eventData, moderate }) => {
   const reportData = {
     dealId: _id,
   };
-
+  
   React.useEffect(() => {
     if (showReportModal) {
       document.body.style.overflow = "hidden";
@@ -113,6 +113,11 @@ export const EventItem = ({ eventData, moderate }) => {
                   <ShareIcon tw="mr-1 h-5" />
                   Share
                 </button>
+                <Link to={{pathname: `/admin/edit/events/${_id}`}}>
+                <button tw="flex items-center text-gray-500 z-40 lg:text-sm">
+                  Edit Deal
+                </button>
+                </Link>
               </div>
               <hr />
               <div className="md:whitespace-normal mt-2 mb-8" id="description">
