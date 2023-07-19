@@ -14,15 +14,27 @@ import { DEAL_QUERY_PARAM } from "../constants/common";
 import { copyToClipboard } from "../utils/common";
 import { Loading } from "../utils/Loading";
 import { useScrollIntoView } from "../utils/useScrollIntoView";
+import ClaimPlaceModal from "../components/places/ClaimPlaceModal";
+import { useUserState } from "../utils/userState";
 
 export const Place = () => {
   const { id } = useParams();
   const [loading, setLoading] = React.useState(true);
   const [placeData, setPlaceData] = React.useState(null);
   const [showExtendedHours, setShowExtendedHours] = React.useState(false);
+  const [showClaimPlaceModal, setShowClaimPlaceModal] = React.useState(false);
   const [searchParams] = useSearchParams();
   const selectedDeal = searchParams.get(DEAL_QUERY_PARAM);
   const topElemRef = useScrollIntoView([selectedDeal, loading]);
+  const [user] = useUserState();
+
+  React.useEffect(() => {
+    if (showClaimPlaceModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [showClaimPlaceModal]);
 
   const fetchData = React.useCallback(async () => {
     try {
@@ -66,6 +78,15 @@ export const Place = () => {
   const topPhoto = googleInfo.photos?.length > 0 ? googleInfo.photos[0] : null;
   document.title = 'Hudson Happs | ' + name
   return (
+    <>
+    {showClaimPlaceModal ? (
+      <ClaimPlaceModal
+        shown={showClaimPlaceModal}
+        title={`Claim ${placeData.name}`}
+        placeId={id}
+        onDismiss={() => setShowClaimPlaceModal(false)}
+      />
+    ) : null}
     <div className="p-4 flex w-full items-center flex-col">
       {topPhoto ? (
         <img
@@ -142,6 +163,18 @@ export const Place = () => {
           <DirectionsIcon />
         </a>
       </div>
+      {user ? <div className="flex items-center">
+        <button
+          className="text-gray-500 z-20 lg:text-sm inline-flex"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setShowClaimPlaceModal(true);
+          }}
+        >
+          Manage this Location?
+        </button>
+      </div> : null}
       <div className="flex flex-wrap w-screen md:px-8 mt-4 max-w-screen-2xl md:columns-2 md:gap-0 2xl:columns-3 justify-center">
         {deals.map((deal) => (
           <div
@@ -153,5 +186,6 @@ export const Place = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
