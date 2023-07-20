@@ -3,20 +3,14 @@ import axios from "axios";
 import React from "react";
 import { useUserState } from "../../../../utils/userState";
 import { XIcon } from "../../../icons/Icons";
+import { DeleteDeal } from "../../../../server/deal";
 
 
 export const DenyEvent = ({ eventId }) => {
   const [user] = useUserState();
   const onClick = async () => {
     try {
-      await axios.delete(
-        `${process.env.REACT_APP_API_URL}/api/deal/${eventId}`,
-        {
-          headers: {
-            Authorization: `${user.token}`,
-          },
-        }
-      );
+      await DeleteDeal(eventId, user);
       console.log("successfully denied event", eventId);
       window.location.reload()
     } catch (e) {

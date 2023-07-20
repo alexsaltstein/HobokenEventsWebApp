@@ -21,11 +21,15 @@ import { DenyEvent } from "../admin/moderate/events/DenyEvent";
 import { DayDisplay } from "./components/DayDisplay";
 import { TagsDisplay } from "./components/TagsDisplay";
 import { DEAL_QUERY_PARAM } from "../../constants/common";
+import EditModal from "./EditModal";
+import { useUserState } from "../../utils/userState";
 
 export const EventItem = ({ eventData, moderate }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedDeal = searchParams.get(DEAL_QUERY_PARAM);
   const [showReportModal, setShowReportModal] = React.useState(false);
+  const [showEditModal, setShowEditModal] = React.useState(false);
+  const [user] = useUserState()
 
   const {
     placeId,
@@ -43,7 +47,7 @@ export const EventItem = ({ eventData, moderate }) => {
   const reportData = {
     dealId: _id,
   };
-
+  
   React.useEffect(() => {
     if (showReportModal) {
       document.body.style.overflow = "hidden";
@@ -61,6 +65,12 @@ export const EventItem = ({ eventData, moderate }) => {
           title={`Report ${title} by ${placeData.name}`}
           reportData={reportData}
           onDismiss={() => setShowReportModal(false)}
+        />
+      ) : null}
+      {showEditModal ? (
+        <EditModal
+          eventData={eventData} 
+          onDismiss={() => setShowEditModal(false)}
         />
       ) : null}
       <div className="fold:max-sm:max-w-screen sm:max-w-none font-sans mb-4 overflow-y-hidden drop-shadow-md hover:drop-shadow-lg">
@@ -113,6 +123,15 @@ export const EventItem = ({ eventData, moderate }) => {
                   <ShareIcon tw="mr-1 h-5" />
                   Share
                 </button>
+                {user ? (
+                  <button onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setShowEditModal(true);
+                  }} tw="flex items-center text-gray-500 z-40 lg:text-sm">
+                Edit Deal
+              </button>
+                ) : null}
               </div>
               <hr />
               <div className="md:whitespace-normal mt-2 mb-8" id="description">

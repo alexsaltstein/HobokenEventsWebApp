@@ -14,7 +14,6 @@ import { FilterBottomSheet } from "./components/filters/FilterBottomSheet";
 import { FilterIcon } from "./components/icons/Icons";
 import { INITIAL_FILTER } from "./constants/common";
 import axios from "axios";
-
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isOpen, setOpen] = useState(false);
