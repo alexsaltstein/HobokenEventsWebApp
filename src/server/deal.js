@@ -17,6 +17,25 @@ export const DeleteDeal = async (_id, user) => {
             }
           );
     } catch(e) {
-        console.log(e)
+      console.log("Error in DeleteDeal modal:",e)
     }
+}
+
+export const EditDeal = async (newDeal, _id, user, setError) => {
+  try {
+      if(!newDeal) {
+          setError('Please fill fields.')
+          return
+      }
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/deal/edit/${_id}`, {
+          ...newDeal
+      }, {
+          headers: {
+            Authorization: `${user.token}`,
+          },
+        })
+      } catch(e) {
+      setError(e)
+      console.log("Error in editing modal:",e)
+  }
 }

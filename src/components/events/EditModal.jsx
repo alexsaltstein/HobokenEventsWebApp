@@ -3,52 +3,50 @@ import axios from "axios";
 import { XIcon } from "../icons/Icons";
 import { ErrorText } from "../form/ErrorText";
 import { LoadingAnimation } from "../icons/LoadingAnimation";
-import { DAYS_ENUM } from "../../utils/common";
 import { GenericInput } from "../form/GenericInput";
 import { IdIcon } from "../icons/Icons";
 import { useUserState } from "../../utils/userState";
+import toast from "react-hot-toast";
+import { EditDeal } from "../../server/deal";
 import { DeleteDeal } from "../../server/deal";
+
+/**
+ * Renders an edit modal component for a given event data.
+ *
+ * @param {object} eventData - The data of the event.
+ * @param {function} onDismiss - The function to dismiss the modal.
+ * @return {JSX.Element} The JSX element of the edit modal.
+ */
 export default function EditModal({ eventData, onDismiss }) {
     const [user] = useUserState();
     const [loading, setLoading] = React.useState(false);
-    const { placeId,
+    const {
         dayOfWeek,
         startTime,
         endTime,
         title,
         deals,
-        place,
-        verifiedAt,
         _id,
         tags } = eventData
     const [newDeal, setNewDeal] = useState({})
     const [error, setError] = useState('')
-    const onClickEditDeal = async () => {
-        try {
-            if(!newDeal) {
-                setError('Please fill fields.')
-                return
-            }
-            await axios.put(`${process.env.REACT_APP_API_URL}/api/deal/edit/${_id}`, {
-                ...newDeal
-            }, {
-                headers: {
-                  Authorization: `${user.token}`,
-                },
-              })
-              window.location.reload()
-        } catch(e) {
-            setError(e)
-            console.log(e)
-        }
-    }
 
     const onClickDelete = async () => {
         try {
             await DeleteDeal(_id, user);
-            window.location.reload()
+            toast.success("Successfully Deleted, refresh to see changes.");
         } catch(e) {
             console.log(e)
+        }
+    }
+
+    const onClickEditDeal = async () => {
+        try {
+            await EditDeal(newDeal, _id, user, setError);
+            toast.success("Successfully Edited, refresh to see changes.");
+        } catch(e) {
+            console.log('Error in editing modal:', e)
+            toast.failue("Error Thrown while editting");
         }
     }
     return (
@@ -63,11 +61,10 @@ export default function EditModal({ eventData, onDismiss }) {
                     id="reportModal"
                     tabIndex="-1"
                     aria-hidden="true"
-                    className={`fixed top-1/4 mx-auto h-fit z-50 flex w-fit p-4 overflow-hidden`}
-                >
+                    className="fixed top-1/4 mx-auto h-fit z-50 flex w-fit p-4 overflow-hidden">
                     <div className="bg-white rounded-lg shadow w-96">
                         {/* <!-- Modal header --> */}
-                        <div className="flex items-start justify-between p-4 border-b rounded-t">
+                        <div className="flex items-start justify-between border-b p-4 rounded-t">
                             <h3 className="text-xl font-semibold text-gray-900 pt-1">
                                 Edit Deal
                             </h3>
@@ -89,7 +86,7 @@ export default function EditModal({ eventData, onDismiss }) {
                                 label="Title"
                                 extraProps="w-full"
                                 required
-                                placeholder="Taco Tuesday"
+                                placeholder="Title"
                                 onChange={(e) => setNewDeal({ ...newDeal, title: e.target.value })}
                                 icon={<IdIcon />}
                                 value={newDeal.title || title}
@@ -101,7 +98,6 @@ export default function EditModal({ eventData, onDismiss }) {
                                 extraProps="w-full"
                                 required
                                 onChange={(e) => setNewDeal({ ...newDeal, startTime: e.target.value })}
-                                placeholder="Taco Tuesday"
                                 value={newDeal.startTime || startTime}
                             />
                             <GenericInput
@@ -110,7 +106,6 @@ export default function EditModal({ eventData, onDismiss }) {
                                 label="End time"
                                 extraProps="w-full"
                                 required
-                                placeholder="Taco Tuesday"
                                 onChange={(e) => setNewDeal({ ...newDeal, endTime: e.target.value })}
                                 value={newDeal.endTime || endTime}
                             />
@@ -120,7 +115,6 @@ export default function EditModal({ eventData, onDismiss }) {
                                 label="Days Of Week"
                                 extraProps="w-full"
                                 required
-                                placeholder=""
                                 value={newDeal.dayOfWeek || dayOfWeek}
                                 onChange={(e) => setNewDeal({ ...newDeal, dayOfWeek: e.target.value.split(",") })}
 
@@ -143,7 +137,6 @@ export default function EditModal({ eventData, onDismiss }) {
                                 label="Tags"
                                 extraProps="w-full"
                                 required
-                                placeholder=""
                                 value={newDeal.tags || tags}
                             />
                             {/* <!-- Modal footer --> */}

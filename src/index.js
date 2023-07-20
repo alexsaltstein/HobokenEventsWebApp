@@ -16,8 +16,6 @@ import { PowerHour } from "./routes/PowerHour";
 import { NotFound } from "./routes/NotFound";
 import GlobalStyles from "./styles/GlobalStyles";
 import { Toaster } from "react-hot-toast";
-import { EditDeal } from "./components/events/EditModal";
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
