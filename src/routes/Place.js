@@ -64,7 +64,7 @@ export const Place = () => {
   }
 
   const topPhoto = googleInfo.photos?.length > 0 ? googleInfo.photos[0] : null;
-  document.title = 'Hudson Happs | ' + name
+
   return (
     <div className="p-4 flex w-full items-center flex-col">
       {topPhoto ? (

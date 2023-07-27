@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta property="og:type" content="website" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description"
-    content="Hudson Happs is the #1 place to find out about events and happy hours in Hoboken and surrounding areas (e.g. Hoboken, Jersey City, New York City)." />
+    <title>Hudson Happs | Happy Hours Hoboken, Jersey City</title>
+    <meta
+      name="description"
+      content="Hudson Happs is the #1 place to find out about events and happy hours in Hoboken and surrounding areas (e.g. Hoboken, Jersey City, New York City)."
+    />
+    <meta property="og:image" content="%PUBLIC_URL%/favicon.png" />
+    <meta property="og:title" content="Hudson Happs" />
+    <meta
+      property="og:description"
+      content="Hudson Happs is the #1 place to find out about events and happy hours in Hoboken and surrounding areas (e.g. Hoboken, Jersey City, New York City)."
+    />
 
-  <meta property="og:image" content="%PUBLIC_URL%/favicon.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Hudson Happs" />
-  <meta property="og:description"
-    content="Hudson Happs is the #1 place to find out about events and happy hours in Hoboken and surrounding areas (e.g. Hoboken, Jersey City, New York City)." />
-
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-  <!--
+    <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <!--
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -30,30 +34,40 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>Hudson Happs | Happy Hours Hoboken, Jersey City</title>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1461162184042470"
-    crossorigin="anonymous"></script>
-  <script async src="https://fundingchoicesmessages.google.com/i/pub-1461162184042470?ers=1"
-    nonce="UnPYMODoHmcoTqvlbaJEsg"></script>
-  <script nonce="UnPYMODoHmcoTqvlbaJEsg">
-    (function () {
-      function signalGooglefcPresent() {
-        if (!window.frames['googlefcPresent']) {
-          if (document.body) { 
-            const iframe = document.createElement('iframe');
-             iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;';
-           iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe); 
-           } else { 
-             setTimeout(signalGooglefcPresent, 0);
-           }
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1461162184042470"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://fundingchoicesmessages.google.com/i/pub-1461162184042470?ers=1"
+      nonce="UnPYMODoHmcoTqvlbaJEsg"
+    ></script>
+    <script nonce="UnPYMODoHmcoTqvlbaJEsg">
+      (function () {
+        function signalGooglefcPresent() {
+          if (!window.frames["googlefcPresent"]) {
+            if (document.body) {
+              const iframe = document.createElement("iframe");
+              iframe.style =
+                "width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;";
+              iframe.style.display = "none";
+              iframe.name = "googlefcPresent";
+              document.body.appendChild(iframe);
+            } else {
+              setTimeout(signalGooglefcPresent, 0);
+            }
+          }
         }
-      } signalGooglefcPresent();
-    })();</script>
-</head>
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-  <!--
+        signalGooglefcPresent();
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -63,5 +77,5 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-</body>
+  </body>
 </html>
