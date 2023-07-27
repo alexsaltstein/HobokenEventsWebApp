@@ -15,10 +15,11 @@ export const MetaData = ({
   description,
   ogDescription,
   image,
+  canonicalRoute,
 }) => {
   return (
     <Helmet>
-      <title>{`${title | "Hudson Happs"}` || DEFAULTS.title}</title>
+      <title>{title ? `${title} | Hudson Happs` : DEFAULTS.title}</title>
       <meta name="description" content={description || DEFAULTS.description} />
       <meta property="og:image" content={image || DEFAULTS.image} />
       <meta
@@ -29,6 +30,8 @@ export const MetaData = ({
         property="og:description"
         content={ogDescription || description || DEFAULTS.description}
       />
+      {/* This is the base url for hudson happs as we don't care about dev url ever being right */}
+      <link rel="canonical" href={`https://hudonshapps.com${canonicalRoute}`} />
     </Helmet>
   );
 };

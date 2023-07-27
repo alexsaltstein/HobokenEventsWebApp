@@ -70,6 +70,7 @@ export const Place = () => {
     <>
       <MetaData
         title={`${name} Happy Hours ${placeData.address.city}, ${placeData.address.state}`}
+        canonicalRoute={`/place/${id}`}
         description={`Hudson Happs has all the deals and happy hours for ${name} in ${placeData.address.city}, ${placeData.address.state} all in one place. Verified and collected by real people so you don't have to.`}
       />
       <div className="p-4 flex w-full items-center flex-col">

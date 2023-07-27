@@ -67,5 +67,5 @@ root.render(
         </div>
       </BrowserRouter>
     </RecoilRoot>
-  </React.StrictMode>,
+  </React.StrictMode>
 );

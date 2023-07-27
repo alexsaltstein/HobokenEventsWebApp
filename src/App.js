@@ -14,6 +14,7 @@ import { FilterBottomSheet } from "./components/filters/FilterBottomSheet";
 import { FilterIcon } from "./components/icons/Icons";
 import { INITIAL_FILTER } from "./constants/common";
 import axios from "axios";
+import { MetaData } from "./meta/MetaData";
 export default function App() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isOpen, setOpen] = useState(false);
@@ -60,57 +61,60 @@ export default function App() {
   const currPage = getCurrPage(searchParams, totalPages);
 
   return (
-    <div className="overflow-y-clip overflow-x-clip">
-      <GoogleTags />
-      <Banner />
-      <div className="flex">
-        <div> 
-          <EventList
-            url={`${
-              process.env.REACT_APP_API_URL
-            }/api/deal?approved.state=active&pageNum=${currPage}&dayOfWeek=${getDayOfWeek(
-              selectedDate.getDay()
-            )}&${filterResult}${filters.hobo ? "&city=Hoboken" : ""}${
-              filters.jc ? "&city=Jersey City" : ""
-            }${filters.active ? `&active=${filters.active}` : ""}`}
-            setNumResults={setNumResults}
-            menu={
-              <FilterMenuDesktop filters={filters} setFilters={setFilters} />
-            }
-            calendar={
-              <Calendar
-                selectedDate={selectedDate}
-                onDateChange={onDateChange}
-                filterButton={
-                  <button
-                    className="h-6 w-6 mr-1 lg:hidden"
-                    onClick={() => setOpen(true)}
-                  >
-                    <FilterIcon
-                      fill={isOpen ? "#007bc7" : "none"}
-                      stroke={isOpen ? "none" : "#6f7287"}
-                      tw={"w-7 h-7"}
-                    />
-                  </button>
-                }
-              >
-                <FilterBottomSheet
-                  isOpen={isOpen}
-                  setOpen={setOpen}
-                  filters={filters}
-                  setFilters={setFilters}
-                  numResults={numResults}
-                />
-              </Calendar>
-            }
-            currPage={currPage}
-            totalPages={totalPages}
-            day={getDayOfWeek(selectedDate.getDay())}
-            filters={filters}
-            filterResult={filterResult}
-          />
+    <>
+      <MetaData canonicalRoute="/" />
+      <div className="overflow-y-clip overflow-x-clip">
+        <GoogleTags />
+        <Banner />
+        <div className="flex">
+          <div>
+            <EventList
+              url={`${
+                process.env.REACT_APP_API_URL
+              }/api/deal?approved.state=active&pageNum=${currPage}&dayOfWeek=${getDayOfWeek(
+                selectedDate.getDay()
+              )}&${filterResult}${filters.hobo ? "&city=Hoboken" : ""}${
+                filters.jc ? "&city=Jersey City" : ""
+              }${filters.active ? `&active=${filters.active}` : ""}`}
+              setNumResults={setNumResults}
+              menu={
+                <FilterMenuDesktop filters={filters} setFilters={setFilters} />
+              }
+              calendar={
+                <Calendar
+                  selectedDate={selectedDate}
+                  onDateChange={onDateChange}
+                  filterButton={
+                    <button
+                      className="h-6 w-6 mr-1 lg:hidden"
+                      onClick={() => setOpen(true)}
+                    >
+                      <FilterIcon
+                        fill={isOpen ? "#007bc7" : "none"}
+                        stroke={isOpen ? "none" : "#6f7287"}
+                        tw={"w-7 h-7"}
+                      />
+                    </button>
+                  }
+                >
+                  <FilterBottomSheet
+                    isOpen={isOpen}
+                    setOpen={setOpen}
+                    filters={filters}
+                    setFilters={setFilters}
+                    numResults={numResults}
+                  />
+                </Calendar>
+              }
+              currPage={currPage}
+              totalPages={totalPages}
+              day={getDayOfWeek(selectedDate.getDay())}
+              filters={filters}
+              filterResult={filterResult}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
