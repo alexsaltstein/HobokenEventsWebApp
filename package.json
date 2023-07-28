@@ -67,6 +67,13 @@
       "last 1 safari version"
     ]
   },
+  "reactSnap": {
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "puppeteerExecutablePath": "/opt/google/chrome/google-chrome"
+  },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
     "husky": "^8.0.1",
